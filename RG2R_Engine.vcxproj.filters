@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Engine">
+      <UniqueIdentifier>{90876bf1-9da1-4cb0-86ca-c2d9b374adfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Engine">
+      <UniqueIdentifier>{e94ffb7f-bae0-493a-aa27-4cdc40c91b6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Main">
+      <UniqueIdentifier>{bcbca77d-f5e8-47e3-9527-f8cc19330b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System">
+      <UniqueIdentifier>{feccdafa-0b19-4f7c-be55-1d0983991ea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Main\stdafx">
+      <UniqueIdentifier>{7524ec46-45b8-4e80-b5a1-73123e381f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System\WindowManager">
+      <UniqueIdentifier>{1f26c312-a1b2-4578-8375-b76975723165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System\TimeManager">
+      <UniqueIdentifier>{d6c7cde9-58f7-48bf-bf10-d71fac947732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System\SoundManager">
+      <UniqueIdentifier>{791bf135-b9bd-4683-bc28-9e8727e71fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System\GraphicManager">
+      <UniqueIdentifier>{777147a8-bdf3-4f6c-9b41-c313a19f1b58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System\TextureManager">
+      <UniqueIdentifier>{7da40ed9-7dfe-4341-ba67-1c30440fcc18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System\InputManager">
+      <UniqueIdentifier>{96884ef0-56c5-44c9-9261-cfd58bf86db4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\System\TextureManager\Texture">
+      <UniqueIdentifier>{8bf8359d-ec7d-428b-b16f-daa31ffad723}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>소스 파일\Engine\Main\stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>소스 파일\Engine\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicManager.h">
+      <Filter>소스 파일\Engine\System\GraphicManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>소스 파일\Engine\System\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyCode.h">
+      <Filter>소스 파일\Engine\System\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectType.h">
+      <Filter>소스 파일\Engine\System\GraphicManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>소스 파일\Engine\System\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\Engine\System\TextureManager\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>소스 파일\Engine\System\SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>소스 파일\Engine\System\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>소스 파일\Engine\System\WindowManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RG2R_Engine.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="RG2R_Engine.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일\Engine\Main\stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일\Engine\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>소스 파일\Engine\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicManager.cpp">
+      <Filter>소스 파일\Engine\System\GraphicManager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>소스 파일\Engine\System\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>소스 파일\Engine\System\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\Engine\System\TextureManager\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>소스 파일\Engine\System\SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
+      <Filter>소스 파일\Engine\System\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>소스 파일\Engine\System\WindowManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
