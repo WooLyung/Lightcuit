@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "Scene.h"
 #include "Camera.h"
+#include "Math.h"
 
 class Component;
 class Scene;
@@ -22,6 +23,7 @@ private:
 	void Render();
 	void Update();
 	
+	Matrix matrix;
 	std::map<std::type_index, Component*> components;
 	std::vector<Object*> childs;
 	Object* parent = nullptr;
@@ -64,10 +66,13 @@ public:
 	std::string GetName(); // 이름 얻기
 	void SetTag(std::string); // 태그 설정
 	void SetName(std::string); // 이름 설정
+	void SetIsEnable(bool); // 활성화 상태 설정
 	void Destroy(); // 오브젝트 제거
-	bool IsEnable(); // 활성화 상태 얻기
+	bool GetIsEnable(); // 활성화 상태 얻기
 	ObjectState GetState() { return state; }
+	Matrix GetMatrix() { return matrix; }
 
+	// 컴포넌트 관련
 	template<typename T>
 	T* AttachComponent(); // 컴포넌트를 추가
 	template<typename T>
@@ -118,7 +123,6 @@ public:
 	void OnDetachChild() {} // 자식 오브젝트 변수가 삭제됐을 때
 
 	// 라이프사이클 리스너
-	std::function<void()> onCreateListener = NULL;
 	std::function<void()> onFirstUpdateListener = NULL;
 	std::function<void()> onFirstUpdateBeforeListener = NULL;
 	std::function<void()> onUpdateListener = NULL;
@@ -155,6 +159,7 @@ T* Object::AttachComponent()
 
 	T* component = new T();
 	components[i] = component;
+	component->owner = this;
 
 	ApplyListener(onAttachComponentListener);
 	OnAttachComponent();

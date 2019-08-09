@@ -3,9 +3,6 @@
 #include "Engine.h"
 #include "WindowManager.h"
 
-Texture* test = nullptr;
-Degree d = 0;
-
 GraphicManager::GraphicManager()
 	:deviceContext_(nullptr)
 {
@@ -189,30 +186,11 @@ GraphicManager::~GraphicManager()
 
 void GraphicManager::Render()
 {
-	if (test == nullptr)
-		test = RG2R_TextureM->Load("Resources/Sprites/test.png");
-
 	deviceContext_->BeginDraw();
 	deviceContext_->Clear(D2D1::ColorF(0xff000000));
 
 	RG2R_SceneM->Render();
 
-	// ¾À ·»´õ
-	if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_ENTER) {
-		RG2R_WindowM->ToggleFullscreen();
-	}
-
-	float f = RG2R_WindowM->GetSize().height / 360.f;
-	auto mat = D2D1::Matrix3x2F::Scale(f, f, Vec2F(0, 0))
-		* D2D1::Matrix3x2F::Rotation(d++, Vec2F(180 * f, 180 * f));
-	deviceContext_->SetTransform(&mat);
-	deviceContext_->DrawBitmap(
-		test->GetBitmap(),
-		nullptr,
-		1.f,
-		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-		&Rect(0, 0, 360, 360));
-	//
 	deviceContext_->EndDraw();
 	swapChain_->Present(1, 0);
 }

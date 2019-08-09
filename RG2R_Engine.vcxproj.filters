@@ -79,6 +79,12 @@
     <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer">
       <UniqueIdentifier>{36e7f41c-65f7-411e-b1e0-de0f1e6c746e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers">
+      <UniqueIdentifier>{1cdb4e3e-d644-45f5-bd4e-25cce75532ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Transform">
+      <UniqueIdentifier>{d22ca49a-74c4-4889-b51d-9302afa650f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -146,6 +152,12 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +227,12 @@
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>소스 파일\Engine\Element\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Transform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

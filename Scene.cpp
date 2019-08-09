@@ -33,25 +33,33 @@ void Scene::Update()
 {
 	for (auto iter : objects)
 	{
-		if (iter->isFirstUpdate)
+		if (iter->GetIsEnable())
 		{
-			ApplyListener(iter->onFirstUpdateBeforeListener);
-			iter->OnFirstUpdateBefore();
-		}
-		ApplyListener(iter->onUpdateBeforeListener);
-		iter->OnUpdateBefore();
+			if (iter->isFirstUpdate)
+			{
+				ApplyListener(iter->onFirstUpdateBeforeListener);
+				iter->OnFirstUpdateBefore();
+			}
+			ApplyListener(iter->onUpdateBeforeListener);
+			iter->OnUpdateBefore();
 
+			iter->Update();
+
+			if (iter->isFirstUpdate)
+			{
+				ApplyListener(iter->onFirstUpdateListener);
+				iter->OnFirstUpdate();
+
+				iter->isFirstUpdate = false;
+			}
+			ApplyListener(iter->onUpdateListener);
+			iter->OnUpdate();
+		}
+	}
+
+	for (auto iter : cameras)
+	{
 		iter->Update();
-
-		if (iter->isFirstUpdate)
-		{
-			ApplyListener(iter->onFirstUpdateListener);
-			iter->OnFirstUpdate();
-
-			iter->isFirstUpdate = false;
-		}
-		ApplyListener(iter->onUpdateListener);
-		iter->OnUpdate();
 	}
 }
 
@@ -59,25 +67,28 @@ void Scene::Render()
 {
 	for (auto iter : objects)
 	{
-		if (iter->isFirstRender)
+		if (iter->GetIsEnable())
 		{
-			ApplyListener(iter->onFirstRenderBeforeListener);
-			iter->OnFirstRenderBefore();
+			if (iter->isFirstRender)
+			{
+				ApplyListener(iter->onFirstRenderBeforeListener);
+				iter->OnFirstRenderBefore();
+			}
+			ApplyListener(iter->onRenderBeforeListener);
+			iter->OnRenderBefore();
+
+			iter->Render();
+
+			if (iter->isFirstRender)
+			{
+				ApplyListener(iter->onFirstRenderListener);
+				iter->OnFirstRender();
+
+				iter->isFirstRender = false;
+			}
+			ApplyListener(iter->onRenderListener);
+			iter->OnRender();
 		}
-		ApplyListener(iter->onRenderBeforeListener);
-		iter->OnRenderBefore();
-
-		iter->Render();
-
-		if (iter->isFirstRender)
-		{
-			ApplyListener(iter->onFirstRenderListener);
-			iter->OnFirstRender();
-
-			iter->isFirstRender = false;
-		}
-		ApplyListener(iter->onRenderListener);
-		iter->OnRender();
 	}
 }
 

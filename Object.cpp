@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Object.h"
+#include "Transform.h"
 
 Object::Object()
 {
-	ApplyListener(onCreateListener);
+	AttachComponent<Transform>();
+
 	OnCreate();
 }
 
@@ -26,29 +28,50 @@ Object::~Object()
 
 void Object::Render()
 {
-	// ÄÄÆ÷³ÍÆ® ·»´õ
+	Transform* transform = GetComponent<Transform>();
+
+	matrix =
+		D2D1::Matrix3x2F::Scale(transform->GetScale().x, transform->GetScale().y, transform->GetAnchor_scale()) *
+		D2D1::Matrix3x2F::Rotation(transform->GetRot(), transform->GetAnchor_rot()) *
+		D2D1::Matrix3x2F::Translation(transform->GetPos().x - transform->GetCenter().x, transform->GetPos().y - transform->GetCenter().y);
+
+	if (parent && transform->GetIsRelative())
+	{
+		matrix = matrix * parent->GetMatrix();
+	}
+
+	for (auto iter : components)
+	{
+		if (iter.second->GetIsEnable())
+		{
+			iter.second->Render();
+		}
+	}
 
 	for (auto iter : childs)
 	{
-		if (iter->isFirstRender)
+		if (iter->GetIsEnable())
 		{
-			ApplyListener(iter->onFirstRenderBeforeListener);
-			iter->OnFirstRenderBefore();
+			if (iter->isFirstRender)
+			{
+				ApplyListener(iter->onFirstRenderBeforeListener);
+				iter->OnFirstRenderBefore();
+			}
+			ApplyListener(iter->onRenderBeforeListener);
+			iter->OnRenderBefore();
+
+			iter->Render();
+
+			if (iter->isFirstRender)
+			{
+				ApplyListener(iter->onFirstRenderListener);
+				iter->OnFirstRender();
+
+				iter->isFirstRender = false;
+			}
+			ApplyListener(iter->onRenderListener);
+			iter->OnRender();
 		}
-		ApplyListener(iter->onRenderBeforeListener);
-		iter->OnRenderBefore();
-
-		iter->Render();
-
-		if (iter->isFirstRender)
-		{
-			ApplyListener(iter->onFirstRenderListener);
-			iter->OnFirstRender();
-
-			iter->isFirstRender = false;
-		}
-		ApplyListener(iter->onRenderListener);
-		iter->OnRender();
 	}
 }
 
@@ -57,29 +80,56 @@ void Object::Update()
 	if (state == OBJ_DESTROY)
 		delete this;
 
-	// ÄÄÆ÷³ÍÆ® ¾÷µ¥ÀÌÆ®
+	for (auto iter : components)
+	{
+		if (iter.second->GetIsEnable())
+		{
+			if (iter.second->GetIsFirstUpdate())
+			{
+				ApplyListener(iter.second->onFirstUpdateBeforeListener);
+				iter.second->OnFirstUpdateBefore();
+			}
+			ApplyListener(iter.second->onFirstUpdateBeforeListener);
+			iter.second->OnFirstUpdateBefore();
+
+			iter.second->Update();
+
+			if (iter.second->GetIsFirstUpdate())
+			{
+				ApplyListener(iter.second->onUpdateListener);
+				iter.second->OnUpdate();
+				
+				iter.second->isFirstUpdate = false;
+			}
+			ApplyListener(iter.second->onUpdateListener);
+			iter.second->OnUpdate();
+		}
+	}
 
 	for (auto iter : childs)
 	{
-		if (iter->isFirstUpdate)
+		if (iter->GetIsEnable())
 		{
-			ApplyListener(iter->onFirstUpdateBeforeListener);
-			iter->OnFirstUpdateBefore();
+			if (iter->isFirstUpdate)
+			{
+				ApplyListener(iter->onFirstUpdateBeforeListener);
+				iter->OnFirstUpdateBefore();
+			}
+			ApplyListener(iter->onUpdateBeforeListener);
+			iter->OnUpdateBefore();
+
+			iter->Update();
+
+			if (iter->isFirstUpdate)
+			{
+				ApplyListener(iter->onFirstUpdateListener);
+				iter->OnFirstUpdate();
+
+				iter->isFirstUpdate = false;
+			}
+			ApplyListener(iter->onUpdateListener);
+			iter->OnUpdate();
 		}
-		ApplyListener(iter->onUpdateBeforeListener);
-		iter->OnUpdateBefore();
-
-		iter->Update();
-
-		if (iter->isFirstUpdate)
-		{
-			ApplyListener(iter->onFirstUpdateListener);
-			iter->OnFirstUpdate();
-
-			iter->isFirstUpdate = false;
-		}
-		ApplyListener(iter->onUpdateListener);
-		iter->OnUpdate();
 	}
 }
 
@@ -459,7 +509,7 @@ void Object::Destroy()
 	state = OBJ_DESTROY;
 }
 
-bool Object::IsEnable()
+bool Object::GetIsEnable()
 {
 	return isEnable;
 }
@@ -467,4 +517,18 @@ bool Object::IsEnable()
 Object* Object::GetParent()
 {
 	return parent;
+}
+
+void Object::SetIsEnable(bool flag)
+{
+	this->isEnable = flag;
+
+	if (flag)
+	{
+		state = OBJ_ALIVE;
+	}
+	else
+	{
+		state = OBJ_DISABLE;
+	}
 }

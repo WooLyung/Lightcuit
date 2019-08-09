@@ -9,6 +9,10 @@ private:
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
+	bool isEnable = true;
+	bool isFirstUpdate = true;
+	Object* owner;
+
 	friend class Object;
 
 public:
@@ -25,10 +29,14 @@ public:
 	void OnUpdateBefore() {} // 업데이트 전
 	void OnDestroy() {} // 객체가 삭제됐을 때
 
-	std::function<void()> onCreateListener = NULL;
 	std::function<void()> onFirstUpdateListener = NULL;
 	std::function<void()> onFirstUpdateBeforeListener = NULL;
 	std::function<void()> onUpdateListener = NULL;
 	std::function<void()> onUpdateBeforeListener = NULL;
 	std::function<void()> onDestroyListener = NULL;
+
+	void SetIsEnable(bool);
+	bool GetIsEnable();
+	bool GetIsFirstUpdate();
+	Object* GetOwner();
 };

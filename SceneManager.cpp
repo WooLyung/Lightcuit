@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Engine.h"
+#include "SpriteRenderer.h"
 
 SceneManager::SceneManager()
 {
@@ -115,13 +116,9 @@ Scene* SceneManager::FirstScene()
 	};
 
 	auto object = new Object();
+	object->AttachComponent<SpriteRenderer>()
+		->SetTexture("Resources/Sprites/test.png");
 	scene->AttachObject(object);
-	object->FindCameraByName("");
-	object->onFirstUpdateListener = []() {
-		Log("와! 샌즈!");
-	};
-
-	// 처음 시작하는 씬을 생성하고, 반환함
 
 	return scene;
 }
