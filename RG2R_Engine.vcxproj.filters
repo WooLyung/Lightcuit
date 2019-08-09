@@ -90,6 +90,9 @@
     <ClInclude Include="WindowManager.h">
       <Filter>소스 파일\Engine\System\WindowManager</Filter>
     </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>소스 파일\Engine\Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">

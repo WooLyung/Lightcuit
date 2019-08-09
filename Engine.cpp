@@ -27,25 +27,18 @@ void Engine::Init()
 
 void Engine::MainLoop()
 {
-	std::cout << "TEST" << std::endl;
-
 	while (GetWindowM()->IsRunning())
 	{
-		// 타이머 틱 실행
-		timeM->Tick();
 		if (GetWindowM()->MsgLoop())
 		{
 
 		}
-
-		// 매니저들과 인풋 업데이트
+		timeM->Update();
 		soundM->Update();
 		textureM->Update();
 		inputM->Update();
-
-		// 그래픽 렌더링
 		graphicM->Render();
-		}
+	}
 }
 
 void Engine::Release()

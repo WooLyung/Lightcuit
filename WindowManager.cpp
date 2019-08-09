@@ -2,12 +2,13 @@
 #include "WindowManager.h"
 #include "Engine.h"
 #include "Resource.h"
+#include "Settings.h"
 
 WindowManager::WindowManager()
-	:isFullscreen_(false), // 설정된 값으로 설정
-	isResizable_(true), // 설정된 값으로 설정
+	:isFullscreen_(WINDOW_START_FULLSCREEN), // 설정된 값으로 설정
+	isResizable_(WINDOW_RESIZABLE), // 설정된 값으로 설정
 	msg_{ 0, }, // 메세지를 [ 0, ~ ] 로 설정
-	savedRect_{ 0,0,(LONG)1280, (LONG)720 }, // 사각형 설정?
+	savedRect_{ 0,0,(LONG)WINDOW_DEFAULT_WIDTH, (LONG)WINDOW_DEFAULT_HEIGHT }, // 사각형 설정?
 	cStrBuffer_{ 0, } // 글자 관련
 {
 	WNDCLASSEXA wc = { 0, }; // 윈도우 클래스, 초기값 모두 0으로
@@ -39,11 +40,11 @@ WindowManager::WindowManager()
 	{
 		// GetSystemMetrics(SM_CXSCREEN) : 현재 화면의 해상도를 받아옴
 
-		wx = (GetSystemMetrics(SM_CXSCREEN) - 1280) / 2;
-		wy = (GetSystemMetrics(SM_CYSCREEN) - 720) / 2;
-		rcWindow.right = 1280;
-		rcWindow.bottom = 720;
-		style = WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SYSMENU | WS_CAPTION | (isResizable_ ? WS_THICKFRAME : 0); // 스타일 설정 (창모드용)
+		wx = (GetSystemMetrics(SM_CXSCREEN) - WINDOW_DEFAULT_WIDTH) / 2;
+		wy = (GetSystemMetrics(SM_CYSCREEN) - WINDOW_DEFAULT_HEIGHT) / 2;
+		rcWindow.right = WINDOW_DEFAULT_WIDTH;
+		rcWindow.bottom = WINDOW_DEFAULT_HEIGHT;
+		style = (WS_MINIMIZEBOX * WINDOW_EXIST_MAXIMIZEBOX) | (WS_MAXIMIZEBOX * WINDOW_EXIST_MINIMIZEBOX) | (WS_SYSMENU * WINDOW_EXIST_CLOSEBOX) | WS_CAPTION | (WINDOW_RESIZABLE * WS_THICKFRAME); // 스타일 설정 (창모드용)
 		exstyle = NULL;
 	}
 
@@ -130,18 +131,7 @@ void WindowManager::SetMaximizable(bool flag)
 
 void WindowManager::ToggleFullscreen()
 {
-	isFullscreen_ = !isFullscreen_;
-	if (isFullscreen_)
-	{
-		GetWindowRect(hwnd_, &savedRect_);
-		SetWindowLongA(hwnd_, GWL_STYLE, WS_SYSMENU | WS_POPUP);
-		SetWindowPos(hwnd_, HWND_TOPMOST, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED | SWP_SHOWWINDOW);
-	}
-	else
-	{
-		SetWindowLongA(hwnd_, GWL_STYLE, WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SYSMENU | WS_CAPTION | (isResizable_ ? WS_THICKFRAME : 0));
-		SetWindowPos(hwnd_, HWND_NOTOPMOST, savedRect_.left, savedRect_.top, savedRect_.right - savedRect_.left, savedRect_.bottom - savedRect_.top, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
-	}
+	SetFullscreen(!isFullscreen_);
 }
 
 HWND WindowManager::GetHwnd()
@@ -169,12 +159,12 @@ Size2U WindowManager::GetSize()
 	return Size2U((UINT32)rc.right, (UINT32)rc.bottom);
 }
 
-void WindowManager::Minimize() // 최소화
+void WindowManager::Minimize()
 {
 	ShowWindow(hwnd_, SW_SHOWMINIMIZED);
 }
 
-void WindowManager::Maximize() // 최대화
+void WindowManager::Maximize()
 {
 	ShowWindow(hwnd_, SW_SHOWMAXIMIZED);
 }
@@ -203,7 +193,6 @@ bool WindowManager::MsgLoop()
 {
 	if (PeekMessageA(&msg_, NULL, 0U, 0U, PM_REMOVE))
 	{
-		//TranslateMessage(&msg_);
 		DispatchMessageA(&msg_);
 		return false;
 	}

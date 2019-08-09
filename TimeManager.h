@@ -10,6 +10,8 @@ public:
 	TimeManager();
 	~TimeManager();
 
-	void Tick();
+	void Update();
 	int GetElapsedTime();
+	float GetDeltaTime();
+	int GetFlame();
 };

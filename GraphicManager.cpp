@@ -2,6 +2,10 @@
 #include "GraphicManager.h"
 #include "Engine.h"
 #include "WindowManager.h"
+
+Texture* test = nullptr;
+Degree d = 0;
+
 GraphicManager::GraphicManager()
 	:deviceContext_(nullptr)
 {
@@ -42,16 +46,16 @@ GraphicManager::GraphicManager()
 
 	HR(
 		D3D11CreateDevice(
-		nullptr,                    // specify null to use the default adapter
+		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
 		0,
-		creationFlags,              // optionally set debug and Direct2D compatibility flags
-		featureLevels,              // list of feature levels this app can support
-		ARRAYSIZE(featureLevels),   // number of possible feature levels
+		creationFlags,
+		featureLevels,
+		ARRAYSIZE(featureLevels),
 		D3D11_SDK_VERSION,
-		&device,                    // returns the Direct3D device created
-		&featureLevel,            // returns feature level of device created
-		&context                    // returns the device immediate context
+		&device,
+		&featureLevel,
+		&context
 		)
 	);
 
@@ -145,10 +149,7 @@ GraphicManager::GraphicManager()
 		)
 	);
 
-	//Microsoft 표준 Dpi.
-	//"높은 DPI 설정에서 디스플레이 배율을 사용하지 않음" 설정을 체크했을 때 문제가 생기지 않게 하기 위함.
 	deviceContext_->SetDpi(96,96);
-
 	deviceContext_->CreateEffect(CLSID_D2D1ColorMatrix,				 &effects_[ET_ColorMatrix]);
 	deviceContext_->CreateEffect(CLSID_D2D1DiscreteTransfer,		 &effects_[ET_DiscreteTransfer]);
 	deviceContext_->CreateEffect(CLSID_D2D1GammaTransfer,			 &effects_[ET_GammaTransfer]);
@@ -189,9 +190,28 @@ GraphicManager::~GraphicManager()
 
 void GraphicManager::Render()
 {
+	if (test == nullptr)
+		test = RG2R_TextureM->Load("Resources/Sprites/test.png");
+
 	deviceContext_->BeginDraw();
 	deviceContext_->Clear(D2D1::ColorF(0xff000000));
 	// 씬 렌더
+	if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_ENTER) {
+		RG2R_WindowM->ToggleFullscreen();
+		std::cout << "asdf" << std::endl;
+	}
+
+	float f = RG2R_WindowM->GetSize().height / 360.f;
+	auto mat = D2D1::Matrix3x2F::Scale(f, f, Vec2F(0, 0))
+		* D2D1::Matrix3x2F::Rotation(d++, Vec2F(180 * f, 180 * f));
+	deviceContext_->SetTransform(&mat);
+	deviceContext_->DrawBitmap(
+		test->GetBitmap(),
+		nullptr,
+		1.f,
+		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
+		&Rect(0, 0, 360, 360));
+	//
 	deviceContext_->EndDraw();
 	swapChain_->Present(1, 0);
 }

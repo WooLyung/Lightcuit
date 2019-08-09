@@ -12,7 +12,7 @@ TimeManager::~TimeManager()
 {
 }
 
-void TimeManager::Tick()
+void TimeManager::Update()
 {
 	endTime_ = std::chrono::steady_clock::now();
 	duration_ = endTime_ - beginTime_;
@@ -22,4 +22,14 @@ void TimeManager::Tick()
 int TimeManager::GetElapsedTime()
 {
 	return std::chrono::duration_cast<std::chrono::milliseconds>(duration_).count();
+}
+
+float TimeManager::GetDeltaTime()
+{
+	return GetElapsedTime() / 1000.f;
+}
+
+int TimeManager::GetFlame()
+{
+	return (int)(1 / GetDeltaTime());
 }

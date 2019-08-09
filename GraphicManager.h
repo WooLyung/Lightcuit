@@ -19,8 +19,9 @@ private:
 public:
 	GraphicManager();
 	~GraphicManager();
-	
+
 	void Render();
+
 	ID2D1DeviceContext* GetDeviceContext() const { return deviceContext_; }
 	ID2D1Effect* GetEffect(EffectType type) const { return effects_.at(type); }
 	ID2D1Factory1* GetFactory() const { return factory_; }
