@@ -76,6 +76,9 @@
     <Filter Include="소스 파일\Engine\Element\Component\Components">
       <UniqueIdentifier>{d11e9706-13c8-46b2-954e-e5950966d363}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer">
+      <UniqueIdentifier>{36e7f41c-65f7-411e-b1e0-de0f1e6c746e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -141,6 +144,9 @@
     <ClInclude Include="Component.h">
       <Filter>소스 파일\Engine\Element\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -192,9 +198,6 @@
     <ClCompile Include="Object.cpp">
       <Filter>소스 파일\Engine\Element\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>소스 파일\Engine\Element\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectBuilder.cpp">
       <Filter>소스 파일\Engine\Element\Object\ObjectBuilder</Filter>
     </ClCompile>
@@ -203,6 +206,12 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Engine\System\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일\Engine\Element\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>소스 파일\Engine\Element\Component</Filter>

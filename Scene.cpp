@@ -5,6 +5,7 @@ Scene::Scene()
 {
 	objectBuilder = new ObjectBuilder;
 	cameraBuilder = new CameraBuilder;
+	mainCam = new Camera;
 
 	OnCreate();
 }
@@ -18,9 +19,14 @@ Scene::~Scene()
 	{
 		delete iter;
 	}
+	for (auto iter : cameras)
+	{
+		delete iter;
+	}
 
 	delete cameraBuilder;
 	delete objectBuilder;
+	delete mainCam;
 }
 
 void Scene::Update()

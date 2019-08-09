@@ -26,6 +26,7 @@ private:
 	
 	std::vector<Object*> objects; // 씬 안의 오브젝트
 	std::vector<Camera*> cameras; // 씬 안의 카메라
+	Camera* mainCam = nullptr;
 	ObjectBuilder* objectBuilder; // 씬 내장 오브젝트 빌더
 	CameraBuilder* cameraBuilder; // 씬 내장 카메라 빌더
 
@@ -97,4 +98,5 @@ public:
 	bool GetIsFirstUpdate() { return isFirstUpdate; }
 	bool GetIsFirstRegister() { return isFirstRegister; }
 	SceneState GetState() { return state; }
+	Camera* GetMainCam() { return mainCam; }
 };
