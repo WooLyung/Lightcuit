@@ -3,10 +3,14 @@
 
 Object::Object()
 {
+	ApplyListener(onCreateListener);
+	OnCreate();
 }
 
 Object::~Object()
 {
+	DetachParent();
+
 	ApplyListener(onDestroyListener);
 	OnDestroy();
 
@@ -50,6 +54,9 @@ void Object::Render()
 
 void Object::Update()
 {
+	if (state == OBJ_DESTROY)
+		delete this;
+
 	// 컴포넌트 업데이트
 
 	for (auto iter : childs)
@@ -76,59 +83,178 @@ void Object::Update()
 	}
 }
 
-void Object::ChangeParent(Object*)
+void Object::ChangeParent(Object* newParent)
 {
+	if (parent != nullptr)
+	{
+		parent->DetachChild(this);
+	}
+	newParent->AttachChild(this);
 
+	ApplyListener(onChangeParentListener);
+	OnChangeParent();
 }
 
 Object* Object::DetachParent()
 {
-	return nullptr; // 만들어야함
+	if (parent != nullptr)
+	{
+		auto tmp = parent;
+		parent->DetachChild(this);
+
+		ApplyListener(onChangeParentListener);
+		OnChangeParent();
+
+		return tmp;
+	}
+
+	return nullptr;
 }
 
-void Object::DetachChild(Object*)
+void Object::DetachChild(Object* child)
 {
+	if (child->GetParent() != this)
+	{
+		return;
+	}
 
+	child->parent = nullptr;
+	for (auto iter = childs.begin(); iter < childs.end(); iter++)
+	{
+		if (*iter == child)
+		{
+			childs.erase(iter);
+			break;
+		}
+	}
+
+	ApplyListener(onDetachChildListener);
+	OnDetachChild();
 }
 
-void Object::AttachChild(Object*)
+void Object::AttachChild(Object* child)
 {
+	if (child->GetParent() == this)
+	{
+		return;
+	}
 
+	child->parent = this;
+	childs.push_back(child);
+
+	ApplyListener(onAttachChildListener);
+	OnAttachChild();
 }
 
-Object* Object::FindChild(const Object*)
+Object* Object::FindChild(const Object* object)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : childs)
+	{
+		if (iter == object)
+			return iter;
+
+		auto result = iter->FindChild(object);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-Object* Object::FindChildByTag(const std::string)
+Object* Object::FindChildByTag(const std::string tag)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : childs)
+	{
+		if (iter->GetTag() == tag)
+			return iter;
+
+		auto result = iter->FindChildByTag(tag);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-Object* Object::FindChildByName(const std::string)
+Object* Object::FindChildByName(const std::string name)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : childs)
+	{
+		if (iter->GetName() == name)
+			return iter;
+
+		auto result = iter->FindChildByName(name);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-Object* Object::FindChildCondition(std::function<bool(const Object*)>)
+Object* Object::FindChildCondition(std::function<bool(const Object*)> condition)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : childs)
+	{
+		if (condition(iter))
+			return iter;
+
+		auto result = iter->FindChildCondition(condition);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-std::vector<Object*> Object::FindChildsByTag(const std::string)
+std::vector<Object*> Object::FindChildsByTag(const std::string tag)
 {
-	return std::vector<Object*>(); // 만들어야함
+	std::vector<Object*> foundObjects;
+
+	for (auto iter : childs)
+	{
+		if (iter->GetTag() == tag)
+			foundObjects.push_back(iter);
+
+		auto result = iter->FindChildsByTag(tag);
+		for (auto iter2 : result)
+			foundObjects.push_back(iter2);
+	}
+
+	return foundObjects;
 }
 
-std::vector<Object*> Object::FindChildsByName(const std::string)
+std::vector<Object*> Object::FindChildsByName(const std::string name)
 {
-	return std::vector<Object*>(); // 만들어야함
+	std::vector<Object*> foundObjects;
+
+	for (auto iter : childs)
+	{
+		if (iter->GetName() == name)
+			foundObjects.push_back(iter);
+
+		auto result = iter->FindChildsByName(name);
+		for (auto iter2 : result)
+			foundObjects.push_back(iter2);
+	}
+
+	return foundObjects;
 }
 
-std::vector<Object*> Object::FindChildsCondition(std::function<bool(const Object*)>)
+std::vector<Object*> Object::FindChildsCondition(std::function<bool(const Object*)> condition)
 {
-	return std::vector<Object*>(); // 만들어야함
+	std::vector<Object*> foundObjects;
+
+	for (auto iter : childs)
+	{
+		if (condition(iter))
+			foundObjects.push_back(iter);
+
+		auto result = iter->FindChildsCondition(condition);
+		for (auto iter2 : result)
+			foundObjects.push_back(iter2);
+	}
+
+	return foundObjects;
 }
 
 Object* Object::CreateObject()
@@ -314,7 +440,13 @@ void Object::SetName(std::string name)
 
 bool Object::IsChild(Object*)
 {
-	return true; // 만들어야함
+	for (auto iter : childs)
+	{
+		if (iter->IsParent(this))
+			return true;
+	}
+
+	return false;
 }
 
 bool Object::IsParent(Object* object)
@@ -325,14 +457,14 @@ bool Object::IsParent(Object* object)
 void Object::Destroy()
 {
 	state = OBJ_DESTROY;
-
-	for (auto iter : childs)
-	{
-		iter->Destroy();
-	}
 }
 
 bool Object::IsEnable()
 {
 	return isEnable;
+}
+
+Object* Object::GetParent()
+{
+	return parent;
 }

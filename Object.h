@@ -44,6 +44,7 @@ public:
 	// 부모 관련
 	void ChangeParent(Object*); // 부모 변경
 	Object* DetachParent(); // 부모 해제
+	Object* GetParent();
 	bool IsParent(Object*); // 부모 체크
 
 	// 자식 관련
@@ -155,6 +156,9 @@ T* Object::AttachComponent()
 	T* component = new T();
 	components[i] = component;
 
+	ApplyListener(onAttachComponentListener);
+	OnAttachComponent();
+
 	return component;
 }
 
@@ -165,6 +169,9 @@ void Object::DetachComponent(void)
 	Component* component = components[i];
 	delete component;
 	components.erase(i);
+
+	ApplyListener(onDetachComponentListener);
+	OnDetachComponent();
 }
 
 template<typename T>

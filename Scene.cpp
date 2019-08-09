@@ -77,7 +77,10 @@ void Scene::Render()
 
 Object* Scene::CreateObject()
 {
-	return nullptr; // 만들어야함
+	auto object = new Object();
+	AttachObject(object);
+
+	return object;
 }
 
 Object* Scene::AttachObject(Object* object)
@@ -91,69 +94,180 @@ Object* Scene::AttachObject(Object* object)
 	return object;
 }
 
-Object* Scene::FindObject(const Object*)
+Object* Scene::FindObject(const Object* object)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : objects)
+	{
+		if (iter == object)
+			return iter;
+
+		auto result = iter->FindChild(object);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-Object* Scene::FindObjectByTag(const std::string)
+Object* Scene::FindObjectByTag(const std::string tag)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : objects)
+	{
+		if (iter->GetTag() == tag)
+			return iter;
+
+		auto result = iter->FindChildByTag(tag);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-Object* Scene::FindObjectByName(const std::string)
+Object* Scene::FindObjectByName(const std::string name)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : objects)
+	{
+		if (iter->GetName() == name)
+			return iter;
+
+		auto result = iter->FindChildByName(name);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-Object* Scene::FindObjectCondition(std::function<bool(const Object*)>)
+Object* Scene::FindObjectCondition(std::function<bool(const Object*)> condition)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : objects)
+	{
+		if (condition(iter))
+			return iter;
+
+		auto result = iter->FindChildCondition(condition);
+		if (result != nullptr)
+			return result;
+	}
+
+	return nullptr;
 }
 
-std::vector<Object*> Scene::FindObjectsByTag(const std::string)
+std::vector<Object*> Scene::FindObjectsByTag(const std::string tag)
 {
-	return std::vector<Object*>(); // 만들어야함
+	std::vector<Object*> foundObjects;
+
+	for (auto iter : objects)
+	{
+		if (iter->GetTag() == tag)
+			foundObjects.push_back(iter);
+
+		auto result = iter->FindChildsByTag(tag);
+		for (auto iter2 : result)
+			foundObjects.push_back(iter2);
+	}
+
+	return foundObjects;
 }
 
-std::vector<Object*> Scene::FindObjectsByName(const std::string)
+std::vector<Object*> Scene::FindObjectsByName(const std::string name)
 {
-	return std::vector<Object*>(); // 만들어야함
+	std::vector<Object*> foundObjects;
+
+	for (auto iter : objects)
+	{
+		if (iter->GetName() == name)
+			foundObjects.push_back(iter);
+
+		auto result = iter->FindChildsByName(name);
+		for (auto iter2 : result)
+			foundObjects.push_back(iter2);
+	}
+
+	return foundObjects;
 }
 
-std::vector<Object*> Scene::FindObjectsCondition(std::function<bool(const Object*)>)
+std::vector<Object*> Scene::FindObjectsCondition(std::function<bool(const Object*)> condition)
 {
-	return std::vector<Object*>(); // 만들어야함
+	std::vector<Object*> foundObjects;
+
+	for (auto iter : objects)
+	{
+		if (condition(iter))
+			foundObjects.push_back(iter);
+
+		auto result = iter->FindChildsCondition(condition);
+		for (auto iter2 : result)
+			foundObjects.push_back(iter2);
+	}
+
+	return foundObjects;
 }
 
 Camera* Scene::CreateCamera()
 {
-	return nullptr; // 만들어야함
+	auto camera = new Camera();
+	AttachCamera(camera);
+
+	return camera;
 }
 
-Camera* Scene::AttachCamera(Camera*)
+Camera* Scene::AttachCamera(Camera* camera)
 {
-	return nullptr; // 만들어야함
+	if (camera->scene != this)
+	{
+		camera->scene = this;
+		cameras.push_back(camera);
+	}
+
+	return camera;
 }
 
-Camera* Scene::FindCamera(const Camera*)
+Camera* Scene::FindCamera(const Camera* cam)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : cameras)
+	{
+		if (iter == cam)
+			return iter;
+	}
+
+	return nullptr;
 }
 
-Camera* Scene::FindCameraByName(const std::string)
+Camera* Scene::FindCameraByName(const std::string name)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : cameras)
+	{
+		if (iter->GetName() == name)
+			return iter;
+	}
+
+	return nullptr;
 }
 
-Camera* Scene::FindCameraCondition(std::function<bool(const Camera*)>)
+Camera* Scene::FindCameraCondition(std::function<bool(const Camera*)> condition)
 {
-	return nullptr; // 만들어야함
+	for (auto iter : cameras)
+	{
+		if (condition(iter))
+			return iter;
+	}
+
+	return nullptr;
 }
 
-std::vector<Camera*> Scene::FindCamerasCondition(std::function<bool(const Camera*)>)
+std::vector<Camera*> Scene::FindCamerasCondition(std::function<bool(const Camera*)> condition)
 {
-	return std::vector<Camera*>(); // 만들어야함
+	std::vector<Camera*> foundCameras;
+
+	for (auto iter : cameras)
+	{
+		if (condition(iter))
+			foundCameras.push_back(iter);
+	}
+
+	return foundCameras;
 }
 
 ObjectBuilder* Scene::CreateObjectBuilder()
