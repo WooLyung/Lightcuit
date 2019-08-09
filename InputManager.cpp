@@ -65,7 +65,6 @@ void InputManager::Update(void)
 			mouse_->Acquire();
 		}
 	}
-	
 }
 
 #define LKEY(key) (keyStateL_[key] & 0x80 ? true : false)

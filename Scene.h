@@ -5,11 +5,17 @@
 #include "CameraBuilder.h"
 #include "SceneManager.h"
 
-enum SCENE_STATE
+class SceneManager;
+class CameraBuilder;
+class ObjectBuilder;
+class Camera;
+class Object;
+
+enum SceneState
 {
-	UNREGISTERED,
-	START,
-	ALIVE
+	SCENE_UNREGISTERED,
+	SCENE_START,
+	SCENE_ALIVE
 };
 
 class Scene
@@ -23,7 +29,7 @@ private:
 	ObjectBuilder* objectBuilder; // 씬 내장 오브젝트 빌더
 	CameraBuilder* cameraBuilder; // 씬 내장 카메라 빌더
 
-	SCENE_STATE state;
+	SceneState state = SCENE_UNREGISTERED;
 	bool isFirstRender = true;
 	bool isFirstUpdate = true;
 	bool isFirstRegister = true;
@@ -40,6 +46,7 @@ public:
 
 	// 오브젝트 관련 메서드
 	Object* CreateObject(); // 빈 오브젝트 생성, 복잡한 오브젝트 생성시 빌더를 이용해야함
+	Object* AttachObject(Object*); // 생성할 오브젝트를 지정
 	Object* FindObject(const Object*); // 오브젝트를 찾음
 	Object* FindObjectByTag(const std::string); // 태그에 맞는 오브젝트를 찾음
 	Object* FindObjectByName(const std::string); // 이름에 맞는 오브젝트를 찾음
@@ -50,6 +57,7 @@ public:
 
 	// 카메라 관련 메서드
 	Camera* CreateCamera(); // 빈 카메라 생성, 복잡한 카메라 생성시 빌더를 이용해야함
+	Camera* AttachCamera(Camera*); // 생성할 카메라를 지정
 	Camera* FindCamera(const Camera*); // 카메라를 찾음
 	Camera* FindCameraByName(const std::string); // 이름에 맞는 카메라를 찾음
 	Camera* FindCameraCondition(std::function<bool(const Camera*)>); // 조건에 맞는 오브젝트를 찾음
@@ -88,5 +96,5 @@ public:
 	bool GetIsFirstRender() { return isFirstRender; }
 	bool GetIsFirstUpdate() { return isFirstUpdate; }
 	bool GetIsFirstRegister() { return isFirstRegister; }
-	SCENE_STATE GetState() { return state; }
+	SceneState GetState() { return state; }
 };

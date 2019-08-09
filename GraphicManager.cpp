@@ -133,7 +133,6 @@ GraphicManager::GraphicManager()
 		)
 	);
 
-	std::cout << targetBitmap_->GetSize().width << ", " << targetBitmap_->GetSize().height << std::endl;
 	deviceContext_->SetTarget(targetBitmap_);
 
 	HR(
@@ -201,7 +200,6 @@ void GraphicManager::Render()
 	// ¾À ·»´õ
 	if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_ENTER) {
 		RG2R_WindowM->ToggleFullscreen();
-		std::cout << "asdf" << std::endl;
 	}
 
 	float f = RG2R_WindowM->GetSize().height / 360.f;

@@ -28,8 +28,6 @@ Texture* TextureManager::Load(const std::string & path)
 	if (!exists(path))
 		Trace(__FILE__, __LINE__, -1, "Texture file could not be found :" + path);
 
-	std::cout << textures_.size() << std::endl;
-
 	if (!textures_[path])
 	{
 		textures_[path] = new Texture(path);

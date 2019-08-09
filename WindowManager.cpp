@@ -159,6 +159,11 @@ Size2U WindowManager::GetSize()
 	return Size2U((UINT32)rc.right, (UINT32)rc.bottom);
 }
 
+void WindowManager::Close()
+{
+	SendMessage(hwnd_, WM_CLOSE, 0, 0);
+}
+
 void WindowManager::Minimize()
 {
 	ShowWindow(hwnd_, SW_SHOWMINIMIZED);

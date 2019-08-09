@@ -73,6 +73,9 @@
     <Filter Include="소스 파일\Engine\System\SceneManager">
       <UniqueIdentifier>{a2f6f4ca-b74e-426e-b792-2c777ca3dfd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components">
+      <UniqueIdentifier>{d11e9706-13c8-46b2-954e-e5950966d363}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -134,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>소스 파일\Engine\System\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>소스 파일\Engine\Element\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Engine\System\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>소스 파일\Engine\Element\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

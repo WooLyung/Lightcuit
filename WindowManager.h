@@ -32,6 +32,7 @@ public:
 	void Focus();
 	void Foreground();
 	void Activate();
+	void Close();
 
 	bool IsRunning();
 	bool IsResizable();
