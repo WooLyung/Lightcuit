@@ -195,6 +195,9 @@ void GraphicManager::Render()
 
 	deviceContext_->BeginDraw();
 	deviceContext_->Clear(D2D1::ColorF(0xff000000));
+
+	RG2R_SceneM->Render();
+
 	// ¾À ·»´õ
 	if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_ENTER) {
 		RG2R_WindowM->ToggleFullscreen();

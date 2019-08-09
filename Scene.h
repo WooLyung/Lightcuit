@@ -3,17 +3,17 @@
 #include "Camera.h"
 #include "ObjectBuilder.h"
 #include "CameraBuilder.h"
+#include "SceneManager.h"
+
+enum SCENE_STATE
+{
+	UNREGISTERED,
+	START,
+	ALIVE
+};
 
 class Scene
 {
-public:
-	enum SCENE_STATE
-	{
-		UNREGISTERED,
-		START,
-		ALIVE
-	};
-
 private:
 	void Render(); // 렌더링
 	void Update(); // 업데이트
@@ -27,6 +27,8 @@ private:
 	bool isFirstRender = true;
 	bool isFirstUpdate = true;
 	bool isFirstRegister = true;
+
+	friend class SceneManager;
 
 public:
 	Scene();
@@ -54,7 +56,6 @@ public:
 	std::vector<Camera*> FindCamerasCondition(std::function<bool(const Camera*)>); // 조건에 맞는 오브젝트들을 찾음
 
 	// 라이프사이클 리스너
-	std::function<void()> onCreateListener = NULL;
 	std::function<void()> onFirstRegisterListener = NULL;
 	std::function<void()> onRegisterListener = NULL;
 	std::function<void()> onFirstUpdateListener = NULL;
@@ -69,19 +70,19 @@ public:
 	std::function<void()> onDestroyListener = NULL;
 
 	// 라이프사이클 메서드
-	void OnCreate(); // 객체 생성과 동시에 실행됨
-	void OnFirstRegister(); // 씬이 처음 등록됬을 때
-	void OnRegister(); // 씬이 등록됬을 때
-	void OnFirstUpdate(); // 씬의 첫 업데이트
-	void OnFirstUpdateBefore(); // 씬의 첫 업데이트 이전
-	void OnUpdate(); // 업데이트됬을 때
-	void OnUpdateBefore(); // 업데이트 전
-	void OnFirstRender(); // 첫 렌더링 됬을 때
-	void OnFirstRenderBefore(); // 첫 렌더링 이전
-	void OnRender(); // 렌더링 됬을 때
-	void OnRenderBefore(); // 렌더링 전
-	void OnFinish(); // 씬의 등록이 풀렸을 때
-	void OnDestroy(); // 객체가 삭제됬을 때
+	void OnCreate() {} // 객체 생성과 동시에 실행됨
+	void OnFirstRegister() {} // 씬이 처음 등록됬을 때
+	void OnRegister() {} // 씬이 등록됬을 때
+	void OnFirstUpdate() {} // 씬의 첫 업데이트
+	void OnFirstUpdateBefore() {} // 씬의 첫 업데이트 이전
+	void OnUpdate() {} // 업데이트됬을 때
+	void OnUpdateBefore() {} // 업데이트 전
+	void OnFirstRender() {} // 첫 렌더링 됬을 때
+	void OnFirstRenderBefore() {} // 첫 렌더링 이전
+	void OnRender() {} // 렌더링 됬을 때
+	void OnRenderBefore() {} // 렌더링 전
+	void OnFinish() {} // 씬의 등록이 풀렸을 때
+	void OnDestroy() {} // 객체가 삭제됬을 때
 
 	// 기타
 	bool GetIsFirstRender() { return isFirstRender; }
