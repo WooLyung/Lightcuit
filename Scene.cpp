@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Scene.h"
+#include "Settings.h"
 #include "Engine.h"
 
 Scene::Scene()
@@ -67,11 +68,22 @@ void Scene::Update()
 
 void Scene::Render()
 {
+	float translationRatio = sqrtf(
+		(float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)
+		/ (INCH_PER_DISTANCE * INCH_PER_DISTANCE * DIAGONAL_LENGTH * DIAGONAL_LENGTH)
+	);
+
+	Log_info(translationRatio);
+
+	defaultMatrix = 
+		D2D1::Matrix3x2F::Scale(translationRatio, translationRatio)
+		* D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f);
+
 	matrix =
-		D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f) *
+		defaultMatrix *
 		D2D1::Matrix3x2F::Scale(GetMainCamera()->GetZoom().x, GetMainCamera()->GetZoom().y) *
 		D2D1::Matrix3x2F::Rotation(GetMainCamera()->GetRot()) *
-		D2D1::Matrix3x2F::Translation(-GetMainCamera()->GetPos().x, GetMainCamera()->GetPos().y);
+		D2D1::Matrix3x2F::Translation(-GetMainCamera()->GetPos().x * INCH_PER_DISTANCE, GetMainCamera()->GetPos().y * INCH_PER_DISTANCE);
 
 	for (auto iter : objects)
 	{

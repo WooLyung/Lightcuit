@@ -31,6 +31,7 @@ private:
 	CameraBuilder* cameraBuilder; // ¾À ³»Àå Ä«¸Þ¶ó ºô´õ
 
 	Matrix matrix;
+	Matrix defaultMatrix;
 	SceneState state = SCENE_UNREGISTERED;
 	bool isFirstRender = true;
 	bool isFirstUpdate = true;
@@ -102,4 +103,5 @@ public:
 	SceneState GetState() { return state; }
 	Camera* GetMainCamera() { return mainCamera; }
 	Matrix GetMatrix() { return matrix; }
+	Matrix GetDefaultMatrix() { return defaultMatrix; }
 };

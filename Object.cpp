@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Object.h"
 #include "Transform.h"
+#include "Settings.h"
 
 Object::Object()
 {
@@ -31,7 +32,7 @@ void Object::Render()
 	matrix =
 		D2D1::Matrix3x2F::Scale(transform->GetScale().x, transform->GetScale().y) *
 		D2D1::Matrix3x2F::Rotation(transform->GetRot()) *
-		D2D1::Matrix3x2F::Translation(transform->GetPos().x, -transform->GetPos().y);
+		D2D1::Matrix3x2F::Translation(transform->GetPos().x * INCH_PER_DISTANCE, -transform->GetPos().y * INCH_PER_DISTANCE);
 
 	anchor_matrix = D2D1::Matrix3x2F::Translation(-transform->GetAnchor().x, -transform->GetAnchor().y) *
 		matrix;
@@ -48,6 +49,11 @@ void Object::Render()
 			anchor_matrix = anchor_matrix * GetScene()->GetMatrix();
 			matrix = matrix * GetScene()->GetMatrix();
 		}
+	}
+	else if (parent)
+	{
+		anchor_matrix = anchor_matrix * GetScene()->GetDefaultMatrix();
+		matrix = matrix * GetScene()->GetDefaultMatrix();
 	}
 
 	for (auto iter : components)

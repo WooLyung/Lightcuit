@@ -20,7 +20,7 @@ public:
 	void OnUpdate()
 	{
 		GetComponent<Transform>()->SetRot(
-			GetComponent<Transform>()->GetRot() + RG2R_TimeM->GetDeltaTime() * 18
+			GetComponent<Transform>()->GetRot() + RG2R_TimeM->GetDeltaTime() * 18 * (i + 1)
 		);
 	}
 };
