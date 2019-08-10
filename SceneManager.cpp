@@ -2,6 +2,8 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Engine.h"
+#include "Transform.h"
+#include "TestObject.h"
 #include "SpriteRenderer.h"
 
 SceneManager::SceneManager()
@@ -26,6 +28,9 @@ void SceneManager::Update()
 	{
 		if (registeredScene->GetIsFirstUpdate())
 		{
+			ApplyListener(registeredScene->onStartListener);
+			registeredScene->OnStart();
+
 			ApplyListener(registeredScene->onFirstUpdateBeforeListener);
 			registeredScene->OnFirstUpdateBefore();
 		}
@@ -103,7 +108,7 @@ Scene* SceneManager::ChangeScene(Scene* newScene)
 Scene* SceneManager::FirstScene()
 {
 	auto scene = new Scene();
-	scene->onUpdateListener = [&]() {
+	scene->onUpdateListener = [=]() {
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
 		{
 			RG2R_WindowM->ToggleFullscreen(); // F11로 전체화면
@@ -113,12 +118,27 @@ Scene* SceneManager::FirstScene()
 		{
 			RG2R_WindowM->Close(); // Alt + F4로 끄기
 		}
+
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_STAY)
+		{
+			scene->GetMainCamera()->SetPosX(scene->GetMainCamera()->GetPos().x - RG2R_TimeM->GetDeltaTime() * 500);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_D) == KeyState::KEYSTATE_STAY)
+		{
+			scene->GetMainCamera()->SetPosX(scene->GetMainCamera()->GetPos().x + RG2R_TimeM->GetDeltaTime() * 500);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_W) == KeyState::KEYSTATE_STAY)
+		{
+			scene->GetMainCamera()->SetPosY(scene->GetMainCamera()->GetPos().y + RG2R_TimeM->GetDeltaTime() * 500);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_S) == KeyState::KEYSTATE_STAY)
+		{
+			scene->GetMainCamera()->SetPosY(scene->GetMainCamera()->GetPos().y - RG2R_TimeM->GetDeltaTime() * 500);
+		}
 	};
 
-	auto object = new Object();
-	object->AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/test.png");
-	scene->AttachObject(object);
+	auto test = new TestObject(0);
+	scene->AttachObject(test);
 
 	return scene;
 }

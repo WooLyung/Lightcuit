@@ -8,9 +8,7 @@ private:
 	Vec2F scale = { 1, 1 };
 	float rot = 0;
 
-	Vec2F center = { 0, 0 };
-	Vec2F anchor_scale = { 0, 0 };
-	Vec2F anchor_rot = { 0, 0 };
+	Vec2F anchor = { 0, 0 };
 
 	bool isRelative = true;
 
@@ -25,27 +23,24 @@ public:
 	void Render();
 
 	Vec2F GetPos();
+	Vec2F GetWorldPos();
 	Vec2F GetScale();
+	Vec2F GetAnchor();
 	float GetRot();
-	Vec2F GetCenter();
-	Vec2F GetAnchor_scale();
-	Vec2F GetAnchor_rot();
-	void SetPos(Vec2F);
-	void SetScale(Vec2F);
-	void SetRot(float);
-	void SetPosX(float);
-	void SetPosY(float);
-	void SetScaleX(float);
-	void SetScaleY(float);
-	void SetCenter(Vec2F);
-	void SetAnchor_scale(Vec2F);
-	void SetAnchor_rot(Vec2F);
-	void SetCenterX(float);
-	void SetCenterY(float);
-	void SetAnchor_scaleX(float);
-	void SetAnchor_scaleY(float);
-	void SetAnchor_rotX(float);
-	void SetAnchor_rotY(float);
 	bool GetIsRelative();
-	void SetIsRelative(bool);
+
+	Transform* SetPos(Vec2F);
+	Transform* SetScale(Vec2F);
+	Transform* SetAnchor(Vec2F);
+	Transform* SetPos(float, float);
+	Transform* SetScale(float, float);
+	Transform* SetAnchor(float, float);
+	Transform* SetRot(float);
+	Transform* SetPosX(float);
+	Transform* SetPosY(float);
+	Transform* SetScaleX(float);
+	Transform* SetScaleY(float);
+	Transform* SetAnchorX(float);
+	Transform* SetAnchorY(float);
+	Transform* SetIsRelative(bool);
 };

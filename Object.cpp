@@ -5,8 +5,6 @@
 Object::Object()
 {
 	AttachComponent<Transform>();
-
-	OnCreate();
 }
 
 Object::~Object()
@@ -31,13 +29,25 @@ void Object::Render()
 	Transform* transform = GetComponent<Transform>();
 
 	matrix =
-		D2D1::Matrix3x2F::Scale(transform->GetScale().x, transform->GetScale().y, transform->GetAnchor_scale()) *
-		D2D1::Matrix3x2F::Rotation(transform->GetRot(), transform->GetAnchor_rot()) *
-		D2D1::Matrix3x2F::Translation(transform->GetPos().x - transform->GetCenter().x, transform->GetPos().y - transform->GetCenter().y);
+		D2D1::Matrix3x2F::Scale(transform->GetScale().x, transform->GetScale().y) *
+		D2D1::Matrix3x2F::Rotation(transform->GetRot()) *
+		D2D1::Matrix3x2F::Translation(transform->GetPos().x, -transform->GetPos().y);
 
-	if (parent && transform->GetIsRelative())
+	anchor_matrix = D2D1::Matrix3x2F::Translation(-transform->GetAnchor().x, -transform->GetAnchor().y) *
+		matrix;
+
+	if (transform->GetIsRelative())
 	{
-		matrix = matrix * parent->GetMatrix();
+		if (parent)
+		{
+			anchor_matrix = anchor_matrix * parent->GetMatrix();
+			matrix = matrix * parent->GetMatrix();
+		}
+		else
+		{
+			anchor_matrix = anchor_matrix * GetScene()->GetMatrix();
+			matrix = matrix * GetScene()->GetMatrix();
+		}
 	}
 
 	for (auto iter : components)
@@ -86,6 +96,9 @@ void Object::Update()
 		{
 			if (iter.second->GetIsFirstUpdate())
 			{
+				ApplyListener(iter.second->onStartListener);
+				iter.second->OnStart();
+
 				ApplyListener(iter.second->onFirstUpdateBeforeListener);
 				iter.second->OnFirstUpdateBefore();
 			}
@@ -112,6 +125,9 @@ void Object::Update()
 		{
 			if (iter->isFirstUpdate)
 			{
+				ApplyListener(iter->onStartListener);
+				iter->OnStart();
+
 				ApplyListener(iter->onFirstUpdateBeforeListener);
 				iter->OnFirstUpdateBefore();
 			}

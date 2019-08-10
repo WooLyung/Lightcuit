@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "Scene.h"
+#include "Engine.h"
 
 Scene::Scene()
 {
 	objectBuilder = new ObjectBuilder;
 	cameraBuilder = new CameraBuilder;
-	mainCam = new Camera;
-
-	OnCreate();
+	mainCamera = new Camera;
 }
 
 Scene::~Scene()
@@ -26,7 +25,7 @@ Scene::~Scene()
 
 	delete cameraBuilder;
 	delete objectBuilder;
-	delete mainCam;
+	delete mainCamera;
 }
 
 void Scene::Update()
@@ -37,6 +36,9 @@ void Scene::Update()
 		{
 			if (iter->isFirstUpdate)
 			{
+				ApplyListener(iter->onStartListener);
+				iter->OnStart();
+
 				ApplyListener(iter->onFirstUpdateBeforeListener);
 				iter->OnFirstUpdateBefore();
 			}
@@ -65,6 +67,12 @@ void Scene::Update()
 
 void Scene::Render()
 {
+	matrix =
+		D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f) *
+		D2D1::Matrix3x2F::Scale(GetMainCamera()->GetZoom().x, GetMainCamera()->GetZoom().y) *
+		D2D1::Matrix3x2F::Rotation(GetMainCamera()->GetRot()) *
+		D2D1::Matrix3x2F::Translation(-GetMainCamera()->GetPos().x, GetMainCamera()->GetPos().y);
+
 	for (auto iter : objects)
 	{
 		if (iter->GetIsEnable())

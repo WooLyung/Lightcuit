@@ -34,99 +34,105 @@ float Transform::GetRot()
 	return rot;
 }
 
-Vec2F Transform::GetCenter()
+Vec2F Transform::GetAnchor()
 {
-	return center;
+	return anchor;
 }
 
-Vec2F Transform::GetAnchor_rot()
-{
-	return anchor_rot;
-}
-
-Vec2F Transform::GetAnchor_scale()
-{
-	return anchor_scale;
-}
-
-void Transform::SetPos(Vec2F pos)
+Transform* Transform::SetPos(Vec2F pos)
 {
 	this->pos = pos;
+
+	return this;
 }
 
-void Transform::SetScale(Vec2F scale)
-{
-	this->scale = scale;
-}
-
-void Transform::SetRot(float rot)
-{
-	this->rot = rot;
-}
-
-void Transform::SetPosX(float x)
+Transform* Transform::SetPos(float x, float y)
 {
 	this->pos.x = x;
-}
-
-void Transform::SetPosY(float y)
-{
 	this->pos.y = y;
+
+	return this;
 }
 
-void Transform::SetScaleX(float x)
+
+Transform* Transform::SetScale(Vec2F scale)
+{
+	this->scale = scale;
+
+	return this;
+}
+
+Transform* Transform::SetScale(float x, float y)
 {
 	this->scale.x = x;
+	this->scale.y = y;
+
+	return this;
 }
 
-void Transform::SetScaleY(float y)
+
+Transform* Transform::SetRot(float rot)
+{
+	this->rot = rot;
+
+	return this;
+}
+
+Transform* Transform::SetPosX(float x)
+{
+	this->pos.x = x;
+
+	return this;
+}
+
+Transform* Transform::SetPosY(float y)
+{
+	this->pos.y = y;
+
+	return this;
+}
+
+Transform* Transform::SetScaleX(float x)
+{
+	this->scale.x = x;
+
+	return this;
+}
+
+Transform* Transform::SetScaleY(float y)
 {
 	this->scale.y = y;
+
+	return this;
 }
 
-void Transform::SetCenter(Vec2F center)
+Transform* Transform::SetAnchor(Vec2F anchor)
 {
-	this->center = center;
+	this->anchor = anchor;
+
+	return this;
 }
 
-void Transform::SetAnchor_scale(Vec2F anchor)
+Transform* Transform::SetAnchor(float x, float y)
 {
-	this->anchor_scale = anchor;
+	this->anchor.x = x;
+	this->anchor.y = y;
+
+	return this;
 }
 
-void Transform::SetAnchor_rot(Vec2F anchor)
+Transform* Transform::SetAnchorX(float x)
 {
-	this->anchor_rot = anchor;
+	this->anchor.x = x;
+
+	return this;
 }
 
-void Transform::SetCenterX(float x)
+Transform* Transform::SetAnchorY(float y)
 {
-	this->center.x = x;
-}
+	this->anchor.y = y;
 
-void Transform::SetCenterY(float y)
-{
-	this->center.y = y;
-}
-
-void Transform::SetAnchor_scaleX(float x)
-{
-	this->anchor_scale.x = x;
-}
-
-void Transform::SetAnchor_scaleY(float y)
-{
-	this->anchor_scale.y = y;
-}
-
-void Transform::SetAnchor_rotX(float x)
-{
-	this->anchor_rot.x = x;
-}
-
-void Transform::SetAnchor_rotY(float y)
-{
-	this->anchor_rot.y = y;
+	return this;
 }
 
 bool Transform::GetIsRelative()
@@ -134,7 +140,19 @@ bool Transform::GetIsRelative()
 	return isRelative;
 }
 
-void Transform::SetIsRelative(bool isRelative)
+Transform* Transform::SetIsRelative(bool isRelative)
 {
 	this->isRelative = isRelative;
+
+	return this;
+}
+
+Vec2F Transform::GetWorldPos()
+{
+	Vec2F worldPos = Vec2F(
+		pos.x * GetOwner()->GetMatrix()._11 + pos.y * GetOwner()->GetMatrix()._12,
+		pos.x * GetOwner()->GetMatrix()._21 + pos.y * GetOwner()->GetMatrix()._22
+	);
+
+	return worldPos;
 }

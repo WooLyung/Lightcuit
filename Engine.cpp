@@ -17,12 +17,12 @@ Engine* Engine::GetInstance()
 
 void Engine::Init()
 {
+	timeM = new TimeManager();
 	windowM = new WindowManager();
 	graphicM = new GraphicManager();
 	inputM = new InputManager();
 	soundM = new SoundManager();
 	textureM = new TextureManager();
-	timeM = new TimeManager();
 	sceneM = new SceneManager();
 }
 

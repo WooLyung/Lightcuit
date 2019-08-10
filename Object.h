@@ -23,7 +23,7 @@ private:
 	void Render();
 	void Update();
 	
-	Matrix matrix;
+	Matrix matrix, anchor_matrix;
 	std::map<std::type_index, Component*> components;
 	std::vector<Object*> childs;
 	Object* parent = nullptr;
@@ -71,6 +71,7 @@ public:
 	bool GetIsEnable(); // 활성화 상태 얻기
 	ObjectState GetState() { return state; }
 	Matrix GetMatrix() { return matrix; }
+	Matrix GetAnchorMatrix() { return anchor_matrix; }
 
 	// 컴포넌트 관련
 	template<typename T>
@@ -99,30 +100,31 @@ public:
 	std::vector<Camera*> FindCamerasCondition(std::function<bool(const Camera*)>); // 조건에 맞는 오브젝트들을 찾음
 
 	// 라이프사이클 메서드
-	void OnCreate() {} // 객체 생성과 동시에 실행됨
-	void OnFirstUpdate() {} // 씬의 첫 업데이트
-	void OnFirstUpdateBefore() {} // 씬의 첫 업데이트 이전
-	void OnUpdate() {} // 업데이트됐을 때
-	void OnUpdateBefore() {} // 업데이트 전
-	void OnFirstRender() {} // 첫 렌더링 됐을 때
-	void OnFirstRenderBefore() {} // 첫 렌더링 이전
-	void OnRender() {} // 렌더링 됐을 때
-	void OnRenderBefore() {} // 렌더링 전
-	void OnDestroy() {} // 객체가 삭제됐을 때
+	virtual void OnStart() {} // 씬의 첫 업데이트 시작시에
+	virtual void OnFirstUpdate() {} // 씬의 첫 업데이트
+	virtual void OnFirstUpdateBefore() {} // 씬의 첫 업데이트 이전
+	virtual void OnUpdate() { } // 업데이트됐을 때
+	virtual void OnUpdateBefore() {} // 업데이트 전
+	virtual void OnFirstRender() {} // 첫 렌더링 됐을 때
+	virtual void OnFirstRenderBefore() {} // 첫 렌더링 이전
+	virtual void OnRender() {} // 렌더링 됐을 때
+	virtual void OnRenderBefore() {} // 렌더링 전
+	virtual void OnDestroy() {} // 객체가 삭제됐을 때
 
 	// 이벤트 메서드
-	void OnAttachComponent() {} // 컴포넌트가 추가됐을 때
-	void OnDetachComponent() {} // 컴포넌트가 삭제됐을 때
-	void OnCollisionEnter() {} // 충돌했을 때
-	void OnCollisionStay() {} // 충돌중
-	void OnCollisionExit() {} // 충돌이 끝났을 때
-	void OnChangeName() {} // 이름 변경
-	void OnChangeTag() {} // 태그 변경
-	void OnChangeParent() {} // 부모 오브젝트 변수가 바뀌었을 떄
-	void OnAttachChild() {} // 자식 오브젝트 변수가 추가됐을 때
-	void OnDetachChild() {} // 자식 오브젝트 변수가 삭제됐을 때
+	virtual void OnAttachComponent() {} // 컴포넌트가 추가됐을 때
+	virtual void OnDetachComponent() {} // 컴포넌트가 삭제됐을 때
+	virtual void OnCollisionEnter() {} // 충돌했을 때
+	virtual void OnCollisionStay() {} // 충돌중
+	virtual void OnCollisionExit() {} // 충돌이 끝났을 때
+	virtual void OnChangeName() {} // 이름 변경
+	virtual void OnChangeTag() {} // 태그 변경
+	virtual void OnChangeParent() {} // 부모 오브젝트 변수가 바뀌었을 떄
+	virtual void OnAttachChild() {} // 자식 오브젝트 변수가 추가됐을 때
+	virtual void OnDetachChild() {} // 자식 오브젝트 변수가 삭제됐을 때
 
 	// 라이프사이클 리스너
+	std::function<void()> onStartListener = NULL;
 	std::function<void()> onFirstUpdateListener = NULL;
 	std::function<void()> onFirstUpdateBeforeListener = NULL;
 	std::function<void()> onUpdateListener = NULL;

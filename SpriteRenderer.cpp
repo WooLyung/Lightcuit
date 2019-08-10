@@ -18,7 +18,7 @@ void SpriteRenderer::Update()
 
 void SpriteRenderer::Render()
 {
-	RG2R_GraphicM->GetDeviceContext()->SetTransform(GetOwner()->GetMatrix());
+	RG2R_GraphicM->GetDeviceContext()->SetTransform(GetOwner()->GetAnchorMatrix());
 	RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
 		texture->GetBitmap(),
 		nullptr,

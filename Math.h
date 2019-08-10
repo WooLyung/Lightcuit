@@ -15,20 +15,12 @@ Degree ToDegree(Radian radian);
 Degree NormalizeDegree(Degree degree);
 Radian NormalizeRadian(Radian radian);
 
-double Random(double from, double to);
-float Random(float from, float to);
-int Random(int from, int to);
-
 float Sin(Degree angle);
 float Cos(Degree angle);
 float Tan(Degree angle);
 
 Degree Arctan2(float y, float x);
 
-//Radian
-//float SinR(Radian angle);
-//float CosR(Radian angle);
-//float TanR(Radian angle);
 template<typename T>
 T Clamp(T value, T min, T max);
 template<typename T>

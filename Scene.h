@@ -26,10 +26,11 @@ private:
 	
 	std::vector<Object*> objects; // 씬 안의 오브젝트
 	std::vector<Camera*> cameras; // 씬 안의 카메라
-	Camera* mainCam = nullptr;
+	Camera* mainCamera = nullptr;
 	ObjectBuilder* objectBuilder; // 씬 내장 오브젝트 빌더
 	CameraBuilder* cameraBuilder; // 씬 내장 카메라 빌더
 
+	Matrix matrix;
 	SceneState state = SCENE_UNREGISTERED;
 	bool isFirstRender = true;
 	bool isFirstUpdate = true;
@@ -65,6 +66,7 @@ public:
 	std::vector<Camera*> FindCamerasCondition(std::function<bool(const Camera*)>); // 조건에 맞는 오브젝트들을 찾음
 
 	// 라이프사이클 리스너
+	std::function<void()> onStartListener = NULL;
 	std::function<void()> onFirstRegisterListener = NULL;
 	std::function<void()> onRegisterListener = NULL;
 	std::function<void()> onFirstUpdateListener = NULL;
@@ -79,24 +81,25 @@ public:
 	std::function<void()> onDestroyListener = NULL;
 
 	// 라이프사이클 메서드
-	void OnCreate() {} // 객체 생성과 동시에 실행됨
-	void OnFirstRegister() {} // 씬이 처음 등록됬을 때
-	void OnRegister() {} // 씬이 등록됬을 때
-	void OnFirstUpdate() {} // 씬의 첫 업데이트
-	void OnFirstUpdateBefore() {} // 씬의 첫 업데이트 이전
-	void OnUpdate() {} // 업데이트됬을 때
-	void OnUpdateBefore() {} // 업데이트 전
-	void OnFirstRender() {} // 첫 렌더링 됬을 때
-	void OnFirstRenderBefore() {} // 첫 렌더링 이전
-	void OnRender() {} // 렌더링 됬을 때
-	void OnRenderBefore() {} // 렌더링 전
-	void OnFinish() {} // 씬의 등록이 풀렸을 때
-	void OnDestroy() {} // 객체가 삭제됬을 때
+	virtual void OnStart() {} // 씬의 첫 업데이트 시작시에
+	virtual void OnFirstRegister() {} // 씬이 처음 등록됬을 때
+	virtual void OnRegister() {} // 씬이 등록됬을 때
+	virtual void OnFirstUpdate() {} // 씬의 첫 업데이트
+	virtual void OnFirstUpdateBefore() {} // 씬의 첫 업데이트 이전
+	virtual void OnUpdate() {} // 업데이트됬을 때
+	virtual void OnUpdateBefore() {} // 업데이트 전
+	virtual void OnFirstRender() {} // 첫 렌더링 됬을 때
+	virtual void OnFirstRenderBefore() {} // 첫 렌더링 이전
+	virtual void OnRender() {} // 렌더링 됬을 때
+	virtual void OnRenderBefore() {} // 렌더링 전
+	virtual void OnFinish() {} // 씬의 등록이 풀렸을 때
+	virtual void OnDestroy() {} // 객체가 삭제됬을 때
 
 	// 기타
 	bool GetIsFirstRender() { return isFirstRender; }
 	bool GetIsFirstUpdate() { return isFirstUpdate; }
 	bool GetIsFirstRegister() { return isFirstRegister; }
 	SceneState GetState() { return state; }
-	Camera* GetMainCam() { return mainCam; }
+	Camera* GetMainCamera() { return mainCamera; }
+	Matrix GetMatrix() { return matrix; }
 };
