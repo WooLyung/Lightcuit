@@ -5,8 +5,6 @@
 
 Scene::Scene()
 {
-	objectBuilder = new ObjectBuilder;
-	cameraBuilder = new CameraBuilder;
 	mainCamera = new Camera;
 }
 
@@ -24,8 +22,6 @@ Scene::~Scene()
 		delete iter;
 	}
 
-	delete cameraBuilder;
-	delete objectBuilder;
 	delete mainCamera;
 }
 
@@ -73,11 +69,14 @@ void Scene::Render()
 		/ (INCH_PER_DISTANCE * INCH_PER_DISTANCE * DIAGONAL_LENGTH * DIAGONAL_LENGTH)
 	);
 
-	Log_info(translationRatio);
-
 	defaultMatrix = 
 		D2D1::Matrix3x2F::Scale(translationRatio, translationRatio)
 		* D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f);
+
+	if (mainCamera->GetIsFlipX())
+		defaultMatrix = D2D1::Matrix3x2F(-1, 0, 0, 1, 0, 0) * defaultMatrix;
+	if (mainCamera->GetIsFlipY())
+		defaultMatrix = D2D1::Matrix3x2F(1, 0, 0, -1, 0, 0) * defaultMatrix;
 
 	matrix =
 		defaultMatrix *
@@ -305,14 +304,4 @@ std::vector<Camera*> Scene::FindCamerasCondition(std::function<bool(const Camera
 	}
 
 	return foundCameras;
-}
-
-ObjectBuilder* Scene::CreateObjectBuilder()
-{
-	return nullptr; // 만들어야함
-}
-
-CameraBuilder* Scene::CreateCameraBuilder()
-{
-	return nullptr; // 만들어야함
 }

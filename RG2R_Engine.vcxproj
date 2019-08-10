@@ -159,7 +159,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CameraBuilder.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectInfo.h" />
@@ -170,7 +169,6 @@
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="ObjectBuilder.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
@@ -189,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CameraBuilder.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectInfo.cpp" />
@@ -199,7 +196,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="ObjectBuilder.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />

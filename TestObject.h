@@ -22,6 +22,9 @@ public:
 		GetComponent<Transform>()->SetRot(
 			GetComponent<Transform>()->GetRot() + RG2R_TimeM->GetDeltaTime() * 18 * (i + 1)
 		);
+
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_G) == KeyState::KEYSTATE_ENTER)
+			SetIsFlipY(!GetIsFlipY());
 	}
 };
 

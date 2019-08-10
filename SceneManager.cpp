@@ -135,6 +135,18 @@ Scene* SceneManager::FirstScene()
 		{
 			scene->GetMainCamera()->SetPosY(scene->GetMainCamera()->GetPos().y - RG2R_TimeM->GetDeltaTime() * 5);
 		}
+
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F) == KeyState::KEYSTATE_ENTER)
+		{
+			scene->GetMainCamera()->SetIsFlipY(!scene->GetMainCamera()->GetIsFlipY());
+		}
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+		{
+			Vec2F p1 = scene->FindObjectByName("0N")->GetComponent<Transform>()->GetWorldPos();
+			Vec2F p2 = scene->FindObjectByName("1N")->GetComponent<Transform>()->GetWorldPos();
+
+			std::cout << (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y) << std::endl;
+		}
 	};
 
 	scene->AttachObject(new TestObject(0));

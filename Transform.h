@@ -24,6 +24,7 @@ public:
 
 	Vec2F GetPos();
 	Vec2F GetWorldPos();
+	Vec2F GetScreenPos();
 	Vec2F GetScale();
 	Vec2F GetAnchor();
 	float GetRot();
@@ -43,4 +44,8 @@ public:
 	Transform* SetAnchorX(float);
 	Transform* SetAnchorY(float);
 	Transform* SetIsRelative(bool);
+
+	Transform* Translate(float, float);
+	Transform* Translate(Vec2F);
+	Transform* Rotate(float);
 };

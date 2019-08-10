@@ -2,6 +2,7 @@
 #include "GraphicManager.h"
 #include "Engine.h"
 #include "WindowManager.h"
+#include "Settings.h"
 
 GraphicManager::GraphicManager()
 	:deviceContext_(nullptr)
@@ -190,7 +191,7 @@ void GraphicManager::Render()
 	RG2R_SceneM->Render();
 
 	deviceContext_->BeginDraw();
-	deviceContext_->Clear(D2D1::ColorF(0xff000000));
+	deviceContext_->Clear(D2D1::ColorF(BACKGROUND_COLOR));
 
 	sort(renderBuffer.begin(), renderBuffer.end(), [](Renderer* renderer1, Renderer* renderer2) -> bool {
 		return renderer1->GetZ_index() > renderer2->GetZ_index();

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Transform.h"
+#include "Settings.h"
 
 Transform::Transform()
 {
@@ -150,9 +151,41 @@ Transform* Transform::SetIsRelative(bool isRelative)
 Vec2F Transform::GetWorldPos()
 {
 	Vec2F worldPos = Vec2F(
-		pos.x * GetOwner()->GetMatrix()._11 + pos.y * GetOwner()->GetMatrix()._12,
-		pos.x * GetOwner()->GetMatrix()._21 + pos.y * GetOwner()->GetMatrix()._22
+		GetOwner()->GetNoCameraMatrix()._31 / INCH_PER_DISTANCE,
+		GetOwner()->GetNoCameraMatrix()._32 / INCH_PER_DISTANCE
 	);
 
 	return worldPos;
+}
+
+Vec2F Transform::GetScreenPos()
+{
+	Vec2F screenPos = Vec2F(
+		GetOwner()->GetMatrix()._31,
+		GetOwner()->GetMatrix()._32
+	);
+
+	return screenPos;
+}
+
+Transform* Transform::Translate(float x, float y)
+{
+	this->pos.x += x;
+	this->pos.y += y;
+
+	return this;
+}
+
+Transform* Transform::Translate(Vec2F pos)
+{
+	this->pos += pos;
+
+	return this;
+}
+
+Transform* Transform::Rotate(float rot)
+{
+	this->rot += rot;
+
+	return this;
 }

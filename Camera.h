@@ -10,6 +10,8 @@ private:
 	Scene* scene = nullptr;
 	std::string name = "";
 	bool isMain = false;
+	bool isFlipX = false;
+	bool isFlipY = false;
 
 	Vec2F pos = { 0, 0 };
 	Vec2F zoom = { 1, 1 };
@@ -36,6 +38,10 @@ public:
 	void SetPosY(float);
 	void SetZoomX(float);
 	void SetZoomY(float);
+	void SetIsFlipX(bool);
+	void SetIsFlipY(bool);
 
 	bool GetIsMain() { return isMain; }
+	bool GetIsFlipX() { return isFlipX; }
+	bool GetIsFlipY() { return isFlipY; }
 };

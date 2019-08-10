@@ -57,12 +57,6 @@
     <Filter Include="소스 파일\Engine\Element\Component">
       <UniqueIdentifier>{2f35d835-ee5f-45d8-8440-dcd63ec51414}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Engine\Element\Object\ObjectBuilder">
-      <UniqueIdentifier>{ecebb03b-51cd-4ec0-ae63-ec85eed4e9d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Engine\Element\Camera\CameraBuilder">
-      <UniqueIdentifier>{6f2393c9-d6ce-4b1c-87d9-089c132110b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Engine\System\SceneManager">
       <UniqueIdentifier>{a2f6f4ca-b74e-426e-b792-2c777ca3dfd2}</UniqueIdentifier>
     </Filter>
@@ -147,12 +141,6 @@
     <ClInclude Include="Camera.h">
       <Filter>소스 파일\Engine\Element\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectBuilder.h">
-      <Filter>소스 파일\Engine\Element\Object\ObjectBuilder</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraBuilder.h">
-      <Filter>소스 파일\Engine\Element\Camera\CameraBuilder</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>소스 파일\Engine\System\SceneManager</Filter>
     </ClInclude>
@@ -230,12 +218,6 @@
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>소스 파일\Engine\Element\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectBuilder.cpp">
-      <Filter>소스 파일\Engine\Element\Object\ObjectBuilder</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraBuilder.cpp">
-      <Filter>소스 파일\Engine\Element\Camera\CameraBuilder</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Engine\System\SceneManager</Filter>

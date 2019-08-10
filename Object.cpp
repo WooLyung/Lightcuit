@@ -30,9 +30,12 @@ void Object::Render()
 	Transform* transform = GetComponent<Transform>();
 
 	matrix =
+		D2D1::Matrix3x2F(isFlipX ? -1 : 1, 0, 0, isFlipY ? -1 : 1, 0, 0) *
 		D2D1::Matrix3x2F::Scale(transform->GetScale().x, transform->GetScale().y) *
 		D2D1::Matrix3x2F::Rotation(transform->GetRot()) *
 		D2D1::Matrix3x2F::Translation(transform->GetPos().x * INCH_PER_DISTANCE, -transform->GetPos().y * INCH_PER_DISTANCE);
+
+	noCameraMatrix = matrix;
 
 	anchor_matrix = D2D1::Matrix3x2F::Translation(-transform->GetAnchor().x, -transform->GetAnchor().y) *
 		matrix;
@@ -42,6 +45,7 @@ void Object::Render()
 		if (parent)
 		{
 			anchor_matrix = anchor_matrix * parent->GetMatrix();
+			noCameraMatrix = noCameraMatrix * parent->GetNoCameraMatrix();
 			matrix = matrix * parent->GetMatrix();
 		}
 		else
@@ -50,7 +54,7 @@ void Object::Render()
 			matrix = matrix * GetScene()->GetMatrix();
 		}
 	}
-	else if (parent)
+	else if (!parent)
 	{
 		anchor_matrix = anchor_matrix * GetScene()->GetDefaultMatrix();
 		matrix = matrix * GetScene()->GetDefaultMatrix();
@@ -153,6 +157,16 @@ void Object::Update()
 			iter->OnUpdate();
 		}
 	}
+}
+
+void Object::SetIsFlipX(bool flag)
+{
+	isFlipX = flag;
+}
+
+void Object::SetIsFlipY(bool flag)
+{
+	isFlipY = flag;
 }
 
 void Object::ChangeParent(Object* newParent)
@@ -338,6 +352,15 @@ Object* Object::CreateObject()
 	}
 	return scene->CreateObject();
 }
+
+Object* Object::CreateChildObject()
+{
+	auto object = new Object();
+	AttachChild(object);
+
+	return object;
+}
+
 
 Object* Object::AttachObject(Object* object)
 {

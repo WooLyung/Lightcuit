@@ -23,7 +23,9 @@ private:
 	void Render();
 	void Update();
 	
-	Matrix matrix, anchor_matrix;
+	Matrix matrix;
+	Matrix anchor_matrix;
+	Matrix noCameraMatrix;
 	std::map<std::type_index, Component*> components;
 	std::vector<Object*> childs;
 	Object* parent = nullptr;
@@ -32,6 +34,8 @@ private:
 	ObjectState state = OBJ_NONE;
 	std::string name = "";
 	std::string tag = "";
+	bool isFlipX = false;
+	bool isFlipY = false;
 
 	bool isFirstRender = true;
 	bool isFirstUpdate = true;
@@ -72,6 +76,11 @@ public:
 	ObjectState GetState() { return state; }
 	Matrix GetMatrix() { return matrix; }
 	Matrix GetAnchorMatrix() { return anchor_matrix; }
+	Matrix GetNoCameraMatrix() { return noCameraMatrix; }
+	bool GetIsFlipX() { return isFlipX; }
+	bool GetIsFlipY() { return isFlipY; }
+	void SetIsFlipX(bool);
+	void SetIsFlipY(bool);
 
 	// 컴포넌트 관련
 	template<typename T>
@@ -83,7 +92,8 @@ public:
 
 	// 씬 메서드
 	Scene* GetScene();
-	Object* CreateObject(); // 빈 오브젝트 생성, 복잡한 오브젝트 생성시 빌더를 이용해야함
+	Object* CreateObject(); // 빈 오브젝트 생성
+	Object* CreateChildObject(); // 빈 자식 객체 생성
 	Object* AttachObject(Object*); // 생성할 오브젝트를 지정
 	Object* FindObject(const Object*); // 오브젝트를 찾음
 	Object* FindObjectByTag(const std::string); // 태그에 맞는 오브젝트를 찾음
@@ -92,7 +102,7 @@ public:
 	std::vector<Object*> FindObjectsByTag(const std::string); // 태그에 맞는 오브젝트들을 찾음
 	std::vector<Object*> FindObjectsByName(const std::string); // 이름에 맞는 오브젝트들을 찾음
 	std::vector<Object*> FindObjectsCondition(std::function<bool(const Object*)>); // 조건에 맞는 오브젝트들을 찾음
-	Camera* CreateCamera(); // 빈 카메라 생성, 복잡한 카메라 생성시 빌더를 이용해야함
+	Camera* CreateCamera(); // 빈 카메라 생성
 	Camera* AttachCamera(Camera*); // 생성할 카메라를 지정
 	Camera* FindCamera(const Camera*); // 카메라를 찾음
 	Camera* FindCameraByName(const std::string); // 이름에 맞는 카메라를 찾음

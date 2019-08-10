@@ -36,6 +36,16 @@ float Camera::GetRot()
 	return rot;
 }
 
+void Camera::SetIsFlipX(bool flag)
+{
+	isFlipX = flag;
+}
+
+void Camera::SetIsFlipY(bool flag)
+{
+	isFlipY = flag;
+}
+
 void Camera::SetPos(Vec2F pos)
 {
 	this->pos = pos;

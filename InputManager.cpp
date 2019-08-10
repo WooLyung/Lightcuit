@@ -20,8 +20,8 @@ InputManager::InputManager()
 	// Mouse 객체 받아옴
 	directInput_->CreateDevice(GUID_SysMouse, &mouse_, nullptr); // 마우스 디바이스 새로 생성
 	mouse_->SetDataFormat(&c_dfDIMouse); // 데이터 포맷을 마우스로
-	mouse_->SetCooperativeLevel(RG2R_WindowM->GetHwnd(), DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
-	//mouse_->SetCooperativeLevel(App::GetInstance()->GetWindow()->GetHwnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
+	//mouse_->SetCooperativeLevel(RG2R_WindowM->GetHwnd(), DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
+	mouse_->SetCooperativeLevel(RG2R_WindowM->GetHwnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE);
 	// 백그라운드에서는 사용하지 않음, 같은 장치를 사용하고 있는 다른 프로그램을 방해하지 않음
 	mouse_->Acquire();
 }
