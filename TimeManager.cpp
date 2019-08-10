@@ -29,7 +29,7 @@ float TimeManager::GetDeltaTime()
 	return GetElapsedTime() / 1000.f;
 }
 
-int TimeManager::GetFlame()
+int TimeManager::GetFrame()
 {
 	return (int)(1 / GetDeltaTime());
 }

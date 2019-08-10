@@ -3,6 +3,9 @@
 class Renderer :
 	public Component
 {
+private:
+	float z_index = 0;
+
 public:
 	Renderer();
 	~Renderer();
@@ -12,4 +15,8 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Render() = 0;
+	virtual void Draw() = 0;
+
+	void SetZ_index(float);
+	float GetZ_index();
 };

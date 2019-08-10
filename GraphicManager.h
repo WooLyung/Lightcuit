@@ -1,5 +1,7 @@
 #pragma once
-#include"EffectType.h"
+#include "EffectType.h"
+#include "Renderer.h"
+
 class GraphicManager 
 {
 private:
@@ -15,12 +17,15 @@ private:
 	ID2D1SolidColorBrush* outlineBrush_;
 	ID2D1SolidColorBrush* fillBrush_;
 
-	std::map<EffectType, ID2D1Effect* > effects_;
+	std::map<EffectType, ID2D1Effect*> effects_;
+	std::vector<Renderer*> renderBuffer;
+
 public:
 	GraphicManager();
 	~GraphicManager();
 
 	void Render();
+	void PushRenderBuffer(Renderer*);
 
 	ID2D1DeviceContext* GetDeviceContext() const { return deviceContext_; }
 	ID2D1Effect* GetEffect(EffectType type) const { return effects_.at(type); }

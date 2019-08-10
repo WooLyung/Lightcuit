@@ -13,5 +13,5 @@ public:
 	void Update();
 	int GetElapsedTime();
 	float GetDeltaTime();
-	int GetFlame();
+	int GetFrame();
 };

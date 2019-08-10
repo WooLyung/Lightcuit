@@ -2,6 +2,7 @@
 #include "SpriteRenderer.h"
 #include "Engine.h"
 #include "Transform.h"
+#include "Effect.h"
 
 SpriteRenderer::SpriteRenderer()
 {
@@ -18,18 +19,35 @@ void SpriteRenderer::Update()
 
 void SpriteRenderer::Render()
 {
-	RG2R_GraphicM->GetDeviceContext()->SetTransform(GetOwner()->GetAnchorMatrix());
-	RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
-		texture->GetBitmap(),
-		nullptr,
-		1.f,
-		D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-		&GetVisibleArea());
+	RG2R_GraphicM->PushRenderBuffer(this);
 }
 
 void SpriteRenderer::Draw()
 {
+	RG2R_GraphicM->GetDeviceContext()->SetTransform(GetOwner()->GetAnchorMatrix());
 
+	Effect* effect = GetOwner()->GetComponent<Effect>();
+
+	if (effect != nullptr)
+	{
+		ID2D1Image* image = effect->GetOutputImage(texture->GetBitmap());
+
+		RG2R_GraphicM->GetDeviceContext()->DrawImage(
+			image,
+			nullptr,
+			&GetVisibleArea(),
+			D2D1_INTERPOLATION_MODE_LINEAR,
+			D2D1_COMPOSITE_MODE_SOURCE_OVER);
+	}
+	else
+	{
+		RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+			texture->GetBitmap(),
+			nullptr,
+			1.f,
+			D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
+			&GetVisibleArea());
+	}
 }
 
 SpriteRenderer* SpriteRenderer::SetTexture(const std::string& path)
@@ -48,13 +66,6 @@ SpriteRenderer* SpriteRenderer::SetVisibleArea(Rect rect)
 	return this;
 }
 
-SpriteRenderer* SpriteRenderer::SetZ_index(float index)
-{
-	this->z_index = index;
-
-	return this;
-}
-
 Texture* SpriteRenderer::GetTexture()
 {
 	return texture;
@@ -68,9 +79,4 @@ Rect SpriteRenderer::GetVisibleArea()
 Rect SpriteRenderer::GetRealArea()
 {
 	return realArea;
-}
-
-float SpriteRenderer::GetZ_index()
-{
-	return z_index;
 }

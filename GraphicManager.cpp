@@ -186,11 +186,24 @@ GraphicManager::~GraphicManager()
 
 void GraphicManager::Render()
 {
+	renderBuffer.clear();
+	RG2R_SceneM->Render();
+
 	deviceContext_->BeginDraw();
 	deviceContext_->Clear(D2D1::ColorF(0xff000000));
 
-	RG2R_SceneM->Render();
+	sort(renderBuffer.begin(), renderBuffer.end(), [](Renderer* renderer1, Renderer* renderer2) -> bool {
+		return renderer1->GetZ_index() > renderer2->GetZ_index();
+	});
+	for_each(renderBuffer.begin(), renderBuffer.end(), [](Renderer* renderer) -> void {
+		renderer->Draw();
+	});
 
 	deviceContext_->EndDraw();
 	swapChain_->Present(1, 0);
+}
+
+void GraphicManager::PushRenderBuffer(Renderer* renderer)
+{
+	renderBuffer.push_back(renderer);
 }

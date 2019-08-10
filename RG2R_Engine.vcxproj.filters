@@ -21,9 +21,6 @@
     <Filter Include="소스 파일\Engine\System">
       <UniqueIdentifier>{feccdafa-0b19-4f7c-be55-1d0983991ea2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Engine\Main\stdafx">
-      <UniqueIdentifier>{7524ec46-45b8-4e80-b5a1-73123e381f0e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Engine\System\WindowManager">
       <UniqueIdentifier>{1f26c312-a1b2-4578-8375-b76975723165}</UniqueIdentifier>
     </Filter>
@@ -91,6 +88,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Engine\Utils\stdafx">
+      <UniqueIdentifier>{7524ec46-45b8-4e80-b5a1-73123e381f0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Effect">
+      <UniqueIdentifier>{8121075a-6bc7-470f-a5a2-f7d8a554f940}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -100,7 +103,7 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>소스 파일\Engine\Main\stdafx</Filter>
+      <Filter>소스 파일\Engine\Utils\stdafx</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>소스 파일\Engine\Engine</Filter>
@@ -171,6 +174,12 @@
     <ClInclude Include="TestObject.h">
       <Filter>소스 파일\Engine\Element\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectInfo.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -187,7 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일\Engine\Main\stdafx</Filter>
+      <Filter>소스 파일\Engine\Utils\stdafx</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일\Engine\Main</Filter>
@@ -251,6 +260,12 @@
     </ClCompile>
     <ClCompile Include="TestObject.cpp">
       <Filter>소스 파일\Engine\Element\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectInfo.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

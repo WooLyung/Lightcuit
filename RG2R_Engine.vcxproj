@@ -161,6 +161,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraBuilder.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectInfo.h" />
     <ClInclude Include="EffectType.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GraphicManager.h" />
@@ -189,6 +191,8 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraBuilder.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectInfo.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GraphicManager.cpp" />
     <ClCompile Include="InputManager.cpp" />

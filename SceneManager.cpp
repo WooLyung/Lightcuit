@@ -109,6 +109,8 @@ Scene* SceneManager::FirstScene()
 {
 	auto scene = new Scene();
 	scene->onUpdateListener = [=]() {
+		Log_info(RG2R_TimeM->GetFrame());
+
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
 		{
 			RG2R_WindowM->ToggleFullscreen(); // F11로 전체화면
@@ -137,8 +139,12 @@ Scene* SceneManager::FirstScene()
 		}
 	};
 
-	auto test = new TestObject(0);
-	scene->AttachObject(test);
+	scene->AttachObject(new TestObject(0));
+	Log_info("이름이 0N인 오브젝트의 개수 : " + std::to_string(scene->FindObjectsByName("0N").size()));
+	Log_info("이름이 1N인 오브젝트의 개수 : " + std::to_string(scene->FindObjectsByName("1N").size()));
+	Log_info("이름이 2N인 오브젝트의 개수 : " + std::to_string(scene->FindObjectsByName("2N").size()));
+	Log_info("이름이 3N인 오브젝트의 개수 : " + std::to_string(scene->FindObjectsByName("3N").size()));
+	Log_info("이름이 4N인 오브젝트의 개수 : " + std::to_string(scene->FindObjectsByName("4N").size()));
 
 	return scene;
 }

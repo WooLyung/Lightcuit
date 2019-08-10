@@ -9,7 +9,6 @@ private:
 	Texture* texture;
 	Rect visibleArea = { 0, 0, 0, 0 };
 	Rect realArea = { 0, 0, 0, 0 };
-	float z_index = 0;
 
 public:
 	SpriteRenderer();
@@ -24,7 +23,6 @@ public:
 
 	SpriteRenderer* SetTexture(const std::string&);
 	SpriteRenderer* SetVisibleArea(Rect);
-	SpriteRenderer* SetZ_index(float);
 
 	Texture* GetTexture();
 	Rect GetVisibleArea();
