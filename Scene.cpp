@@ -69,20 +69,18 @@ void Scene::Render()
 		/ (INCH_PER_DISTANCE * INCH_PER_DISTANCE * DIAGONAL_LENGTH * DIAGONAL_LENGTH)
 	);
 
-	defaultMatrix = 
-		D2D1::Matrix3x2F::Scale(translationRatio, translationRatio)
-		* D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f);
-
-	if (mainCamera->GetIsFlipX())
-		defaultMatrix = D2D1::Matrix3x2F(-1, 0, 0, 1, 0, 0) * defaultMatrix;
-	if (mainCamera->GetIsFlipY())
-		defaultMatrix = D2D1::Matrix3x2F(1, 0, 0, -1, 0, 0) * defaultMatrix;
+	defaultMatrix =
+		D2D1::Matrix3x2F::Scale(translationRatio, translationRatio) *
+		D2D1::Matrix3x2F(mainCamera->GetIsFlipX() ? -1 : 1, 0, 0, mainCamera->GetIsFlipY() ? -1 : 1, 0, 0) * 
+		D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f);
 
 	matrix =
-		defaultMatrix *
-		D2D1::Matrix3x2F::Scale(GetMainCamera()->GetZoom().x, GetMainCamera()->GetZoom().y) *
+		D2D1::Matrix3x2F::Scale(translationRatio, translationRatio) *
+		D2D1::Matrix3x2F::Translation(-GetMainCamera()->GetPos().x * INCH_PER_DISTANCE, GetMainCamera()->GetPos().y * INCH_PER_DISTANCE)*
 		D2D1::Matrix3x2F::Rotation(GetMainCamera()->GetRot()) *
-		D2D1::Matrix3x2F::Translation(-GetMainCamera()->GetPos().x * INCH_PER_DISTANCE, GetMainCamera()->GetPos().y * INCH_PER_DISTANCE);
+		D2D1::Matrix3x2F(mainCamera->GetIsFlipX() ? -1 : 1, 0, 0, mainCamera->GetIsFlipY() ? -1 : 1, 0, 0) * 
+		D2D1::Matrix3x2F::Scale(GetMainCamera()->GetZoom().x, GetMainCamera()->GetZoom().y) *
+		D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f);
 
 	for (auto iter : objects)
 	{

@@ -140,6 +140,15 @@ Scene* SceneManager::FirstScene()
 		{
 			scene->GetMainCamera()->SetIsFlipY(!scene->GetMainCamera()->GetIsFlipY());
 		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_Q) == KeyState::KEYSTATE_STAY)
+		{
+			scene->GetMainCamera()->SetRot(scene->GetMainCamera()->GetRot() + RG2R_TimeM->GetDeltaTime() * -45);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_STAY)
+		{
+			scene->GetMainCamera()->SetZoomX(scene->GetMainCamera()->GetZoom().x + RG2R_TimeM->GetDeltaTime() * 0.5f);
+			scene->GetMainCamera()->SetZoomY(scene->GetMainCamera()->GetZoom().y + RG2R_TimeM->GetDeltaTime() * 0.5f);
+		}
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
 		{
 			Vec2F p1 = scene->FindObjectByName("0N")->GetComponent<Transform>()->GetWorldPos();
