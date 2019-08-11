@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Engine.h"
 #include "InputManager.h"
-
+#include "Settings.h"
 
 InputManager::InputManager()
 	:keyStateL_{0,}, // keyState를 이전과 현재 모두 0으로 초기화시킴
@@ -101,6 +101,33 @@ Point2F InputManager::GetMousePos() const
 	GetCursorPos(&mousePoint);
 	ScreenToClient(RG2R_WindowM->GetHwnd(), &mousePoint);
 	return Point2F(mousePoint.x, mousePoint.y);
+}
+
+Point2F InputManager::GetMouseWorldPos() const
+{
+	POINT mousePoint;
+	GetCursorPos(&mousePoint);
+	ScreenToClient(RG2R_WindowM->GetHwnd(), &mousePoint);
+
+	float translationRatio = sqrtf(
+		(float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)
+		/ (INCH_PER_DISTANCE * INCH_PER_DISTANCE * DIAGONAL_LENGTH * DIAGONAL_LENGTH)
+	);
+
+	Matrix matrix = 
+		D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / -2.f, RG2R_WindowM->GetSize().height / -2.f)*
+		D2D1::Matrix3x2F::Scale(1 / RG2R_SceneM->GetScene()->GetMainCamera()->GetZoom().x, 1 / RG2R_SceneM->GetScene()->GetMainCamera()->GetZoom().y) *
+		D2D1::Matrix3x2F(RG2R_SceneM->GetScene()->GetMainCamera()->GetIsFlipX() ? -1 : 1, 0, 0, RG2R_SceneM->GetScene()->GetMainCamera()->GetIsFlipY() ? -1 : 1, 0, 0) *
+		D2D1::Matrix3x2F::Rotation(RG2R_SceneM->GetScene()->GetMainCamera()->GetRot()) *
+		D2D1::Matrix3x2F::Translation(RG2R_SceneM->GetScene()->GetMainCamera()->GetPos().x * INCH_PER_DISTANCE, -RG2R_SceneM->GetScene()->GetMainCamera()->GetPos().y * INCH_PER_DISTANCE)*
+		D2D1::Matrix3x2F::Scale(1 / translationRatio, 1 / translationRatio);
+
+	float x = mousePoint.x;
+	float y = mousePoint.y;
+
+	return Point2F(
+		(x * matrix._11 + y * matrix._21 + matrix._31) / INCH_PER_DISTANCE,
+		-(x * matrix._12 + y * matrix._22 + matrix._32) / INCH_PER_DISTANCE);
 }
 
 long InputManager::GetMouseDeltaX(void) const

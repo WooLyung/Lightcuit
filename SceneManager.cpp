@@ -142,7 +142,7 @@ Scene* SceneManager::FirstScene()
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_Q) == KeyState::KEYSTATE_STAY)
 		{
-			scene->GetMainCamera()->SetRot(scene->GetMainCamera()->GetRot() + RG2R_TimeM->GetDeltaTime() * -45);
+			scene->GetMainCamera()->SetRot(scene->GetMainCamera()->GetRot() + RG2R_TimeM->GetDeltaTime() * -95);
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_STAY)
 		{
@@ -151,10 +151,8 @@ Scene* SceneManager::FirstScene()
 		}
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
 		{
-			Vec2F p1 = scene->FindObjectByName("0N")->GetComponent<Transform>()->GetWorldPos();
-			Vec2F p2 = scene->FindObjectByName("1N")->GetComponent<Transform>()->GetWorldPos();
-
-			std::cout << (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y) << std::endl;
+			cout << "기본 크기 : " << scene->GetMainCamera()->GetCameraDefaultSize().width << ", " << scene->GetMainCamera()->GetCameraDefaultSize().height << endl;
+			cout << "현재 크기 : " << scene->GetMainCamera()->GetCameraSize().width << ", " << scene->GetMainCamera()->GetCameraSize().height << endl;
 		}
 	};
 

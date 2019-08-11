@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "Camera.h"
+#include "Engine.h"
+#include "Settings.h"
 
 Camera::Camera()
 {
@@ -84,4 +86,20 @@ void Camera::SetZoomY(float y)
 void Camera::Update()
 {
 	
+}
+
+Size2F Camera::GetCameraDefaultSize()
+{
+	float diagonal = sqrtf(
+		(float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height));
+	
+	return Size2F(RG2R_WindowM->GetSize().width * (DIAGONAL_LENGTH / diagonal), RG2R_WindowM->GetSize().height * (DIAGONAL_LENGTH / diagonal));
+}
+
+Size2F Camera::GetCameraSize()
+{
+	float diagonal = sqrtf(
+		(float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height));
+
+	return Size2F(RG2R_WindowM->GetSize().width * (DIAGONAL_LENGTH / diagonal) / zoom.x, RG2R_WindowM->GetSize().height * (DIAGONAL_LENGTH / diagonal) / zoom.y);
 }

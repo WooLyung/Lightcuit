@@ -30,6 +30,7 @@ public:
 	KeyState GetMouseState(MouseCode key); // 마우스 상태
 
 	Point2F GetMousePos() const; // 마우스 위치
+	Point2F GetMouseWorldPos() const; // 마우스 위치
 	
 	long GetMouseDeltaX(void) const; // 마우스 움직임의 정도
 	long GetMouseDeltaY(void) const; // 마우스 움직임의 정도

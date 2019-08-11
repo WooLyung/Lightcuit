@@ -31,6 +31,9 @@ public:
 	Vec2F GetPos();
 	Vec2F GetZoom();
 	float GetRot();
+	Size2F GetCameraSize();
+	Size2F GetCameraDefaultSize();
+
 	void SetPos(Vec2F);
 	void SetZoom(Vec2F);
 	void SetRot(float);
