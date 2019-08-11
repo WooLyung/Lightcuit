@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "TestObject.h"
 #include "SpriteRenderer.h"
+#include "RandomGenerator.h"
 
 SceneManager::SceneManager()
 {
@@ -153,6 +154,7 @@ Scene* SceneManager::FirstScene()
 		{
 			cout << "기본 크기 : " << scene->GetMainCamera()->GetCameraDefaultSize().width << ", " << scene->GetMainCamera()->GetCameraDefaultSize().height << endl;
 			cout << "현재 크기 : " << scene->GetMainCamera()->GetCameraSize().width << ", " << scene->GetMainCamera()->GetCameraSize().height << endl;
+			cout << "랜덤 : " << RandomGenerator::GetInstance()->GetInt(0, 10) << endl;
 		}
 	};
 

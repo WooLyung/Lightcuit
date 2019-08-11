@@ -88,6 +88,9 @@
     <Filter Include="소스 파일\Engine\Element\Component\Components\Effect">
       <UniqueIdentifier>{8121075a-6bc7-470f-a5a2-f7d8a554f940}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Utils\RandomGenerator">
+      <UniqueIdentifier>{01c01b57-08ee-4283-94e5-c84921ce3eb1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="EffectInfo.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomGenerator.h">
+      <Filter>소스 파일\Engine\Utils\RandomGenerator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="EffectInfo.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomGenerator.cpp">
+      <Filter>소스 파일\Engine\Utils\RandomGenerator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
