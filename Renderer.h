@@ -1,5 +1,10 @@
 #pragma once
 #include "Component.h"
+#include "ViewRenderer.h"
+
+class ViewRenderer;
+class Component;
+
 class Renderer :
 	public Component
 {
@@ -15,7 +20,9 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Render() = 0;
+	virtual void Render(ViewRenderer*) = 0;
 	virtual void Draw() = 0;
+	virtual void Draw(ViewRenderer*) = 0;
 
 	void SetZ_index(float);
 	float GetZ_index();

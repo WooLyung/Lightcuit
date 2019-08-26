@@ -95,6 +95,55 @@ void Object::Render()
 	}
 }
 
+void Object::Render(ViewRenderer* viewRenderer)
+{
+	Transform* transform = GetComponent<Transform>();
+
+	matrix_v =
+		D2D1::Matrix3x2F(isFlipX ? -1 : 1, 0, 0, isFlipY ? -1 : 1, 0, 0) *
+		D2D1::Matrix3x2F::Scale(transform->GetScale().x, transform->GetScale().y) *
+		D2D1::Matrix3x2F::Rotation(transform->GetRot()) *
+		D2D1::Matrix3x2F::Translation(transform->GetPos().x * INCH_PER_DISTANCE, -transform->GetPos().y * INCH_PER_DISTANCE);
+
+	anchor_matrix_v = D2D1::Matrix3x2F::Translation(-transform->GetAnchor().x, -transform->GetAnchor().y) *
+		matrix_v;
+
+	if (transform->GetIsRelative())
+	{
+		if (parent)
+		{
+			anchor_matrix_v = anchor_matrix_v * parent->GetMatrix_v();
+			matrix_v = matrix_v * parent->GetMatrix_v();
+		}
+		else
+		{
+			anchor_matrix_v = anchor_matrix_v * GetScene()->GetMatrix_v();
+			matrix_v = matrix_v * GetScene()->GetMatrix_v();
+		}
+	}
+	else if (!parent)
+	{
+		anchor_matrix_v = anchor_matrix_v * GetScene()->GetDefaultMatrix_v();
+		matrix_v = matrix_v * GetScene()->GetDefaultMatrix_v();
+	}
+
+	for (auto iter : components)
+	{
+		if (iter.second->GetIsEnable())
+		{
+			iter.second->Render(viewRenderer);
+		}
+	}
+
+	for (auto iter : childs)
+	{
+		if (iter->GetIsEnable())
+		{
+			iter->Render(viewRenderer);
+		}
+	}
+}
+
 void Object::Update()
 {
 	if (state == OBJ_DESTROY)

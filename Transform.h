@@ -21,6 +21,7 @@ public:
 
 	void Update();
 	void Render();
+	void Render(ViewRenderer*);
 
 	Vec2F GetPos();
 	Vec2F GetWorldPos();

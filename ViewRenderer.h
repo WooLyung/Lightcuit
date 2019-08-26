@@ -2,6 +2,10 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "Settings.h"
+#include "Math.h"
+
+class Camera;
+class Renderer;
 
 class ViewRenderer :
 	public Renderer
@@ -21,7 +25,9 @@ public:
 
 	void Update();
 	void Render();
+	void Render(ViewRenderer*);
 	void Draw();
+	void Draw(ViewRenderer*);
 
 	ViewRenderer* SetCamera(Camera*);
 	ViewRenderer* SetSize(Size2U);

@@ -2,10 +2,13 @@
 #include "Object.h"
 #include "Camera.h"
 #include "SceneManager.h"
+#include "ViewRenderer.h"
+#include "Math.h"
 
 class SceneManager;
 class Camera;
 class Object;
+class ViewRenderer;
 
 enum SceneState
 {
@@ -18,14 +21,15 @@ class Scene
 {
 private:
 	void Render(); // 렌더링
+	void Render(ViewRenderer*);
 	void Update(); // 업데이트
 	
 	std::vector<Object*> objects; // 씬 안의 오브젝트
 	std::vector<Camera*> cameras; // 씬 안의 카메라
 	Camera* mainCamera = nullptr;
 
-	Matrix matrix;
-	Matrix defaultMatrix;
+	Matrix matrix, matrix_v;
+	Matrix defaultMatrix, defaultMatrix_v;
 	SceneState state = SCENE_UNREGISTERED;
 	bool isFirstRender = true;
 	bool isFirstUpdate = true;
@@ -94,4 +98,6 @@ public:
 	Camera* GetMainCamera() { return mainCamera; }
 	Matrix GetMatrix() { return matrix; }
 	Matrix GetDefaultMatrix() { return defaultMatrix; }
+	Matrix GetMatrix_v() { return matrix_v; }
+	Matrix GetDefaultMatrix_v() { return defaultMatrix_v; }
 };

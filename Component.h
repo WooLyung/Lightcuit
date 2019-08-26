@@ -1,13 +1,16 @@
 #pragma once
 #include "Object.h"
+#include "ViewRenderer.h"
 
 class Object;
+class ViewRenderer;
 
 class Component
 {
 private:
 	virtual void Update() = 0;
 	virtual void Render() = 0;
+	virtual void Render(ViewRenderer*) = 0;
 
 	bool isEnable = true;
 	bool isFirstUpdate = true;

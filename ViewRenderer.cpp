@@ -37,11 +37,16 @@ void ViewRenderer::Update()
 
 }
 
+void ViewRenderer::Render(ViewRenderer*)
+{
+
+}
+
 void ViewRenderer::Render()
 {
 	// 내장 비트맵에 출력
 	RG2R_GraphicM->GetViewRenderBuffer()->clear();
-	RG2R_SceneM->Render();
+	RG2R_SceneM->Render(this);
 
 	RG2R_GraphicM->SetTargetBitmap(bitmap);
 	RG2R_GraphicM->GetDeviceContext()->BeginDraw();
@@ -86,6 +91,11 @@ void ViewRenderer::Draw()
 			D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
 			&Rect(0, 0, size.width, size.height));
 	}
+}
+
+void ViewRenderer::Draw(ViewRenderer*)
+{
+
 }
 
 ViewRenderer* ViewRenderer::SetCamera(Camera* camera)

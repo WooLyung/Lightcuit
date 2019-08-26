@@ -35,12 +35,17 @@ ID2D1Image* Effect::GetOutputImage(ID2D1Image * input)
 	return input;
 }
 
+void Effect::Update()
+{
+
+}
+
 void Effect::Render()
 {
 
 }
 
-void Effect::Update()
+void Effect::Render(ViewRenderer*)
 {
 
 }

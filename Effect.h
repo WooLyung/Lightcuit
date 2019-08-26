@@ -19,6 +19,7 @@ public:
 
 	void Update();
 	void Render();
+	void Render(ViewRenderer*);
 
 	Effect* PushEffectInfo(EffectInfo* effectInfo);
 	Effect* PopEffectInfo();

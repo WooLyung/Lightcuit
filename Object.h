@@ -3,10 +3,12 @@
 #include "Scene.h"
 #include "Camera.h"
 #include "Math.h"
+#include "ViewRenderer.h"
 
 class Component;
 class Scene;
 class Camera;
+class ViewRenderer;
 
 enum ObjectState
 {
@@ -21,10 +23,11 @@ class Object
 {
 private:
 	void Render();
+	void Render(ViewRenderer*);
 	void Update();
 	
-	Matrix matrix;
-	Matrix anchor_matrix;
+	Matrix matrix, matrix_v;
+	Matrix anchor_matrix, anchor_matrix_v;
 	Matrix noCameraMatrix;
 	std::map<std::type_index, Component*> components;
 	std::vector<Object*> childs;
@@ -76,6 +79,8 @@ public:
 	ObjectState GetState() { return state; }
 	Matrix GetMatrix() { return matrix; }
 	Matrix GetAnchorMatrix() { return anchor_matrix; }
+	Matrix GetMatrix_v() { return matrix_v; }
+	Matrix GetAnchorMatrix_v() { return anchor_matrix_v; }
 	Matrix GetNoCameraMatrix() { return noCameraMatrix; }
 	bool GetIsFlipX() { return isFlipX; }
 	bool GetIsFlipY() { return isFlipY; }

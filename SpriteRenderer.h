@@ -23,7 +23,9 @@ public:
 
 	void Update();
 	void Render();
+	void Render(ViewRenderer*);
 	void Draw();
+	void Draw(ViewRenderer*);
 
 	std::map<Camera*, SpriteRenderData>* GetDatas();
 	SpriteRenderData* GetDefaultData();

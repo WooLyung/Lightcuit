@@ -20,6 +20,11 @@ void Transform::Render()
 
 }
 
+void Transform::Render(ViewRenderer*)
+{
+
+}
+
 Vec2F Transform::GetPos()
 {
 	return pos;

@@ -25,6 +25,11 @@ void SpriteRenderer::Render()
 	RG2R_GraphicM->PushRenderBuffer(this);
 }
 
+void SpriteRenderer::Render(ViewRenderer*)
+{
+	RG2R_GraphicM->PushViewRenderBuffer(this);
+}
+
 void SpriteRenderer::Draw()
 {
 	RG2R_GraphicM->GetDeviceContext()->SetTransform(GetOwner()->GetAnchorMatrix());
@@ -50,6 +55,60 @@ void SpriteRenderer::Draw()
 			1.f,
 			D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
 			&defaultData.GetVisibleArea());
+	}
+}
+
+void SpriteRenderer::Draw(ViewRenderer* viewRenderer)
+{
+	RG2R_GraphicM->GetDeviceContext()->SetTransform(GetOwner()->GetAnchorMatrix_v());
+
+	Effect* effect = GetOwner()->GetComponent<Effect>();
+
+	if (datas.find(viewRenderer->GetCamera()) != datas.end())
+	{
+		if (effect != nullptr)
+		{
+			ID2D1Image* image = effect->GetOutputImage(datas[viewRenderer->GetCamera()].GetTexture()->GetBitmap());
+
+			RG2R_GraphicM->GetDeviceContext()->DrawImage(
+				image,
+				nullptr,
+				&datas[viewRenderer->GetCamera()].GetVisibleArea(),
+				D2D1_INTERPOLATION_MODE_LINEAR,
+				D2D1_COMPOSITE_MODE_SOURCE_OVER);
+		}
+		else
+		{
+			RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+				datas[viewRenderer->GetCamera()].GetTexture()->GetBitmap(),
+				nullptr,
+				1.f,
+				D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
+				&datas[viewRenderer->GetCamera()].GetVisibleArea());
+		}
+	}
+	else
+	{
+		if (effect != nullptr)
+		{
+			ID2D1Image* image = effect->GetOutputImage(defaultData.GetTexture()->GetBitmap());
+
+			RG2R_GraphicM->GetDeviceContext()->DrawImage(
+				image,
+				nullptr,
+				&defaultData.GetVisibleArea(),
+				D2D1_INTERPOLATION_MODE_LINEAR,
+				D2D1_COMPOSITE_MODE_SOURCE_OVER);
+		}
+		else
+		{
+			RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+				defaultData.GetTexture()->GetBitmap(),
+				nullptr,
+				1.f,
+				D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
+				&defaultData.GetVisibleArea());
+		}
 	}
 }
 

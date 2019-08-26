@@ -6,6 +6,7 @@
 #include "TestObject.h"
 #include "SpriteRenderer.h"
 #include "RandomGenerator.h"
+#include "ViewRenderer.h"
 
 SceneManager::SceneManager()
 {
@@ -77,6 +78,14 @@ void SceneManager::Render()
 		}
 		ApplyListener(registeredScene->onRenderListener);
 		registeredScene->OnRender();
+	}
+}
+
+void SceneManager::Render(ViewRenderer* viewRenderer)
+{
+	if (registeredScene != nullptr)
+	{
+		registeredScene->Render(viewRenderer);
 	}
 }
 

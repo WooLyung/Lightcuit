@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Settings.h"
 #include "Engine.h"
+#include "ViewRenderer.h"
 
 Scene::Scene()
 {
@@ -105,6 +106,28 @@ void Scene::Render()
 			}
 			ApplyListener(iter->onRenderListener);
 			iter->OnRender();
+		}
+	}
+}
+
+void Scene::Render(ViewRenderer* viewRenderer)
+{
+	defaultMatrix_v =
+		D2D1::Matrix3x2F(viewRenderer->GetCamera()->GetIsFlipX() ? -1 : 1, 0, 0, viewRenderer->GetCamera()->GetIsFlipY() ? -1 : 1, 0, 0) *
+		D2D1::Matrix3x2F::Translation(viewRenderer->GetSize().width / 2.f, viewRenderer->GetSize().height / 2.f);
+
+	matrix_v =
+		D2D1::Matrix3x2F::Translation(-viewRenderer->GetCamera()->GetPos().x * INCH_PER_DISTANCE, viewRenderer->GetCamera()->GetPos().y * INCH_PER_DISTANCE)*
+		D2D1::Matrix3x2F::Rotation(-viewRenderer->GetCamera()->GetRot()) *
+		D2D1::Matrix3x2F(viewRenderer->GetCamera()->GetIsFlipX() ? -1 : 1, 0, 0, viewRenderer->GetCamera()->GetIsFlipY() ? -1 : 1, 0, 0) *
+		D2D1::Matrix3x2F::Scale(viewRenderer->GetCamera()->GetZoom().x, viewRenderer->GetCamera()->GetZoom().y) *
+		D2D1::Matrix3x2F::Translation(viewRenderer->GetSize().width / 2.f, viewRenderer->GetSize().height / 2.f);
+
+	for (auto iter : objects)
+	{
+		if (iter->GetIsEnable())
+		{
+			iter->Render(viewRenderer);
 		}
 	}
 }
