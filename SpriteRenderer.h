@@ -1,14 +1,18 @@
 #pragma once
 #include "Renderer.h"
 #include "Texture.h"
+#include "SpriteRenderData.h"
+#include "Camera.h"
+#include <map>
+
+class SpriteRenderData;
 
 class SpriteRenderer :
 	public Renderer
 {
 private:
-	Texture* texture;
-	Rect visibleArea = { 0, 0, 0, 0 };
-	Rect realArea = { 0, 0, 0, 0 };
+	std::map<Camera*, SpriteRenderData> datas;
+	SpriteRenderData defaultData;
 
 public:
 	SpriteRenderer();
@@ -21,11 +25,6 @@ public:
 	void Render();
 	void Draw();
 
-	SpriteRenderer* SetTexture(const std::string&);
-	SpriteRenderer* SetVisibleArea(Rect);
-
-	Texture* GetTexture();
-	Rect GetVisibleArea();
-	Rect GetRealArea();
-	float GetZ_index();
+	std::map<Camera*, SpriteRenderData>* GetDatas();
+	SpriteRenderData* GetDefaultData();
 };

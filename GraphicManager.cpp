@@ -190,6 +190,7 @@ void GraphicManager::Render()
 	renderBuffer.clear();
 	RG2R_SceneM->Render();
 
+	deviceContext_->SetTarget(targetBitmap_);
 	deviceContext_->BeginDraw();
 	deviceContext_->Clear(D2D1::ColorF(BACKGROUND_COLOR));
 
@@ -201,10 +202,21 @@ void GraphicManager::Render()
 	});
 
 	deviceContext_->EndDraw();
+
 	swapChain_->Present(1, 0);
 }
 
 void GraphicManager::PushRenderBuffer(Renderer* renderer)
 {
 	renderBuffer.push_back(renderer);
+}
+
+void GraphicManager::PushViewRenderBuffer(Renderer* renderer)
+{
+	viewRenderBuffer.push_back(renderer);
+}
+
+void GraphicManager::SetTargetBitmap(ID2D1Bitmap1* bitmap)
+{
+	deviceContext_->SetTarget(bitmap);
 }

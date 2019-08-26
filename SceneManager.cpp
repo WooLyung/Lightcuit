@@ -152,9 +152,7 @@ Scene* SceneManager::FirstScene()
 		}
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
 		{
-			cout << "기본 크기 : " << scene->GetMainCamera()->GetCameraDefaultSize().width << ", " << scene->GetMainCamera()->GetCameraDefaultSize().height << endl;
-			cout << "현재 크기 : " << scene->GetMainCamera()->GetCameraSize().width << ", " << scene->GetMainCamera()->GetCameraSize().height << endl;
-			cout << "랜덤 : " << RandomGenerator::GetInstance()->GetInt(0, 10) << endl;
+
 		}
 	};
 

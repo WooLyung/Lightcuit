@@ -9,7 +9,7 @@ TestObject::TestObject(int i)
 	SetName(std::to_string(i) + "N");
 	SetTag(std::to_string(i) + "T");
 
-	AttachComponent<SpriteRenderer>()
+	AttachComponent<SpriteRenderer>()->GetDefaultData()
 		->SetTexture("Resources/Sprites/test.png")
 		->SetVisibleArea(Rect(0, 0, 64, 64));
 

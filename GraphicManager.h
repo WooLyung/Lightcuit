@@ -19,17 +19,21 @@ private:
 
 	std::map<EffectType, ID2D1Effect*> effects_;
 	std::vector<Renderer*> renderBuffer;
+	std::vector<Renderer*> viewRenderBuffer;
 
 public:
 	GraphicManager();
 	~GraphicManager();
 
 	void Render();
+	void SetTargetBitmap(ID2D1Bitmap1* bitmap);
 	void PushRenderBuffer(Renderer*);
+	void PushViewRenderBuffer(Renderer*);
 
 	ID2D1DeviceContext* GetDeviceContext() const { return deviceContext_; }
 	ID2D1Effect* GetEffect(EffectType type) const { return effects_.at(type); }
 	ID2D1Factory1* GetFactory() const { return factory_; }
 	IDXGISwapChain1* GetSwapChain() { return swapChain_; }
 	ID2D1Bitmap1* GetTartgetBitmap() { return targetBitmap_; }
+	std::vector<Renderer*>* GetViewRenderBuffer() { return &viewRenderBuffer; }
 };

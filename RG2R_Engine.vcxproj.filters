@@ -91,6 +91,15 @@
     <Filter Include="소스 파일\Engine\Utils\RandomGenerator">
       <UniqueIdentifier>{01c01b57-08ee-4283-94e5-c84921ce3eb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\SpriteRenderer">
+      <UniqueIdentifier>{58c76d10-8324-4802-ab3e-bd4ebcc8ba50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\SpriteRenderer\SpriteRenderData">
+      <UniqueIdentifier>{38eb2192-cab6-4506-a6b7-25c77846ff25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer">
+      <UniqueIdentifier>{a2918325-f31b-4c83-851a-b5050894cbed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -153,9 +162,6 @@
     <ClInclude Include="Renderer.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteRenderer.h">
-      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Transform</Filter>
     </ClInclude>
@@ -173,6 +179,15 @@
     </ClInclude>
     <ClInclude Include="RandomGenerator.h">
       <Filter>소스 파일\Engine\Utils\RandomGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\SpriteRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderData.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\SpriteRenderer\SpriteRenderData</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewRenderer.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -237,9 +252,6 @@
     <ClCompile Include="Component.cpp">
       <Filter>소스 파일\Engine\Element\Component</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Transform</Filter>
     </ClCompile>
@@ -257,6 +269,15 @@
     </ClCompile>
     <ClCompile Include="RandomGenerator.cpp">
       <Filter>소스 파일\Engine\Utils\RandomGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\SpriteRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderData.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\SpriteRenderer\SpriteRenderData</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewRenderer.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
