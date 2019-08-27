@@ -95,7 +95,7 @@ void Object::Render()
 	}
 }
 
-void Object::Render(ViewRenderer* viewRenderer)
+void Object::Render(ViewRenderData& viewRenderData)
 {
 	Transform* transform = GetComponent<Transform>();
 
@@ -131,7 +131,7 @@ void Object::Render(ViewRenderer* viewRenderer)
 	{
 		if (iter.second->GetIsEnable())
 		{
-			iter.second->Render(viewRenderer);
+			iter.second->Render(viewRenderData);
 		}
 	}
 
@@ -139,7 +139,7 @@ void Object::Render(ViewRenderer* viewRenderer)
 	{
 		if (iter->GetIsEnable())
 		{
-			iter->Render(viewRenderer);
+			iter->Render(viewRenderData);
 		}
 	}
 }
@@ -170,7 +170,7 @@ void Object::Update()
 			{
 				ApplyListener(iter.second->onUpdateListener);
 				iter.second->OnUpdate();
-				
+
 				iter.second->isFirstUpdate = false;
 			}
 			ApplyListener(iter.second->onUpdateListener);
@@ -281,7 +281,7 @@ void Object::AttachChild(Object* child)
 	OnAttachChild();
 }
 
-Object* Object::FindChild(const Object* object)
+Object* Object::FindChild(Object* object)
 {
 	for (auto iter : childs)
 	{
@@ -296,7 +296,7 @@ Object* Object::FindChild(const Object* object)
 	return nullptr;
 }
 
-Object* Object::FindChildByTag(const std::string tag)
+Object* Object::FindChildByTag(std::string tag)
 {
 	for (auto iter : childs)
 	{
@@ -311,7 +311,7 @@ Object* Object::FindChildByTag(const std::string tag)
 	return nullptr;
 }
 
-Object* Object::FindChildByName(const std::string name)
+Object* Object::FindChildByName(std::string name)
 {
 	for (auto iter : childs)
 	{
@@ -326,7 +326,7 @@ Object* Object::FindChildByName(const std::string name)
 	return nullptr;
 }
 
-Object* Object::FindChildCondition(std::function<bool(const Object*)> condition)
+Object* Object::FindChildCondition(std::function<bool(Object*)> condition)
 {
 	for (auto iter : childs)
 	{
@@ -341,7 +341,7 @@ Object* Object::FindChildCondition(std::function<bool(const Object*)> condition)
 	return nullptr;
 }
 
-std::vector<Object*> Object::FindChildsByTag(const std::string tag)
+std::vector<Object*> Object::FindChildsByTag(std::string tag)
 {
 	std::vector<Object*> foundObjects;
 
@@ -358,7 +358,7 @@ std::vector<Object*> Object::FindChildsByTag(const std::string tag)
 	return foundObjects;
 }
 
-std::vector<Object*> Object::FindChildsByName(const std::string name)
+std::vector<Object*> Object::FindChildsByName(std::string name)
 {
 	std::vector<Object*> foundObjects;
 
@@ -375,7 +375,7 @@ std::vector<Object*> Object::FindChildsByName(const std::string name)
 	return foundObjects;
 }
 
-std::vector<Object*> Object::FindChildsCondition(std::function<bool(const Object*)> condition)
+std::vector<Object*> Object::FindChildsCondition(std::function<bool(Object*)> condition)
 {
 	std::vector<Object*> foundObjects;
 
@@ -421,7 +421,7 @@ Object* Object::AttachObject(Object* object)
 	return scene->AttachObject(object);
 }
 
-Object* Object::FindObject(const Object* object)
+Object* Object::FindObject(Object* object)
 {
 	if (scene == nullptr)
 	{
@@ -431,7 +431,7 @@ Object* Object::FindObject(const Object* object)
 	return scene->FindObject(object);
 }
 
-Object* Object::FindObjectByTag(const std::string tag)
+Object* Object::FindObjectByTag(std::string tag)
 {
 	if (scene == nullptr)
 	{
@@ -441,7 +441,7 @@ Object* Object::FindObjectByTag(const std::string tag)
 	return scene->FindObjectByTag(tag);
 }
 
-Object* Object::FindObjectByName(const std::string name)
+Object* Object::FindObjectByName(std::string name)
 {
 	if (scene == nullptr)
 	{
@@ -451,7 +451,7 @@ Object* Object::FindObjectByName(const std::string name)
 	return scene->FindObjectByName(name);
 }
 
-Object* Object::FindObjectCondition(std::function<bool(const Object*)> condition)
+Object* Object::FindObjectCondition(std::function<bool(Object*)> condition)
 {
 	if (scene == nullptr)
 	{
@@ -461,7 +461,7 @@ Object* Object::FindObjectCondition(std::function<bool(const Object*)> condition
 	return scene->FindObjectCondition(condition);
 }
 
-std::vector<Object*> Object::FindObjectsByTag(const std::string tag)
+std::vector<Object*> Object::FindObjectsByTag(std::string tag)
 {
 	if (scene == nullptr)
 	{
@@ -471,7 +471,7 @@ std::vector<Object*> Object::FindObjectsByTag(const std::string tag)
 	return scene->FindObjectsByTag(tag);
 }
 
-std::vector<Object*> Object::FindObjectsByName(const std::string name)
+std::vector<Object*> Object::FindObjectsByName(std::string name)
 {
 	if (scene == nullptr)
 	{
@@ -481,7 +481,7 @@ std::vector<Object*> Object::FindObjectsByName(const std::string name)
 	return scene->FindObjectsByName(name);
 }
 
-std::vector<Object*> Object::FindObjectsCondition(std::function<bool(const Object*)> condition)
+std::vector<Object*> Object::FindObjectsCondition(std::function<bool(Object*)> condition)
 {
 	if (scene == nullptr)
 	{
@@ -511,7 +511,7 @@ Camera* Object::AttachCamera(Camera* cam)
 	return scene->AttachCamera(cam);
 }
 
-Camera* Object::FindCamera(const Camera* cam)
+Camera* Object::FindCamera(Camera* cam)
 {
 	if (scene == nullptr)
 	{
@@ -521,7 +521,7 @@ Camera* Object::FindCamera(const Camera* cam)
 	return scene->FindCamera(cam);
 }
 
-Camera* Object::FindCameraByName(const std::string name)
+Camera* Object::FindCameraByName(std::string name)
 {
 	if (scene == nullptr)
 	{
@@ -531,7 +531,7 @@ Camera* Object::FindCameraByName(const std::string name)
 	return scene->FindCameraByName(name);
 }
 
-Camera* Object::FindCameraCondition(std::function<bool(const Camera*)> condition)
+Camera* Object::FindCameraCondition(std::function<bool(Camera*)> condition)
 {
 	if (scene == nullptr)
 	{
@@ -541,7 +541,7 @@ Camera* Object::FindCameraCondition(std::function<bool(const Camera*)> condition
 	return scene->FindCameraCondition(condition);
 }
 
-std::vector<Camera*> Object::FindCamerasCondition(std::function<bool(const Camera*)> condition)
+std::vector<Camera*> Object::FindCamerasCondition(std::function<bool(Camera*)> condition)
 {
 	if (scene == nullptr)
 	{

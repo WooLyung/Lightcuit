@@ -5,8 +5,98 @@
 #include "Transform.h"
 #include "TestObject.h"
 #include "SpriteRenderer.h"
-#include "RandomGenerator.h"
 #include "ViewRenderer.h"
+#include "RandomGenerator.h"
+
+Scene* SceneManager::FirstScene()
+{
+	auto scene = new Scene();
+	auto scene2 = new Scene();
+
+	scene->AttachObject(new TestObject(0));
+	auto cam = scene->CreateCamera();
+	auto view = scene->CreateObject()
+		->AttachComponent<ViewRenderer>()
+		->SetBackgroundColor(D2D1::ColorF(0xf07799ff))
+		->SetCamera(cam)
+		->GetOwner()
+		->GetComponent<Transform>()
+		->SetPos(3, 3)
+		->SetScale(0.5f, 0.5f)
+		->GetOwner();
+
+	auto li = scene->FindObjectsCondition([=](Object* obj) { return obj != view; });
+	for (auto element : li)
+	{
+		auto renderer = element->GetComponent<SpriteRenderer>();
+
+		SpriteRenderData data;
+		data.SetTexture("Resources/Sprites/test2.png");
+
+		renderer->GetDatas()->insert(make_pair(cam, data));
+	}
+
+	scene->onUpdateListener = [=]() {
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
+		{
+			RG2R_WindowM->ToggleFullscreen(); // F11로 전체화면
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER
+			&& RG2R_InputM->GetKeyState(KeyCode::KEY_LALT) == KeyState::KEYSTATE_STAY)
+		{
+			RG2R_WindowM->Close(); // Alt + F4로 끄기
+		}
+
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_STAY)
+		{
+			cam->SetPosX(cam->GetPos().x - RG2R_TimeM->GetDeltaTime() * 5);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_D) == KeyState::KEYSTATE_STAY)
+		{
+			cam->SetPosX(cam->GetPos().x + RG2R_TimeM->GetDeltaTime() * 5);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_W) == KeyState::KEYSTATE_STAY)
+		{
+			cam->SetPosY(cam->GetPos().y + RG2R_TimeM->GetDeltaTime() * 5);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_S) == KeyState::KEYSTATE_STAY)
+		{
+			cam->SetPosY(cam->GetPos().y - RG2R_TimeM->GetDeltaTime() * 5);
+		}
+
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F) == KeyState::KEYSTATE_ENTER)
+		{
+			cam->SetIsFlipY(!cam->GetIsFlipY());
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_Q) == KeyState::KEYSTATE_STAY)
+		{
+			cam->SetRot(cam->GetRot() + RG2R_TimeM->GetDeltaTime() * -95);
+		}
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_STAY)
+		{
+			cam->SetZoomX(cam->GetZoom().x + RG2R_TimeM->GetDeltaTime() * 0.5f);
+			cam->SetZoomY(cam->GetZoom().y + RG2R_TimeM->GetDeltaTime() * 0.5f);
+		}
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+		{
+
+		}
+
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER)
+		{
+			RG2R_SceneM->ChangeScene(scene2);
+		}
+	};
+
+	scene2->onUpdateListener = [=]() {
+		if (RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER)
+		{
+			RG2R_SceneM->ChangeScene(scene);
+		}
+	};
+
+	return scene;
+}
 
 SceneManager::SceneManager()
 {
@@ -81,11 +171,11 @@ void SceneManager::Render()
 	}
 }
 
-void SceneManager::Render(ViewRenderer* viewRenderer)
+void SceneManager::Render(ViewRenderData& viewRenderData)
 {
 	if (registeredScene != nullptr)
 	{
-		registeredScene->Render(viewRenderer);
+		registeredScene->Render(viewRenderData);
 	}
 }
 
@@ -113,59 +203,4 @@ Scene* SceneManager::ChangeScene(Scene* newScene)
 	newScene->OnRegister();
 
 	return preScene;
-}
-
-Scene* SceneManager::FirstScene()
-{
-	auto scene = new Scene();
-	scene->onUpdateListener = [=]() {
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
-		{
-			RG2R_WindowM->ToggleFullscreen(); // F11로 전체화면
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER 
-			&& RG2R_InputM->GetKeyState(KeyCode::KEY_LALT) == KeyState::KEYSTATE_STAY)
-		{
-			RG2R_WindowM->Close(); // Alt + F4로 끄기
-		}
-
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_STAY)
-		{
-			scene->GetMainCamera()->SetPosX(scene->GetMainCamera()->GetPos().x - RG2R_TimeM->GetDeltaTime() * 5);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_D) == KeyState::KEYSTATE_STAY)
-		{
-			scene->GetMainCamera()->SetPosX(scene->GetMainCamera()->GetPos().x + RG2R_TimeM->GetDeltaTime() * 5);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_W) == KeyState::KEYSTATE_STAY)
-		{
-			scene->GetMainCamera()->SetPosY(scene->GetMainCamera()->GetPos().y + RG2R_TimeM->GetDeltaTime() * 5);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_S) == KeyState::KEYSTATE_STAY)
-		{
-			scene->GetMainCamera()->SetPosY(scene->GetMainCamera()->GetPos().y - RG2R_TimeM->GetDeltaTime() * 5);
-		}
-
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F) == KeyState::KEYSTATE_ENTER)
-		{
-			scene->GetMainCamera()->SetIsFlipY(!scene->GetMainCamera()->GetIsFlipY());
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_Q) == KeyState::KEYSTATE_STAY)
-		{
-			scene->GetMainCamera()->SetRot(scene->GetMainCamera()->GetRot() + RG2R_TimeM->GetDeltaTime() * -95);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_STAY)
-		{
-			scene->GetMainCamera()->SetZoomX(scene->GetMainCamera()->GetZoom().x + RG2R_TimeM->GetDeltaTime() * 0.5f);
-			scene->GetMainCamera()->SetZoomY(scene->GetMainCamera()->GetZoom().y + RG2R_TimeM->GetDeltaTime() * 0.5f);
-		}
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
-		{
-
-		}
-	};
-
-	scene->AttachObject(new TestObject(0));
-
-	return scene;
 }

@@ -16,7 +16,6 @@ public:
 	Texture* GetTexture();
 	Rect GetVisibleArea();
 	Rect GetRealArea();
-	float GetZ_index();
 
 	SpriteRenderData* SetTexture(const std::string&);
 	SpriteRenderData* SetVisibleArea(Rect);

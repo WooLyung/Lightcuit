@@ -1,8 +1,10 @@
 #pragma once
 #include "Component.h"
 #include "EffectInfo.h"
+#include "ViewRenderData.h"
 
 class EffectInfo;
+class ViewRenderData;
 
 class Effect :
 	public Component
@@ -19,7 +21,7 @@ public:
 
 	void Update();
 	void Render();
-	void Render(ViewRenderer*);
+	void Render(ViewRenderData&);
 
 	Effect* PushEffectInfo(EffectInfo* effectInfo);
 	Effect* PopEffectInfo();

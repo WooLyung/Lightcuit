@@ -11,22 +11,22 @@ Component::~Component()
 	OnDestroy();
 }
 
-void Component::SetIsEnable(bool flag) 
+void Component::SetIsEnable(bool flag)
 {
 	this->isEnable = flag;
 }
 
-bool Component::GetIsEnable() 
+bool Component::GetIsEnable()
 {
-	return isEnable; 
+	return isEnable;
 }
 
-bool Component::GetIsFirstUpdate() 
-{ 
-	return isFirstUpdate; 
+bool Component::GetIsFirstUpdate()
+{
+	return isFirstUpdate;
 }
 
 Object* Component::GetOwner()
-{ 
-	return owner; 
+{
+	return owner;
 }

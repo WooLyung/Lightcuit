@@ -44,16 +44,16 @@ GraphicManager::GraphicManager()
 
 	HR(
 		D3D11CreateDevice(
-		nullptr,
-		D3D_DRIVER_TYPE_HARDWARE,
-		0,
-		creationFlags,
-		featureLevels,
-		ARRAYSIZE(featureLevels),
-		D3D11_SDK_VERSION,
-		&device,
-		&featureLevel,
-		&context
+			nullptr,
+			D3D_DRIVER_TYPE_HARDWARE,
+			0,
+			creationFlags,
+			featureLevels,
+			ARRAYSIZE(featureLevels),
+			D3D11_SDK_VERSION,
+			&device,
+			&featureLevel,
+			&context
 		)
 	);
 
@@ -75,10 +75,10 @@ GraphicManager::GraphicManager()
 	swapChainDesc.Height = GetSystemMetrics(SM_CYSCREEN);
 	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 	swapChainDesc.Stereo = false;
-	swapChainDesc.SampleDesc.Count = 1;            
+	swapChainDesc.SampleDesc.Count = 1;
 	swapChainDesc.SampleDesc.Quality = 0;
 	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	swapChainDesc.BufferCount = 2;              
+	swapChainDesc.BufferCount = 2;
 	swapChainDesc.Scaling = DXGI_SCALING_NONE;
 	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	swapChainDesc.Flags = 0;
@@ -86,12 +86,12 @@ GraphicManager::GraphicManager()
 	HR(
 		dxgiDevice->GetAdapter(&dxgiAdapter)
 	);
-	
+
 	HR(
 		dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory))
 	);
 
-	
+
 	HR(
 		dxgiFactory->CreateSwapChainForHwnd(
 			device,
@@ -102,7 +102,7 @@ GraphicManager::GraphicManager()
 			&swapChain_
 		)
 	);
-	
+
 	HR(
 		dxgiDevice->SetMaximumFrameLatency(1)
 	);
@@ -146,21 +146,21 @@ GraphicManager::GraphicManager()
 		)
 	);
 
-	deviceContext_->SetDpi(96,96);
-	deviceContext_->CreateEffect(CLSID_D2D1ColorMatrix,				 &effects_[ET_ColorMatrix]);
-	deviceContext_->CreateEffect(CLSID_D2D1DiscreteTransfer,		 &effects_[ET_DiscreteTransfer]);
-	deviceContext_->CreateEffect(CLSID_D2D1GammaTransfer,			 &effects_[ET_GammaTransfer]);
-	deviceContext_->CreateEffect(CLSID_D2D1HueRotation,				 &effects_[ET_HueRotation]);
-	deviceContext_->CreateEffect(CLSID_D2D1LinearTransfer,			 &effects_[ET_LinearTransfer]);
-	deviceContext_->CreateEffect(CLSID_D2D1Saturation,				 &effects_[ET_Saturation]);
-	deviceContext_->CreateEffect(CLSID_D2D1TableTransfer,			 &effects_[ET_TableTransfer]);
-	deviceContext_->CreateEffect(CLSID_D2D1DirectionalBlur,			 &effects_[ET_DirectionalBlur]);
-	deviceContext_->CreateEffect(CLSID_D2D1GaussianBlur,			 &effects_[ET_GaussianBlur]);
-	deviceContext_->CreateEffect(CLSID_D2D1Morphology,				 &effects_[ET_Morphology]);
-	deviceContext_->CreateEffect(CLSID_D2D1Brightness,				 &effects_[ET_Brightness]);
-	deviceContext_->CreateEffect(CLSID_D2D13DTransform,				 &effects_[ET_3DTransform]);
-	deviceContext_->CreateEffect(CLSID_D2D13DPerspectiveTransform,	 &effects_[ET_3DPerspectiveTransform]);
-	deviceContext_->CreateEffect(CLSID_D2D1Tile,					 &effects_[ET_Tile]);
+	deviceContext_->SetDpi(96, 96);
+	deviceContext_->CreateEffect(CLSID_D2D1ColorMatrix, &effects_[ET_ColorMatrix]);
+	deviceContext_->CreateEffect(CLSID_D2D1DiscreteTransfer, &effects_[ET_DiscreteTransfer]);
+	deviceContext_->CreateEffect(CLSID_D2D1GammaTransfer, &effects_[ET_GammaTransfer]);
+	deviceContext_->CreateEffect(CLSID_D2D1HueRotation, &effects_[ET_HueRotation]);
+	deviceContext_->CreateEffect(CLSID_D2D1LinearTransfer, &effects_[ET_LinearTransfer]);
+	deviceContext_->CreateEffect(CLSID_D2D1Saturation, &effects_[ET_Saturation]);
+	deviceContext_->CreateEffect(CLSID_D2D1TableTransfer, &effects_[ET_TableTransfer]);
+	deviceContext_->CreateEffect(CLSID_D2D1DirectionalBlur, &effects_[ET_DirectionalBlur]);
+	deviceContext_->CreateEffect(CLSID_D2D1GaussianBlur, &effects_[ET_GaussianBlur]);
+	deviceContext_->CreateEffect(CLSID_D2D1Morphology, &effects_[ET_Morphology]);
+	deviceContext_->CreateEffect(CLSID_D2D1Brightness, &effects_[ET_Brightness]);
+	deviceContext_->CreateEffect(CLSID_D2D13DTransform, &effects_[ET_3DTransform]);
+	deviceContext_->CreateEffect(CLSID_D2D13DPerspectiveTransform, &effects_[ET_3DPerspectiveTransform]);
+	deviceContext_->CreateEffect(CLSID_D2D1Tile, &effects_[ET_Tile]);
 
 	device->Release();
 	context->Release();
@@ -196,10 +196,10 @@ void GraphicManager::Render()
 
 	sort(renderBuffer.begin(), renderBuffer.end(), [](Renderer* renderer1, Renderer* renderer2) -> bool {
 		return renderer1->GetZ_index() > renderer2->GetZ_index();
-	});
+		});
 	for_each(renderBuffer.begin(), renderBuffer.end(), [](Renderer* renderer) -> void {
 		renderer->Draw();
-	});
+		});
 
 	deviceContext_->EndDraw();
 

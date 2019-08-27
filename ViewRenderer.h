@@ -3,18 +3,13 @@
 #include "Camera.h"
 #include "Settings.h"
 #include "Math.h"
-
-class Camera;
-class Renderer;
+#include "ViewRenderData.h"
 
 class ViewRenderer :
 	public Renderer
 {
 private:
-	Camera* targetCamera;
-	ID2D1Bitmap1* bitmap;
-	Size2U size;
-	D2D1_COLOR_F backgroundColor;
+	ViewRenderData renderData;
 
 public:
 	ViewRenderer();
@@ -25,10 +20,11 @@ public:
 
 	void Update();
 	void Render();
-	void Render(ViewRenderer*);
+	void Render(ViewRenderData&);
 	void Draw();
-	void Draw(ViewRenderer*);
+	void Draw(ViewRenderData&);
 
+	ViewRenderData* GetRenderData();
 	ViewRenderer* SetCamera(Camera*);
 	ViewRenderer* SetSize(Size2U);
 	ViewRenderer* SetSizeX(UINT);

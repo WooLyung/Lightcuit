@@ -1,10 +1,10 @@
 #pragma once
 #include "stdafx.h"
 #include "Scene.h"
-#include "ViewRenderer.h"
+#include "ViewRenderData.h"
 
 class Scene;
-class ViewRenderer;
+class ViewRenderData;
 
 class SceneManager
 {
@@ -18,7 +18,7 @@ public:
 
 	void Update();
 	void Render();
-	void Render(ViewRenderer*);
+	void Render(ViewRenderData&);
 
 	Scene* FirstScene();
 	Scene* ChangeScene(Scene*);

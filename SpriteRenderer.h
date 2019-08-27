@@ -3,9 +3,11 @@
 #include "Texture.h"
 #include "SpriteRenderData.h"
 #include "Camera.h"
+#include "ViewRenderData.h"
 #include <map>
 
 class SpriteRenderData;
+class ViewRenderData;
 
 class SpriteRenderer :
 	public Renderer
@@ -23,9 +25,9 @@ public:
 
 	void Update();
 	void Render();
-	void Render(ViewRenderer*);
+	void Render(ViewRenderData&);
 	void Draw();
-	void Draw(ViewRenderer*);
+	void Draw(ViewRenderData&);
 
 	std::map<Camera*, SpriteRenderData>* GetDatas();
 	SpriteRenderData* GetDefaultData();

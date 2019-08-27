@@ -22,7 +22,7 @@ TestObject::TestObject(int i)
 		->SetAnchor(32, 32)
 		->SetScale(0.4f, 0.4f);
 
-	if (i <= 3)
+	if (i <= 2)
 	{
 		auto obj1 = new TestObject(i + 1);
 		obj1->GetComponent<Transform>()->SetPosX(3);

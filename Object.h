@@ -3,12 +3,12 @@
 #include "Scene.h"
 #include "Camera.h"
 #include "Math.h"
-#include "ViewRenderer.h"
+#include "ViewRenderData.h"
 
 class Component;
 class Scene;
 class Camera;
-class ViewRenderer;
+class ViewRenderData;
 
 enum ObjectState
 {
@@ -23,9 +23,9 @@ class Object
 {
 private:
 	void Render();
-	void Render(ViewRenderer*);
+	void Render(ViewRenderData&);
 	void Update();
-	
+
 	Matrix matrix, matrix_v;
 	Matrix anchor_matrix, anchor_matrix_v;
 	Matrix noCameraMatrix;
@@ -59,13 +59,13 @@ public:
 	// 자식 관련
 	void DetachChild(Object*); // 자식 해제
 	void AttachChild(Object*); // 자식 추가
-	Object* FindChild(const Object*); // 오브젝트를 찾음
-	Object* FindChildByTag(const std::string); // 태그에 맞는 오브젝트를 찾음
-	Object* FindChildByName(const std::string); // 이름에 맞는 오브젝트를 찾음
-	Object* FindChildCondition(std::function<bool(const Object*)>); // 조건에 맞는 오브젝트를 찾음
-	std::vector<Object*> FindChildsByTag(const std::string); // 태그에 맞는 오브젝트들을 찾음
-	std::vector<Object*> FindChildsByName(const std::string); // 이름에 맞는 오브젝트들을 찾음
-	std::vector<Object*> FindChildsCondition(std::function<bool(const Object*)>); // 조건에 맞는 오브젝트들을 찾음
+	Object* FindChild(Object*); // 오브젝트를 찾음
+	Object* FindChildByTag(std::string); // 태그에 맞는 오브젝트를 찾음
+	Object* FindChildByName(std::string); // 이름에 맞는 오브젝트를 찾음
+	Object* FindChildCondition(std::function<bool(Object*)>); // 조건에 맞는 오브젝트를 찾음
+	std::vector<Object*> FindChildsByTag(std::string); // 태그에 맞는 오브젝트들을 찾음
+	std::vector<Object*> FindChildsByName(std::string); // 이름에 맞는 오브젝트들을 찾음
+	std::vector<Object*> FindChildsCondition(std::function<bool(Object*)>); // 조건에 맞는 오브젝트들을 찾음
 	bool IsChild(Object*); // 자식 체크
 
 	// 오브젝트 관련
@@ -100,19 +100,19 @@ public:
 	Object* CreateObject(); // 빈 오브젝트 생성
 	Object* CreateChildObject(); // 빈 자식 객체 생성
 	Object* AttachObject(Object*); // 생성할 오브젝트를 지정
-	Object* FindObject(const Object*); // 오브젝트를 찾음
-	Object* FindObjectByTag(const std::string); // 태그에 맞는 오브젝트를 찾음
-	Object* FindObjectByName(const std::string); // 이름에 맞는 오브젝트를 찾음
-	Object* FindObjectCondition(std::function<bool(const Object*)>); // 조건에 맞는 오브젝트를 찾음
-	std::vector<Object*> FindObjectsByTag(const std::string); // 태그에 맞는 오브젝트들을 찾음
-	std::vector<Object*> FindObjectsByName(const std::string); // 이름에 맞는 오브젝트들을 찾음
-	std::vector<Object*> FindObjectsCondition(std::function<bool(const Object*)>); // 조건에 맞는 오브젝트들을 찾음
+	Object* FindObject(Object*); // 오브젝트를 찾음
+	Object* FindObjectByTag(std::string); // 태그에 맞는 오브젝트를 찾음
+	Object* FindObjectByName(std::string); // 이름에 맞는 오브젝트를 찾음
+	Object* FindObjectCondition(std::function<bool(Object*)>); // 조건에 맞는 오브젝트를 찾음
+	std::vector<Object*> FindObjectsByTag(std::string); // 태그에 맞는 오브젝트들을 찾음
+	std::vector<Object*> FindObjectsByName(std::string); // 이름에 맞는 오브젝트들을 찾음
+	std::vector<Object*> FindObjectsCondition(std::function<bool(Object*)>); // 조건에 맞는 오브젝트들을 찾음
 	Camera* CreateCamera(); // 빈 카메라 생성
 	Camera* AttachCamera(Camera*); // 생성할 카메라를 지정
-	Camera* FindCamera(const Camera*); // 카메라를 찾음
-	Camera* FindCameraByName(const std::string); // 이름에 맞는 카메라를 찾음
-	Camera* FindCameraCondition(std::function<bool(const Camera*)>); // 조건에 맞는 오브젝트를 찾음
-	std::vector<Camera*> FindCamerasCondition(std::function<bool(const Camera*)>); // 조건에 맞는 오브젝트들을 찾음
+	Camera* FindCamera(Camera*); // 카메라를 찾음
+	Camera* FindCameraByName(std::string); // 이름에 맞는 카메라를 찾음
+	Camera* FindCameraCondition(std::function<bool(Camera*)>); // 조건에 맞는 오브젝트를 찾음
+	std::vector<Camera*> FindCamerasCondition(std::function<bool(Camera*)>); // 조건에 맞는 오브젝트들을 찾음
 
 	// 라이프사이클 메서드
 	virtual void OnStart() {} // 씬의 첫 업데이트 시작시에

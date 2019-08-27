@@ -1,5 +1,9 @@
 #pragma once
 #include "Component.h"
+#include "ViewRenderData.h"
+
+class ViewRenderData;
+
 class Transform :
 	public Component
 {
@@ -21,7 +25,7 @@ public:
 
 	void Update();
 	void Render();
-	void Render(ViewRenderer*);
+	void Render(ViewRenderData&);
 
 	Vec2F GetPos();
 	Vec2F GetWorldPos();

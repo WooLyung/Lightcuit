@@ -98,7 +98,10 @@
       <UniqueIdentifier>{38eb2192-cab6-4506-a6b7-25c77846ff25}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer">
-      <UniqueIdentifier>{a2918325-f31b-4c83-851a-b5050894cbed}</UniqueIdentifier>
+      <UniqueIdentifier>{988c7a45-1d14-4300-b05f-a87f18dc5fb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer\ViewRenderData">
+      <UniqueIdentifier>{5fb2aca0-c8c9-46b3-87d5-a67e723715b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +192,9 @@
     <ClInclude Include="ViewRenderer.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="ViewRenderData.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer\ViewRenderData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -278,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="ViewRenderer.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewRenderData.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer\ViewRenderData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

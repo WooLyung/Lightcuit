@@ -1,9 +1,9 @@
 #pragma once
 #include "Component.h"
-#include "ViewRenderer.h"
+#include "ViewRenderData.h"
 
-class ViewRenderer;
 class Component;
+class ViewRenderData;
 
 class Renderer :
 	public Component
@@ -20,9 +20,9 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Render() = 0;
-	virtual void Render(ViewRenderer*) = 0;
+	virtual void Render(ViewRenderData&) = 0;
 	virtual void Draw() = 0;
-	virtual void Draw(ViewRenderer*) = 0;
+	virtual void Draw(ViewRenderData&) = 0;
 
 	void SetZ_index(float);
 	float GetZ_index();

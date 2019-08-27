@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Transform.h"
 #include "Settings.h"
+#include "ViewRenderData.h"
 
 Transform::Transform()
 {
@@ -20,7 +21,7 @@ void Transform::Render()
 
 }
 
-void Transform::Render(ViewRenderer*)
+void Transform::Render(ViewRenderData&)
 {
 
 }

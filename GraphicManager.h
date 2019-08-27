@@ -2,7 +2,7 @@
 #include "EffectType.h"
 #include "Renderer.h"
 
-class GraphicManager 
+class GraphicManager
 {
 private:
 	friend class TextRenderer;

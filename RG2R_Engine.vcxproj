@@ -185,6 +185,7 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="ViewRenderData.h" />
     <ClInclude Include="ViewRenderer.h" />
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
@@ -217,6 +218,7 @@
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="ViewRenderData.cpp" />
     <ClCompile Include="ViewRenderer.cpp" />
     <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>

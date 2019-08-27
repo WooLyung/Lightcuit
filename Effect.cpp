@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Effect.h"
+#include "ViewRenderData.h"
 
 Effect::Effect()
 {
@@ -45,7 +46,7 @@ void Effect::Render()
 
 }
 
-void Effect::Render(ViewRenderer*)
+void Effect::Render(ViewRenderData&)
 {
 
 }
