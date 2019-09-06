@@ -103,6 +103,12 @@
     <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer\ViewRenderData">
       <UniqueIdentifier>{5fb2aca0-c8c9-46b3-87d5-a67e723715b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer">
+      <UniqueIdentifier>{dbada5fd-2541-4a9a-8dc0-fb9e53c44a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer\TextRenderData">
+      <UniqueIdentifier>{bf223e0a-da62-4a79-8e00-0737b4467d34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -194,6 +200,12 @@
     </ClInclude>
     <ClInclude Include="ViewRenderData.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer\ViewRenderData</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderData.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer\TextRenderData</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +299,12 @@
     </ClCompile>
     <ClCompile Include="ViewRenderData.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\ViewRenderer\ViewRenderData</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderData.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer\TextRenderData</Filter>
+    </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

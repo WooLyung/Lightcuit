@@ -35,5 +35,6 @@ public:
 	ID2D1Factory1* GetFactory() const { return factory_; }
 	IDXGISwapChain1* GetSwapChain() { return swapChain_; }
 	ID2D1Bitmap1* GetTartgetBitmap() { return targetBitmap_; }
+	IDWriteFactory* GetDwFactory() { return dwFactory_; }
 	std::vector<Renderer*>* GetViewRenderBuffer() { return &viewRenderBuffer; }
 };

@@ -6,6 +6,7 @@
 #include "TestObject.h"
 #include "SpriteRenderer.h"
 #include "ViewRenderer.h"
+#include "TextRenderer.h"
 #include "RandomGenerator.h"
 
 Scene* SceneManager::FirstScene()

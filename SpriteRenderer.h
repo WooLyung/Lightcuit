@@ -31,4 +31,11 @@ public:
 
 	std::map<Camera*, SpriteRenderData>* GetDatas();
 	SpriteRenderData* GetDefaultData();
+
+	Texture* GetTexture();
+	Rect GetVisibleArea();
+	Rect GetRealArea();
+
+	SpriteRenderer* SetTexture(const std::string&);
+	SpriteRenderer* SetVisibleArea(Rect);
 };

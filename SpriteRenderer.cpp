@@ -118,7 +118,36 @@ std::map<Camera*, SpriteRenderData>* SpriteRenderer::GetDatas()
 	return &datas;
 }
 
-SpriteRenderData*  SpriteRenderer::GetDefaultData()
+SpriteRenderData* SpriteRenderer::GetDefaultData()
 {
 	return &defaultData;
+}
+
+Texture* SpriteRenderer::GetTexture()
+{
+	return defaultData.GetTexture();
+}
+
+Rect SpriteRenderer::GetVisibleArea()
+{
+	return defaultData.GetVisibleArea();
+}
+
+Rect SpriteRenderer::GetRealArea()
+{
+	return defaultData.GetRealArea();
+}
+
+SpriteRenderer* SpriteRenderer::SetTexture(const std::string& str)
+{
+	defaultData.SetTexture(str);
+
+	return this;
+}
+
+SpriteRenderer* SpriteRenderer::SetVisibleArea(Rect rect)
+{
+	defaultData.SetVisibleArea(rect);
+
+	return this;
 }

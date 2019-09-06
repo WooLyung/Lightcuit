@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TestObject.h"
 #include "Effect.h"
+#include "TextRenderer.h"
 
 TestObject::TestObject(int i)
 {
@@ -12,6 +13,9 @@ TestObject::TestObject(int i)
 	AttachComponent<SpriteRenderer>()->GetDefaultData()
 		->SetTexture("Resources/Sprites/test.png")
 		->SetVisibleArea(Rect(0, 0, 64, 64));
+
+	AttachComponent<TextRenderer>()->
+		SetText("배고프다");
 
 	auto effectInfo = new ColorMatrixEffectInfo();
 	effectInfo->SetColor(Color(0.2f * i + 0.4f, 0.1f * i, 0.9f - i * 0.1f, 1));

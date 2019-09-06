@@ -141,7 +141,7 @@ GraphicManager::GraphicManager()
 	);
 	HR(
 		deviceContext_->CreateSolidColorBrush(
-			D2D1::ColorF(D2D1::ColorF::Enum::Gray),
+			D2D1::ColorF(D2D1::ColorF::Enum::White),
 			&fillBrush_
 		)
 	);
