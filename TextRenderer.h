@@ -33,16 +33,23 @@ public:
 	TextRenderData* GetDefaultData();
 
 	LPCWSTR GetFontFamily();
-	IDWriteFontCollection* GetFontCollection();
 	DWRITE_FONT_WEIGHT GetWeight();
 	DWRITE_FONT_STYLE GetStyle();
 	DWRITE_FONT_STRETCH GetStretch();
+	Vec2F GetAlignScale();
+	TextAlignment GetAlignmentWidth();
+	TextAlignment GetAlignmentHeight();
 	std::string GetText();
+	float GetSize();
+	Color GetTextColor();
 
 	TextRenderer* SetFontFamily(LPCWSTR);
-	TextRenderer* SetFontCollection(IDWriteFontCollection*);
 	TextRenderer* SetWeight(DWRITE_FONT_WEIGHT);
 	TextRenderer* SetStyle(DWRITE_FONT_STYLE);
 	TextRenderer* SetStretch(DWRITE_FONT_STRETCH);
 	TextRenderer* SetText(std::string);
+	TextRenderer* SetAlignmentWidth(TextAlignment);
+	TextRenderer* SetAlignmentHeight(TextAlignment);
+	TextRenderer* SetSize(float);
+	TextRenderer* SetTextColor(Color);
 };

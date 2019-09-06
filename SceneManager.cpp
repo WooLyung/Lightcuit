@@ -7,6 +7,7 @@
 #include "SpriteRenderer.h"
 #include "ViewRenderer.h"
 #include "TextRenderer.h"
+#include "TextRenderData.h"
 #include "RandomGenerator.h"
 
 Scene* SceneManager::FirstScene()
@@ -29,12 +30,18 @@ Scene* SceneManager::FirstScene()
 	auto li = scene->FindObjectsCondition([=](Object* obj) { return obj != view; });
 	for (auto element : li)
 	{
-		auto renderer = element->GetComponent<SpriteRenderer>();
+		auto textRenderer = element->GetComponent<TextRenderer>();
+		TextRenderData data2;
 
-		SpriteRenderData data;
-		data.SetTexture("Resources/Sprites/test2.png");
+		data2.SetText("¹è°íÆÄ")
+			->SetAlignmentWidth(ALIGN_RIGHT)
+			->SetAlignmentHeight(ALIGN_RIGHT)
+			->SetSize(50)
+			->SetStyle(DWRITE_FONT_STYLE::DWRITE_FONT_STYLE_ITALIC)
+			->SetTextColor(Color(0.1f, 0.3f, 0.5f, 1))
+			->SetFontFamily(L"±Ã¼­");
 
-		renderer->GetDatas()->insert(make_pair(cam, data));
+		textRenderer->GetDatas()->insert(make_pair(cam, data2));
 	}
 
 	scene->onUpdateListener = [=]() {

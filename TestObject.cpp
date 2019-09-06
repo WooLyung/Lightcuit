@@ -10,12 +10,18 @@ TestObject::TestObject(int i)
 	SetName(std::to_string(i) + "N");
 	SetTag(std::to_string(i) + "T");
 
-	AttachComponent<SpriteRenderer>()->GetDefaultData()
-		->SetTexture("Resources/Sprites/test.png")
-		->SetVisibleArea(Rect(0, 0, 64, 64));
+	//AttachComponent<SpriteRenderer>()->GetDefaultData()
+	//	->SetTexture("Resources/Sprites/test.png")
+	//	->SetVisibleArea(Rect(0, 0, 64, 64));
 
-	AttachComponent<TextRenderer>()->
-		SetText("배고프다");
+	AttachComponent<TextRenderer>()
+		->SetText("히히히")
+		->SetAlignmentWidth(ALIGN_CENTER)
+		->SetAlignmentHeight(ALIGN_CENTER)
+		->SetSize(70)
+		->SetStyle(DWRITE_FONT_STYLE::DWRITE_FONT_STYLE_ITALIC)
+		->SetTextColor(Color(1, 1, 0.5f, 1))
+		->SetFontFamily(L"굴림");
 
 	auto effectInfo = new ColorMatrixEffectInfo();
 	effectInfo->SetColor(Color(0.2f * i + 0.4f, 0.1f * i, 0.9f - i * 0.1f, 1));
