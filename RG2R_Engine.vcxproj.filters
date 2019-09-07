@@ -109,6 +109,12 @@
     <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer\TextRenderData">
       <UniqueIdentifier>{bf223e0a-da62-4a79-8e00-0737b4467d34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer">
+      <UniqueIdentifier>{c3064696-a0e8-465d-bfbc-e5b1fd82f909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer\BitmapRenderData">
+      <UniqueIdentifier>{2337a2ea-a399-49c3-8946-0c42067e6e1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -206,6 +212,12 @@
     </ClInclude>
     <ClInclude Include="TextRenderer.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapRenderer.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapRenderData.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer\BitmapRenderData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +317,12 @@
     </ClCompile>
     <ClCompile Include="TextRenderer.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\TextRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapRenderer.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapRenderData.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer\BitmapRenderData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
