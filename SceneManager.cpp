@@ -29,23 +29,6 @@ Scene* SceneManager::FirstScene()
 		->SetScale(0.5f, 0.5f)
 		->GetOwner();
 
-	auto li = scene->FindObjectsCondition([=](Object* obj) { return obj != view; });
-	for (auto element : li)
-	{
-		auto textRenderer = element->GetComponent<TextRenderer>();
-		TextRenderData data2;
-
-		data2.SetText("¹è°íÆÄ")
-			->SetAlignmentWidth(ALIGN_RIGHT)
-			->SetAlignmentHeight(ALIGN_RIGHT)
-			->SetSize(50)
-			->SetStyle(DWRITE_FONT_STYLE::DWRITE_FONT_STYLE_ITALIC)
-			->SetTextColor(Color(0.1f, 0.3f, 0.5f, 1))
-			->SetFontFamily(L"±Ã¼­");
-
-		textRenderer->GetDatas()->insert(make_pair(cam, data2));
-	}
-
 	scene->onUpdateListener = [=]() {
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
 		{

@@ -30,3 +30,8 @@ Texture* Textures::GetTexture(int index)
 {
 	return textures[index];
 }
+
+int Textures::GetSize()
+{
+	return textures.size();
+}

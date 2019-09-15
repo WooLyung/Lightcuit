@@ -15,4 +15,5 @@ public:
 	Textures* PushTexture(const std::string&);
 	Texture* PopTexture();
 	Texture* GetTexture(int);
+	int GetSize();
 };

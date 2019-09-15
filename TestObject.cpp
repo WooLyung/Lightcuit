@@ -2,6 +2,8 @@
 #include "TestObject.h"
 #include "Effect.h"
 #include "TextRenderer.h"
+#include "AnimationRenderer.h"
+#include "Textures.h"
 
 TestObject::TestObject(int i)
 {
@@ -10,26 +12,27 @@ TestObject::TestObject(int i)
 	SetName(std::to_string(i) + "N");
 	SetTag(std::to_string(i) + "T");
 
-	//AttachComponent<SpriteRenderer>()->GetDefaultData()
-	//	->SetTexture("Resources/Sprites/test.png")
-	//	->SetVisibleArea(Rect(0, 0, 64, 64));
+	Textures textures1;
+	textures1.PushTexture("Resources/Sprites/spr1.png")
+		->PushTexture("Resources/Sprites/spr2.png")
+		->PushTexture("Resources/Sprites/spr3.png")
+		->PushTexture("Resources/Sprites/spr4.png");
 
-	AttachComponent<TextRenderer>()
-		->SetText("È÷È÷È÷")
-		->SetAlignmentWidth(ALIGN_CENTER)
-		->SetAlignmentHeight(ALIGN_CENTER)
-		->SetSize(70)
-		->SetStyle(DWRITE_FONT_STYLE::DWRITE_FONT_STYLE_ITALIC)
-		->SetTextColor(Color(1, 1, 0.5f, 1))
-		->SetFontFamily(L"±¼¸²");
+	auto animationRenderer = AttachComponent<AnimationRenderer>();
+	animationRenderer
+		->GetAnimations()
+		->push_back(textures1);
+	animationRenderer
+		->SetVisibleArea()
+		->SetInterval(0.5f);
 
-	auto effectInfo = new ColorMatrixEffectInfo();
-	effectInfo->SetColor(Color(0.2f * i + 0.4f, 0.1f * i, 0.9f - i * 0.1f, 1));
-	AttachComponent<Effect>()
-		->PushEffectInfo(effectInfo);
+	//auto effectInfo = new ColorMatrixEffectInfo();
+	//effectInfo->SetColor(Color(0.2f * i + 0.4f, 0.1f * i, 0.9f - i * 0.1f, 1));
+	//AttachComponent<Effect>()
+	//	->PushEffectInfo(effectInfo);
 
 	GetComponent<Transform>()
-		->SetAnchor(32, 32)
+		->SetAnchor(16, 16)
 		->SetScale(0.4f, 0.4f);
 
 	if (i <= 2)

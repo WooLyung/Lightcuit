@@ -13,6 +13,7 @@ private:
 	int nowIndex = 0;
 	float interval = 1;
 	bool isLoop = true;
+	float time = 0;
 
 public:
 	AnimationRenderData();
@@ -23,6 +24,7 @@ public:
 	int GetTargetAnim();
 	int GetNowIndex();
 	float GetInterval();
+	float GetTime();
 	bool GetIsLoop();
 
 	AnimationRenderData* SetVisibleArea(Rect);
@@ -31,4 +33,5 @@ public:
 	AnimationRenderData* SetNowIndex(int);
 	AnimationRenderData* SetInterval(float);
 	AnimationRenderData* SetIsLoop(bool);
+	AnimationRenderData* SetTime(float);
 };

@@ -50,6 +50,11 @@ float AnimationRenderData::GetInterval()
 	return interval;
 }
 
+float AnimationRenderData::GetTime()
+{
+	return time;
+}
+
 bool AnimationRenderData::GetIsLoop()
 {
 	return isLoop;
@@ -72,6 +77,13 @@ AnimationRenderData* AnimationRenderData::SetNowIndex(int nowIndex)
 AnimationRenderData* AnimationRenderData::SetInterval(float interval)
 {
 	this->interval = interval;
+
+	return this;
+}
+
+AnimationRenderData* AnimationRenderData::SetTime(float time)
+{
+	this->time = time;
 
 	return this;
 }
