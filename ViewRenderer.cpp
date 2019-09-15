@@ -9,25 +9,6 @@
 
 ViewRenderer::ViewRenderer()
 {
-	renderData.SetBackgroundColor(D2D1::ColorF(BACKGROUND_COLOR));
-
-	const D2D1_BITMAP_PROPERTIES1 bitmapProperties =
-		D2D1::BitmapProperties1(
-			D2D1_BITMAP_OPTIONS_TARGET,
-			D2D1::PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_IGNORE),
-			96.f,
-			96.f
-		);
-
-	RG2R_GraphicM->GetDeviceContext()->CreateBitmap(
-		renderData.GetSize(),
-		nullptr,
-		0,
-		&bitmapProperties,
-		&renderData.GetBitmap()
-	);
-
-	std::cout << renderData.GetBitmap()->GetSize().height << std::endl;
 }
 
 ViewRenderer::~ViewRenderer()

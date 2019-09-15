@@ -146,3 +146,29 @@ BitmapRenderer* BitmapRenderer::SetVisibleArea(Rect rect)
 
 	return this;
 }
+
+Size2U BitmapRenderer::GetSize()
+{
+	return defaultData.GetSize();
+}
+
+BitmapRenderer* BitmapRenderer::SetSize(Size2U size)
+{
+	defaultData.SetSize(size);
+
+	return this;
+}
+
+BitmapRenderer* BitmapRenderer::SetSizeX(UINT x)
+{
+	defaultData.SetSizeX(x);
+
+	return this;
+}
+
+BitmapRenderer* BitmapRenderer::SetSizeY(UINT y)
+{
+	defaultData.SetSizeX(y);
+
+	return this;
+}

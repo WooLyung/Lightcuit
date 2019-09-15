@@ -34,7 +34,11 @@ public:
 
 	ID2D1Bitmap1* GetBitmap();
 	Rect GetVisibleArea();
+	Size2U GetSize();
 
 	BitmapRenderer* SetBitmap(ID2D1Bitmap1*);
 	BitmapRenderer* SetVisibleArea(Rect);
+	BitmapRenderer* SetSize(Size2U);
+	BitmapRenderer* SetSizeX(UINT);
+	BitmapRenderer* SetSizeY(UINT);
 };

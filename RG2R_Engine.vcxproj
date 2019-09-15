@@ -158,6 +158,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationRenderData.h" />
+    <ClInclude Include="AnimationRenderer.h" />
     <ClInclude Include="BitmapRenderData.h" />
     <ClInclude Include="BitmapRenderer.h" />
     <ClInclude Include="Camera.h" />
@@ -187,6 +189,7 @@
     <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Textures.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="ViewRenderData.h" />
@@ -194,6 +197,8 @@
     <ClInclude Include="WindowManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationRenderData.cpp" />
+    <ClCompile Include="AnimationRenderer.cpp" />
     <ClCompile Include="BitmapRenderData.cpp" />
     <ClCompile Include="BitmapRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -224,6 +229,7 @@
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Textures.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="ViewRenderData.cpp" />

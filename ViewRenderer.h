@@ -30,6 +30,7 @@ public:
 	ViewRenderer* SetSizeX(UINT);
 	ViewRenderer* SetSizeY(UINT);
 	ViewRenderer* SetBackgroundColor(D2D1_COLOR_F);
+
 	Camera* GetCamera();
 	Size2U GetSize();
 	D2D1_COLOR_F GetBackgroundColor();

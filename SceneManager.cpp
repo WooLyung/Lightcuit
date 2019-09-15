@@ -21,9 +21,11 @@ Scene* SceneManager::FirstScene()
 		->AttachComponent<ViewRenderer>()
 		->SetBackgroundColor(D2D1::ColorF(0xf07799ff))
 		->SetCamera(cam)
+		->SetSizeX(600)
+		->SetSizeY(600)
 		->GetOwner()
 		->GetComponent<Transform>()
-		->SetPos(3, 3)
+		->SetPos(2, 2)
 		->SetScale(0.5f, 0.5f)
 		->GetOwner();
 

@@ -115,6 +115,15 @@
     <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer\BitmapRenderData">
       <UniqueIdentifier>{2337a2ea-a399-49c3-8946-0c42067e6e1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer">
+      <UniqueIdentifier>{9dd02575-0d30-4a0e-bd40-cb2432bbbcfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\AnimationRenderData">
+      <UniqueIdentifier>{6b417e29-4a04-432d-9ad1-a5c6f982cb09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\Textures">
+      <UniqueIdentifier>{a51ab1e9-e48d-4d32-ab22-9c57ba567721}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -218,6 +227,15 @@
     </ClInclude>
     <ClInclude Include="BitmapRenderData.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer\BitmapRenderData</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationRenderer.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationRenderData.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\AnimationRenderData</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.h">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\Textures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +341,15 @@
     </ClCompile>
     <ClCompile Include="BitmapRenderData.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\BitmapRenderer\BitmapRenderData</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationRenderer.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationRenderData.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\AnimationRenderData</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\Textures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
