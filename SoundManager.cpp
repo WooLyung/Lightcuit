@@ -84,8 +84,6 @@ SoundResource* SoundManager::Load(const path& filePath)
 			ov_clear(&oggVorbisFile_);
 			fclose(f);
 
-			soundSources[filePath]->buffer->SetVolume(10);
-
 			buf = NULL;
 		}
 		else if (filePath.extension() == ".wav")
@@ -204,7 +202,10 @@ SoundCode SoundManager::Play(const path& filePath)
 		dsound_->DuplicateSoundBuffer(soundSources[filePath]->buffer, &sound->buffer);
 		sound->source = soundSources[filePath];
 
-		sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
+		if (sound->options.isMute)
+			sound->buffer->SetVolume(0);
+		else
+			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
 		sound->buffer->SetPan(sound->options.dir * 10000);
 		sound->buffer->Play(0, 0, sound->options.isLoop ? DSBPLAY_LOOPING : 0);
@@ -217,7 +218,10 @@ SoundCode SoundManager::Play(const path& filePath)
 		dsound_->DuplicateSoundBuffer(soundSources[filePath]->buffer, &sound->buffer);
 		sound->source = soundSources[filePath];
 
-		sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
+		if (sound->options.isMute)
+			sound->buffer->SetVolume(0);
+		else
+			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
 		sound->buffer->SetPan(sound->options.dir * 10000);
 		sound->buffer->Play(0, 0, sound->options.isLoop ? DSBPLAY_LOOPING : 0);
@@ -259,7 +263,10 @@ SoundCode SoundManager::Play(const path& filePath, SoundOptions soundOptions)
 		sound->source = soundSources[filePath];
 		sound->options = soundOptions;
 
-		sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
+		if (sound->options.isMute)
+			sound->buffer->SetVolume(0);
+		else
+			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
 		sound->buffer->SetPan(sound->options.dir * 10000);
 		sound->buffer->Play(0, 0, sound->options.isLoop ? DSBPLAY_LOOPING : 0);
@@ -273,7 +280,10 @@ SoundCode SoundManager::Play(const path& filePath, SoundOptions soundOptions)
 		sound->source = soundSources[filePath];
 		sound->options = soundOptions;
 
-		sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
+		if (sound->options.isMute)
+			sound->buffer->SetVolume(0);
+		else
+			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
 		sound->buffer->SetPan(sound->options.dir * 10000);
 		sound->buffer->Play(0, 0, sound->options.isLoop ? DSBPLAY_LOOPING : 0);
@@ -292,9 +302,14 @@ void SoundManager::SetOptions(SoundCode code, SoundOptions options)
 		{
 			sound->options = options;
 
-			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
+			if (sound->options.isMute)
+				sound->buffer->SetVolume(0);
+			else
+				sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 			sound->buffer->SetFrequency(sound->options.pitch * 44100);
 			sound->buffer->SetPan(sound->options.dir * 10000);
+
+			return;
 		}
 	}
 }
@@ -363,7 +378,7 @@ bool SoundManager::IsPlaying(Sound* sound)
 
 bool SoundManager::UpdateSound(Sound* sound)
 {
-	if (!IsPlaying(sound))
+	if (!IsPlaying(sound) && !sound->isPause)
 	{
 		if (sound->options.isLoop)
 		{
@@ -409,6 +424,54 @@ void SoundManager::Stop(SoundCode code)
 		{
 			sound_->buffer->Stop();
 			sound_->options.isLoop = false;
+		}
+	}
+}
+
+void SoundManager::Pause(SoundCode code)
+{
+	for (auto sound : sounds)
+	{
+		if (sound->id == code)
+		{
+			sound->isPause = true;
+			DWORD dwPlayCursol;
+			DWORD dwWriteCursol;
+			sound->buffer->GetCurrentPosition(&dwPlayCursol, &dwWriteCursol);
+			sound->lastPos = dwPlayCursol;
+			sound->buffer->Stop();
+
+			cout << dwPlayCursol << endl;
+
+			return;
+		}
+	}
+}
+
+Sound* SoundManager::GetSound(SoundCode code)
+{
+	for (auto sound : sounds)
+	{
+		if (sound->id == code)
+		{
+			return sound;
+		}
+	}
+
+	return nullptr;
+}
+
+void SoundManager::Start(SoundCode code)
+{
+	for (auto sound : sounds)
+	{
+		if (sound->id == code)
+		{
+			sound->isPause = false;
+			sound->buffer->Play(0, 0, sound->options.isLoop ? DSBPLAY_LOOPING : 0);
+			sound->buffer->SetCurrentPosition(sound->lastPos);
+
+			return;
 		}
 	}
 }

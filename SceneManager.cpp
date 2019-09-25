@@ -33,17 +33,19 @@ Scene* SceneManager::FirstScene()
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F3) == KeyState::KEYSTATE_ENTER)
 		{
 			SoundOptions so;
-			so.volume = 1.f;
-			so.pitch = 2.f;
-			so.dir = 1;
+			so.volume = 0.8f;
+			so.pitch = 1.f;
 			so.isLoop = true;
 			so.autoDelete = true;
 
-			cout << RG2R_SoundM->Play("Resources/Sounds/levelUp.ogg", so) << endl;
+			cout << RG2R_SoundM->Play("Resources/Sounds/music.ogg", so) << endl;
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER)
 		{
-			RG2R_SoundM->Stop(0);
+			if (RG2R_SoundM->GetSound(0)->isPause)
+				RG2R_SoundM->Start(0);
+			else
+				RG2R_SoundM->Pause(0);
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
 		{

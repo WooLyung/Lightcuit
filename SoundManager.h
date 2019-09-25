@@ -38,6 +38,8 @@ struct Sound {
 	LPDIRECTSOUNDBUFFER	buffer;
 	SoundOptions options;
 	int id;
+	bool isPause = false;
+	DWORD lastPos = 0;
 
 	Sound(SoundType type) : type(type) {}
 	Sound(SoundType type, SoundOptions options) : type(type), options(options) {}
@@ -99,10 +101,12 @@ public:
 
 	SoundCode Play(const path&);
 	SoundCode Play(const path&, SoundOptions);
+	Sound* GetSound(SoundCode);
 	bool IsPlaying(SoundCode);
 	bool IsPlaying(Sound*);
 	void SetOptions(SoundCode, SoundOptions);
-	//void Pause(`SoundCode);
+	void Pause(SoundCode);
+	void Start(SoundCode);
 	void Stop(SoundCode);
 	void Delete(SoundCode);
 	void Clear();
