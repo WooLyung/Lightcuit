@@ -34,7 +34,7 @@ Scene* SceneManager::FirstScene()
 		{
 			SoundOptions so;
 			so.volume = 0.8f;
-			so.pitch = 1.f;
+			so.pitch = 1.5f;
 			so.isLoop = true;
 			so.autoDelete = true;
 
@@ -42,10 +42,22 @@ Scene* SceneManager::FirstScene()
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER)
 		{
-			if (RG2R_SoundM->GetSound(0)->isPause)
-				RG2R_SoundM->Start(0);
+			SoundOptions so;
+			so.volume = 0.8f;
+			so.pitch = 1.5f;
+			so.isLoop = true;
+			so.autoDelete = true;
+
+			if (RG2R_SoundM->GetSound(0)->options.isMute)
+			{
+				so.isMute = false;
+				RG2R_SoundM->SetOptions(0, so);
+			}
 			else
-				RG2R_SoundM->Pause(0);
+			{
+				so.isMute = true;
+				RG2R_SoundM->SetOptions(0, so);
+			}
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
 		{

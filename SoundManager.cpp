@@ -203,7 +203,7 @@ SoundCode SoundManager::Play(const path& filePath)
 		sound->source = soundSources[filePath];
 
 		if (sound->options.isMute)
-			sound->buffer->SetVolume(0);
+			sound->buffer->SetVolume(DSBVOLUME_MIN);
 		else
 			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
@@ -219,7 +219,7 @@ SoundCode SoundManager::Play(const path& filePath)
 		sound->source = soundSources[filePath];
 
 		if (sound->options.isMute)
-			sound->buffer->SetVolume(0);
+			sound->buffer->SetVolume(DSBVOLUME_MIN);
 		else
 			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
@@ -264,7 +264,7 @@ SoundCode SoundManager::Play(const path& filePath, SoundOptions soundOptions)
 		sound->options = soundOptions;
 
 		if (sound->options.isMute)
-			sound->buffer->SetVolume(0);
+			sound->buffer->SetVolume(DSBVOLUME_MIN);
 		else
 			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
@@ -281,7 +281,7 @@ SoundCode SoundManager::Play(const path& filePath, SoundOptions soundOptions)
 		sound->options = soundOptions;
 
 		if (sound->options.isMute)
-			sound->buffer->SetVolume(0);
+			sound->buffer->SetVolume(DSBVOLUME_MIN);
 		else
 			sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 		sound->buffer->SetFrequency(sound->options.pitch * 44100);
@@ -303,7 +303,7 @@ void SoundManager::SetOptions(SoundCode code, SoundOptions options)
 			sound->options = options;
 
 			if (sound->options.isMute)
-				sound->buffer->SetVolume(0);
+				sound->buffer->SetVolume(DSBVOLUME_MIN);
 			else
 				sound->buffer->SetVolume((sound->options.volume - 1) * 10000);
 			sound->buffer->SetFrequency(sound->options.pitch * 44100);
@@ -440,8 +440,6 @@ void SoundManager::Pause(SoundCode code)
 			sound->buffer->GetCurrentPosition(&dwPlayCursol, &dwWriteCursol);
 			sound->lastPos = dwPlayCursol;
 			sound->buffer->Stop();
-
-			cout << dwPlayCursol << endl;
 
 			return;
 		}
