@@ -1,7 +1,9 @@
 #pragma once
+#include <map>
 
 using namespace std;
 using namespace std::experimental::filesystem;
+typedef int SoundCode;
 
 #define     BUFSIZE    1048576*60
 
@@ -10,82 +12,98 @@ enum SoundType {
 	ST_Ogg,
 };
 
+struct SoundOptions {
+	float pitch = 1;
+	float volume = 1;
+	float dir = 0;
+	bool isLoop = false;
+	bool autoDelete = true;
+	bool isMute = false;
+};
+
+struct SoundResource {
+	SoundType type;
+	LPDIRECTSOUNDBUFFER	buffer;
+};
+
+struct WaveSoundResource : public SoundResource {
+	DWORD dwSize;
+	BYTE* pData;
+	WAVEFORMATEX format;
+};
+
 struct Sound {
 	SoundType type;
-	Sound(SoundType type) :type(type) {}
+	SoundResource* source;
+	LPDIRECTSOUNDBUFFER	buffer;
+	SoundOptions options;
+	int id;
+
+	Sound(SoundType type) : type(type) {}
+	Sound(SoundType type, SoundOptions options) : type(type), options(options) {}
 	virtual ~Sound() {}
 };
+
 struct OggSound : public Sound
 {
-	LPDIRECTSOUNDBUFFER	buffer;
-	BOOL				isLoaded;
-	BOOL				isLoop;
-	int					id;
-
 	OggSound()
-		:Sound(ST_Ogg)
+		: Sound(ST_Ogg)
 	{
-		isLoaded = FALSE;
-		isLoop = FALSE;
-		buffer = NULL;
-		id = NULL;
 	}
+
+	OggSound(SoundOptions options_)
+		: Sound(ST_Ogg, options_)
+	{
+	}
+
 	~OggSound()
 	{
 		buffer->Release();
 	}
-
 };
+
 struct WaveSound : public Sound
 {
-	LPDIRECTSOUNDBUFFER	buffer;
-	BOOL				isLoaded;
-	int				isLoop;
-	DWORD			dwSize;
-	BYTE*			pData;
-	int				id;
-	WAVEFORMATEX		format;
-
 	WaveSound()
-		:Sound(ST_Wave)
+		: Sound(ST_Wave)
 	{
-		isLoaded = FALSE;
-		isLoop = FALSE;
-		buffer = NULL;
-		id = NULL;
-		dwSize = 0;
 	}
+
+	WaveSound(SoundOptions options_)
+		: Sound(ST_Ogg, options_)
+	{
+	}
+
 	~WaveSound()
 	{
 		buffer->Release();
 	}
 };
+
 class SoundManager
 {
 private:
-	map<SoundID, Sound*> sounds_;
+	std::map<const path, SoundResource*> soundSources;
+	list<Sound*> sounds;
+	LPDIRECTSOUND8 dsound_;
+	OggVorbis_File oggVorbisFile_;
 
-	LPDIRECTSOUND8		dsound_;
-	OggVorbis_File		oggVorbisFile_;
+	SoundResource* Load(const path& filePath);
+	bool UpdateSound(Sound*);
 
 public:
 	SoundManager();
 	~SoundManager();
 
-	//OnCreate(HWND hWnd);
-	//OnRelease();
-
-public:
-	int volume;
-
-	Sound* Load(SoundID id, const path& filePath);
-	void Unload(SoundID id);
-	//loop : 반복할지 
-	//reset : 이미 재생되고 있으면 멈추고 다시 재생할지 
-	void Play(SoundID id, bool loop = false, bool reset = false);
-	void Stop(SoundID id);
-	bool IsPlaying(SoundID id);
-	void UnloadAll();
-	//loop= true인 것들 갱신
 	void Update();
+
+	SoundCode Play(const path&);
+	SoundCode Play(const path&, SoundOptions);
+	bool IsPlaying(SoundCode);
+	bool IsPlaying(Sound*);
+	void SetOptions(SoundCode, SoundOptions);
+	//void Pause(`SoundCode);
+	void Stop(SoundCode);
+	void Delete(SoundCode);
+	void Clear();
 };
