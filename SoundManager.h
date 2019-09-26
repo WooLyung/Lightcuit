@@ -43,40 +43,7 @@ struct Sound {
 
 	Sound(SoundType type) : type(type) {}
 	Sound(SoundType type, SoundOptions options) : type(type), options(options) {}
-	virtual ~Sound() {}
-};
-
-struct OggSound : public Sound
-{
-	OggSound()
-		: Sound(ST_Ogg)
-	{
-	}
-
-	OggSound(SoundOptions options_)
-		: Sound(ST_Ogg, options_)
-	{
-	}
-
-	~OggSound()
-	{
-		buffer->Release();
-	}
-};
-
-struct WaveSound : public Sound
-{
-	WaveSound()
-		: Sound(ST_Wave)
-	{
-	}
-
-	WaveSound(SoundOptions options_)
-		: Sound(ST_Ogg, options_)
-	{
-	}
-
-	~WaveSound()
+	~Sound()
 	{
 		buffer->Release();
 	}

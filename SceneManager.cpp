@@ -9,6 +9,8 @@
 #include "TextRenderer.h"
 #include "TextRenderData.h"
 #include "RandomGenerator.h"
+#include "Command.h"
+#include "CommandList.h"
 
 Scene* SceneManager::FirstScene()
 {
@@ -27,7 +29,18 @@ Scene* SceneManager::FirstScene()
 		->GetComponent<Transform>()
 		->SetPos(2, 2)
 		->SetScale(0.5f, 0.5f)
+		->SetIsRelative(false)
 		->GetOwner();
+
+	auto commandList = new CommandList();
+	commandList->PushCommand([=]() { std::cout << "1" << std::endl; }, 1);
+	commandList->PushCommand([=]() { std::cout << "2" << std::endl; }, 1);
+	commandList->PushCommand([=]() { std::cout << "3" << std::endl; }, 1);
+	commandList->PushCommand([=]() { std::cout << "4" << std::endl; }, 1);
+	commandList->SetIsLoop(true);
+
+	view->commandLists.push_back(commandList);
+	commandList->Start();
 
 	scene->onUpdateListener = [=]() {
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F3) == KeyState::KEYSTATE_ENTER)
@@ -38,7 +51,7 @@ Scene* SceneManager::FirstScene()
 			so.isLoop = true;
 			so.autoDelete = true;
 
-			cout << RG2R_SoundM->Play("Resources/Sounds/music.ogg", so) << endl;
+			RG2R_SoundM->Play("Resources/Sounds/music.ogg");
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER)
 		{
@@ -92,7 +105,7 @@ Scene* SceneManager::FirstScene()
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_Q) == KeyState::KEYSTATE_STAY)
 		{
-			cam->SetRot(cam->GetRot() + RG2R_TimeM->GetDeltaTime() * -95);
+			scene->GetMainCamera()->SetRot(scene->GetMainCamera()->GetRot() + RG2R_TimeM->GetDeltaTime() * -95);
 		}
 		if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_STAY)
 		{

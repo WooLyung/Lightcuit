@@ -163,6 +163,8 @@
     <ClInclude Include="BitmapRenderData.h" />
     <ClInclude Include="BitmapRenderer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandList.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectInfo.h" />
@@ -202,6 +204,7 @@
     <ClCompile Include="BitmapRenderData.cpp" />
     <ClCompile Include="BitmapRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectInfo.cpp" />

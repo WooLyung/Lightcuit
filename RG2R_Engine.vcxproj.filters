@@ -124,6 +124,9 @@
     <Filter Include="소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\Textures">
       <UniqueIdentifier>{a51ab1e9-e48d-4d32-ab22-9c57ba567721}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Element\Object\CommandList">
+      <UniqueIdentifier>{8d939a53-6054-4abe-901e-a32c3fe907b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -236,6 +239,12 @@
     </ClInclude>
     <ClInclude Include="Textures.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandList.h">
+      <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -350,6 +359,9 @@
     </ClCompile>
     <ClCompile Include="Textures.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Renderer\Renderers\AnimationRenderer\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandList.cpp">
+      <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,10 @@ Object::~Object()
 	{
 		delete iter;
 	}
+	for (auto iter : commandLists)
+	{
+		delete iter;
+	}
 	for (auto& iter : components)
 	{
 		delete iter.second;
@@ -148,6 +152,11 @@ void Object::Update()
 {
 	if (state == OBJ_DESTROY)
 		delete this;
+
+	for (auto iter : commandLists)
+	{
+		iter->Update();
+	}
 
 	for (auto iter : components)
 	{

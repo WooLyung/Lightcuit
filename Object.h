@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "Math.h"
 #include "ViewRenderData.h"
+#include "CommandList.h"
 
 class Component;
 class Scene;
@@ -21,6 +22,9 @@ enum ObjectState
 
 class Object
 {
+public:
+	std::vector<CommandList*> commandLists;
+
 private:
 	void Render();
 	void Render(ViewRenderData&);

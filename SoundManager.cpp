@@ -196,7 +196,7 @@ SoundCode SoundManager::Play(const path& filePath)
 
 	if (soundSources[filePath]->type == ST_Ogg)
 	{
-		sound = new OggSound();
+		sound = new Sound(ST_Ogg);
 		sound->id = code;
 		sound->buffer = soundSources[filePath]->buffer;
 		dsound_->DuplicateSoundBuffer(soundSources[filePath]->buffer, &sound->buffer);
@@ -212,7 +212,7 @@ SoundCode SoundManager::Play(const path& filePath)
 	}
 	else if (soundSources[filePath]->type == ST_Wave)
 	{
-		sound = new WaveSound();
+		sound = new Sound(ST_Wave);
 		sound->id = code;
 		sound->buffer = soundSources[filePath]->buffer;
 		dsound_->DuplicateSoundBuffer(soundSources[filePath]->buffer, &sound->buffer);
@@ -256,12 +256,11 @@ SoundCode SoundManager::Play(const path& filePath, SoundOptions soundOptions)
 
 	if (soundSources[filePath]->type == ST_Ogg)
 	{
-		sound = new OggSound();
+		sound = new Sound(ST_Ogg, soundOptions);
 		sound->id = code;
 		sound->buffer = soundSources[filePath]->buffer;
 		dsound_->DuplicateSoundBuffer(soundSources[filePath]->buffer, &sound->buffer);
 		sound->source = soundSources[filePath];
-		sound->options = soundOptions;
 
 		if (sound->options.isMute)
 			sound->buffer->SetVolume(DSBVOLUME_MIN);
@@ -273,7 +272,7 @@ SoundCode SoundManager::Play(const path& filePath, SoundOptions soundOptions)
 	}
 	else if (soundSources[filePath]->type == ST_Wave)
 	{
-		sound = new WaveSound();
+		sound = new Sound(ST_Wave, soundOptions);
 		sound->id = code;
 		sound->buffer = soundSources[filePath]->buffer;
 		dsound_->DuplicateSoundBuffer(soundSources[filePath]->buffer, &sound->buffer);
