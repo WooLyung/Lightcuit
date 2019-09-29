@@ -220,3 +220,17 @@ void GraphicManager::SetTargetBitmap(ID2D1Bitmap1* bitmap)
 {
 	deviceContext_->SetTarget(bitmap);
 }
+
+Vec2F GraphicManager::FromScreenToUI(Vec2F vec) {
+	auto size = RG2R_WindowM->GetSize();
+	float d = sqrt(size.width * size.width + size.height * size.height);
+
+	auto resultTmp = (vec - Vec2F(size.width / 2.f, size.height / 2.f)) * DIAGONAL_LENGTH / d;
+	return Vec2F(resultTmp.x, -resultTmp.y);
+}
+
+Vec2F GraphicManager::FromUIToScreen(Vec2F vec) {
+	auto size = RG2R_WindowM->GetSize();
+	float d = sqrt(size.width * size.width + size.height * size.height);
+	return Vec2F(vec.x, -vec.y) * d / DIAGONAL_LENGTH + Vec2F(size.width / 2.f, size.height / 2.f);
+}

@@ -1,4 +1,5 @@
 #pragma once
+#include "Settings.h"
 
 #define PI 3.141592741f
 #define PI_DOUBLE 6.283185482f
@@ -91,7 +92,6 @@ public:
 
 	operator float*(void);
 	operator const float*(void) const;
-
 
 	Vec2F operator +(const Vec2F &v) const;
 	Vec2F operator -(const Vec2F &v) const;
