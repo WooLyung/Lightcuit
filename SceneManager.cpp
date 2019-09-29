@@ -2,135 +2,20 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Engine.h"
-#include "Transform.h"
-#include "TestObject.h"
-#include "SpriteRenderer.h"
-#include "ViewRenderer.h"
-#include "TextRenderer.h"
-#include "TextRenderData.h"
-#include "RandomGenerator.h"
-#include "Command.h"
-#include "CommandList.h"
+#include "TestScene.h"
 
 Scene* SceneManager::FirstScene()
 {
-	auto scene = new Scene();
-	auto scene2 = new Scene();
-
-	scene->AttachObject(new TestObject(0));
-	auto cam = scene->CreateCamera();
-	auto view = scene->CreateObject()
-		->AttachComponent<ViewRenderer>()
-		->SetBackgroundColor(D2D1::ColorF(0xf07799ff))
-		->SetCamera(cam)
-		->SetSizeX(600)
-		->SetSizeY(600)
-		->GetOwner()
-		->GetComponent<Transform>()
-		->SetPos(2, 2)
-		->SetScale(0.5f, 0.5f)
-		->SetIsRelative(false)
-		->GetOwner();
-
-	auto commandList = new CommandList();
-	commandList->PushCommand([=]() { std::cout << "1" << std::endl; }, 1);
-	commandList->PushCommand([=]() { std::cout << "2" << std::endl; }, 1);
-	commandList->PushCommand([=]() { std::cout << "3" << std::endl; }, 1);
-	commandList->PushCommand([=]() { std::cout << "4" << std::endl; }, 1);
-	commandList->SetIsLoop(true);
-
-	view->commandLists.push_back(commandList);
-	commandList->Start();
-
+	Scene* scene = new Scene();
 	scene->onUpdateListener = [=]() {
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F3) == KeyState::KEYSTATE_ENTER)
-		{
-			SoundOptions so;
-			so.volume = 0.8f;
-			so.pitch = 1.5f;
-			so.isLoop = true;
-			so.autoDelete = true;
-
-			RG2R_SoundM->Play("Resources/Sounds/music.ogg");
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER)
-		{
-			SoundOptions so;
-			so.volume = 0.8f;
-			so.pitch = 1.5f;
-			so.isLoop = true;
-			so.autoDelete = true;
-
-			if (RG2R_SoundM->GetSound(0)->options.isMute)
-			{
-				so.isMute = false;
-				RG2R_SoundM->SetOptions(0, so);
-			}
-			else
-			{
-				so.isMute = true;
-				RG2R_SoundM->SetOptions(0, so);
-			}
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F11) == KeyState::KEYSTATE_ENTER)
-		{
-			RG2R_WindowM->ToggleFullscreen(); // F11로 전체화면
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER
-			&& RG2R_InputM->GetKeyState(KeyCode::KEY_LALT) == KeyState::KEYSTATE_STAY)
-		{
-			RG2R_WindowM->Close(); // Alt + F4로 끄기
-		}
-
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_A) == KeyState::KEYSTATE_STAY)
-		{
-			cam->SetPosX(cam->GetPos().x - RG2R_TimeM->GetDeltaTime() * 5);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_D) == KeyState::KEYSTATE_STAY)
-		{
-			cam->SetPosX(cam->GetPos().x + RG2R_TimeM->GetDeltaTime() * 5);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_W) == KeyState::KEYSTATE_STAY)
-		{
-			cam->SetPosY(cam->GetPos().y + RG2R_TimeM->GetDeltaTime() * 5);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_S) == KeyState::KEYSTATE_STAY)
-		{
-			cam->SetPosY(cam->GetPos().y - RG2R_TimeM->GetDeltaTime() * 5);
-		}
-
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_F) == KeyState::KEYSTATE_ENTER)
-		{
-			cam->SetIsFlipY(!cam->GetIsFlipY());
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_Q) == KeyState::KEYSTATE_STAY)
-		{
-			scene->GetMainCamera()->SetRot(scene->GetMainCamera()->GetRot() + RG2R_TimeM->GetDeltaTime() * -95);
-		}
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_STAY)
-		{
-			cam->SetZoomX(cam->GetZoom().x + RG2R_TimeM->GetDeltaTime() * 0.5f);
-			cam->SetZoomY(cam->GetZoom().y + RG2R_TimeM->GetDeltaTime() * 0.5f);
-		}
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
-		{
-
-		}
-
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER)
-		{
-			RG2R_SceneM->ChangeScene(scene2);
-		}
+			RG2R_SceneM->ChangeScene(scenes->operator[](0));
 	};
 
-	scene2->onUpdateListener = [=]() {
-		if (RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER)
-		{
-			RG2R_SceneM->ChangeScene(scene);
-		}
-	};
+	scenes->push_back(new TestScene);
+	scenes->push_back(scene);
 
-	return scene;
+	return scenes->operator[](0);
 }
 
 SceneManager::SceneManager()

@@ -17,7 +17,7 @@ WindowManager::WindowManager()
 	wc.hIconSm = LoadIconA(hInstance, MAKEINTRESOURCEA(IDI_SMALL)); // 작은 아이콘 설정
 	wc.cbSize = sizeof(WNDCLASSEXA); // 구조체 크기
 	wc.hInstance = hInstance; // 윈도우 객체 설정
-	wc.lpszClassName = "TEST TITLE";
+	wc.lpszClassName = GAME_TITLE;
 	wc.style = CS_CLASSDC; // 출력 형태
 	wc.lpfnWndProc = &WindowManager::WndProc; // 프로시저 함수, 메세지 처리용
 
@@ -53,8 +53,8 @@ WindowManager::WindowManager()
 	// 윈도우를 생성
 	hwnd_ = CreateWindowExA(
 		exstyle, // 확장된 스타일
-		"TEST TITLE", // 등록된 윈도우 클래스 이름
-		"TEST TITLE", // 윈도우 캡션 이름
+		GAME_TITLE, // 등록된 윈도우 클래스 이름
+		GAME_TITLE, // 윈도우 캡션 이름
 		style, // 윈도우 스타일
 		wx, // 윈도우 좌측 상단의 x좌표
 		wy, // 윈도우 좌측 상단의 y좌표

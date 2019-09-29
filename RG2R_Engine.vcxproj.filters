@@ -127,6 +127,9 @@
     <Filter Include="소스 파일\Engine\Element\Object\CommandList">
       <UniqueIdentifier>{8d939a53-6054-4abe-901e-a32c3fe907b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game">
+      <UniqueIdentifier>{0e7895a6-4905-40c4-a897-74584d6f91b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -195,9 +198,6 @@
     <ClInclude Include="Math.h">
       <Filter>소스 파일\Engine\Utils\Math</Filter>
     </ClInclude>
-    <ClInclude Include="TestObject.h">
-      <Filter>소스 파일\Engine\Element\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
     </ClInclude>
@@ -245,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>소스 파일\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -315,9 +318,6 @@
     <ClCompile Include="Math.cpp">
       <Filter>소스 파일\Engine\Utils\Math</Filter>
     </ClCompile>
-    <ClCompile Include="TestObject.cpp">
-      <Filter>소스 파일\Engine\Element\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>소스 파일\Engine\Element\Component\Components\Effect</Filter>
     </ClCompile>
@@ -362,6 +362,9 @@
     </ClCompile>
     <ClCompile Include="CommandList.cpp">
       <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>소스 파일\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

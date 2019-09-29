@@ -54,7 +54,7 @@ class SoundManager
 private:
 	std::map<const path, SoundResource*> soundSources;
 	list<Sound*> sounds;
-	LPDIRECTSOUND8 dsound_;
+	LPDIRECTSOUND8 dsound_ = nullptr;
 	OggVorbis_File oggVorbisFile_;
 
 	SoundResource* Load(const path& filePath);
