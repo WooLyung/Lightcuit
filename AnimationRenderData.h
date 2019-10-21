@@ -14,6 +14,7 @@ private:
 	float interval = 1;
 	bool isLoop = true;
 	float time = 0;
+	D2D1_INTERPOLATION_MODE enlargementType = D2D1_INTERPOLATION_MODE_LINEAR;
 
 public:
 	AnimationRenderData();
@@ -26,6 +27,8 @@ public:
 	float GetInterval();
 	float GetTime();
 	bool GetIsLoop();
+	EnlargementType GetEnlargementType();
+	D2D1_INTERPOLATION_MODE GetInterpolationMode();
 
 	AnimationRenderData* SetVisibleArea(Rect);
 	AnimationRenderData* SetVisibleArea(float, float, float, float);
@@ -35,4 +38,5 @@ public:
 	AnimationRenderData* SetInterval(float);
 	AnimationRenderData* SetIsLoop(bool);
 	AnimationRenderData* SetTime(float);
+	AnimationRenderData* SetEnlargementType(EnlargementType);
 };

@@ -45,17 +45,17 @@ void SpriteRenderer::Draw()
 			image,
 			nullptr,
 			&defaultData.GetVisibleArea(),
-			D2D1_INTERPOLATION_MODE_LINEAR,
+			defaultData.GetInterpolationMode(),
 			D2D1_COMPOSITE_MODE_SOURCE_OVER);
 	}
 	else
 	{
-		RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+		RG2R_GraphicM->GetDeviceContext()->DrawImage(
 			defaultData.GetTexture()->GetBitmap(),
 			nullptr,
-			1.f,
-			D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-			&defaultData.GetVisibleArea());
+			&defaultData.GetVisibleArea(),
+			defaultData.GetInterpolationMode(),
+			D2D1_COMPOSITE_MODE_SOURCE_OVER);
 	}
 }
 
@@ -75,17 +75,17 @@ void SpriteRenderer::Draw(ViewRenderData& viewRenderData)
 				image,
 				nullptr,
 				&datas[viewRenderData.GetCamera()].GetVisibleArea(),
-				D2D1_INTERPOLATION_MODE_LINEAR,
+				datas[viewRenderData.GetCamera()].GetInterpolationMode(),
 				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 		else
 		{
-			RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+			RG2R_GraphicM->GetDeviceContext()->DrawImage(
 				datas[viewRenderData.GetCamera()].GetTexture()->GetBitmap(),
 				nullptr,
-				1.f,
-				D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-				&datas[viewRenderData.GetCamera()].GetVisibleArea());
+				&datas[viewRenderData.GetCamera()].GetVisibleArea(),
+				datas[viewRenderData.GetCamera()].GetInterpolationMode(),
+				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 	}
 	else
@@ -98,17 +98,17 @@ void SpriteRenderer::Draw(ViewRenderData& viewRenderData)
 				image,
 				nullptr,
 				&defaultData.GetVisibleArea(),
-				D2D1_INTERPOLATION_MODE_LINEAR,
+				defaultData.GetInterpolationMode(),
 				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 		else
 		{
-			RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+			RG2R_GraphicM->GetDeviceContext()->DrawImage(
 				defaultData.GetTexture()->GetBitmap(),
 				nullptr,
-				1.f,
-				D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-				&defaultData.GetVisibleArea());
+				&defaultData.GetVisibleArea(),
+				defaultData.GetInterpolationMode(),
+				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 	}
 }
@@ -155,6 +155,18 @@ SpriteRenderer* SpriteRenderer::SetVisibleArea(Rect rect)
 SpriteRenderer* SpriteRenderer::SetVisibleArea(float a, float b, float c, float d)
 {
 	defaultData.SetVisibleArea(a, b, c, d);
+
+	return this;
+}
+
+EnlargementType SpriteRenderer::GetEnlargementType()
+{
+	return defaultData.GetEnlargementType();
+}
+
+SpriteRenderer* SpriteRenderer::SetEnlargementType(EnlargementType type)
+{
+	defaultData.SetEnlargementType(type);
 
 	return this;
 }

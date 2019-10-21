@@ -15,7 +15,6 @@ Rect AnimationRenderData::GetVisibleArea()
 	return visibleArea;
 }
 
-
 AnimationRenderData* AnimationRenderData::SetVisibleArea(Rect rect)
 {
 	visibleArea = rect;
@@ -100,4 +99,62 @@ AnimationRenderData* AnimationRenderData::SetIsLoop(bool isLoop)
 	this->isLoop = isLoop;
 
 	return this;
+}
+
+EnlargementType AnimationRenderData::GetEnlargementType()
+{
+	switch (enlargementType)
+	{
+		case D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_ANISOTROPIC:
+			return EnlargementType::ANISOTROPIC;
+		case D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_CUBIC:
+			return EnlargementType::CUBIC;
+		case D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_FORCE_DWORD:
+			return EnlargementType::FORCE_DWORD;
+		case D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC:
+			return EnlargementType::HIGH_QUALITY_CUBIC;
+		case D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_LINEAR:
+			return EnlargementType::LINEAR;
+		case D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_MULTI_SAMPLE_LINEAR:
+			return EnlargementType::MULTI_SAMPLE_LINEAR;
+		case D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR:
+			return EnlargementType::PIXEL;
+		default:
+			return EnlargementType::LINEAR;
+	}
+}
+
+AnimationRenderData* AnimationRenderData::SetEnlargementType(EnlargementType type)
+{
+	switch (type)
+	{
+		case EnlargementType::ANISOTROPIC:
+			enlargementType = D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_ANISOTROPIC;
+			break;
+		case EnlargementType::CUBIC:
+			enlargementType = D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_CUBIC;
+			break;
+		case EnlargementType::FORCE_DWORD:
+			enlargementType = D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_FORCE_DWORD;
+			break;
+		case EnlargementType::HIGH_QUALITY_CUBIC:
+			enlargementType = D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC;
+			break;
+		case EnlargementType::LINEAR:
+			enlargementType = D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_LINEAR;
+			break;
+		case EnlargementType::MULTI_SAMPLE_LINEAR:
+			enlargementType = D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_MULTI_SAMPLE_LINEAR;
+			break;
+		case EnlargementType::PIXEL:
+			enlargementType = D2D1_INTERPOLATION_MODE::D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR;
+			break;
+	}
+
+	return this;
+}
+
+D2D1_INTERPOLATION_MODE AnimationRenderData::GetInterpolationMode()
+{
+	return enlargementType;
 }

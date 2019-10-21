@@ -88,17 +88,17 @@ void AnimationRenderer::Draw()
 			image,
 			nullptr,
 			&defaultData.GetVisibleArea(),
-			D2D1_INTERPOLATION_MODE_LINEAR,
+			defaultData.GetInterpolationMode(),
 			D2D1_COMPOSITE_MODE_SOURCE_OVER);
 	}
 	else
 	{
-		RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+		RG2R_GraphicM->GetDeviceContext()->DrawImage(
 			defaultData.GetAnimations()->operator[](defaultData.GetTargetAnim()).GetTexture(defaultData.GetNowIndex())->GetBitmap(),
 			nullptr,
-			1.f,
-			D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-			&defaultData.GetVisibleArea());
+			&defaultData.GetVisibleArea(),
+			defaultData.GetInterpolationMode(),
+			D2D1_COMPOSITE_MODE_SOURCE_OVER);
 	}
 }
 
@@ -120,17 +120,17 @@ void AnimationRenderer::Draw(ViewRenderData& viewRenderData)
 				image,
 				nullptr,
 				&datas[viewRenderData.GetCamera()].GetVisibleArea(),
-				D2D1_INTERPOLATION_MODE_LINEAR,
+				datas[viewRenderData.GetCamera()].GetInterpolationMode(),
 				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 		else
 		{
-			RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+			RG2R_GraphicM->GetDeviceContext()->DrawImage(
 				data.GetAnimations()->operator[](data.GetTargetAnim()).GetTexture(data.GetNowIndex())->GetBitmap(),
 				nullptr,
-				1.f,
-				D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-				&datas[viewRenderData.GetCamera()].GetVisibleArea());
+				&datas[viewRenderData.GetCamera()].GetVisibleArea(),
+				datas[viewRenderData.GetCamera()].GetInterpolationMode(),
+				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 	}
 	else
@@ -143,17 +143,17 @@ void AnimationRenderer::Draw(ViewRenderData& viewRenderData)
 				image,
 				nullptr,
 				&defaultData.GetVisibleArea(),
-				D2D1_INTERPOLATION_MODE_LINEAR,
+				defaultData.GetInterpolationMode(),
 				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 		else
 		{
-			RG2R_GraphicM->GetDeviceContext()->DrawBitmap(
+			RG2R_GraphicM->GetDeviceContext()->DrawImage(
 				defaultData.GetAnimations()->operator[](defaultData.GetTargetAnim()).GetTexture(defaultData.GetNowIndex())->GetBitmap(),
 				nullptr,
-				1.f,
-				D2D1_BITMAP_INTERPOLATION_MODE_LINEAR,
-				&defaultData.GetVisibleArea());
+				&defaultData.GetVisibleArea(),
+				defaultData.GetInterpolationMode(),
+				D2D1_COMPOSITE_MODE_SOURCE_OVER);
 		}
 	}
 }
@@ -255,6 +255,18 @@ AnimationRenderer* AnimationRenderer::SetVisibleArea(Rect rect)
 AnimationRenderer* AnimationRenderer::SetVisibleArea(float a, float b, float c, float d)
 {
 	defaultData.SetVisibleArea(a, b, c, d);
+
+	return this;
+}
+
+EnlargementType AnimationRenderer::GetEnlargementType()
+{
+	return defaultData.GetEnlargementType();
+}
+
+AnimationRenderer* AnimationRenderer::SetEnlargementType(EnlargementType type)
+{
+	defaultData.SetEnlargementType(type);
 
 	return this;
 }

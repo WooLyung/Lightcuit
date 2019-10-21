@@ -39,6 +39,7 @@ public:
 	float GetInterval();
 	float GetTime();
 	bool GetIsLoop();
+	EnlargementType GetEnlargementType();
 
 	AnimationRenderer* SetVisibleArea(Rect);
 	AnimationRenderer* SetVisibleArea(float, float, float, float);
@@ -48,4 +49,5 @@ public:
 	AnimationRenderer* SetInterval(float);
 	AnimationRenderer* SetTime(float);
 	AnimationRenderer* SetIsLoop(bool);
+	AnimationRenderer* SetEnlargementType(EnlargementType);
 };
