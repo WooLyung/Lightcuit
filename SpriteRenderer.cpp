@@ -151,3 +151,10 @@ SpriteRenderer* SpriteRenderer::SetVisibleArea(Rect rect)
 
 	return this;
 }
+
+SpriteRenderer* SpriteRenderer::SetVisibleArea(float a, float b, float c, float d)
+{
+	defaultData.SetVisibleArea(a, b, c, d);
+
+	return this;
+}

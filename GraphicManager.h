@@ -37,7 +37,4 @@ public:
 	ID2D1Bitmap1* GetTartgetBitmap() { return targetBitmap_; }
 	IDWriteFactory* GetDwFactory() { return dwFactory_; }
 	std::vector<Renderer*>* GetViewRenderBuffer() { return &viewRenderBuffer; }
-
-	Vec2F FromScreenToUI(Vec2F);
-	Vec2F FromUIToScreen(Vec2F);
 };

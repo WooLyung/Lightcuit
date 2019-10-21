@@ -23,6 +23,13 @@ AnimationRenderData* AnimationRenderData::SetVisibleArea(Rect rect)
 	return this;
 }
 
+AnimationRenderData* AnimationRenderData::SetVisibleArea(float a, float b, float c, float d)
+{
+	visibleArea = Rect(a, b, c, d);
+
+	return this;
+}
+
 AnimationRenderData* AnimationRenderData::SetVisibleArea()
 {
 	visibleArea = Rect(0, 0, animations[0].GetTexture(0)->GetSize().width, animations[0].GetTexture(0)->GetSize().height);

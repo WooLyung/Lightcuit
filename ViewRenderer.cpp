@@ -37,7 +37,7 @@ void ViewRenderer::Render()
 	RG2R_GraphicM->GetDeviceContext()->Clear(renderData.GetBackgroundColor());
 
 	sort(RG2R_GraphicM->GetViewRenderBuffer()->begin(), RG2R_GraphicM->GetViewRenderBuffer()->end(), [](Renderer* renderer1, Renderer* renderer2) -> bool {
-		return renderer1->GetZ_index() > renderer2->GetZ_index();
+		return renderer1->GetZ_index() < renderer2->GetZ_index();
 		});
 	for_each(RG2R_GraphicM->GetViewRenderBuffer()->begin(), RG2R_GraphicM->GetViewRenderBuffer()->end(), [=](Renderer* renderer) -> void {
 		renderer->Draw(renderData);

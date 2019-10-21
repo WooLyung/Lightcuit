@@ -34,15 +34,20 @@ public:
 	Size2F GetCameraSize();
 	Size2F GetCameraDefaultSize();
 
-	void SetPos(Vec2F);
-	void SetZoom(Vec2F);
-	void SetRot(float);
-	void SetPosX(float);
-	void SetPosY(float);
-	void SetZoomX(float);
-	void SetZoomY(float);
-	void SetIsFlipX(bool);
-	void SetIsFlipY(bool);
+	Camera* SetPos(Vec2F);
+	Camera* SetPos(float, float);
+	Camera* SetZoom(Vec2F);
+	Camera* SetZoom(float, float);
+	Camera* SetRot(float);
+	Camera* SetPosX(float);
+	Camera* SetPosY(float);
+	Camera* SetZoomX(float);
+	Camera* SetZoomY(float);
+	Camera* SetIsFlipX(bool);
+	Camera* SetIsFlipY(bool);
+	Camera* Translate(Vec2F);
+	Camera* Translate(float, float);
+	Camera* Rotate(float);
 
 	bool GetIsMain() { return isMain; }
 	bool GetIsFlipX() { return isFlipX; }

@@ -150,9 +150,6 @@ void Object::Render(ViewRenderData& viewRenderData)
 
 void Object::Update()
 {
-	if (state == OBJ_DESTROY)
-		delete this;
-
 	for (auto iter : commandLists)
 	{
 		iter->Update();
@@ -215,6 +212,9 @@ void Object::Update()
 			iter->OnUpdate();
 		}
 	}
+
+	if (state == OBJ_DESTROY)
+		delete this;
 }
 
 void Object::SetIsFlipX(bool flag)

@@ -41,6 +41,7 @@ public:
 	bool GetIsLoop();
 
 	AnimationRenderer* SetVisibleArea(Rect);
+	AnimationRenderer* SetVisibleArea(float, float, float, float);
 	AnimationRenderer* SetVisibleArea();
 	AnimationRenderer* SetTargetAnim(int);
 	AnimationRenderer* SetNowIndex(int);

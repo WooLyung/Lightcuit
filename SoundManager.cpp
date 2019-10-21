@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SoundManager.h"
 #include "Engine.h"
+#include <process.h>
 #include <map>
 
 SoundManager::SoundManager()

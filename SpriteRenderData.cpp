@@ -40,3 +40,10 @@ SpriteRenderData* SpriteRenderData::SetVisibleArea(Rect rect)
 
 	return this;
 }
+
+SpriteRenderData* SpriteRenderData::SetVisibleArea(float a, float b, float c, float d)
+{
+	visibleArea = Rect(a, b, c, d);
+
+	return this;
+}

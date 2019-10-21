@@ -130,6 +130,18 @@
     <Filter Include="소스 파일\Game">
       <UniqueIdentifier>{0e7895a6-4905-40c4-a897-74584d6f91b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Scenes">
+      <UniqueIdentifier>{ede88e34-a8fa-49a6-bf7d-3e66e31a7348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects">
+      <UniqueIdentifier>{b0fbdc4e-ae7a-44b1-bc65-06307ca49080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Scenes\Scene1">
+      <UniqueIdentifier>{84be4b96-0235-4cfa-938a-84f0249e67ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Scenes\Scene2">
+      <UniqueIdentifier>{38fb4b3e-0011-4936-b29d-0f5eae5cbb71}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -246,8 +258,11 @@
     <ClInclude Include="Command.h">
       <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h">
-      <Filter>소스 파일\Game</Filter>
+    <ClInclude Include="Scene1.h">
+      <Filter>소스 파일\Game\Scenes\Scene1</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h">
+      <Filter>소스 파일\Game\Scenes\Scene2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -363,8 +378,11 @@
     <ClCompile Include="CommandList.cpp">
       <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>소스 파일\Game</Filter>
+    <ClCompile Include="Scene1.cpp">
+      <Filter>소스 파일\Game\Scenes\Scene1</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.cpp">
+      <Filter>소스 파일\Game\Scenes\Scene2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

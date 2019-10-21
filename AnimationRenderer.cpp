@@ -244,3 +244,17 @@ AnimationRenderer* AnimationRenderer::SetIsLoop(bool isLoop)
 
 	return this;
 }
+
+AnimationRenderer* AnimationRenderer::SetVisibleArea(Rect rect)
+{
+	defaultData.SetVisibleArea(rect);
+
+	return this;
+}
+
+AnimationRenderer* AnimationRenderer::SetVisibleArea(float a, float b, float c, float d)
+{
+	defaultData.SetVisibleArea(a, b, c, d);
+
+	return this;
+}

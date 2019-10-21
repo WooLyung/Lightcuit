@@ -195,7 +195,7 @@ void GraphicManager::Render()
 	deviceContext_->Clear(D2D1::ColorF(BACKGROUND_COLOR));
 
 	sort(renderBuffer.begin(), renderBuffer.end(), [](Renderer* renderer1, Renderer* renderer2) -> bool {
-		return renderer1->GetZ_index() > renderer2->GetZ_index();
+		return renderer1->GetZ_index() < renderer2->GetZ_index();
 		});
 	for_each(renderBuffer.begin(), renderBuffer.end(), [](Renderer* renderer) -> void {
 		renderer->Draw();
@@ -219,18 +219,4 @@ void GraphicManager::PushViewRenderBuffer(Renderer* renderer)
 void GraphicManager::SetTargetBitmap(ID2D1Bitmap1* bitmap)
 {
 	deviceContext_->SetTarget(bitmap);
-}
-
-Vec2F GraphicManager::FromScreenToUI(Vec2F vec) {
-	auto size = RG2R_WindowM->GetSize();
-	float d = sqrt(size.width * size.width + size.height * size.height);
-
-	auto resultTmp = (vec - Vec2F(size.width / 2.f, size.height / 2.f)) * DIAGONAL_LENGTH / d;
-	return Vec2F(resultTmp.x, -resultTmp.y);
-}
-
-Vec2F GraphicManager::FromUIToScreen(Vec2F vec) {
-	auto size = RG2R_WindowM->GetSize();
-	float d = sqrt(size.width * size.width + size.height * size.height);
-	return Vec2F(vec.x, -vec.y) * d / DIAGONAL_LENGTH + Vec2F(size.width / 2.f, size.height / 2.f);
 }

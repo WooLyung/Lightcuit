@@ -144,3 +144,73 @@ int InputManager::GetMouseWheel(void) const
 {
 	return (int)mouseState_.lZ;
 }
+
+Vec2F InputManager::FromScreenToUI(Vec2F vec) {
+	auto size = RG2R_WindowM->GetSize();
+	float d = sqrt(size.width * size.width + size.height * size.height);
+
+	auto resultTmp = (vec - Vec2F(size.width / 2.f, size.height / 2.f)) * DIAGONAL_LENGTH / d;
+	return Vec2F(resultTmp.x, -resultTmp.y);
+}
+
+Vec2F InputManager::FromUIToScreen(Vec2F vec) {
+	auto size = RG2R_WindowM->GetSize();
+	float d = sqrt(size.width * size.width + size.height * size.height);
+	return Vec2F(vec.x, -vec.y) * d / DIAGONAL_LENGTH + Vec2F(size.width / 2.f, size.height / 2.f);
+}
+
+Vec2F InputManager::FromWorldToScreen(Vec2F vec)
+{
+	return FromUIToScreen(FromWorldToUI(vec));
+}
+
+Vec2F InputManager::FromWorldToUI(Vec2F vec)
+{
+	float translationRatio = sqrtf(
+		(float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)
+		/ (INCH_PER_DISTANCE * INCH_PER_DISTANCE * DIAGONAL_LENGTH * DIAGONAL_LENGTH)
+	);
+
+	Matrix matrix =
+		D2D1::Matrix3x2F::Translation(-RG2R_SceneM->GetScene()->GetMainCamera()->GetPos().x * INCH_PER_DISTANCE, RG2R_SceneM->GetScene()->GetMainCamera()->GetPos().y * INCH_PER_DISTANCE) *
+		D2D1::Matrix3x2F::Scale(translationRatio, translationRatio) *
+		D2D1::Matrix3x2F::Rotation(-RG2R_SceneM->GetScene()->GetMainCamera()->GetRot()) *
+		D2D1::Matrix3x2F(RG2R_SceneM->GetScene()->GetMainCamera()->GetIsFlipX() ? -1 : 1, 0, 0, RG2R_SceneM->GetScene()->GetMainCamera()->GetIsFlipY() ? -1 : 1, 0, 0) *
+		D2D1::Matrix3x2F::Scale(RG2R_SceneM->GetScene()->GetMainCamera()->GetZoom().x, RG2R_SceneM->GetScene()->GetMainCamera()->GetZoom().y) *
+		D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / 2.f, RG2R_WindowM->GetSize().height / 2.f);
+
+	float x = vec.x * INCH_PER_DISTANCE;
+	float y = vec.y * -INCH_PER_DISTANCE;
+
+	return Point2F(
+		x * matrix._11 + y * matrix._21 + matrix._31,
+		x * matrix._12 + y * matrix._22 + matrix._32);
+}
+
+Vec2F InputManager::FromUIToWorld(Vec2F vec)
+{
+	float translationRatio = sqrtf(
+		(float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)
+		/ (INCH_PER_DISTANCE * INCH_PER_DISTANCE * DIAGONAL_LENGTH * DIAGONAL_LENGTH)
+	);
+
+	Matrix matrix =
+		D2D1::Matrix3x2F::Translation(RG2R_WindowM->GetSize().width / -2.f, RG2R_WindowM->GetSize().height / -2.f)*
+		D2D1::Matrix3x2F::Scale(1 / RG2R_SceneM->GetScene()->GetMainCamera()->GetZoom().x, 1 / RG2R_SceneM->GetScene()->GetMainCamera()->GetZoom().y) *
+		D2D1::Matrix3x2F(RG2R_SceneM->GetScene()->GetMainCamera()->GetIsFlipX() ? -1 : 1, 0, 0, RG2R_SceneM->GetScene()->GetMainCamera()->GetIsFlipY() ? -1 : 1, 0, 0) *
+		D2D1::Matrix3x2F::Rotation(RG2R_SceneM->GetScene()->GetMainCamera()->GetRot()) *
+		D2D1::Matrix3x2F::Scale(1 / translationRatio, 1 / translationRatio) *
+		D2D1::Matrix3x2F::Translation(RG2R_SceneM->GetScene()->GetMainCamera()->GetPos().x * INCH_PER_DISTANCE, -RG2R_SceneM->GetScene()->GetMainCamera()->GetPos().y * INCH_PER_DISTANCE);
+
+	float x = vec.x;
+	float y = vec.y;
+
+	return Point2F(
+		(x * matrix._11 + y * matrix._21 + matrix._31) / INCH_PER_DISTANCE,
+		-(x * matrix._12 + y * matrix._22 + matrix._32) / INCH_PER_DISTANCE);
+}
+
+Vec2F InputManager::FromScreenToWorld(Vec2F vec)
+{
+	return FromUIToWorld(FromScreenToUI(vec));
+}

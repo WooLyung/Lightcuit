@@ -2,25 +2,17 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Engine.h"
-#include "TestScene.h"
+#include "Scene1.h"
 
 Scene* SceneManager::FirstScene()
 {
-	Scene* scene = new Scene();
-	scene->onUpdateListener = [=]() {
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
-			RG2R_SceneM->ChangeScene(scenes->operator[](0));
-	};
-
-	scenes->push_back(new TestScene);
-	scenes->push_back(scene);
-
-	return scenes->operator[](0);
+	return new Scene1;
 }
 
 SceneManager::SceneManager()
 {
 	scenes = new std::vector<Scene*>;
+	deletedScenes = new std::vector<Scene*>;
 	ChangeScene(FirstScene());
 }
 
@@ -28,8 +20,12 @@ SceneManager::~SceneManager()
 {
 	for (auto iter : *scenes)
 		SafeDelete(iter);
+	for (auto iter : *deletedScenes)
+		SafeDelete(iter);
 
 	SafeDelete(scenes);
+	SafeDelete(deletedScenes);
+
 	if (registeredScene != nullptr)
 		SafeDelete(registeredScene);
 }
@@ -63,6 +59,36 @@ void SceneManager::Update()
 
 		registeredScene->state = SceneState::SCENE_ALIVE;
 	}
+
+	if (nextScene != nullptr)
+	{
+		Scene* preScene = registeredScene;
+		registeredScene = nextScene;
+		nextScene = nullptr;
+
+		if (preScene != nullptr)
+		{
+			preScene->state = SceneState::SCENE_UNREGISTERED;
+			ApplyListener(preScene->onFinishListener);
+			preScene->OnFinish();
+		}
+
+		registeredScene->state = SceneState::SCENE_START;
+		if (registeredScene->GetIsFirstRegister())
+		{
+			ApplyListener(registeredScene->onFirstRegisterListener);
+			registeredScene->OnFirstRegister();
+
+			registeredScene->isFirstRegister = false;
+		}
+		ApplyListener(registeredScene->onRegisterListener);
+		registeredScene->OnRegister();
+	}
+
+	for (int i = 0; i < deletedScenes->size(); i++)
+		delete deletedScenes->operator[](i);
+		
+	deletedScenes->clear();
 }
 
 void SceneManager::Render()
@@ -101,26 +127,46 @@ void SceneManager::Render(ViewRenderData& viewRenderData)
 
 Scene* SceneManager::ChangeScene(Scene* newScene)
 {	
-	Scene* preScene = registeredScene;
-	registeredScene = newScene;
+	nextScene = newScene;
 
-	if (preScene != nullptr)
-	{
-		preScene->state = SceneState::SCENE_UNREGISTERED;
-		ApplyListener(preScene->onFinishListener);
-		preScene->OnFinish();
-	}
+	return registeredScene;
+}
 
-	newScene->state = SceneState::SCENE_START;
-	if (newScene->GetIsFirstRegister())
-	{
-		ApplyListener(newScene->onFirstRegisterListener);
-		newScene->OnFirstRegister();
+Scene* SceneManager::ChangeScene(Scene* newScene, bool isDelete)
+{
+	nextScene = newScene;
+	if (isDelete)
+		deletedScenes->push_back(registeredScene);
 
-		newScene->isFirstRegister = false;
-	}
-	ApplyListener(newScene->onRegisterListener);
-	newScene->OnRegister();
+	return registeredScene;
+}
 
-	return preScene;
+Scene* SceneManager::ChangeScene(Scene* newScene, void* data)
+{
+	nextScene = newScene;
+	this->data = data;
+
+	return registeredScene;
+}
+
+Scene* SceneManager::ChangeScene(Scene* newScene, bool isDelete, void* data)
+{
+	nextScene = newScene;
+	this->data = data;
+	if (isDelete)
+		deletedScenes->push_back(registeredScene);
+
+	return registeredScene;
+}
+
+Scene* SceneManager::DeleteScene(Scene* scene)
+{
+	deletedScenes->push_back(scene);
+
+	return scene;
+}
+
+void* SceneManager::GetData()
+{
+	return data;
 }

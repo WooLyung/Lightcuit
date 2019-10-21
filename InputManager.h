@@ -37,4 +37,11 @@ public:
 
 	// 내릴시( < 0) 음수(-120, -240, -360 ...), 올릴시( > 0) 양수(120, 240, 360 ...)
 	int GetMouseWheel(void) const; // 휠
+
+	Vec2F FromScreenToUI(Vec2F);
+	Vec2F FromUIToScreen(Vec2F);
+	Vec2F FromScreenToWorld(Vec2F);
+	Vec2F FromUIToWorld(Vec2F);
+	Vec2F FromWorldToUI(Vec2F);
+	Vec2F FromWorldToScreen(Vec2F);
 };

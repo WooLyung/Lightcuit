@@ -57,7 +57,6 @@ private:
 	LPDIRECTSOUND8 dsound_ = nullptr;
 	OggVorbis_File oggVorbisFile_;
 
-	SoundResource* Load(const path& filePath);
 	bool UpdateSound(Sound*);
 
 public:
@@ -68,6 +67,7 @@ public:
 
 	SoundCode Play(const path&);
 	SoundCode Play(const path&, SoundOptions);
+	SoundResource* Load(const path& filePath);
 	Sound* GetSound(SoundCode);
 	bool IsPlaying(SoundCode);
 	bool IsPlaying(Sound*);

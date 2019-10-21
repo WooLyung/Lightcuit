@@ -19,4 +19,5 @@ public:
 
 	SpriteRenderData* SetTexture(const std::string&);
 	SpriteRenderData* SetVisibleArea(Rect);
+	SpriteRenderData* SetVisibleArea(float, float, float, float);
 };
