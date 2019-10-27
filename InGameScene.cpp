@@ -471,8 +471,8 @@ void InGameScene::LineUnconnect(Gate* gate)
 			line = line->nextLine;
 		}
 	}
-	gate->nextLine.clear();
 
+	Gate* preGate = nullptr;
 	for (auto iter = gate->preLine.begin(); iter != gate->preLine.end(); iter++)
 	{
 		Line* line = *iter;
@@ -488,6 +488,7 @@ void InGameScene::LineUnconnect(Gate* gate)
 					if (*iter2 == line)
 					{
 						line->preGate->nextLine.erase(iter2);
+						preGate = line->preGate;
 						break;
 					}
 				}
@@ -498,8 +499,22 @@ void InGameScene::LineUnconnect(Gate* gate)
 		}
 	}
 	gate->preLine.clear();
-
+	gate->nextLine.clear();
 	gate->connectedLine.clear();
+
+	vector<Line*> deleteLines;
+	if (preGate)
+	{
+		for (auto& iter : preGate->connectedLine)
+		{
+			if (iter->GetState() == ObjectState::OBJ_DESTROY)
+				deleteLines.push_back(iter);
+		}
+		for (auto& iter : deleteLines)
+		{
+			preGate->connectedLine.remove(iter);
+		}
+	}
 }
 
 void InGameScene::LineCancel()
@@ -627,6 +642,8 @@ void InGameScene::Input()
 
 		if (targetLine != nullptr)
 		{
+			vector<Line*> deleteLines;
+			
 			while (true)
 			{
 				if (targetLine->preLine == nullptr)
@@ -634,7 +651,6 @@ void InGameScene::Input()
 
 				targetLine = targetLine->preLine;
 			}
-			targetLine->preGate->connectedLine.clear();
 			for (auto iter = targetLine->preGate->nextLine.begin(); iter != targetLine->preGate->nextLine.end(); iter++)
 			{
 				if (*iter == targetLine)
@@ -647,6 +663,7 @@ void InGameScene::Input()
 			while (true)
 			{
 				targetLine->Destroy();
+				deleteLines.push_back(targetLine);
 
 				if (targetLine->nextGate != nullptr)
 				{
@@ -662,6 +679,14 @@ void InGameScene::Input()
 				}
 
 				targetLine = targetLine->nextLine;
+			}
+
+			for (auto& iter : gates)
+			{
+				for (auto& iter2 : deleteLines)
+				{
+					iter->connectedLine.remove(iter2);
+				}
 			}
 		}
 	}

@@ -28,7 +28,7 @@ public:
 	void SetDir(Dir);
 	void SetPos(int, int);
 
-	std::vector<Line*> connectedLine;
+	std::list<Line*> connectedLine;
 	std::vector<Line*> nextLine;
 	std::vector<Line*> preLine;
 
