@@ -25,6 +25,7 @@ private:
 	void Update(); // 업데이트
 
 	std::vector<Object*> objects; // 씬 안의 오브젝트
+	std::vector<Object*> destroyed; // 삭제될 오브젝트
 	std::vector<Camera*> cameras; // 씬 안의 카메라
 	Camera* mainCamera = nullptr;
 
@@ -44,6 +45,7 @@ public:
 	// 오브젝트 관련 메서드
 	Object* CreateObject(); // 빈 오브젝트 생성
 	Object* AttachObject(Object*); // 생성할 오브젝트를 지정
+	void DestroyObject(Object*); // 오브젝트 제거
 	Object* FindObject(Object*); // 오브젝트를 찾음
 	Object* FindObjectByTag(std::string); // 태그에 맞는 오브젝트를 찾음
 	Object* FindObjectByName(std::string); // 이름에 맞는 오브젝트를 찾음

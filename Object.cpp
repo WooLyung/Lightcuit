@@ -212,9 +212,6 @@ void Object::Update()
 			iter->OnUpdate();
 		}
 	}
-
-	if (state == OBJ_DESTROY)
-		delete this;
 }
 
 void Object::SetIsFlipX(bool flag)
@@ -610,6 +607,15 @@ bool Object::IsParent(Object* object)
 void Object::Destroy()
 {
 	state = OBJ_DESTROY;
+
+	if (scene != nullptr)
+	{
+		scene->DestroyObject(this);
+	}
+	else
+	{
+		delete this;
+	}
 }
 
 bool Object::GetIsEnable()

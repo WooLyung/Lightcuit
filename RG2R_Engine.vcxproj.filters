@@ -136,6 +136,33 @@
     <Filter Include="소스 파일\Game\Objects">
       <UniqueIdentifier>{b0fbdc4e-ae7a-44b1-bc65-06307ca49080}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Scenes\InGameScene">
+      <UniqueIdentifier>{8a088439-012c-425d-ac74-c78195873405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Gate">
+      <UniqueIdentifier>{cd94198c-7b1a-43be-b6c2-0ff602fc74ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Gate\Gates">
+      <UniqueIdentifier>{ae9eca74-7932-4ea3-a331-f8ad0a4026d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Gate\Gates\AddGate">
+      <UniqueIdentifier>{5d5be603-b98a-473b-aaaf-39dd7f83f770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Gate\Gates\SubGate">
+      <UniqueIdentifier>{9616f7e2-07c8-4b41-a030-910ffbecc347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Gate\Gates\DivisionGate">
+      <UniqueIdentifier>{92c0e636-3401-4d1e-9c32-5f4f6c014ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Gate\Gates\ReverseGate">
+      <UniqueIdentifier>{0fd36470-ad9f-4236-9e54-d1bf29db95bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Battery">
+      <UniqueIdentifier>{18513c2e-b820-43e2-a30e-91a4faf30313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Line">
+      <UniqueIdentifier>{78c87fe4-7113-4014-a1f5-558db17b1a50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -252,6 +279,24 @@
     <ClInclude Include="Command.h">
       <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
     </ClInclude>
+    <ClInclude Include="InGameScene.h">
+      <Filter>소스 파일\Game\Scenes\InGameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Gate.h">
+      <Filter>소스 파일\Game\Objects\Gate</Filter>
+    </ClInclude>
+    <ClInclude Include="AddGate.h">
+      <Filter>소스 파일\Game\Objects\Gate\Gates\AddGate</Filter>
+    </ClInclude>
+    <ClInclude Include="Battery.h">
+      <Filter>소스 파일\Game\Objects\Gate\Gates\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="Line.h">
+      <Filter>소스 파일\Game\Objects\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="DivisionGate.h">
+      <Filter>소스 파일\Game\Objects\Gate\Gates\DivisionGate</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -365,6 +410,24 @@
     </ClCompile>
     <ClCompile Include="CommandList.cpp">
       <Filter>소스 파일\Engine\Element\Object\CommandList</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameScene.cpp">
+      <Filter>소스 파일\Game\Scenes\InGameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Gate.cpp">
+      <Filter>소스 파일\Game\Objects\Gate</Filter>
+    </ClCompile>
+    <ClCompile Include="AddGate.cpp">
+      <Filter>소스 파일\Game\Objects\Gate\Gates\AddGate</Filter>
+    </ClCompile>
+    <ClCompile Include="Battery.cpp">
+      <Filter>소스 파일\Game\Objects\Gate\Gates\Battery</Filter>
+    </ClCompile>
+    <ClCompile Include="Line.cpp">
+      <Filter>소스 파일\Game\Objects\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="DivisionGate.cpp">
+      <Filter>소스 파일\Game\Objects\Gate\Gates\DivisionGate</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,10 +2,11 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Engine.h"
+#include "InGameScene.h"
 
 Scene* SceneManager::FirstScene()
 {
-	return new Scene;
+	return new InGameScene;
 }
 
 SceneManager::SceneManager()
