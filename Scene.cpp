@@ -33,7 +33,8 @@ void Scene::DestroyObject(Object* obj)
 
 void Scene::Update()
 {
-	for (auto iter : objects)
+	vector<Object*> updateObject = objects;
+	for (auto iter : updateObject)
 	{
 		if (iter->GetIsEnable())
 		{

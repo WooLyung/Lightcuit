@@ -36,7 +36,6 @@ public:
 	void SetPos(int, int);
 	void SetColor(Color8);
 
-	std::list<Line*> connectedLine;
 	std::vector<Line*> nextLine;
 	std::vector<Line*> preLine;
 

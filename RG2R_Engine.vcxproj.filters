@@ -139,50 +139,62 @@
     <Filter Include="소스 파일\Game\Scenes\InGameScene">
       <UniqueIdentifier>{8a088439-012c-425d-ac74-c78195873405}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate">
-      <UniqueIdentifier>{cd94198c-7b1a-43be-b6c2-0ff602fc74ca}</UniqueIdentifier>
+    <Filter Include="소스 파일\Game\Objects\InGameScene">
+      <UniqueIdentifier>{5eb98b6b-3c21-4a45-8962-e6b359c779ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates">
-      <UniqueIdentifier>{ae9eca74-7932-4ea3-a331-f8ad0a4026d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\AddGate">
-      <UniqueIdentifier>{5d5be603-b98a-473b-aaaf-39dd7f83f770}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\SubGate">
-      <UniqueIdentifier>{9616f7e2-07c8-4b41-a030-910ffbecc347}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\DivisionGate">
-      <UniqueIdentifier>{92c0e636-3401-4d1e-9c32-5f4f6c014ccd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\ReverseGate">
-      <UniqueIdentifier>{0fd36470-ad9f-4236-9e54-d1bf29db95bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Battery">
-      <UniqueIdentifier>{18513c2e-b820-43e2-a30e-91a4faf30313}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\Line">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Line">
       <UniqueIdentifier>{78c87fe4-7113-4014-a1f5-558db17b1a50}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\ColorSet">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\ColorSet">
       <UniqueIdentifier>{521287a3-2401-42c7-b049-575e6cb57f0d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Light">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate">
+      <UniqueIdentifier>{cd94198c-7b1a-43be-b6c2-0ff602fc74ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates">
+      <UniqueIdentifier>{ae9eca74-7932-4ea3-a331-f8ad0a4026d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\AddGate">
+      <UniqueIdentifier>{5d5be603-b98a-473b-aaaf-39dd7f83f770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\SubGate">
+      <UniqueIdentifier>{9616f7e2-07c8-4b41-a030-910ffbecc347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate">
+      <UniqueIdentifier>{92c0e636-3401-4d1e-9c32-5f4f6c014ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate">
+      <UniqueIdentifier>{0fd36470-ad9f-4236-9e54-d1bf29db95bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Battery">
+      <UniqueIdentifier>{18513c2e-b820-43e2-a30e-91a4faf30313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light">
       <UniqueIdentifier>{3097bd43-34fc-4e4c-b716-22d2b95cdf5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Light\Light1">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1">
       <UniqueIdentifier>{1808b79b-ea34-4bc3-8621-f88702b26047}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Light\Light2">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light2">
       <UniqueIdentifier>{864a6881-1313-49e5-9b52-1ccc3255ce61}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Light\Light3">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light3">
       <UniqueIdentifier>{93f75b36-1787-4a41-a5aa-ef8d4d3046ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Light\Light4">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light4">
       <UniqueIdentifier>{6b298878-9bd0-4dd3-9ff1-f4e20d7ecb2f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Gate\Gates\Light\Light5">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light5">
       <UniqueIdentifier>{7af4775a-1990-4de0-beec-ef194733c276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers">
+      <UniqueIdentifier>{931562b0-28dd-4f72-9d5c-924fddb21fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\GameInputManager">
+      <UniqueIdentifier>{d782122f-2937-4e69-9ff1-9f6b4c6bcb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\ObjectManager">
+      <UniqueIdentifier>{99429a2d-3235-4510-ae45-9917ae4a63dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -304,34 +316,40 @@
       <Filter>소스 파일\Game\Scenes\InGameScene</Filter>
     </ClInclude>
     <ClInclude Include="Gate.h">
-      <Filter>소스 파일\Game\Objects\Gate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate</Filter>
     </ClInclude>
     <ClInclude Include="AddGate.h">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\AddGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\AddGate</Filter>
     </ClInclude>
     <ClInclude Include="Battery.h">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\Battery</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Battery</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
-      <Filter>소스 파일\Game\Objects\Line</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Line</Filter>
     </ClInclude>
     <ClInclude Include="DivisionGate.h">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\DivisionGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate</Filter>
     </ClInclude>
     <ClInclude Include="ColorSet.h">
-      <Filter>소스 파일\Game\Objects\ColorSet</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\ColorSet</Filter>
     </ClInclude>
     <ClInclude Include="ReverseGate.h">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\ReverseGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate</Filter>
     </ClInclude>
     <ClInclude Include="SubGate.h">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\SubGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\SubGate</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\Light</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light</Filter>
     </ClInclude>
     <ClInclude Include="Light2.h">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\Light\Light2</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light2</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInputManager.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\Managers\GameInputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\Managers\ObjectManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -451,34 +469,40 @@
       <Filter>소스 파일\Game\Scenes\InGameScene</Filter>
     </ClCompile>
     <ClCompile Include="Gate.cpp">
-      <Filter>소스 파일\Game\Objects\Gate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate</Filter>
     </ClCompile>
     <ClCompile Include="AddGate.cpp">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\AddGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\AddGate</Filter>
     </ClCompile>
     <ClCompile Include="Battery.cpp">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\Battery</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Battery</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
-      <Filter>소스 파일\Game\Objects\Line</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Line</Filter>
     </ClCompile>
     <ClCompile Include="DivisionGate.cpp">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\DivisionGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate</Filter>
     </ClCompile>
     <ClCompile Include="ColorSet.cpp">
-      <Filter>소스 파일\Game\Objects\ColorSet</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\ColorSet</Filter>
     </ClCompile>
     <ClCompile Include="ReverseGate.cpp">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\ReverseGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate</Filter>
     </ClCompile>
     <ClCompile Include="SubGate.cpp">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\SubGate</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\SubGate</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\Light</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light</Filter>
     </ClCompile>
     <ClCompile Include="Light2.cpp">
-      <Filter>소스 파일\Game\Objects\Gate\Gates\Light\Light2</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light2</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInputManager.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\Managers\GameInputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\Managers\ObjectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
