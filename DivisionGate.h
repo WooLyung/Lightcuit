@@ -7,4 +7,6 @@ class DivisionGate :
 public:
 	DivisionGate(long, long);
 	~DivisionGate();
+
+	virtual std::type_index GetID(void) { return typeid(DivisionGate); };
 };

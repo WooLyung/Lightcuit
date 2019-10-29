@@ -25,6 +25,7 @@ public:
 
 	Effect* PushEffectInfo(EffectInfo* effectInfo);
 	Effect* PopEffectInfo();
+	Effect* ClearEffectInfo();
 
 	std::vector<EffectInfo*>& GetEffects() { return effects_; }
 

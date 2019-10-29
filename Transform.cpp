@@ -158,7 +158,7 @@ Vec2F Transform::GetWorldPos()
 {
 	Vec2F worldPos = Vec2F(
 		GetOwner()->GetNoCameraMatrix()._31 / INCH_PER_DISTANCE,
-		GetOwner()->GetNoCameraMatrix()._32 / INCH_PER_DISTANCE
+		-GetOwner()->GetNoCameraMatrix()._32 / INCH_PER_DISTANCE
 	);
 
 	return worldPos;

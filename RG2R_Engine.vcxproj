@@ -165,6 +165,7 @@
     <ClInclude Include="BitmapRenderData.h" />
     <ClInclude Include="BitmapRenderer.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ColorSet.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="Component.h" />
@@ -178,12 +179,15 @@
     <ClInclude Include="InGameScene.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="KeyCode.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Light2.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ReverseGate.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Settings.h" />
@@ -191,6 +195,7 @@
     <ClInclude Include="SpriteRenderData.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SubGate.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextRenderData.h" />
     <ClInclude Include="TextRenderer.h" />
@@ -211,6 +216,7 @@
     <ClCompile Include="BitmapRenderData.cpp" />
     <ClCompile Include="BitmapRenderer.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ColorSet.cpp" />
     <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DivisionGate.cpp" />
@@ -221,12 +227,15 @@
     <ClCompile Include="GraphicManager.cpp" />
     <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Light2.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ReverseGate.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -238,6 +247,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SubGate.cpp" />
     <ClCompile Include="TextRenderData.cpp" />
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Texture.cpp" />

@@ -4,10 +4,14 @@
 #include "Transform.h"
 #include "Engine.h"
 #include "AddGate.h"
+#include "Light2.h"
 #include "Battery.h"
 #include "Gate.h"
 #include "Line.h"
 #include "DivisionGate.h"
+#include "SubGate.h"
+#include "ReverseGate.h"
+#include "ColorSet.h"
 
 Dir RotatedDir(Dir dir)
 {
@@ -35,6 +39,9 @@ InGameScene::~InGameScene()
 
 void InGameScene::OnStart()
 {
+	colorSet = new ColorSet;
+	AttachObject(colorSet);
+
 	auto obj = CreateObject()
 		->AttachComponent<SpriteRenderer>()
 		->SetTexture("Resources/Sprites/check.png")
@@ -46,9 +53,12 @@ void InGameScene::OnStart()
 		->SetZ_index(-1);
 
 	PushGate(new AddGate(0, 0));
+	PushGate(new DivisionGate(0, 1));
+	PushGate(new SubGate(1, 1));
+	PushGate(new Light2(-2, -2));
+	PushGate(new ReverseGate(-2, 1));
 	PushGate(new Battery(3, 3));
 	PushGate(new Battery(2, 1));
-	PushGate(new DivisionGate(0, 1));
 }
 
 void InGameScene::OnUpdate()
@@ -230,6 +240,7 @@ void InGameScene::LineConnect()
 								SetSpriteOnFinish(lastLine, tilePos);
 
 								connectingLine.clear();
+								myGate->GetSpriteRenderer()->SetZ_index(0);
 								myGate = nullptr;
 								inputState = InputState::NONE;
 							}
@@ -525,6 +536,7 @@ void InGameScene::LineCancel()
 	}
 
 	connectingLine.clear();
+	myGate->GetSpriteRenderer()->SetZ_index(0);
 	myGate = nullptr;
 	inputState = InputState::NONE;
 }
@@ -576,6 +588,7 @@ void InGameScene::GateMove()
 			}
 
 			inputState = InputState::NONE;
+			myGate->GetSpriteRenderer()->SetZ_index(0);
 			myGate = nullptr;
 		}
 	}
@@ -699,6 +712,7 @@ void InGameScene::Input()
 		{
 			inputState = InputState::GATE_LIFT;
 			myGate = targetGate;
+			myGate->GetSpriteRenderer()->SetZ_index(2);
 			LineUnconnect(targetGate);
 		}
 	}
@@ -712,6 +726,28 @@ void InGameScene::Input()
 			inputState = InputState::LINE_START;
 			myGate = targetGate;
 		}
+	}
+#pragma endregion
+#pragma region 우클릭 (색 변경)
+	if (targetGate != nullptr
+		&& targetGate->GetID() == typeid(Battery))
+	{
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_RBUTTON) == KeyState::KEYSTATE_ENTER
+			&& inputState == InputState::NONE)
+		{
+			inputState = InputState::COLOR_CHANGE;
+			colorSet->SetIsEnable(true);
+			colorSet->SetPos(tilePos.x, tilePos.y);
+			myGate = targetGate;
+		}
+	}
+	if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_RBUTTON) == KeyState::KEYSTATE_EXIT
+		&& inputState == InputState::COLOR_CHANGE)
+	{
+		inputState = InputState::NONE;
+		colorSet->SetIsEnable(false);
+		myGate->SetColor(colorSet->GetColor());
+		myGate = nullptr;
 	}
 #pragma endregion
 }

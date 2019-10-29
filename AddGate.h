@@ -7,4 +7,6 @@ class AddGate :
 public:
 	AddGate(long, long);
 	~AddGate();
+
+	virtual std::type_index GetID(void) { return typeid(AddGate); };
 };

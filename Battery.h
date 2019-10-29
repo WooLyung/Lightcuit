@@ -7,4 +7,6 @@ class Battery :
 public:
 	Battery(long, long);
 	~Battery();
+
+	virtual std::type_index GetID(void) { return typeid(Battery); };
 };

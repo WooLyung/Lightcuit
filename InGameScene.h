@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Gate.h"
 #include "Line.h"
+#include "ColorSet.h"
 
 class InGameScene :
 	public Scene
@@ -11,7 +12,8 @@ private:
 		NONE,
 		GATE_LIFT,
 		LINE_START,
-		LINE_CONNECT
+		LINE_CONNECT,
+		COLOR_CHANGE
 	};
 
 	InputState inputState = NONE;
@@ -21,6 +23,7 @@ private:
 	// 오브젝트 목록
 	std::vector<Gate*> gates;
 	std::vector<Line*> connectingLine;
+	ColorSet* colorSet;
 
 	void PushGate(Gate*);
 	void Input();
