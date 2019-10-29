@@ -14,7 +14,7 @@ private:
 	CommandList* changeColor;
 	Color nowColor = { 1, 1, 1, 1 };
 	Color toColor = { 1, 1, 1, 1 };
-	Color8 color = W;
+	Color8 color;
 
 protected:
 	SpriteRenderer* spriteRenderer;
@@ -31,6 +31,7 @@ public:
 	SpriteRenderer* GetSpriteRenderer();
 	Vec2L tilePos;
 	Dir GetDir();
+	Color8 GetColor() { return color; }
 
 	void SetDir(Dir);
 	void SetPos(int, int);

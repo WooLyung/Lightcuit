@@ -15,6 +15,12 @@ private:
 	Effect* effect;
 	Transform* transform;
 
+private:
+	CommandList* changeColor;
+	Color nowColor = { 1, 1, 1, 1 };
+	Color toColor = { 1, 1, 1, 1 };
+	Color8 color;
+
 public:
 	Line(long, long);
 	~Line();
@@ -22,6 +28,9 @@ public:
 	void OnStart();
 	Transform* GetTransform();
 	SpriteRenderer* GetSpriteRenderer();
+
+	void SetColor(Color8);
+	Color8 GetColor() { return color; }
 
 	Vec2L tilePos;
 	Dir dir;

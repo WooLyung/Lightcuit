@@ -11,30 +11,29 @@ struct Node
 	Line* line;
 	Gate* gate;
 	int type = 0;
-	std::vector<Node*> next;
-
 	int inDegree = 0;
+	std::vector<Node*> next;
 };
 
 class PlayManager :
 	public Object
 {
-private:
-	enum GameState {
-		CircuitDesign,
-		Try,
-		Clear,
-	};
+	friend class GameInputManager;
 
+private:
 	InGameScene* scene;
 	std::vector<Node*> sortedNodes;
 	GameState gameState = CircuitDesign;
+	CommandList* tryPlay;
+	int playIndex = 0;
 
 public:
 	PlayManager(InGameScene*);
 	~PlayManager();
 
 	void OnUpdate();
+	void OnStart();
 
 	int CheckClear();
+	void Play();
 };

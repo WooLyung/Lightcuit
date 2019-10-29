@@ -107,35 +107,7 @@ Dir Gate::GetDir()
 void Gate::SetColor(Color8 newColor)
 {
 	color = newColor;
-
-	switch (color)
-	{
-		case Color8::R:
-			toColor = Color(1, 0, 0, 1);
-			break;
-		case Color8::G:
-			toColor = Color(0, 1, 0, 1);
-			break;
-		case Color8::B:
-			toColor = Color(0, 0, 1, 1);
-			break;
-		case Color8::C:
-			toColor = Color(0, 1, 1, 1);
-			break;
-		case Color8::M:
-			toColor = Color(1, 0, 1, 1);
-			break;
-		case Color8::Y:
-			toColor = Color(1, 1, 0, 1);
-			break;
-		case Color8::K:
-			toColor = Color(0, 0, 0, 1);
-			break;
-		case Color8::W:
-			toColor = Color(1, 1, 1, 1);
-			break;
-	}
-
+	toColor = Color(color.r, color.g, color.b, 1);
 	changeColor->Start();
 }
 

@@ -65,13 +65,13 @@ Color8 ColorSet::GetColor()
 	Vec2F mouse_blue = mouse - blue->GetComponent<Transform>()->GetWorldPos();
 
 	if (mouse_red.Dot(mouse_red) <= 0.06f)
-		return R;
+		return Color8(1, 0, 0);
 	else if (mouse_green.Dot(mouse_green) <= 0.06f)
-		return G;
+		return Color8(0, 1, 0);
 	else if (mouse_blue.Dot(mouse_blue) <= 0.06f)
-		return B;
+		return Color8(0, 0, 1);
 	else
-		return W;
+		return Color8(1, 1, 1);
 }
 
 void ColorSet::SetPos(float x, float y)

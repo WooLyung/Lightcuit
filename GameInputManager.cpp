@@ -30,9 +30,12 @@ GameInputManager::~GameInputManager()
 
 void GameInputManager::OnUpdate()
 {
-	Input();
-	GateMove();
-	LineConnect();
+	if (scene->playManager->gameState == GameState::CircuitDesign)
+	{
+		Input();
+		GateMove();
+		LineConnect();
+	}
 }
 
 void GameInputManager::OnStart()

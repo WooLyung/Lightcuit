@@ -44,7 +44,7 @@ void InGameScene::OnStart()
 		->SetZ_index(-1);
 
 	PushGate(new DivisionGate(0, 1));
-	PushGate(new SubGate(1, 1));
+	PushGate(new AddGate(1, 1));
 	PushGate(new Light2(-2, -2));
 	PushGate(new Battery(3, 3));
 	PushGate(new Battery(2, 1));
