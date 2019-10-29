@@ -196,6 +196,12 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\ObjectManager">
       <UniqueIdentifier>{99429a2d-3235-4510-ae45-9917ae4a63dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs">
+      <UniqueIdentifier>{a2522f41-ea42-448a-b014-48d6802e2c87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\PlayManager">
+      <UniqueIdentifier>{b3afabcc-24e8-4734-8359-b46ba0cfd141}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -351,6 +357,9 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>소스 파일\Game\Objects\InGameScene\Managers\ObjectManager</Filter>
     </ClInclude>
+    <ClInclude Include="PlayManager.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\Managers\PlayManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -503,6 +512,9 @@
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\Managers\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayManager.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\Managers\PlayManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

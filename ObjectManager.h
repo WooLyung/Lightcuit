@@ -9,6 +9,7 @@ class ObjectManager :
 	public Object
 {
 	friend class GameInputManager;
+	friend class PlayManager;
 
 private:
 	InGameScene* scene;
