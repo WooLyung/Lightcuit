@@ -4,6 +4,7 @@
 #include "Effect.h"
 #include "Transform.h"
 #include "Line.h"
+#include "CommandList.h"
 
 class Line;
 
@@ -12,14 +13,14 @@ class Gate :
 {
 private:
 	CommandList* changeColor;
-	Color nowColor = { 1, 1, 1, 1 };
-	Color toColor = { 1, 1, 1, 1 };
-	Color8 color;
 
 protected:
 	SpriteRenderer* spriteRenderer;
 	Effect* effect;
 	Transform* transform;
+	Color8 color;
+	Color nowColor = { 0.2f, 0.2f, 0.2f, 1 };
+	Color toColor = { 0.2f, 0.2f, 0.2f, 1 };
 
 	Dir dir = Dir::RIGHT;
 
@@ -36,6 +37,7 @@ public:
 	void SetDir(Dir);
 	void SetPos(int, int);
 	void SetColor(Color8);
+	void SetColor(Color);
 
 	std::vector<Line*> nextLine;
 	std::vector<Line*> preLine;

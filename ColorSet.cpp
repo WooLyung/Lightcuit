@@ -27,7 +27,7 @@ void ColorSet::OnStart()
 		->SetScale(0.7f, 0.7f);
 	red->AttachComponent<Effect>()
 		->PushEffectInfo(new ColorMatrixEffectInfo(Color(1, 0, 0, 1)));
-
+		
 	green = new Object;
 	green->AttachComponent<SpriteRenderer>()
 		->SetTexture("Resources/Sprites/ColorSet/circle.png")

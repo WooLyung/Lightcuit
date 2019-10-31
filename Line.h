@@ -17,8 +17,8 @@ private:
 
 private:
 	CommandList* changeColor;
-	Color nowColor = { 1, 1, 1, 1 };
-	Color toColor = { 1, 1, 1, 1 };
+	Color nowColor = { 0.2f, 0.2f, 0.2f, 1 };
+	Color toColor = { 0.2f, 0.2f, 0.2f, 1 };
 	Color8 color;
 
 public:
@@ -30,6 +30,7 @@ public:
 	SpriteRenderer* GetSpriteRenderer();
 
 	void SetColor(Color8);
+	void SetColor(Color);
 	Color8 GetColor() { return color; }
 
 	Vec2L tilePos;

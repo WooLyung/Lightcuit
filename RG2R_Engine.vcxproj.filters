@@ -148,6 +148,21 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\ColorSet">
       <UniqueIdentifier>{521287a3-2401-42c7-b049-575e6cb57f0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers">
+      <UniqueIdentifier>{931562b0-28dd-4f72-9d5c-924fddb21fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\GameInputManager">
+      <UniqueIdentifier>{d782122f-2937-4e69-9ff1-9f6b4c6bcb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\ObjectManager">
+      <UniqueIdentifier>{99429a2d-3235-4510-ae45-9917ae4a63dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs">
+      <UniqueIdentifier>{a2522f41-ea42-448a-b014-48d6802e2c87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\PlayManager">
+      <UniqueIdentifier>{b3afabcc-24e8-4734-8359-b46ba0cfd141}</UniqueIdentifier>
+    </Filter>
     <Filter Include="소스 파일\Game\Objects\InGameScene\Gate">
       <UniqueIdentifier>{cd94198c-7b1a-43be-b6c2-0ff602fc74ca}</UniqueIdentifier>
     </Filter>
@@ -186,21 +201,6 @@
     </Filter>
     <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light5">
       <UniqueIdentifier>{7af4775a-1990-4de0-beec-ef194733c276}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers">
-      <UniqueIdentifier>{931562b0-28dd-4f72-9d5c-924fddb21fcc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\GameInputManager">
-      <UniqueIdentifier>{d782122f-2937-4e69-9ff1-9f6b4c6bcb7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\ObjectManager">
-      <UniqueIdentifier>{99429a2d-3235-4510-ae45-9917ae4a63dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs">
-      <UniqueIdentifier>{a2522f41-ea42-448a-b014-48d6802e2c87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\PlayManager">
-      <UniqueIdentifier>{b3afabcc-24e8-4734-8359-b46ba0cfd141}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -360,6 +360,9 @@
     <ClInclude Include="PlayManager.h">
       <Filter>소스 파일\Game\Objects\InGameScene\Managers\PlayManager</Filter>
     </ClInclude>
+    <ClInclude Include="Light1.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -515,6 +518,9 @@
     </ClCompile>
     <ClCompile Include="PlayManager.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\Managers\PlayManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Light1.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

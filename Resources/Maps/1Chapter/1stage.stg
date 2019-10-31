@@ -1,0 +1,6 @@
+x:1, y:1, type:battery, color:red, dir:up
+x:0, y:2, type:light1, dir:down
+x:3, y:2, type:divison_gate, dir:right
+x:-1, y:-2, type:sub_gate, dir:left
+x:-1, y:-3, type:add_gate, dir:up
+x:-2, y:-3, type:reverse_gate, dir:right

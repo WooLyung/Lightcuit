@@ -306,6 +306,16 @@ struct Color8 {
 		this->b = b;
 	}
 
+	bool operator==(Color8 color)
+	{
+		return (r == color.r && g == color.g && b == color.b);
+	}
+
+	bool operator!=(Color8 color)
+	{
+		return !(*this == color);
+	}
+
 	Color8 operator!() {
 		return Color8(!r, !g, !b);
 	}

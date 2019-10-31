@@ -181,6 +181,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="KeyCode.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="Light1.h" />
     <ClInclude Include="Light2.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Math.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="InGameScene.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Light1.cpp" />
     <ClCompile Include="Light2.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />

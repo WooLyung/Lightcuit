@@ -332,7 +332,6 @@ void GameInputManager::LineCancel()
 	inputState = InputState::NONE;
 }
 
-
 void GameInputManager::GateMove()
 {
 	if (inputState == InputState::GATE_LIFT)
@@ -529,7 +528,8 @@ void GameInputManager::Input()
 	{
 		inputState = InputState::NONE;
 		colorSet->SetIsEnable(false);
-		myGate->SetColor(colorSet->GetColor());
+		if (colorSet->GetColor() != Color8(1, 1, 1))
+			myGate->SetColor(colorSet->GetColor());
 		myGate = nullptr;
 	}
 #pragma endregion

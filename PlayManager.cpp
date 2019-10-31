@@ -23,54 +23,107 @@ PlayManager::~PlayManager()
 
 void PlayManager::OnStart()
 {
+	gameNotClear = new CommandList;
+	gameNotClear->PushCommand([=]() {
+		for (auto& iter : scene->objectManager->gates)
+		{
+			if (iter->GetID() != typeid(Battery))
+			{
+				iter->SetColor(Color(0.2f, 0.2f, 0.2f));
+			}
+		}
+		for (auto& iter : scene->objectManager->lines)
+		{
+			iter->SetColor(Color(0.2f, 0.2f, 0.2f));
+		}
+		}, 0.5f)
+		->PushCommand([=]() {
+			gameState = GameState::CircuitDesign;
+			}, 0.5f);
+		commandLists.push_back(gameNotClear);
+
+	clearEffect = new CommandList;
+	clearEffect->PushCommand([=]() {
+		for (auto& iter : scene->objectManager->gates)
+		{
+			iter->SetColor(clearEffectColor);
+		}
+		for (auto& iter : scene->objectManager->lines)
+		{
+			iter->SetColor(clearEffectColor);
+		}
+
+		if (clearEffectColor == Color8(1, 0, 0))
+			clearEffectColor = Color8(0, 1, 0);
+		else if (clearEffectColor == Color8(0, 1, 0))
+			clearEffectColor = Color8(0, 0, 1);
+		else if (clearEffectColor == Color8(0, 0, 1))
+			clearEffectColor = Color8(1, 0, 0);
+
+		}, 0.6f);
+	clearEffect->SetIsLoop(true);
+	commandLists.push_back(clearEffect);
+
 	tryPlay = new CommandList;
 	tryPlay->PushCommand([=]() {
-		if (sortedNodes[playIndex]->type == 1) // 라인
+		if (!term)
 		{
-			Color8 color;
-
-			if (sortedNodes[playIndex]->line->preGate != nullptr)
-				color = sortedNodes[playIndex]->line->preGate->GetColor();
-			else
-				color = sortedNodes[playIndex]->line->preLine->GetColor();
-
-			sortedNodes[playIndex]->line->SetColor(color);
-		}
-		else // 게이트
-		{
-			Color8 color;
-
-			if (sortedNodes[playIndex]->gate->GetID() == typeid(AddGate)
-				|| sortedNodes[playIndex]->gate->GetID() == typeid(Light))
+			if (sortedNodes[playIndex]->type == 1) // 라인
 			{
-				for (auto line : sortedNodes[playIndex]->gate->preLine)
+				Color8 color;
+
+				if (sortedNodes[playIndex]->line->preGate != nullptr)
+					color = sortedNodes[playIndex]->line->preGate->GetColor();
+				else
+					color = sortedNodes[playIndex]->line->preLine->GetColor();
+
+				sortedNodes[playIndex]->line->SetColor(color);
+			}
+			else // 게이트
+			{
+				Color8 color;
+
+				if (sortedNodes[playIndex]->gate->GetID() == typeid(AddGate)
+					|| sortedNodes[playIndex]->gate->GetID() == typeid(Light))
 				{
-					color = (Color8)(color + line->GetColor());
+					for (auto line : sortedNodes[playIndex]->gate->preLine)
+					{
+						color = (Color8)(color + line->GetColor());
+					}
+					sortedNodes[playIndex]->gate->SetColor(color);
 				}
-				sortedNodes[playIndex]->gate->SetColor(color);
+				else if (sortedNodes[playIndex]->gate->GetID() == typeid(DivisionGate))
+				{
+					color = sortedNodes[playIndex]->gate->preLine[0]->GetColor();
+					sortedNodes[playIndex]->gate->SetColor(color);
+				}
+				else if (sortedNodes[playIndex]->gate->GetID() == typeid(ReverseGate))
+				{
+					color = !sortedNodes[playIndex]->gate->preLine[0]->GetColor();
+					sortedNodes[playIndex]->gate->SetColor(color);
+				}
+				else if (sortedNodes[playIndex]->gate->GetID() == typeid(SubGate))
+				{
+					color = sortedNodes[playIndex]->gate->preLine[0]->GetColor() - sortedNodes[playIndex]->gate->preLine[1]->GetColor();
+					sortedNodes[playIndex]->gate->SetColor(color);
+				}
 			}
-			else if (sortedNodes[playIndex]->gate->GetID() == typeid(DivisionGate))
+			this->playIndex++;
+
+			if (playIndex >= sortedNodes.size())
 			{
-				color = sortedNodes[playIndex]->gate->preLine[0]->GetColor();
-				sortedNodes[playIndex]->gate->SetColor(color);
+				tryPlay->Stop();
+				Result();
 			}
-			else if (sortedNodes[playIndex]->gate->GetID() == typeid(ReverseGate))
+			else if (sortedNodes[playIndex]->type == 0)
 			{
-				color = (Color8)(!sortedNodes[playIndex]->gate->preLine[0]->GetColor());
-				sortedNodes[playIndex]->gate->SetColor(color);
-			}
-			else if (sortedNodes[playIndex]->gate->GetID() == typeid(SubGate))
-			{
-				color = (Color8)(sortedNodes[playIndex]->gate->preLine[0]->GetColor() - sortedNodes[playIndex]->gate->preLine[1]->GetColor());
-				sortedNodes[playIndex]->gate->SetColor(color);
+				term = 5;
 			}
 		}
-
-		this->playIndex++;
-
-		if (playIndex >= sortedNodes.size())
-			tryPlay->Stop();
-		}, 0.03f);
+		else
+		{
+			term--;
+		}}, 0.03f);
 	tryPlay->SetIsLoop(true);
 	commandLists.push_back(tryPlay);
 }
@@ -162,6 +215,7 @@ int PlayManager::CheckClear()
 void PlayManager::Play()
 {
 	playIndex = 0;
+	gameState = GameState::Try;
 	tryPlay->Start();
 }
 
@@ -171,5 +225,26 @@ void PlayManager::OnUpdate()
 	{
 		if (!CheckClear())
 			Play();
+	}
+}
+
+void PlayManager::Result()
+{
+	bool isClear = true;
+	for (auto& iter : scene->objectManager->gates)
+	{
+		if (iter->GetID() == typeid(Light) && iter->GetColor() != Color8(1, 1, 1))
+		{
+			isClear = false;
+		}
+	}
+
+	if (isClear)
+	{
+		clearEffect->Start();
+	}
+	else
+	{
+		gameNotClear->Start();
 	}
 }

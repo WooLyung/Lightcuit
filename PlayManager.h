@@ -24,8 +24,14 @@ private:
 	InGameScene* scene;
 	std::vector<Node*> sortedNodes;
 	GameState gameState = CircuitDesign;
+
 	CommandList* tryPlay;
+	CommandList* clearEffect;
+	CommandList* gameNotClear;
+	Color8 clearEffectColor = Color8(1, 0, 0);
+
 	int playIndex = 0;
+	int term = 0;
 
 public:
 	PlayManager(InGameScene*);
@@ -36,4 +42,5 @@ public:
 
 	int CheckClear();
 	void Play();
+	void Result();
 };

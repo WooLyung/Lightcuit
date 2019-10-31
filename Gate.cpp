@@ -8,7 +8,8 @@ Gate::Gate(long x, long y)
 	tilePos = Vec2L(x, y);
 
 	spriteRenderer = AttachComponent<SpriteRenderer>();
-	effect = AttachComponent<Effect>();
+	effect = AttachComponent<Effect>()
+		->PushEffectInfo(new ColorMatrixEffectInfo(nowColor));
 	transform = GetComponent<Transform>()
 		->SetAnchor(64, 64)
 		->SetPos(x, y);
@@ -108,6 +109,12 @@ void Gate::SetColor(Color8 newColor)
 {
 	color = newColor;
 	toColor = Color(color.r, color.g, color.b, 1);
+	changeColor->Start();
+}
+
+void Gate::SetColor(Color newColor)
+{
+	toColor = newColor;
 	changeColor->Start();
 }
 

@@ -9,7 +9,8 @@ Line::Line(long x, long y)
 	spriteRenderer = AttachComponent<SpriteRenderer>()
 		->SetTexture("Resources/Sprites/Lines/line1.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
-	effect = AttachComponent<Effect>();
+	effect = AttachComponent<Effect>()->ClearEffectInfo()
+		->PushEffectInfo(new ColorMatrixEffectInfo(nowColor));
 	transform = GetComponent<Transform>()
 		->SetAnchor(64, 64)
 		->SetPos(x, y);
@@ -118,5 +119,11 @@ void Line::SetColor(Color8 newColor)
 {
 	color = newColor;	
 	toColor = Color(color.r, color.g, color.b, 1);
+	changeColor->Start();
+}
+
+void Line::SetColor(Color newColor)
+{
+	toColor = newColor;
 	changeColor->Start();
 }
