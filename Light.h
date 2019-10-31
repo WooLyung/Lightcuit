@@ -5,7 +5,7 @@ class Light :
 	public Gate
 {
 public:
-	Light(long, long);
+	Light(long, long, Dir);
 	~Light();
 
 	virtual std::type_index GetID(void) { return typeid(Light); };

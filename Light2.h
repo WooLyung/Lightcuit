@@ -4,6 +4,6 @@ class Light2 :
 	public Light
 {
 public:
-	Light2(long, long);
+	Light2(long, long, Dir);
 	~Light2();
 };

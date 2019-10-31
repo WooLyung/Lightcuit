@@ -6,6 +6,7 @@
 #include "GameInputManager.h"
 #include "ObjectManager.h"
 #include "PlayManager.h"
+#include <map>
 
 class InGameScene :
 	public Scene
@@ -20,6 +21,8 @@ private:
 	PlayManager* playManager;
 
 	void PushGate(Gate*);
+	void Init();
+	void CreateGate(std::map<std::string, std::string>);
 	Vec2L GetTilePos();
 
 public:

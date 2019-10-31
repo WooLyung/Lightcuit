@@ -202,6 +202,12 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light5">
       <UniqueIdentifier>{7af4775a-1990-4de0-beec-ef194733c276}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\PublicData">
+      <UniqueIdentifier>{25b97548-50b6-4c56-a5d0-18777194bb69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\PublicData\StageData">
+      <UniqueIdentifier>{8055e4d7-08d9-4005-9972-16a7cc6825c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -363,6 +369,9 @@
     <ClInclude Include="Light1.h">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1</Filter>
     </ClInclude>
+    <ClInclude Include="StageData.h">
+      <Filter>소스 파일\Game\PublicData\StageData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -521,6 +530,9 @@
     </ClCompile>
     <ClCompile Include="Light1.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1</Filter>
+    </ClCompile>
+    <ClCompile Include="StageData.cpp">
+      <Filter>소스 파일\Game\PublicData\StageData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,3 @@
+x:1, y:0, type:battery, dir:up, color:blue
+x:2, y:0, type:sub_gate
+x:3, y:0, type:reverse_gate, dir:right

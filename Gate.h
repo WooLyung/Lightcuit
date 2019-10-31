@@ -25,7 +25,7 @@ protected:
 	Dir dir = Dir::RIGHT;
 
 public:
-	Gate(long, long);
+	Gate(long, long, Dir);
 	~Gate();
 
 	Transform* GetTransform();
@@ -36,6 +36,8 @@ public:
 
 	void SetDir(Dir);
 	void SetPos(int, int);
+	void SetRot(Dir);
+
 	void SetColor(Color8);
 	void SetColor(Color);
 

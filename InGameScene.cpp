@@ -15,6 +15,8 @@
 #include "ColorSet.h"
 #include "ObjectManager.h"
 #include "GameInputManager.h"
+#include "StageData.h"
+#include <fstream>
 
 InGameScene::InGameScene()
 {
@@ -44,36 +46,54 @@ void InGameScene::OnStart()
 	obj->GetComponent<SpriteRenderer>()
 		->SetZ_index(-1);
 
-	PushGate(new Battery(1, 0));
-	PushGate(new Battery(2, 0));
-	PushGate(new Battery(3, 0));
-	PushGate(new Battery(-5, 0));
-
-	PushGate(new DivisionGate(4, 0));
-	PushGate(new DivisionGate(1, 2));
-	PushGate(new DivisionGate(-1, 2));
-	PushGate(new DivisionGate(-2, 2));
-	PushGate(new AddGate(0, 2));
-	PushGate(new AddGate(1, 3));
-	PushGate(new AddGate(2, 3));
-	PushGate(new SubGate(1, 1));
-
-	PushGate(new ReverseGate(0, 3));
-	PushGate(new ReverseGate(3, 3));
-
-	PushGate(new Light1(0, 4));
-	PushGate(new Light1(1, 4));
-	PushGate(new Light2(2, 4));
-
-	// 둘 들어와서 더한거의 반전 하나로
-	// 하나 들어와서 하나는 그대로, 하나는 반전
-	// 하나 들어와서 둘 다 반전
-	// 하나 들어와서 특정 색 더하고 하나로
-	// 하나 들어와서 특정 색 빼고 하나로
+	Init();
 }
 
 void InGameScene::OnUpdate()
 {
+}
+
+void InGameScene::Init()
+{
+	std::string path = "Resources/Maps/";
+	path += std::to_string(StageData::GetInstance()->chapter) + "Chapter/";
+	path += std::to_string(StageData::GetInstance()->stage) + "stage.txt";
+
+	std::string data;
+	std::ifstream in(path);
+	while (getline(in, data)) {
+		size_t start_pos = 0;
+		while ((start_pos = data.find(" ", start_pos)) != std::string::npos)
+		{
+			data.replace(start_pos, string(" ").length(), "");
+			start_pos += string("").length();
+		}
+
+		string splitedString, key, value;
+		std::map<string, string> gateData;
+		size_t begin = 0, end = 1;
+
+		while (true)
+		{
+			end++;
+			if (data[end] == ',' || end == data.size())
+			{
+				splitedString = data.substr(begin, end - begin);
+
+				key = splitedString.substr(0, splitedString.find(":"));
+				value = splitedString.substr(splitedString.find(":") + 1, splitedString.size());
+
+				gateData.insert(std::pair<string, string>(key, value));
+
+				begin = ++end;
+			}
+			if (end >= data.size())
+				break;
+		}
+
+		CreateGate(gateData);
+	}
+	in.close();
 }
 
 Vec2L InGameScene::GetTilePos()
@@ -88,4 +108,63 @@ Vec2L InGameScene::GetTilePos()
 void InGameScene::PushGate(Gate* gate)
 {
 	objectManager->PushGate(gate);
+}
+
+void InGameScene::CreateGate(std::map<string, string> data)
+{
+	Dir dir = Dir::RIGHT;
+	if (data.find("dir") != data.end())
+	{
+		if (data["dir"] == "right")
+			dir = Dir::RIGHT;
+		else if (data["dir"] == "left")
+			dir = Dir::LEFT;
+		else if (data["dir"] == "up")
+			dir = Dir::UP;
+		else if (data["dir"] == "down")
+			dir = Dir::DOWN;
+	}
+
+	int x = std::stoi(data["x"]);
+	int y = std::stoi(data["y"]);
+
+	if (data["type"] == "battery")
+	{
+		Color8 color = Color8(1, 0, 0);
+		if (data.find("color") != data.end())
+		{
+			if (data["color"] == "red")
+				color = Color8(1, 0, 0);
+			else if (data["color"] == "green")
+				color = Color8(0, 1, 0);
+			else if (data["color"] == "blue")
+				color = Color8(0, 0, 1);
+		}
+
+		PushGate(new Battery(x, y, dir, color));
+	}
+	else if (data["type"] == "add_gate")
+	{
+		PushGate(new AddGate(x, y, dir));
+	}
+	else if (data["type"] == "division_gate")
+	{
+		PushGate(new DivisionGate(x, y, dir));
+	}
+	else if (data["type"] == "sub_gate")
+	{
+		PushGate(new SubGate(x, y, dir));
+	}
+	else if (data["type"] == "light1")
+	{
+		PushGate(new Light1(x, y, dir));
+	}
+	else if (data["type"] == "light2")
+	{
+		PushGate(new Light2(x, y, dir));
+	}
+	else if (data["type"] == "reverse_gate")
+	{
+		PushGate(new ReverseGate(x, y, dir));
+	}
 }

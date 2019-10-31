@@ -3,7 +3,7 @@
 #include "CommandList.h"
 #include "Command.h"
 
-Gate::Gate(long x, long y)
+Gate::Gate(long x, long y, Dir dir)
 {
 	tilePos = Vec2L(x, y);
 
@@ -92,7 +92,6 @@ Gate::Gate(long x, long y)
 			}
 		}, 0.01f);
 	changeColor->SetIsLoop(true);
-
 	commandLists.push_back(changeColor);
 }
 
@@ -153,4 +152,24 @@ void Gate::SetPos(int x, int y)
 {
 	transform->SetPos(x, y);
 	tilePos = Vec2L(x, y);
+}
+
+void Gate::SetRot(Dir dir)
+{
+	int rotCount = 0;
+
+	if (dir == DOWN) rotCount = 1;
+	else if (dir == LEFT) rotCount = 2;
+	else if (dir == UP) rotCount = 3;
+
+	SetDir(dir);
+	while (rotCount--)
+	{
+		std::cout << rotCount << std::endl;
+
+		for (int i = 0; i < input.size(); i++)
+			input[i] = RotatedDir(input[i]);
+		for (int i = 0; i < output.size(); i++)
+			output[i] = RotatedDir(output[i]);
+	}
 }
