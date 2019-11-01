@@ -15,12 +15,14 @@ private:
 	CommandList* changeColor;
 
 protected:
+	SpriteRenderer* uncoloredSpriteRenderer;
 	SpriteRenderer* spriteRenderer;
 	Effect* effect;
 	Transform* transform;
+
 	Color8 color;
-	Color nowColor = { 0.2f, 0.2f, 0.2f, 1 };
-	Color toColor = { 0.2f, 0.2f, 0.2f, 1 };
+	Color nowColor = { 1, 1, 1, 0 };
+	Color toColor = { 1, 1, 1, 0 };
 
 	Dir dir = Dir::RIGHT;
 
@@ -30,6 +32,7 @@ public:
 
 	Transform* GetTransform();
 	SpriteRenderer* GetSpriteRenderer();
+	SpriteRenderer* GetUncoloredRenderer();
 	Vec2L tilePos;
 	Dir GetDir();
 	Color8 GetColor() { return color; }

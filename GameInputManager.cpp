@@ -362,6 +362,7 @@ void GameInputManager::GateMove()
 
 			inputState = InputState::NONE;
 			myGate->GetSpriteRenderer()->SetZ_index(0);
+			myGate->GetUncoloredRenderer()->SetZ_index(1);
 			myGate = nullptr;
 		}
 	}
@@ -486,6 +487,7 @@ void GameInputManager::Input()
 				inputState = InputState::GATE_LIFT;
 				myGate = targetGate;
 				myGate->GetSpriteRenderer()->SetZ_index(2);
+				myGate->GetUncoloredRenderer()->SetZ_index(3);
 				LineUnconnect(targetGate);
 			}
 		}

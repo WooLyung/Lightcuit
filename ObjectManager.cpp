@@ -26,12 +26,14 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		if (tilePos.x > lastLine->tilePos.x)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 			newLineTrans->SetRot(0);
 			newLine->dir = RIGHT;
 		}
 		else if (tilePos.y > lastLine->tilePos.y)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(90);
 			newLineTrans->SetRot(270);
 			newLine->dir = UP;
@@ -39,6 +41,7 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		else if (tilePos.y < lastLine->tilePos.y)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(0);
 			newLineTrans->SetRot(90);
 			newLine->dir = DOWN;
@@ -49,12 +52,14 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		if (tilePos.x < lastLine->tilePos.x)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 			newLineTrans->SetRot(180);
 			newLine->dir = LEFT;
 		}
 		else if (tilePos.y > lastLine->tilePos.y)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(180);
 			newLineTrans->SetRot(270);
 			newLine->dir = UP;
@@ -62,6 +67,7 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		else if (tilePos.y < lastLine->tilePos.y)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(270);
 			newLineTrans->SetRot(90);
 			newLine->dir = DOWN;
@@ -72,12 +78,14 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		if (tilePos.y > lastLine->tilePos.y)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 			newLineTrans->SetRot(270);
 			newLine->dir = UP;
 		}
 		else if (tilePos.x > lastLine->tilePos.x)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(270);
 			newLineTrans->SetRot(0);
 			newLine->dir = RIGHT;
@@ -85,6 +93,7 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		else if (tilePos.x < lastLine->tilePos.x)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(0);
 			newLineTrans->SetRot(180);
 			newLine->dir = LEFT;
@@ -95,12 +104,14 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		if (tilePos.y < lastLine->tilePos.y)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 			newLineTrans->SetRot(90);
 			newLine->dir = DOWN;
 		}
 		else if (tilePos.x > lastLine->tilePos.x)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(180);
 			newLineTrans->SetRot(0);
 			newLine->dir = RIGHT;
@@ -108,6 +119,7 @@ void ObjectManager::SetSpriteOnConnect(Line* lastLine, Line* newLine, Vec2L tile
 		else if (tilePos.x < lastLine->tilePos.x)
 		{
 			lastLineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			lastLine->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lastLineTrans->SetRot(90);
 			newLineTrans->SetRot(180);
 			newLine->dir = LEFT;
@@ -125,15 +137,18 @@ void ObjectManager::SetSpriteOnFinish(Line* line, Vec2L tilePos)
 		if (tilePos.x > line->tilePos.x)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 		}
 		else if (tilePos.y > line->tilePos.y)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(90);
 		}
 		else if (tilePos.y < line->tilePos.y)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(0);
 		}
 	}
@@ -142,15 +157,18 @@ void ObjectManager::SetSpriteOnFinish(Line* line, Vec2L tilePos)
 		if (tilePos.x < line->tilePos.x)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 		}
 		else if (tilePos.y > line->tilePos.y)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(180);
 		}
 		else if (tilePos.y < line->tilePos.y)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(270);
 		}
 	}
@@ -159,15 +177,18 @@ void ObjectManager::SetSpriteOnFinish(Line* line, Vec2L tilePos)
 		if (tilePos.y > line->tilePos.y)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 		}
 		else if (tilePos.x > line->tilePos.x)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(270);
 		}
 		else if (tilePos.x < line->tilePos.x)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(0);
 		}
 	}
@@ -176,15 +197,18 @@ void ObjectManager::SetSpriteOnFinish(Line* line, Vec2L tilePos)
 		if (tilePos.y < line->tilePos.y)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line2.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line2_uncolored.png");
 		}
 		else if (tilePos.x > line->tilePos.x)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(180);
 		}
 		else if (tilePos.x < line->tilePos.x)
 		{
 			lineRen->SetTexture("Resources/Sprites/Lines/line3.png");
+			line->GetUncoloredRenderer()->SetTexture("Resources/Sprites/Lines/line3_uncolored.png");
 			lineTrans->SetRot(90);
 		}
 	}

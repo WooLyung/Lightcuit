@@ -14,6 +14,12 @@ Gate::Gate(long x, long y, Dir dir)
 		->SetAnchor(64, 64)
 		->SetPos(x, y);
 
+	auto uncolored = new Object;
+	uncoloredSpriteRenderer = uncolored->AttachComponent<SpriteRenderer>();
+	uncoloredSpriteRenderer->SetZ_index(1);
+	uncolored->GetComponent<Transform>()->SetAnchor(64, 64);
+	uncolored->ChangeParent(this);
+
 	changeColor = new CommandList;
 	changeColor->PushCommand([=]() {
 			if (nowColor.r == toColor.r && nowColor.g == toColor.g && nowColor.b == toColor.b && nowColor.a == toColor.a)
@@ -152,6 +158,11 @@ void Gate::SetPos(int x, int y)
 {
 	transform->SetPos(x, y);
 	tilePos = Vec2L(x, y);
+}
+
+SpriteRenderer* Gate::GetUncoloredRenderer()
+{
+	return uncoloredSpriteRenderer;
 }
 
 void Gate::SetRot(Dir dir)

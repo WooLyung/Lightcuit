@@ -3,9 +3,11 @@
 #include "Scene.h"
 #include "Engine.h"
 #include "IntroScene.h"
+#include "InGameScene.h"
 
 Scene* SceneManager::FirstScene()
 {
+	return new InGameScene;
 	return new IntroScene;
 }
 

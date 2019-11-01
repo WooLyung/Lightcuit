@@ -41,7 +41,7 @@ void InGameScene::OnStart()
 		->SetTexture("Resources/Sprites/check.png")
 		->GetOwner()
 		->AttachComponent<Transform>()
-		->SetAnchor(448, 448)
+		->SetAnchor(1402 * 0.5f, 896 * 0.5f)
 		->GetOwner();
 	obj->GetComponent<SpriteRenderer>()
 		->SetZ_index(-1);

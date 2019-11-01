@@ -238,6 +238,9 @@
     <Filter Include="소스 파일\Game\Objects\StageScene\StageChoice">
       <UniqueIdentifier>{a83ff67e-5045-41d6-8951-074fb2ba38b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj">
+      <UniqueIdentifier>{df966265-ca14-4a9a-83e7-f772a2e39ad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -420,6 +423,9 @@
     <ClInclude Include="StageChoice.h">
       <Filter>소스 파일\Game\Objects\StageScene\StageChoice</Filter>
     </ClInclude>
+    <ClInclude Include="StageClearObj.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -599,6 +605,9 @@
     </ClCompile>
     <ClCompile Include="StageChoice.cpp">
       <Filter>소스 파일\Game\Objects\StageScene\StageChoice</Filter>
+    </ClCompile>
+    <ClCompile Include="StageClearObj.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

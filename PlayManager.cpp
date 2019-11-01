@@ -2,6 +2,7 @@
 #include "PlayManager.h"
 #include "Engine.h"
 #include "CommandList.h"
+#include "StageClearObj.h"
 
 #include "Battery.h"
 #include "AddGate.h"
@@ -29,14 +30,14 @@ void PlayManager::OnStart()
 		{
 			if (iter->GetID() != typeid(Battery))
 			{
-				iter->SetColor(Color(0.2f, 0.2f, 0.2f));
+				iter->SetColor(Color(1, 1, 1, 0));
 			}
 		}
 		for (auto& iter : scene->objectManager->lines)
 		{
-			iter->SetColor(Color(0.2f, 0.2f, 0.2f));
+			iter->SetColor(Color(1, 1, 1, 0));
 		}
-		}, 0.5f)
+		}, 1.5f)
 		->PushCommand([=]() {
 			gameState = GameState::CircuitDesign;
 			}, 0.5f);
@@ -104,7 +105,27 @@ void PlayManager::OnStart()
 				}
 				else if (sortedNodes[playIndex]->gate->GetID() == typeid(SubGate))
 				{
-					color = sortedNodes[playIndex]->gate->preLine[0]->GetColor() - sortedNodes[playIndex]->gate->preLine[1]->GetColor();
+					Color8 color1, color2;
+
+					if (sortedNodes[playIndex]->gate->GetDir() == Dir::RIGHT
+						&& sortedNodes[playIndex]->gate->preLine[0]->tilePos.x < sortedNodes[playIndex]->gate->tilePos.x
+						|| sortedNodes[playIndex]->gate->GetDir() == Dir::LEFT
+						&& sortedNodes[playIndex]->gate->preLine[0]->tilePos.x > sortedNodes[playIndex]->gate->tilePos.x
+						|| sortedNodes[playIndex]->gate->GetDir() == Dir::UP
+						&& sortedNodes[playIndex]->gate->preLine[0]->tilePos.y < sortedNodes[playIndex]->gate->tilePos.y
+						|| sortedNodes[playIndex]->gate->GetDir() == Dir::DOWN
+						&& sortedNodes[playIndex]->gate->preLine[0]->tilePos.y > sortedNodes[playIndex]->gate->tilePos.y)
+					{
+						color1 = sortedNodes[playIndex]->gate->preLine[0]->GetColor();
+						color2 = sortedNodes[playIndex]->gate->preLine[1]->GetColor();
+					}
+					else
+					{
+						color1 = sortedNodes[playIndex]->gate->preLine[1]->GetColor();
+						color2 = sortedNodes[playIndex]->gate->preLine[0]->GetColor();
+					}
+
+					color = color1 - color2;
 					sortedNodes[playIndex]->gate->SetColor(color);
 				}
 			}
@@ -241,7 +262,8 @@ void PlayManager::Result()
 
 	if (isClear)
 	{
-		clearEffect->Start();
+		//clearEffect->Start();
+		//AttachObject(new StageClearObj);
 		gameState = GameState::Clear;
 	}
 	else

@@ -203,6 +203,7 @@
     <ClInclude Include="SpriteRenderData.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="StageChoice.h" />
+    <ClInclude Include="StageClearObj.h" />
     <ClInclude Include="StageData.h" />
     <ClInclude Include="StageScene.h" />
     <ClInclude Include="stdafx.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="SpriteRenderData.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="StageChoice.cpp" />
+    <ClCompile Include="StageClearObj.cpp" />
     <ClCompile Include="StageData.cpp" />
     <ClCompile Include="StageScene.cpp" />
     <ClCompile Include="stdafx.cpp">
