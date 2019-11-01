@@ -208,6 +208,36 @@
     <Filter Include="소스 파일\Game\PublicData\StageData">
       <UniqueIdentifier>{8055e4d7-08d9-4005-9972-16a7cc6825c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Scenes\IntroScene">
+      <UniqueIdentifier>{0b8b9917-95ff-4a16-9225-1244b5c4dbe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\IntroScene">
+      <UniqueIdentifier>{94b71516-e65e-4bad-b7a1-116d0865fb12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\IntroScene\IntroManager">
+      <UniqueIdentifier>{940e6a13-3949-4ed0-8432-fe71f1fe4fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Scenes\ChapterScene">
+      <UniqueIdentifier>{3a8e1afb-2a7e-4571-bfa3-88b374645f15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Scenes\StageScene">
+      <UniqueIdentifier>{013a3cf9-d324-492f-ad0d-119f0d85459e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene">
+      <UniqueIdentifier>{902377d2-c3f4-484e-853b-d823c0635cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\StageScene">
+      <UniqueIdentifier>{776c6fa1-3f1d-462d-9107-2fe82f63d4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Generic">
+      <UniqueIdentifier>{92ccb667-6782-4989-976a-2d3b0de11f6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\ChapterChoice">
+      <UniqueIdentifier>{87819a1b-303e-4f96-ad87-f6113c7d38b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\StageScene\StageChoice">
+      <UniqueIdentifier>{a83ff67e-5045-41d6-8951-074fb2ba38b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -372,6 +402,24 @@
     <ClInclude Include="StageData.h">
       <Filter>소스 파일\Game\PublicData\StageData</Filter>
     </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>소스 파일\Game\Scenes\IntroScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ChapterScene.h">
+      <Filter>소스 파일\Game\Scenes\ChapterScene</Filter>
+    </ClInclude>
+    <ClInclude Include="StageScene.h">
+      <Filter>소스 파일\Game\Scenes\StageScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ChapterChoice.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\ChapterChoice</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroManager.h">
+      <Filter>소스 파일\Game\Objects\IntroScene\IntroManager</Filter>
+    </ClInclude>
+    <ClInclude Include="StageChoice.h">
+      <Filter>소스 파일\Game\Objects\StageScene\StageChoice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -533,6 +581,24 @@
     </ClCompile>
     <ClCompile Include="StageData.cpp">
       <Filter>소스 파일\Game\PublicData\StageData</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>소스 파일\Game\Scenes\IntroScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ChapterScene.cpp">
+      <Filter>소스 파일\Game\Scenes\ChapterScene</Filter>
+    </ClCompile>
+    <ClCompile Include="StageScene.cpp">
+      <Filter>소스 파일\Game\Scenes\StageScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ChapterChoice.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\ChapterChoice</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroManager.cpp">
+      <Filter>소스 파일\Game\Objects\IntroScene\IntroManager</Filter>
+    </ClCompile>
+    <ClCompile Include="StageChoice.cpp">
+      <Filter>소스 파일\Game\Objects\StageScene\StageChoice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

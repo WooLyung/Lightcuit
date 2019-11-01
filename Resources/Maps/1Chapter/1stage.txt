@@ -1,3 +1,6 @@
 x:1, y:0, type:battery, dir:up, color:blue
-x:2, y:0, type:sub_gate
-x:3, y:0, type:reverse_gate, dir:right
+x:2, y:0, type:battery, dir:up, color:red
+x:3, y:0, type:battery, dir:up, color:green
+x:0, y:2, type:add_gate, dir:up
+x:3, y:4, type:add_gate, dir:up
+x:-1, y:0, type:light1

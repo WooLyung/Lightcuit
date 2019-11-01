@@ -165,8 +165,6 @@ void Gate::SetRot(Dir dir)
 	SetDir(dir);
 	while (rotCount--)
 	{
-		std::cout << rotCount << std::endl;
-
 		for (int i = 0; i < input.size(); i++)
 			input[i] = RotatedDir(input[i]);
 		for (int i = 0; i < output.size(); i++)

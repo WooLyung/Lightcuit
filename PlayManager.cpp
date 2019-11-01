@@ -242,6 +242,7 @@ void PlayManager::Result()
 	if (isClear)
 	{
 		clearEffect->Start();
+		gameState = GameState::Clear;
 	}
 	else
 	{

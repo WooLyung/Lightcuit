@@ -2,11 +2,11 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "Engine.h"
-#include "InGameScene.h"
+#include "IntroScene.h"
 
 Scene* SceneManager::FirstScene()
 {
-	return new InGameScene;
+	return new IntroScene;
 }
 
 SceneManager::SceneManager()
@@ -86,7 +86,9 @@ void SceneManager::Update()
 	}
 
 	for (int i = 0; i < deletedScenes->size(); i++)
+	{
 		delete deletedScenes->operator[](i);
+	}
 		
 	deletedScenes->clear();
 }

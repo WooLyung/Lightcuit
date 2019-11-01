@@ -321,11 +321,11 @@ void GameInputManager::GateMove()
 {
 	if (inputState == InputState::GATE_LIFT)
 	{
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_MBUTTON) == KeyState::KEYSTATE_STAY)
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY)
 		{
 			myGate->GetTransform()->SetPos(RG2R_InputM->GetMouseWorldPos());
 		}
-		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_MBUTTON) == KeyState::KEYSTATE_EXIT)
+		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT)
 		{
 			Vec2L tilePos = scene->GetTilePos();
 			Gate* targetGate = nullptr;
@@ -471,27 +471,41 @@ void GameInputManager::Input()
 		}
 	}
 #pragma endregion
-#pragma region 휠 클릭 (이동)
-	if (targetGate != nullptr)
-	{
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_MBUTTON) == KeyState::KEYSTATE_ENTER
-			&& inputState == InputState::NONE)
-		{
-			inputState = InputState::GATE_LIFT;
-			myGate = targetGate;
-			myGate->GetSpriteRenderer()->SetZ_index(2);
-			LineUnconnect(targetGate);
-		}
-	}
-#pragma endregion
-#pragma region 좌클릭 (연결)
+#pragma region 좌클릭 중심 (이동)
 	if (targetGate != nullptr)
 	{
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER
 			&& inputState == InputState::NONE)
 		{
-			inputState = InputState::LINE_START;
-			myGate = targetGate;
+			Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
+			if (mousePos.x >= tilePos.x - 0.3f
+				&& mousePos.y >= tilePos.y - 0.3f
+				&& mousePos.x <= tilePos.x + 0.3f
+				&& mousePos.y <= tilePos.y + 0.3f)
+			{
+				inputState = InputState::GATE_LIFT;
+				myGate = targetGate;
+				myGate->GetSpriteRenderer()->SetZ_index(2);
+				LineUnconnect(targetGate);
+			}
+		}
+	}
+#pragma endregion
+#pragma region 좌클릭 가장자리 (연결)
+	if (targetGate != nullptr)
+	{
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER
+			&& inputState == InputState::NONE)
+		{
+			Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
+			if (!(mousePos.x >= tilePos.x - 0.3f
+				&& mousePos.y >= tilePos.y - 0.3f
+				&& mousePos.x <= tilePos.x + 0.3f
+				&& mousePos.y <= tilePos.y + 0.3f))
+			{
+				inputState = InputState::LINE_START;
+				myGate = targetGate;
+			}
 		}
 	}
 #pragma endregion
