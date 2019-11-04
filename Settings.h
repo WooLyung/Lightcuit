@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #define GAME_TITLE "Test Title"
-#define BACKGROUND_COLOR 0xff000000
+#define BACKGROUND_COLOR 0xff664E44
 
 #define WINDOW_DEFAULT_WIDTH 1280
 #define WINDOW_DEFAULT_HEIGHT 720

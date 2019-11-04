@@ -7,7 +7,6 @@
 
 Scene* SceneManager::FirstScene()
 {
-	return new InGameScene;
 	return new IntroScene;
 }
 
