@@ -241,8 +241,20 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj">
       <UniqueIdentifier>{df966265-ca14-4a9a-83e7-f772a2e39ad3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\Generic\UIObject">
-      <UniqueIdentifier>{9fdfadca-47a8-471c-adbd-9f8a4db64a39}</UniqueIdentifier>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\Pen1">
+      <UniqueIdentifier>{a85d1dcf-8a34-4de5-a933-caa5a83b86f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\Ruler1">
+      <UniqueIdentifier>{8e7c13b6-8b17-47b4-8811-8e7140f53143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\Pen2">
+      <UniqueIdentifier>{db9588e1-ac1d-4ce6-ad25-c9cce3c3c746}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\Pen3">
+      <UniqueIdentifier>{b2e2c44e-6845-4e7c-af74-4db2b6187270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\Ruler2">
+      <UniqueIdentifier>{a6aba857-4843-473f-98a7-61502ecfde0c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -429,8 +441,20 @@
     <ClInclude Include="StageClearObj.h">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
     </ClInclude>
-    <ClInclude Include="UIObject.h">
-      <Filter>소스 파일\Game\Objects\Generic\UIObject</Filter>
+    <ClInclude Include="Pen1.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Pen1</Filter>
+    </ClInclude>
+    <ClInclude Include="Ruler1.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler1</Filter>
+    </ClInclude>
+    <ClInclude Include="Pen2.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Pen2</Filter>
+    </ClInclude>
+    <ClInclude Include="Pen3.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Pen3</Filter>
+    </ClInclude>
+    <ClInclude Include="Ruler2.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -615,8 +639,20 @@
     <ClCompile Include="StageClearObj.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
     </ClCompile>
-    <ClCompile Include="UIObject.cpp">
-      <Filter>소스 파일\Game\Objects\Generic\UIObject</Filter>
+    <ClCompile Include="Pen1.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Pen1</Filter>
+    </ClCompile>
+    <ClCompile Include="Ruler1.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler1</Filter>
+    </ClCompile>
+    <ClCompile Include="Pen2.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Pen2</Filter>
+    </ClCompile>
+    <ClCompile Include="Pen3.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Pen3</Filter>
+    </ClCompile>
+    <ClCompile Include="Ruler2.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
