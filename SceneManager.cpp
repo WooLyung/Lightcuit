@@ -4,9 +4,11 @@
 #include "Engine.h"
 #include "IntroScene.h"
 #include "InGameScene.h"
+#include "ChapterScene.h"
 
 Scene* SceneManager::FirstScene()
 {
+	//return new ChapterScene;
 	return new IntroScene;
 }
 

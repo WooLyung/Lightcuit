@@ -14,11 +14,7 @@ ChapterScene::~ChapterScene()
 
 void ChapterScene::OnStart()
 {
-	CreateObject()->AttachComponent<TextRenderer>()
-		->SetText("Ã©ÅÍ ¼±ÅÃ")->SetTextColor(Color(1, 1, 1))->SetAlignmentHeight(TextAlignment::ALIGN_CENTER)
-		->SetAlignmentWidth(TextAlignment::ALIGN_CENTER);
-
-	AttachObject(new ChapterChoice)
-		->GetComponent<Transform>()
-		->SetPos(3, 1.5f);
+	AttachObject(new ChapterChoice(1, std::string("Resources/Sprites/UIs/Chapters/chapter1.png")));
+	AttachObject(new ChapterChoice(2, std::string("Resources/Sprites/UIs/Chapters/chapter2.png")));
+	AttachObject(new ChapterChoice(3, std::string("Resources/Sprites/UIs/Chapters/chapter3.png")));
 }

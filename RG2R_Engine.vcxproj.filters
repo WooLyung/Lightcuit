@@ -241,6 +241,9 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj">
       <UniqueIdentifier>{df966265-ca14-4a9a-83e7-f772a2e39ad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\Generic\UIObject">
+      <UniqueIdentifier>{9fdfadca-47a8-471c-adbd-9f8a4db64a39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -426,6 +429,9 @@
     <ClInclude Include="StageClearObj.h">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
     </ClInclude>
+    <ClInclude Include="UIObject.h">
+      <Filter>소스 파일\Game\Objects\Generic\UIObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -608,6 +614,9 @@
     </ClCompile>
     <ClCompile Include="StageClearObj.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
+    </ClCompile>
+    <ClCompile Include="UIObject.cpp">
+      <Filter>소스 파일\Game\Objects\Generic\UIObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

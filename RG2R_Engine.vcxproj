@@ -216,6 +216,7 @@
     <ClInclude Include="Textures.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UIObject.h" />
     <ClInclude Include="ViewRenderData.h" />
     <ClInclude Include="ViewRenderer.h" />
     <ClInclude Include="WindowManager.h" />
@@ -279,6 +280,7 @@
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UIObject.cpp" />
     <ClCompile Include="ViewRenderData.cpp" />
     <ClCompile Include="ViewRenderer.cpp" />
     <ClCompile Include="WindowManager.cpp" />
