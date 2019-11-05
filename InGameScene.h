@@ -6,6 +6,7 @@
 #include "GameInputManager.h"
 #include "ObjectManager.h"
 #include "PlayManager.h"
+#include "Tiles.h"
 #include <map>
 
 class InGameScene :
@@ -19,6 +20,8 @@ private:
 	GameInputManager* gameInputManager;
 	ObjectManager* objectManager;
 	PlayManager* playManager;
+	Vec2L mapSize;
+	Tiles* tiles;
 
 	void PushGate(Gate*);
 	void Init();

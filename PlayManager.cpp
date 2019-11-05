@@ -30,12 +30,12 @@ void PlayManager::OnStart()
 		{
 			if (iter->GetID() != typeid(Battery))
 			{
-				iter->SetColor(Color(1, 1, 1, 0));
+				iter->SetColor(Color(1, 1, 1, 1));
 			}
 		}
 		for (auto& iter : scene->objectManager->lines)
 		{
-			iter->SetColor(Color(1, 1, 1, 0));
+			iter->SetColor(Color(1, 1, 1, 1));
 		}
 		}, 1.5f)
 		->PushCommand([=]() {

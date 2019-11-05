@@ -4,6 +4,12 @@
 Battery::Battery(long x, long y, Dir dir, Color8 color)
 	: Gate(x, y, dir)
 {
+	auto uncolored = new Object;
+	uncoloredSpriteRenderer = uncolored->AttachComponent<SpriteRenderer>();
+	uncoloredSpriteRenderer->SetZ_index(1);
+	uncolored->GetComponent<Transform>()->SetAnchor(64, 64);
+	uncolored->ChangeParent(this);
+
 	spriteRenderer->SetTexture("Resources/Sprites/Gates/battery.png");
 	uncoloredSpriteRenderer->SetTexture("Resources/Sprites/Gates/battery_uncolored.png");
 	this->color = color;
@@ -18,4 +24,9 @@ Battery::Battery(long x, long y, Dir dir, Color8 color)
 
 Battery::~Battery()
 {
+}
+
+SpriteRenderer* Battery::GetUncoloredRenderer()
+{
+	return uncoloredSpriteRenderer;
 }

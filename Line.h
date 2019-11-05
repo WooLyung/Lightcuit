@@ -14,12 +14,11 @@ private:
 	SpriteRenderer* spriteRenderer;
 	Effect* effect;
 	Transform* transform;
-	SpriteRenderer* uncoloredSpriteRenderer;
 
 private:
 	CommandList* changeColor;
-	Color nowColor = { 1, 1, 1, 0 };
-	Color toColor = { 1, 1, 1, 0 };
+	Color nowColor = { 1, 1, 1, 1 };
+	Color toColor = { 1, 1, 1, 1 };
 	Color8 color;
 
 public:
@@ -29,7 +28,6 @@ public:
 	void OnStart();
 	Transform* GetTransform();
 	SpriteRenderer* GetSpriteRenderer();
-	SpriteRenderer* GetUncoloredRenderer();
 
 	void SetColor(Color8);
 	void SetColor(Color);

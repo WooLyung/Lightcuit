@@ -8,20 +8,16 @@ class Pen1 :
 	public Object
 {
 private:
-	enum WritingSuppliesState {
-		appear, wait, disappear
-	};
-
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
-	WritingSuppliesState state = appear;
 
 	// animations
+	bool isAnim = false;
 	float animTime = 0;
 	CommandList* appearAnim;
 
 public:
-	Pen1();
+	Pen1(bool);
 	~Pen1();
 
 	Transform* GetTransform();

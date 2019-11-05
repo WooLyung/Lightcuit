@@ -8,20 +8,16 @@ class Ruler1 :
 	public Object
 {
 private:
-	enum WritingSuppliesState {
-		appear, wait, disappear
-	};
-
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
-	WritingSuppliesState state = appear;
 
 	// animations
+	bool isAnim = false;
 	float animTime = 0;
 	CommandList* appearAnim;
 
 public:
-	Ruler1();
+	Ruler1(bool);
 	~Ruler1();
 
 	Transform* GetTransform();

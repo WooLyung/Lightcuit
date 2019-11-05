@@ -3,6 +3,9 @@
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "CommandList.h"
+#include "ChapterScene.h"
+
+class ChapterScene;
 
 class ChapterChoice :
 	public Object
@@ -17,9 +20,9 @@ private:
 	};
 
 	std::string path;
-	int chapter = 0;
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
+	ChapterScene* scene;
 
 	Transform* transform_child;
 	SpriteRenderer* spriteRenderer_child;
@@ -31,14 +34,19 @@ private:
 	float animTime = 0;
 	int inFlag = 1;
 	int sizeFlag = 1;
+	float fromX = 0;
 	CommandList* appearAnim;
 	CommandList* moveIn;
+	CommandList* moveDown;
+	CommandList* goStageScene;
 	CommandList* changeScale;
 
 	void Input();
 
 public:
-	ChapterChoice(int, std::string);
+	int chapter = 0;
+
+	ChapterChoice(int, std::string, ChapterScene*);
 	~ChapterChoice();
 
 	Transform* GetTransform();
@@ -46,4 +54,6 @@ public:
 
 	void OnStart();
 	void OnUpdate();
+	void MoveDown();
+	void GoStageScene();
 };

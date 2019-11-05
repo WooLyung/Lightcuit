@@ -36,8 +36,17 @@ void GameInputManager::LineConnect()
 	if (inputState == InputState::LINE_START
 		|| inputState == InputState::LINE_CONNECT)
 	{
+		if (!(tilePos.x >= -scene->mapSize.x / 2 && tilePos.x <= scene->mapSize.x / 2
+			&& tilePos.y >= -scene->mapSize.y / 2 && tilePos.y <= scene->mapSize.y / 2))
+		{
+			LineCancel();
+			return;
+		}
+
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY) // 좌클릭 유지
 		{
+
+
 			if (inputState == InputState::LINE_START) // 시작
 			{
 				if (tilePos.x != myGate->tilePos.x || tilePos.y != myGate->tilePos.y) // 이동했을 때
@@ -319,6 +328,8 @@ void GameInputManager::LineCancel()
 
 void GameInputManager::GateMove()
 {
+	Vec2L tilePos = scene->GetTilePos();
+
 	if (inputState == InputState::GATE_LIFT)
 	{
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY)
@@ -327,6 +338,16 @@ void GameInputManager::GateMove()
 		}
 		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT)
 		{
+			if (!(tilePos.x >= -scene->mapSize.x / 2 && tilePos.x <= scene->mapSize.x / 2
+				&& tilePos.y >= -scene->mapSize.y / 2 && tilePos.y <= scene->mapSize.y / 2))
+			{
+				myGate->SetPos(myGate->tilePos.x, myGate->tilePos.y);
+				inputState = InputState::NONE;
+				myGate->GetSpriteRenderer()->SetZ_index(0);
+				myGate = nullptr;
+				return;
+			}
+
 			Vec2L tilePos = scene->GetTilePos();
 			Gate* targetGate = nullptr;
 			Line* targetLine = nullptr;
@@ -362,7 +383,6 @@ void GameInputManager::GateMove()
 
 			inputState = InputState::NONE;
 			myGate->GetSpriteRenderer()->SetZ_index(0);
-			myGate->GetUncoloredRenderer()->SetZ_index(1);
 			myGate = nullptr;
 		}
 	}
@@ -487,7 +507,6 @@ void GameInputManager::Input()
 				inputState = InputState::GATE_LIFT;
 				myGate = targetGate;
 				myGate->GetSpriteRenderer()->SetZ_index(2);
-				myGate->GetUncoloredRenderer()->SetZ_index(3);
 				LineUnconnect(targetGate);
 			}
 		}

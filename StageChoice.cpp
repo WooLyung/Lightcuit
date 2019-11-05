@@ -2,11 +2,15 @@
 #include "StageChoice.h"
 #include "Engine.h"
 #include "TextRenderer.h"
-#include "InGameScene.h"
+#include "StageScene.h"
 #include "StageData.h"
 
-StageChoice::StageChoice()
+StageChoice::StageChoice(int Stage, std::string path, StageScene* scene, Vec2F pos)
 {
+	this->stage = Stage;
+	this->path = path;
+	this->scene = scene;
+	this->toPos = pos;
 }
 
 StageChoice::~StageChoice()
@@ -15,28 +19,157 @@ StageChoice::~StageChoice()
 
 void StageChoice::OnStart()
 {
-	transform = GetComponent<Transform>()
-		->SetAnchor(128, 128);
 	spriteRenderer = AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/UIs/stageChoice.png");
+		->SetTexture(path)
+		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
+	spriteRenderer->SetZ_index(-2);
+	transform = GetComponent<Transform>()
+		->SetScale(0.3f, 0.3f)
+		->SetAnchor(spriteRenderer->GetTexture()->GetSize().width * 0.5f, spriteRenderer->GetTexture()->GetSize().height * 0.5f);
 
-	auto text = (new Object)->AttachComponent<TextRenderer>()
-		->SetText("1스테이지")->SetTextColor(Color(0, 0, 0))->SetAlignmentHeight(TextAlignment::ALIGN_CENTER)
-		->SetAlignmentWidth(TextAlignment::ALIGN_CENTER)->GetOwner();
-	text->ChangeParent(this);
-	text->GetComponent<TextRenderer>()->SetZ_index(1);
+	appearAnim = new CommandList;
+	commandLists.push_back(appearAnim);
+	appearAnim->PushCommand([=]() {
+		animTime += RG2R_TimeM->GetDeltaTime() * 2.5f;
+		transform->SetPos((1 - pow(animTime - 1, 2)) * 1 * toPos);
+
+		if (animTime >= 1)
+		{
+			transform->SetPos(toPos);
+			animTime = 0;
+			appearAnim->Stop();
+			state = StageState::wait;
+		}
+		}, 0);
+	appearAnim->SetIsLoop(true);
+
+	hoverAnim = new CommandList;
+	commandLists.push_back(hoverAnim);
+	hoverAnim->PushCommand([=]() {
+		transform->SetRot(transform->GetRot() + RG2R_TimeM->GetDeltaTime() * hoverFlag * 100);
+
+		if (transform->GetRot() > 8)
+		{
+			transform->SetRot(8);
+			hoverAnim->Stop();
+		}
+		else if (transform->GetRot() < 0)
+		{
+			transform->SetRot(0);
+			hoverAnim->Stop();
+		}
+		}, 0);
+	hoverAnim->SetIsLoop(true);
+
+	changeScale = new CommandList;
+	commandLists.push_back(changeScale);
+	changeScale->PushCommand([=]() {
+		transform->SetScale(Vec2F(transform->GetScale()) + Vec2F(1, 1) * RG2R_TimeM->GetDeltaTime() * 0.3f * sizeFlag);
+
+		if (transform->GetScale().x > 0.3f)
+		{
+			transform->SetScale(0.3f, 0.3f);
+			changeScale->Stop();
+		}
+		else if (transform->GetScale().x < 0.28f)
+		{
+			transform->SetScale(0.28f, 0.28f);
+			changeScale->Stop();
+		}
+		}, 0);
+	changeScale->SetIsLoop(true);
+
+	disappearAnim = new CommandList;
+	commandLists.push_back(disappearAnim);
+	disappearAnim->PushCommand([=]() {
+		animTime += RG2R_TimeM->GetDeltaTime() * 2.f;
+		transform->SetPos((pow(animTime - 1, 2)) * 1 * -toPos);
+
+		if (animTime >= 1)
+		{
+			transform->SetPos(0, 0);
+			animTime = 0;
+			disappearAnim->Stop();
+			state = StageState::disappear;
+			spriteRenderer->SetIsEnable(false);
+		}
+		}, 0);
+	disappearAnim->SetIsLoop(true);
 }
 
 void StageChoice::OnUpdate()
 {
-	if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+	if (StageChoice::state == StageChoice::appear)
 	{
-		Vec2F vec = RG2R_InputM->GetMouseWorldPos() - transform->GetPos();
-
-		if (vec.Dot(vec) <= 1)
+		animTime += RG2R_TimeM->GetDeltaTime();
+		if (animTime >= 0.12f * stage)
 		{
-			StageData::GetInstance()->stage = 1;
-			RG2R_SceneM->ChangeScene(new InGameScene, true);
+			state = StageChoice::wait;
+			animTime = 0;
+			appearAnim->Start();
 		}
 	}
+
+	Input();
+}
+
+void StageChoice::Input()
+{
+	Vec2F vec = RG2R_InputM->GetMouseWorldPos() - transform->GetPos();
+
+	if (vec.Dot(vec) <= 0.6f)
+	{
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_NONE)
+		{
+			if (inputState == InputState::none)
+			{
+				inputState = InputState::hover;
+				hoverFlag = 1;
+				hoverAnim->Start();
+			}
+		}
+		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+		{
+			if (inputState == InputState::hover)
+			{
+				inputState = InputState::click;
+				sizeFlag = -1;
+				changeScale->Start();
+			}
+		}
+		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT)
+		{
+			if (inputState == InputState::click)
+			{
+				StageData::GetInstance()->stage = stage;
+				sizeFlag = 1;
+				changeScale->Start();
+				scene->ChoiceStage();
+			}
+		}
+	}
+	else
+	{
+		inputState = InputState::none;
+		hoverFlag = -1;
+		hoverAnim->Start();
+
+		sizeFlag = 1;
+		changeScale->Start();
+	}
+}
+
+Transform* StageChoice::GetTransform()
+{
+	return transform;
+}
+
+SpriteRenderer* StageChoice::GetSpriteRenderer()
+{
+	return spriteRenderer;
+}
+
+void StageChoice::Disappear()
+{
+	disappearAnim->Start();
 }

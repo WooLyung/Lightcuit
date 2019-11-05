@@ -241,20 +241,26 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj">
       <UniqueIdentifier>{df966265-ca14-4a9a-83e7-f772a2e39ad3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\Pen1">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Tiles">
+      <UniqueIdentifier>{19e45f0c-35d1-45c8-9ad2-f6e1ed5cda5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Generic\Pen1">
       <UniqueIdentifier>{a85d1dcf-8a34-4de5-a933-caa5a83b86f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\Ruler1">
-      <UniqueIdentifier>{8e7c13b6-8b17-47b4-8811-8e7140f53143}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\Pen2">
+    <Filter Include="소스 파일\Game\Objects\Generic\Pen2">
       <UniqueIdentifier>{db9588e1-ac1d-4ce6-ad25-c9cce3c3c746}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\Pen3">
+    <Filter Include="소스 파일\Game\Objects\Generic\Pen3">
       <UniqueIdentifier>{b2e2c44e-6845-4e7c-af74-4db2b6187270}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\Ruler2">
+    <Filter Include="소스 파일\Game\Objects\Generic\Ruler1">
+      <UniqueIdentifier>{8e7c13b6-8b17-47b4-8811-8e7140f53143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Generic\Ruler2">
       <UniqueIdentifier>{a6aba857-4843-473f-98a7-61502ecfde0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\PostIt">
+      <UniqueIdentifier>{0e6a9911-48a4-4b0c-8b5b-f307763eb640}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -442,19 +448,25 @@
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
     </ClInclude>
     <ClInclude Include="Pen1.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Pen1</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Pen1</Filter>
     </ClInclude>
     <ClInclude Include="Ruler1.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler1</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Ruler1</Filter>
     </ClInclude>
     <ClInclude Include="Pen2.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Pen2</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Pen2</Filter>
     </ClInclude>
     <ClInclude Include="Pen3.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Pen3</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Pen3</Filter>
     </ClInclude>
     <ClInclude Include="Ruler2.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler2</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Ruler2</Filter>
+    </ClInclude>
+    <ClInclude Include="Tiles.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="PostIt.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\PostIt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -640,19 +652,25 @@
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
     </ClCompile>
     <ClCompile Include="Pen1.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Pen1</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Pen1</Filter>
     </ClCompile>
     <ClCompile Include="Ruler1.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler1</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Ruler1</Filter>
     </ClCompile>
     <ClCompile Include="Pen2.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Pen2</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Pen2</Filter>
     </ClCompile>
     <ClCompile Include="Pen3.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Pen3</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Pen3</Filter>
     </ClCompile>
     <ClCompile Include="Ruler2.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Ruler2</Filter>
+      <Filter>소스 파일\Game\Objects\Generic\Ruler2</Filter>
+    </ClCompile>
+    <ClCompile Include="Tiles.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\Tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="PostIt.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\PostIt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

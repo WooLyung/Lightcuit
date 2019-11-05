@@ -4,6 +4,10 @@
 class Battery :
 	public Gate
 {
+private:
+	SpriteRenderer* uncoloredSpriteRenderer;
+	SpriteRenderer* GetUncoloredRenderer();
+
 public:
 	Battery(long, long, Dir, Color8);
 	~Battery();

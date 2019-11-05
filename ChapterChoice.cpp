@@ -5,10 +5,11 @@
 #include "StageScene.h"
 #include "StageData.h"
 
-ChapterChoice::ChapterChoice(int chapter, std::string path)
+ChapterChoice::ChapterChoice(int chapter, std::string path, ChapterScene* scene)
 {
 	this->chapter = chapter;
 	this->path = path;
+	this->scene = scene;
 }
 
 ChapterChoice::~ChapterChoice()
@@ -89,6 +90,34 @@ void ChapterChoice::OnStart()
 		}
 		}, 0);
 	changeScale->SetIsLoop(true);
+
+	moveDown = new CommandList;
+	commandLists.push_back(moveDown);
+	moveDown->PushCommand([=]() {
+		transform->Translate(0, RG2R_TimeM->GetDeltaTime() * -10);
+		if (transform->GetPos().y <= -10)
+			moveDown->Stop();
+		}, 0);
+	moveDown->SetIsLoop(true);
+
+	goStageScene = new CommandList;
+	commandLists.push_back(goStageScene);
+	goStageScene->PushCommand([=]() {
+		animTime += RG2R_TimeM->GetDeltaTime();
+
+		transform->SetRot(pow(animTime - 1, 2) * -20);
+		transform_child->SetScale(transform_child->GetScale().x - RG2R_TimeM->GetDeltaTime(),
+			transform_child->GetScale().y - RG2R_TimeM->GetDeltaTime());
+
+		float dis = transform->GetPos().x - fromX;
+		scene->GetMainCamera()->SetPosX((-pow(animTime - 1, 2) + 1) * dis + fromX);
+
+		if (animTime >= 1)
+		{
+			RG2R_SceneM->ChangeScene(new StageScene);
+		}
+		}, 0);
+	goStageScene->SetIsLoop(true);
 }
 
 void ChapterChoice::OnUpdate()
@@ -135,10 +164,11 @@ void ChapterChoice::Input()
 		{
 			if (inputState == InputState::click)
 			{
-				std::cout << chapter << " Chapter" << std::endl;
-
+				StageData::GetInstance()->chapter = chapter;
 				changeScale->Start();
 				sizeFlag = 1;
+
+				scene->ChoiceChapter();
 			}
 		}
 	}
@@ -161,4 +191,16 @@ Transform* ChapterChoice::GetTransform()
 SpriteRenderer* ChapterChoice::GetSpriteRenderer()
 {
 	return spriteRenderer;
+}
+
+void ChapterChoice::MoveDown()
+{
+	moveDown->Start();
+}
+
+void ChapterChoice::GoStageScene()
+{
+	goStageScene->Start();
+	animTime = 0;
+	fromX = scene->GetMainCamera()->GetPos().x;
 }

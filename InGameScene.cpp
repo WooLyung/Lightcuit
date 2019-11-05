@@ -18,9 +18,15 @@
 #include "StageData.h"
 #include <fstream>
 
+#include "Pen1.h"
+#include "Pen2.h"
+#include "Pen3.h"
+#include "Ruler1.h"
+#include "Ruler2.h"
+#include "PostIt.h"
+
 InGameScene::InGameScene()
 {
-	GetMainCamera()->SetZoom(0.5f, 0.5f);
 }
 
 InGameScene::~InGameScene()
@@ -32,19 +38,17 @@ void InGameScene::OnStart()
 	objectManager = new ObjectManager(this);
 	gameInputManager = new GameInputManager(this);
 	playManager = new PlayManager(this);
+
 	AttachObject(objectManager);
 	AttachObject(gameInputManager);
 	AttachObject(playManager);
 
-	auto obj = CreateObject()
-		->AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/check.png")
-		->GetOwner()
-		->AttachComponent<Transform>()
-		->SetAnchor(1402 * 0.5f, 896 * 0.5f)
-		->GetOwner();
-	obj->GetComponent<SpriteRenderer>()
-		->SetZ_index(-1);
+	AttachObject(new Pen1(false));
+	AttachObject(new Pen2(false));
+	AttachObject(new Pen3(false));
+	AttachObject(new Ruler1(false));
+	AttachObject(new Ruler2(false));
+	AttachObject(new PostIt(true));
 
 	Init();
 }
@@ -91,7 +95,19 @@ void InGameScene::Init()
 				break;
 		}
 
-		CreateGate(gateData);
+		if (gateData.find("type") == gateData.end())
+		{
+			mapSize.x = std::stoi(gateData["x"]);
+			mapSize.y = std::stoi(gateData["y"]);
+			GetMainCamera()->SetZoom(std::stof(gateData["zoom"]), std::stof(gateData["zoom"]));
+
+			tiles = new Tiles(mapSize.x, mapSize.y);
+			AttachObject(tiles);
+		}
+		else
+		{
+			CreateGate(gateData);
+		}
 	}
 	in.close();
 }
@@ -112,6 +128,8 @@ void InGameScene::PushGate(Gate* gate)
 
 void InGameScene::CreateGate(std::map<string, string> data)
 {
+	Gate* gate = nullptr;
+
 	Dir dir = Dir::RIGHT;
 	if (data.find("dir") != data.end())
 	{
@@ -141,30 +159,42 @@ void InGameScene::CreateGate(std::map<string, string> data)
 				color = Color8(0, 0, 1);
 		}
 
-		PushGate(new Battery(x, y, dir, color));
+		gate = new Battery(x, y, dir, color);
+		PushGate(gate);
 	}
 	else if (data["type"] == "add_gate")
 	{
-		PushGate(new AddGate(x, y, dir));
+		gate = new AddGate(x, y, dir);
+		PushGate(gate);
 	}
 	else if (data["type"] == "division_gate")
 	{
-		PushGate(new DivisionGate(x, y, dir));
+		gate = new DivisionGate(x, y, dir);
+		PushGate(gate);
 	}
 	else if (data["type"] == "sub_gate")
 	{
-		PushGate(new SubGate(x, y, dir));
+		gate = new SubGate(x, y, dir);
+		PushGate(gate);
 	}
 	else if (data["type"] == "light1")
 	{
-		PushGate(new Light1(x, y, dir));
+		gate = new Light1(x, y, dir);
+		PushGate(gate);
 	}
 	else if (data["type"] == "light2")
 	{
-		PushGate(new Light2(x, y, dir));
+		gate = new Light2(x, y, dir);
+		PushGate(gate);
 	}
 	else if (data["type"] == "reverse_gate")
 	{
-		PushGate(new ReverseGate(x, y, dir));
+		gate = new ReverseGate(x, y, dir);
+		PushGate(gate);
+	}
+
+	if (gate != nullptr)
+	{
+		gate->ChangeParent(tiles);
 	}
 }

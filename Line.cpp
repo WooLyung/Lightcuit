@@ -13,13 +13,6 @@ Line::Line(long x, long y)
 	transform = GetComponent<Transform>()
 		->SetAnchor(64, 64)
 		->SetPos(x, y);
-
-	auto uncolored = new Object;
-	uncoloredSpriteRenderer = uncolored->AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/Lines/Line1_uncolored.png");
-	uncoloredSpriteRenderer->SetZ_index(-1);
-	uncolored->GetComponent<Transform>()->SetAnchor(64, 64);
-	uncolored->ChangeParent(this);
 }
 
 Line::~Line()
@@ -118,11 +111,6 @@ Transform* Line::GetTransform()
 SpriteRenderer* Line::GetSpriteRenderer()
 {
 	return spriteRenderer;
-}
-
-SpriteRenderer* Line::GetUncoloredRenderer()
-{
-	return uncoloredSpriteRenderer;
 }
 
 void Line::SetColor(Color8 newColor)

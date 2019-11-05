@@ -5,11 +5,14 @@
 #include "IntroScene.h"
 #include "InGameScene.h"
 #include "ChapterScene.h"
+#include "StageScene.h"
 
 Scene* SceneManager::FirstScene()
 {
 	//return new ChapterScene;
 	return new IntroScene;
+	//return new InGameScene;
+	//return new StageScene;
 }
 
 SceneManager::SceneManager()
@@ -35,34 +38,6 @@ SceneManager::~SceneManager()
 
 void SceneManager::Update()
 {
-	if (registeredScene != nullptr)
-	{
-		if (registeredScene->GetIsFirstUpdate())
-		{
-			ApplyListener(registeredScene->onStartListener);
-			registeredScene->OnStart();
-
-			ApplyListener(registeredScene->onFirstUpdateBeforeListener);
-			registeredScene->OnFirstUpdateBefore();
-		}
-		ApplyListener(registeredScene->onUpdateBeforeListener);
-		registeredScene->OnUpdateBefore();
-
-		registeredScene->Update();
-
-		if (registeredScene->GetIsFirstUpdate())
-		{
-			ApplyListener(registeredScene->onFirstUpdateListener);
-			registeredScene->OnFirstUpdate();
-
-			registeredScene->isFirstUpdate = false;
-		}
-		ApplyListener(registeredScene->onUpdateListener);
-		registeredScene->OnUpdate();
-
-		registeredScene->state = SceneState::SCENE_ALIVE;
-	}
-
 	if (nextScene != nullptr)
 	{
 		Scene* preScene = registeredScene;
@@ -92,8 +67,36 @@ void SceneManager::Update()
 	{
 		delete deletedScenes->operator[](i);
 	}
-		
+
 	deletedScenes->clear();
+
+	if (registeredScene != nullptr)
+	{
+		if (registeredScene->GetIsFirstUpdate())
+		{
+			ApplyListener(registeredScene->onStartListener);
+			registeredScene->OnStart();
+
+			ApplyListener(registeredScene->onFirstUpdateBeforeListener);
+			registeredScene->OnFirstUpdateBefore();
+		}
+		ApplyListener(registeredScene->onUpdateBeforeListener);
+		registeredScene->OnUpdateBefore();
+
+		registeredScene->Update();
+
+		if (registeredScene->GetIsFirstUpdate())
+		{
+			ApplyListener(registeredScene->onFirstUpdateListener);
+			registeredScene->OnFirstUpdate();
+
+			registeredScene->isFirstUpdate = false;
+		}
+		ApplyListener(registeredScene->onUpdateListener);
+		registeredScene->OnUpdate();
+
+		registeredScene->state = SceneState::SCENE_ALIVE;
+	}
 }
 
 void SceneManager::Render()
@@ -134,7 +137,7 @@ Scene* SceneManager::ChangeScene(Scene* newScene)
 {	
 	nextScene = newScene;
 
-	return registeredScene;
+	return nextScene;
 }
 
 Scene* SceneManager::ChangeScene(Scene* newScene, bool isDelete)
@@ -143,7 +146,7 @@ Scene* SceneManager::ChangeScene(Scene* newScene, bool isDelete)
 	if (isDelete)
 		deletedScenes->push_back(registeredScene);
 
-	return registeredScene;
+	return nextScene;
 }
 
 Scene* SceneManager::ChangeScene(Scene* newScene, void* data)
@@ -151,7 +154,7 @@ Scene* SceneManager::ChangeScene(Scene* newScene, void* data)
 	nextScene = newScene;
 	this->data = data;
 
-	return registeredScene;
+	return nextScene;
 }
 
 Scene* SceneManager::ChangeScene(Scene* newScene, bool isDelete, void* data)
@@ -161,7 +164,7 @@ Scene* SceneManager::ChangeScene(Scene* newScene, bool isDelete, void* data)
 	if (isDelete)
 		deletedScenes->push_back(registeredScene);
 
-	return registeredScene;
+	return nextScene;
 }
 
 Scene* SceneManager::DeleteScene(Scene* scene)

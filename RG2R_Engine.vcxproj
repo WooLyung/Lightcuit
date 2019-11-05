@@ -195,6 +195,7 @@
     <ClInclude Include="Pen2.h" />
     <ClInclude Include="Pen3.h" />
     <ClInclude Include="PlayManager.h" />
+    <ClInclude Include="PostIt.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Resource.h" />
@@ -219,6 +220,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Textures.h" />
+    <ClInclude Include="Tiles.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="ViewRenderData.h" />
@@ -261,6 +263,7 @@
     <ClCompile Include="Pen2.cpp" />
     <ClCompile Include="Pen3.cpp" />
     <ClCompile Include="PlayManager.cpp" />
+    <ClCompile Include="PostIt.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ReverseGate.cpp" />
@@ -287,6 +290,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Tiles.cpp" />
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="ViewRenderData.cpp" />
