@@ -7,6 +7,7 @@
 #include "ObjectManager.h"
 #include "PlayManager.h"
 #include "Tiles.h"
+#include "PlayButton.h"
 #include <map>
 
 class InGameScene :
@@ -15,6 +16,7 @@ class InGameScene :
 	friend class GameInputManager;
 	friend class ObjectManager;
 	friend class PlayManager;
+	friend class PlayButton;
 
 private:
 	GameInputManager* gameInputManager;

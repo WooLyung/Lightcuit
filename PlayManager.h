@@ -41,6 +41,7 @@ public:
 	void OnStart();
 
 	int CheckClear();
+	void Try();
 	void Play();
 	void Result();
 };

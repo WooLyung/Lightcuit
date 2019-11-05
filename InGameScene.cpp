@@ -16,6 +16,7 @@
 #include "ObjectManager.h"
 #include "GameInputManager.h"
 #include "StageData.h"
+#include "PlayButton.h"
 #include <fstream>
 
 #include "Pen1.h"
@@ -49,6 +50,8 @@ void InGameScene::OnStart()
 	AttachObject(new Ruler1(false));
 	AttachObject(new Ruler2(false));
 	AttachObject(new PostIt(true));
+
+	AttachObject(new PlayButton(true, this));
 
 	Init();
 }

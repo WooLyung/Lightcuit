@@ -259,8 +259,11 @@
     <Filter Include="소스 파일\Game\Objects\Generic\Ruler2">
       <UniqueIdentifier>{a6aba857-4843-473f-98a7-61502ecfde0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\PostIt">
+    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\PostIt">
       <UniqueIdentifier>{0e6a9911-48a4-4b0c-8b5b-f307763eb640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\PlayButton">
+      <UniqueIdentifier>{3cdc66ae-fe34-4c84-a887-855b72cb5dac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -466,7 +469,10 @@
       <Filter>소스 파일\Game\Objects\InGameScene\Tiles</Filter>
     </ClInclude>
     <ClInclude Include="PostIt.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\PostIt</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PostIt</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayButton.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PlayButton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -670,7 +676,10 @@
       <Filter>소스 파일\Game\Objects\InGameScene\Tiles</Filter>
     </ClCompile>
     <ClCompile Include="PostIt.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\PostIt</Filter>
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PostIt</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayButton.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PlayButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

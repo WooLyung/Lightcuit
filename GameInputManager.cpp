@@ -45,8 +45,6 @@ void GameInputManager::LineConnect()
 
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY) // 좌클릭 유지
 		{
-
-
 			if (inputState == InputState::LINE_START) // 시작
 			{
 				if (tilePos.x != myGate->tilePos.x || tilePos.y != myGate->tilePos.y) // 이동했을 때
@@ -499,10 +497,10 @@ void GameInputManager::Input()
 			&& inputState == InputState::NONE)
 		{
 			Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
-			if (mousePos.x >= tilePos.x - 0.3f
-				&& mousePos.y >= tilePos.y - 0.3f
-				&& mousePos.x <= tilePos.x + 0.3f
-				&& mousePos.y <= tilePos.y + 0.3f)
+			if (mousePos.x >= tilePos.x - 0.25f
+				&& mousePos.y >= tilePos.y - 0.25f
+				&& mousePos.x <= tilePos.x + 0.25f
+				&& mousePos.y <= tilePos.y + 0.25f)
 			{
 				inputState = InputState::GATE_LIFT;
 				myGate = targetGate;
@@ -519,10 +517,10 @@ void GameInputManager::Input()
 			&& inputState == InputState::NONE)
 		{
 			Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
-			if (!(mousePos.x >= tilePos.x - 0.3f
-				&& mousePos.y >= tilePos.y - 0.3f
-				&& mousePos.x <= tilePos.x + 0.3f
-				&& mousePos.y <= tilePos.y + 0.3f))
+			if (!(mousePos.x >= tilePos.x - 0.25f
+				&& mousePos.y >= tilePos.y - 0.25f
+				&& mousePos.x <= tilePos.x + 0.25f
+				&& mousePos.y <= tilePos.y + 0.25f))
 			{
 				inputState = InputState::LINE_START;
 				myGate = targetGate;

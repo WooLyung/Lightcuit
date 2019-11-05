@@ -240,13 +240,25 @@ void PlayManager::Play()
 	tryPlay->Start();
 }
 
+void PlayManager::Try()
+{
+	int result = CheckClear();
+	if (result == 0)
+	{
+		Play();
+	}
+	else if (result == 1)
+	{
+		std::cout << "미완성" << std::endl;
+	}
+	else if (result == 2)
+	{
+		std::cout << "사이클이 존재함" << std::endl;
+	}
+}
+
 void PlayManager::OnUpdate()
 {
-	if (RG2R_InputM->GetKeyState(KeyCode::KEY_F) == KeyState::KEYSTATE_ENTER)
-	{
-		if (!CheckClear())
-			Play();
-	}
 }
 
 void PlayManager::Result()

@@ -194,6 +194,7 @@
     <ClInclude Include="Pen1.h" />
     <ClInclude Include="Pen2.h" />
     <ClInclude Include="Pen3.h" />
+    <ClInclude Include="PlayButton.h" />
     <ClInclude Include="PlayManager.h" />
     <ClInclude Include="PostIt.h" />
     <ClInclude Include="RandomGenerator.h" />
@@ -262,6 +263,7 @@
     <ClCompile Include="Pen1.cpp" />
     <ClCompile Include="Pen2.cpp" />
     <ClCompile Include="Pen3.cpp" />
+    <ClCompile Include="PlayButton.cpp" />
     <ClCompile Include="PlayManager.cpp" />
     <ClCompile Include="PostIt.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
