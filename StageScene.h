@@ -15,12 +15,16 @@ private:
 	CommandList* appearWait;
 	CommandList* appear;
 	CommandList* goToInGame;
+	CommandList* goToChapter;
 	float animTime = 0;
+	int moveFlag = 1;
 
 public:
 	StageScene();
 	~StageScene();
 
 	void OnStart();
+	void OnUpdate();
 	void ChoiceStage();
+	void Back();
 };

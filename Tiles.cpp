@@ -16,7 +16,7 @@ Tiles::Tiles(int x, int y)
 			animTime = 1;
 			upAnim->Stop();
 		}
-		transform->SetPosY(-pow(animTime - 1, 2) * 8);
+		transform->SetPosY(-pow(animTime - 1, 2) * 14);
 
 		}, 0);
 	upAnim->SetIsLoop(true);

@@ -145,9 +145,6 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\Line">
       <UniqueIdentifier>{78c87fe4-7113-4014-a1f5-558db17b1a50}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\ColorSet">
-      <UniqueIdentifier>{521287a3-2401-42c7-b049-575e6cb57f0d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Game\Objects\InGameScene\Managers">
       <UniqueIdentifier>{931562b0-28dd-4f72-9d5c-924fddb21fcc}</UniqueIdentifier>
     </Filter>
@@ -264,6 +261,12 @@
     </Filter>
     <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\PlayButton">
       <UniqueIdentifier>{3cdc66ae-fe34-4c84-a887-855b72cb5dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\Popup">
+      <UniqueIdentifier>{5d2377f5-a1f3-4c71-9d8e-8212acfedca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\PublicData\SceneData">
+      <UniqueIdentifier>{5dcae9d7-558b-4f7f-bc13-9315bd34937f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -399,9 +402,6 @@
     <ClInclude Include="DivisionGate.h">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate</Filter>
     </ClInclude>
-    <ClInclude Include="ColorSet.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\ColorSet</Filter>
-    </ClInclude>
     <ClInclude Include="ReverseGate.h">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate</Filter>
     </ClInclude>
@@ -473,6 +473,12 @@
     </ClInclude>
     <ClInclude Include="PlayButton.h">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\PlayButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Popup.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\Popup</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneData.h">
+      <Filter>소스 파일\Game\PublicData\SceneData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -606,9 +612,6 @@
     <ClCompile Include="DivisionGate.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate</Filter>
     </ClCompile>
-    <ClCompile Include="ColorSet.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\ColorSet</Filter>
-    </ClCompile>
     <ClCompile Include="ReverseGate.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate</Filter>
     </ClCompile>
@@ -680,6 +683,12 @@
     </ClCompile>
     <ClCompile Include="PlayButton.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\PlayButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Popup.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\Popup</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneData.cpp">
+      <Filter>소스 파일\Game\PublicData\SceneData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

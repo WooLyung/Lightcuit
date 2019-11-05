@@ -2,7 +2,6 @@
 #include "Scene.h"
 #include "Gate.h"
 #include "Line.h"
-#include "ColorSet.h"
 #include "GameInputManager.h"
 #include "ObjectManager.h"
 #include "PlayManager.h"

@@ -1,6 +1,5 @@
 #pragma once
 #include "Object.h"
-#include "ColorSet.h"
 #include "InGameScene.h"
 
 class InGameScene;

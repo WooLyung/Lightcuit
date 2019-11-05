@@ -11,6 +11,7 @@
 #include "Ruler2.h"
 #include "Engine.h"
 #include "InGameScene.h"
+#include "ChapterScene.h"
 
 StageScene::StageScene()
 {
@@ -39,7 +40,7 @@ void StageScene::OnStart()
 	appear = new CommandList;
 	appear->PushCommand([=]() {
 		animTime += RG2R_TimeM->GetDeltaTime() * 2;
-		transform->SetPosY(pow(animTime, 2) * 5);
+		transform->SetPosY(pow(animTime, 2) * 5 * moveFlag);
 
 		if (animTime >= 1)
 		{
@@ -55,6 +56,12 @@ void StageScene::OnStart()
 		RG2R_SceneM->ChangeScene(new InGameScene, true);
 		}, 1);
 	chapterObj->commandLists.push_back(goToInGame);
+
+	goToChapter = new CommandList;
+	goToChapter->PushCommand([=]() {
+		RG2R_SceneM->ChangeScene(new ChapterScene, true);
+		}, 1);
+	chapterObj->commandLists.push_back(goToChapter);
 
 	switch (StageData::GetInstance()->chapter)
 	{
@@ -110,6 +117,30 @@ void StageScene::ChoiceStage()
 			iter->Disappear();
 			goToInGame->Start();
 			appearWait->Start();
+		}
+	}
+}
+
+void StageScene::OnUpdate()
+{
+	if (RG2R_InputM->GetKeyState(KeyCode::KEY_F) == KeyState::KEYSTATE_ENTER)
+	{
+		Back();
+	}
+}
+
+void StageScene::Back()
+{
+	if (!isFinish)
+	{
+		isFinish = true;
+
+		for (auto iter : stages)
+		{
+			iter->Disappear();
+			goToChapter->Start();
+			appearWait->Start();
+			moveFlag = -1;
 		}
 	}
 }

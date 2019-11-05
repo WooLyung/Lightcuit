@@ -21,7 +21,7 @@ void Ruler1::OnStart()
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
 	spriteRenderer->SetZ_index(-1);
 	transform = GetComponent<Transform>()
-		->SetScale(0.17f, 0.17f)
+		->SetScale(1.7f, 1.7f)
 		->SetAnchor(0, 0)
 		->SetIsRelative(false)
 		->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * -0.5f - 0.5f,

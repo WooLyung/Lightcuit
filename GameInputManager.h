@@ -23,8 +23,6 @@ private:
 	Gate* myGate = nullptr;
 	Gate* targetGate = nullptr;
 
-	ColorSet* colorSet;
-
 public:
 	GameInputManager(InGameScene*);
 	~GameInputManager();

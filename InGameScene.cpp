@@ -12,7 +12,6 @@
 #include "DivisionGate.h"
 #include "SubGate.h"
 #include "ReverseGate.h"
-#include "ColorSet.h"
 #include "ObjectManager.h"
 #include "GameInputManager.h"
 #include "StageData.h"
@@ -24,7 +23,9 @@
 #include "Pen3.h"
 #include "Ruler1.h"
 #include "Ruler2.h"
+
 #include "PostIt.h"
+#include "Popup.h"
 
 InGameScene::InGameScene()
 {
@@ -49,9 +50,10 @@ void InGameScene::OnStart()
 	AttachObject(new Pen3(false));
 	AttachObject(new Ruler1(false));
 	AttachObject(new Ruler2(false));
-	AttachObject(new PostIt(true));
 
+	AttachObject(new PostIt(true));
 	AttachObject(new PlayButton(true, this));
+	AttachObject(new Popup);
 
 	Init();
 }

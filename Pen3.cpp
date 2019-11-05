@@ -21,7 +21,7 @@ void Pen3::OnStart()
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
 	spriteRenderer->SetZ_index(-1);
 	transform = GetComponent<Transform>()
-		->SetScale(0.08f, 0.08f)
+		->SetScale(0.8f, 0.8f)
 		->SetAnchor(spriteRenderer->GetTexture()->GetSize().width, spriteRenderer->GetTexture()->GetSize().height)
 		->SetIsRelative(false)
 		->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 0.4f,

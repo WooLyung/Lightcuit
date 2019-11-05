@@ -10,6 +10,7 @@
 #include "Ruler2.h"
 #include "Engine.h"
 #include "StageData.h"
+#include "SceneData.h"
 
 ChapterScene::ChapterScene()
 {
@@ -33,11 +34,24 @@ void ChapterScene::OnStart()
 		AttachObject(iter);
 	}
 
-	AttachObject(new Pen1(true));
-	AttachObject(new Pen2(true));
-	AttachObject(new Pen3(true));
-	AttachObject(new Ruler1(true));
-	AttachObject(new Ruler2(true));
+	if (SceneData::GetInstance()->isFirst)
+	{
+		SceneData::GetInstance()->isFirst = false;
+
+		AttachObject(new Pen1(true));
+		AttachObject(new Pen2(true));
+		AttachObject(new Pen3(true));
+		AttachObject(new Ruler1(true));
+		AttachObject(new Ruler2(true));
+	}
+	else
+	{
+		AttachObject(new Pen1(false));
+		AttachObject(new Pen2(false));
+		AttachObject(new Pen3(false));
+		AttachObject(new Ruler1(false));
+		AttachObject(new Ruler2(false));
+	}
 }
 
 void ChapterScene::OnUpdate()

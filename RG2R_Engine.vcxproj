@@ -167,7 +167,6 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ChapterChoice.h" />
     <ClInclude Include="ChapterScene.h" />
-    <ClInclude Include="ColorSet.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="Component.h" />
@@ -196,6 +195,7 @@
     <ClInclude Include="Pen3.h" />
     <ClInclude Include="PlayButton.h" />
     <ClInclude Include="PlayManager.h" />
+    <ClInclude Include="Popup.h" />
     <ClInclude Include="PostIt.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Renderer.h" />
@@ -204,6 +204,7 @@
     <ClInclude Include="Ruler1.h" />
     <ClInclude Include="Ruler2.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SoundManager.h" />
@@ -238,7 +239,6 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ChapterChoice.cpp" />
     <ClCompile Include="ChapterScene.cpp" />
-    <ClCompile Include="ColorSet.cpp" />
     <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="DivisionGate.cpp" />
@@ -265,6 +265,7 @@
     <ClCompile Include="Pen3.cpp" />
     <ClCompile Include="PlayButton.cpp" />
     <ClCompile Include="PlayManager.cpp" />
+    <ClCompile Include="Popup.cpp" />
     <ClCompile Include="PostIt.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -272,6 +273,7 @@
     <ClCompile Include="Ruler1.cpp" />
     <ClCompile Include="Ruler2.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteRenderData.cpp" />
