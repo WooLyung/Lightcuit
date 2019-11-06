@@ -6,9 +6,9 @@ DivisionGate::DivisionGate(long x, long y, Dir dir)
 {
 	spriteRenderer->SetTexture("Resources/Sprites/Gates/divisionGate.png");
 
-	input.push_back(Dir::LEFT);
-	output.push_back(Dir::UP);
-	output.push_back(Dir::DOWN);
+	input.push_back(Vec2L(-1, 0));
+	output.push_back(Vec2L(0, 1));
+	output.push_back(Vec2L(0, -1));
 
 	SetRot(dir);
 }

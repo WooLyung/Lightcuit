@@ -42,11 +42,8 @@ public:
 	void SetColor(Color8);
 	void SetColor(Color);
 
-	std::vector<Line*> nextLine;
-	std::vector<Line*> preLine;
-
-	std::vector<Dir> input;
-	std::vector<Dir> output;
+	std::vector<Vec2L> input;
+	std::vector<Vec2L> output;
 
 	virtual std::type_index GetID(void) = 0;
 };

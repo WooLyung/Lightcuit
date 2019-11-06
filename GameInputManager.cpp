@@ -18,8 +18,6 @@ void GameInputManager::OnUpdate()
 	if (scene->playManager->gameState == GameState::CircuitDesign)
 	{
 		Input();
-		GateMove();
-		LineConnect();
 	}
 }
 
@@ -27,367 +25,10 @@ void GameInputManager::OnStart()
 {
 }
 
-void GameInputManager::LineConnect()
-{
-	Vec2L tilePos = scene->GetTilePos();
-
-	if (inputState == InputState::LINE_START
-		|| inputState == InputState::LINE_CONNECT)
-	{
-		if (!(tilePos.x >= -scene->mapSize.x / 2 && tilePos.x <= scene->mapSize.x / 2
-			&& tilePos.y >= -scene->mapSize.y / 2 && tilePos.y <= scene->mapSize.y / 2))
-		{
-			LineCancel();
-			return;
-		}
-
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY) // 좌클릭 유지
-		{
-			if (inputState == InputState::LINE_START) // 시작
-			{
-				if (tilePos.x != myGate->tilePos.x || tilePos.y != myGate->tilePos.y) // 이동했을 때
-				{
-					if ((abs(tilePos.x - myGate->tilePos.x) == 1 && abs(tilePos.y - myGate->tilePos.y) == 0)
-						|| (abs(tilePos.x - myGate->tilePos.x) == 0 && abs(tilePos.y - myGate->tilePos.y) == 1))
-						// 상하좌우 한칸만 이동했을 때
-					{
-						bool canConnect = false;
-						Dir dir = LEFT;
-
-						if (tilePos.x > myGate->tilePos.x)
-							dir = RIGHT;
-						else if (tilePos.x < myGate->tilePos.x)
-							dir = LEFT;
-						else if (tilePos.y > myGate->tilePos.y)
-							dir = UP;
-						else if (tilePos.y < myGate->tilePos.y)
-							dir = DOWN;
-
-						for (int i = 0; i < myGate->output.size(); i++)
-							if (myGate->output[i] == dir)
-								canConnect = true;
-
-						for (auto& iter : scene->objectManager->gates)
-						{
-							if (iter->tilePos == tilePos) // 게이트에 닿을 경우 연결 종료
-							{
-								canConnect = false;
-							}
-						}
-						for (auto& iter : scene->objectManager->lines)
-						{
-							if (iter->tilePos == tilePos) // 기존에 있는 선과 겹칠 경우 연결 종료
-							{
-								canConnect = false;
-							}
-						}
-
-						if (canConnect)
-						{
-							inputState = InputState::LINE_CONNECT;
-
-							Line* newLine = new Line(tilePos.x, tilePos.y);
-							newLine->preGate = myGate;
-							scene->objectManager->connectingLine.push_back(newLine);
-							newLine->ChangeParent(scene->tiles);
-
-							if (tilePos.x > myGate->tilePos.x)
-							{
-								newLine->GetTransform()->SetRot(0);
-							}
-							else if (tilePos.x < myGate->tilePos.x)
-							{
-								newLine->GetTransform()->SetRot(180);
-							}
-							else if (tilePos.y > myGate->tilePos.y)
-							{
-								newLine->GetTransform()->SetRot(270);
-							}
-							else if (tilePos.y < myGate->tilePos.y)
-							{
-								newLine->GetTransform()->SetRot(90);
-							}
-
-							newLine->dir = dir;
-						}
-						else
-						{
-							LineCancel();
-						}
-					}
-					else
-					{
-						LineCancel();
-					}
-				}
-			}
-			else if (inputState == InputState::LINE_CONNECT) // 연결중
-			{
-				Line* lastLine = scene->objectManager->connectingLine[scene->objectManager->connectingLine.size() - 1];
-
-				if (tilePos.x != lastLine->tilePos.x || tilePos.y != lastLine->tilePos.y) // 이동했을 때
-				{
-					if ((abs(tilePos.x - lastLine->tilePos.x) == 1 && abs(tilePos.y - lastLine->tilePos.y) == 0)
-						|| (abs(tilePos.x - lastLine->tilePos.x) == 0 && abs(tilePos.y - lastLine->tilePos.y) == 1))
-						// 상하좌우 한칸만 이동했을 때
-					{
-						bool canConnect = true;
-						bool isFinish = false;
-						Gate* connectGate = nullptr;
-
-						for (auto& iter : scene->objectManager->connectingLine)
-						{
-							if (iter->tilePos == tilePos) // 연결되고 있는 선과 겹칠 경우 연결 종료
-							{
-								canConnect = false;
-							}
-						}
-						for (auto& iter : scene->objectManager->gates)
-						{
-							if (iter->tilePos == tilePos) // 게이트에 닿을 경우 연결 완료
-							{
-								if (iter == myGate) // 같은 게이트면 연결 취소
-								{
-									canConnect = false;
-								}
-								else // 다른 게이트면 연결 완료
-								{
-									isFinish = true;
-									connectGate = iter;
-								}
-							}
-						}
-						for (auto& iter : scene->objectManager->lines)
-						{
-							if (iter->tilePos == tilePos) // 기존에 있는 선과 겹칠 경우 연결 종료
-							{
-								canConnect = false;
-							}
-						}
-
-						Dir dir = LEFT;
-						if (tilePos.x > lastLine->tilePos.x)
-							dir = LEFT;
-						else if (tilePos.x < lastLine->tilePos.x)
-							dir = RIGHT;
-						else if (tilePos.y > lastLine->tilePos.y)
-							dir = DOWN;
-						else if (tilePos.y < lastLine->tilePos.y)
-							dir = UP;
-
-						if (isFinish)
-						{
-							isFinish = false;
-
-							for (int i = 0; i < connectGate->input.size(); i++)
-							{
-								if (connectGate->input[i] == dir)
-								{
-									isFinish = true;
-									break;
-								}
-							}
-
-							if (isFinish)
-							{
-								for (auto& iter : scene->objectManager->connectingLine)
-								{
-									scene->objectManager->lines.push_back(iter);
-								}
-								myGate->nextLine.push_back(scene->objectManager->connectingLine[0]);
-								connectGate->preLine.push_back(lastLine);
-								lastLine->nextGate = connectGate;
-								scene->objectManager->SetSpriteOnFinish(lastLine, tilePos);
-
-								scene->objectManager->connectingLine.clear();
-								myGate->GetSpriteRenderer()->SetZ_index(0);
-								myGate = nullptr;
-								inputState = InputState::NONE;
-							}
-							else
-							{
-								LineCancel();
-							}
-						}
-						else
-						{
-							if (canConnect)
-							{
-								Line* newLine = new Line(tilePos.x, tilePos.y);
-								newLine->preLine = lastLine;
-								lastLine->nextLine = newLine;
-								scene->objectManager->connectingLine.push_back(newLine);
-								newLine->ChangeParent(scene->tiles);
-
-								scene->objectManager->SetSpriteOnConnect(lastLine, newLine, tilePos);
-							}
-							else
-							{
-								LineCancel();
-							}
-						}
-					}
-					else // 여러칸을 이동하거나 대각선으로 이동했을 때
-					{
-						LineCancel();
-					}
-				}
-			}
-		}
-		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT) // 좌클릭 종료
-		{
-			LineCancel();
-		}
-	}
-}
-
-void GameInputManager::LineUnconnect(Gate* gate)
-{
-	for (auto iter = gate->nextLine.begin(); iter != gate->nextLine.end(); iter++)
-	{
-		Line* line = *iter;
-
-		while (true)
-		{
-			line->Destroy();
-
-			if (line->nextGate != nullptr)
-			{
-				for (auto iter2 = line->nextGate->preLine.begin(); iter2 != line->nextGate->preLine.end(); iter2++)
-				{
-					if (*iter2 == line)
-					{
-						line->nextGate->preLine.erase(iter2);
-						break;
-					}
-				}
-				break;
-			}
-
-			line = line->nextLine;
-		}
-	}
-
-	Gate* preGate = nullptr;
-	for (auto iter = gate->preLine.begin(); iter != gate->preLine.end(); iter++)
-	{
-		Line* line = *iter;
-
-		while (true)
-		{
-			line->Destroy();
-
-			if (line->preGate != nullptr)
-			{
-				for (auto iter2 = line->preGate->nextLine.begin(); iter2 != line->preGate->nextLine.end(); iter2++)
-				{
-					if (*iter2 == line)
-					{
-						line->preGate->nextLine.erase(iter2);
-						preGate = line->preGate;
-						break;
-					}
-				}
-				break;
-			}
-
-			line = line->preLine;
-		}
-	}
-	gate->preLine.clear();
-	gate->nextLine.clear();
-
-	vector<Line*> deleteLines;
-	for (auto& iter : scene->objectManager->lines)
-	{
-		if (iter->GetState() == ObjectState::OBJ_DESTROY)
-			deleteLines.push_back(iter);
-	}
-	for (auto& iter : deleteLines)
-	{
-		scene->objectManager->lines.remove(iter);
-	}
-}
-
-void GameInputManager::LineCancel()
-{
-	for (auto& iter : scene->objectManager->connectingLine)
-	{
-		iter->Destroy();
-	}
-
-	scene->objectManager->connectingLine.clear();
-	myGate->GetSpriteRenderer()->SetZ_index(0);
-	myGate = nullptr;
-	inputState = InputState::NONE;
-}
-
-void GameInputManager::GateMove()
-{
-	Vec2L tilePos = scene->GetTilePos();
-
-	if (inputState == InputState::GATE_LIFT)
-	{
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY)
-		{
-			myGate->GetTransform()->SetPos(RG2R_InputM->GetMouseWorldPos());
-		}
-		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT)
-		{
-			if (!(tilePos.x >= -scene->mapSize.x / 2 && tilePos.x <= scene->mapSize.x / 2
-				&& tilePos.y >= -scene->mapSize.y / 2 && tilePos.y <= scene->mapSize.y / 2))
-			{
-				myGate->SetPos(myGate->tilePos.x, myGate->tilePos.y);
-				inputState = InputState::NONE;
-				myGate->GetSpriteRenderer()->SetZ_index(0);
-				myGate = nullptr;
-				return;
-			}
-
-			Vec2L tilePos = scene->GetTilePos();
-			Gate* targetGate = nullptr;
-			Line* targetLine = nullptr;
-			for (auto& iter : scene->objectManager->gates)
-			{
-				if (iter->tilePos.x == tilePos.x && iter->tilePos.y == tilePos.y)
-				{
-					targetGate = iter;
-					break;
-				}
-			}
-			for (auto& iter : scene->objectManager->lines)
-			{
-				if (iter->tilePos.x == tilePos.x && iter->tilePos.y == tilePos.y)
-				{
-					targetLine = iter;
-					break;
-				}
-			}
-
-			if (targetGate == nullptr && targetLine == nullptr) // 옮길 자리에 게이트가 없을 경우
-			{
-				myGate->SetPos(tilePos.x, tilePos.y);
-			}
-			else if (myGate->tilePos == tilePos) // 옮길 자리가 원래 위치
-			{
-				myGate->SetPos(myGate->tilePos.x, myGate->tilePos.y);
-			}
-			else // 옮길 자리에 게이트 혹은 라인이 있을 경우
-			{
-				myGate->SetPos(myGate->tilePos.x, myGate->tilePos.y);
-			}
-
-			inputState = InputState::NONE;
-			myGate->GetSpriteRenderer()->SetZ_index(0);
-			myGate = nullptr;
-		}
-	}
-}
-
 void GameInputManager::Input()
 {
-	Vec2L tilePos = scene->GetTilePos();
-	Gate* targetGate = nullptr;
+	tilePos = scene->GetTilePos();
+	targetGate = nullptr;
 	for (auto& iter : scene->objectManager->gates)
 	{
 		if (iter->tilePos.x == tilePos.x && iter->tilePos.y == tilePos.y)
@@ -395,173 +36,478 @@ void GameInputManager::Input()
 			targetGate = iter;
 		}
 	}
-
-#pragma region R키/우클릭 (회전)
+	
 	if (targetGate != nullptr)
 	{
-		if (targetGate != nullptr)
-		{
-			if ((RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER
-				|| RG2R_InputM->GetMouseState(MouseCode::MOUSE_RBUTTON) == KeyState::KEYSTATE_ENTER)
-				&& inputState == InputState::NONE)
-			{
-				targetGate->SetDir(RotatedDir(targetGate->GetDir()));
-				for (int i = 0; i < targetGate->input.size(); i++)
-					targetGate->input[i] = RotatedDir(targetGate->input[i]);
-				for (int i = 0; i < targetGate->output.size(); i++)
-					targetGate->output[i] = RotatedDir(targetGate->output[i]);
+		Input_Rotate();
+		Input_Select();
+		Input_Connect();
+	}
 
-				LineUnconnect(targetGate);
-			}
-		}
-	}
-#pragma endregion
-#pragma region E키 (연결된 선 삭제)
-	if (targetGate != nullptr)
-	{
-		if (targetGate != nullptr)
-		{
-			if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_ENTER
-				&& inputState == InputState::NONE)
-			{
-				LineUnconnect(targetGate);
-			}
-		}
-	}
-	else if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_ENTER
+	Input_Erase();
+	GateMove();
+	LineConnect();
+}
+
+void GameInputManager::Input_Erase()
+{
+	if (RG2R_InputM->GetKeyState(KeyCode::KEY_E) == KeyState::KEYSTATE_ENTER
 		&& inputState == InputState::NONE)
 	{
-		Line* targetLine = nullptr;
-
-		for (auto& iter : scene->objectManager->lines)
+		if (targetGate != nullptr)
 		{
-			if (iter->tilePos == tilePos)
-			{
-				targetLine = iter;
-			}
+			Erase(targetGate);
+		}
+		else
+		{
+			Erase(tilePos);
+		}
+	}
+}
+
+void GameInputManager::Erase(Gate* gate)
+{
+	for (auto& iter : gate->input)
+	{
+		Erase(iter + gate->tilePos);
+	}
+	for (auto& iter : gate->output)
+	{
+		Erase(iter + gate->tilePos);
+	}
+}
+
+void GameInputManager::Erase(Vec2L pos)
+{
+	Line* me = scene->objectManager->FindLine(pos);
+	Line* nowLine = me;
+	Vec2L nowPos = pos;
+
+	if (nowLine == nullptr)
+		return;
+
+	while (true) // 인풋으로 진행하면서 제거
+	{
+		nowPos -= nowLine->input;
+		nowLine = scene->objectManager->FindLine(nowPos);
+
+		if (nowLine == nullptr)
+		{
+			break;
 		}
 
-		if (targetLine != nullptr)
+		scene->objectManager->lines.remove(nowLine);
+		nowLine->Destroy();
+	}
+
+	nowLine = scene->objectManager->FindLine(pos);
+	nowPos = pos;
+	if (nowLine == nullptr)
+		return;
+
+	while (true) // 아웃풋으로 진행하면서 제거
+	{
+		nowPos -= nowLine->output;
+		nowLine = scene->objectManager->FindLine(nowPos);
+
+		if (nowLine == nullptr)
 		{
-			vector<Line*> deleteLines;
+			break;
+		}
 
-			while (true)
+		scene->objectManager->lines.remove(nowLine);
+		nowLine->Destroy();
+	}
+
+	me->Destroy();
+	scene->objectManager->lines.remove(me);
+}
+
+void GameInputManager::Input_Rotate()
+{
+	if (RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER
+		&& inputState == InputState::NONE)
+	{
+		Erase(targetGate);
+
+		if (targetGate->GetDir() == Dir::RIGHT)
+			targetGate->SetDir(Dir::DOWN);
+		else if (targetGate->GetDir() == Dir::DOWN)
+			targetGate->SetDir(Dir::LEFT);
+		else if (targetGate->GetDir() == Dir::LEFT)
+			targetGate->SetDir(Dir::UP);
+		else if (targetGate->GetDir() == Dir::UP)
+			targetGate->SetDir(Dir::RIGHT);
+
+		auto& input = targetGate->input;
+		auto& output = targetGate->output;
+
+		for (int i = 0; i < input.size(); i++)
+		{
+			if (input[i].x == 1 && input[i].y == 0)
 			{
-				if (targetLine->preLine == nullptr)
-					break;
-
-				targetLine = targetLine->preLine;
+				input[i].x = 0;
+				input[i].y = -1;
 			}
-			for (auto iter = targetLine->preGate->nextLine.begin(); iter != targetLine->preGate->nextLine.end(); iter++)
+			else if (input[i].x == 0 && input[i].y == -1)
 			{
-				if (*iter == targetLine)
+				input[i].x = -1;
+				input[i].y = 0;
+			}
+			else if (input[i].x == -1 && input[i].y == 0)
+			{
+				input[i].x = 0;
+				input[i].y = 1;
+			}
+			else if (input[i].x == 0 && input[i].y == 1)
+			{
+				input[i].x = 1;
+				input[i].y = 0;
+			}
+		}
+		for (int i = 0; i < output.size(); i++)
+		{
+			if (output[i].x == 1 && output[i].y == 0)
+			{
+				output[i].x = 0;
+				output[i].y = -1;
+			}
+			else if (output[i].x == 0 && output[i].y == -1)
+			{
+				output[i].x = -1;
+				output[i].y = 0;
+			}
+			else if (output[i].x == -1 && output[i].y == 0)
+			{
+				output[i].x = 0;
+				output[i].y = 1;
+			}
+			else if (output[i].x == 0 && output[i].y == 1)
+			{
+				output[i].x = 1;
+				output[i].y = 0;
+			}
+		}
+	}
+}
+
+void GameInputManager::Input_Select() // 게이트 들기, 우클릭
+{
+	if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_RBUTTON) == KeyState::KEYSTATE_ENTER
+		&& inputState == InputState::NONE)
+	{
+		Erase(targetGate);
+		inputState = InputState::GATE_LIFT;
+		myGate = targetGate;
+	}
+}
+
+void GameInputManager::Input_Connect() // 라인 연결, 좌클릭
+{
+	if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER
+		&& inputState == InputState::NONE)
+	{
+		inputState = InputState::LINE_START;
+		myGate = targetGate;
+	}
+}
+
+void GameInputManager::LineConnect()
+{
+	if (inputState == InputState::LINE_START) // 라인 연결 시작
+	{
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY) // 클릭 유지
+		{
+			Vec2L dirVec = tilePos - myGate->tilePos;
+			if (dirVec == Vec2L(1, 0)
+				|| dirVec == Vec2L(-1, 0)
+				|| dirVec == Vec2L(0, 1)
+				|| dirVec == Vec2L(0, -1)) // 한 칸만 옮겼을 때
+			{
+				directional = NO;
+
+				for (auto& iter : myGate->input)
 				{
-					targetLine->preGate->nextLine.erase(iter);
-					break;
+					if (iter == dirVec)
+						directional = INPUT;
 				}
-			}
-
-			while (true)
-			{
-				targetLine->Destroy();
-				deleteLines.push_back(targetLine);
-
-				if (targetLine->nextGate != nullptr)
+				for (auto& iter : myGate->output)
 				{
-					for (auto iter = targetLine->nextGate->preLine.begin(); iter != targetLine->nextGate->preLine.end(); iter++)
-					{
-						if (*iter == targetLine)
-						{
-							targetLine->nextGate->preLine.erase(iter);
-							break;
-						}
-					}
-					break;
+					if (iter == dirVec)
+						directional = OUTPUT;
 				}
 
-				targetLine = targetLine->nextLine;
-			}
-
-			for (auto& iter : deleteLines)
-			{
-				scene->objectManager->lines.remove(iter);
-			}
-		}
-	}
-#pragma endregion
-#pragma region 좌클릭 중심 (이동)
-	if (targetGate != nullptr)
-	{
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER
-			&& inputState == InputState::NONE)
-		{
-			Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
-			if (mousePos.x >= tilePos.x - 0.25f
-				&& mousePos.y >= tilePos.y - 0.25f
-				&& mousePos.x <= tilePos.x + 0.25f
-				&& mousePos.y <= tilePos.y + 0.25f)
-			{
-				inputState = InputState::GATE_LIFT;
-				myGate = targetGate;
-				myGate->GetSpriteRenderer()->SetZ_index(2);
-				LineUnconnect(targetGate);
-			}
-		}
-	}
-#pragma endregion
-#pragma region 좌클릭 가장자리 (연결)
-	if (targetGate != nullptr)
-	{
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER
-			&& inputState == InputState::NONE)
-		{
-			Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
-			if (!(mousePos.x >= tilePos.x - 0.25f
-				&& mousePos.y >= tilePos.y - 0.25f
-				&& mousePos.x <= tilePos.x + 0.25f
-				&& mousePos.y <= tilePos.y + 0.25f))
-			{
-				inputState = InputState::LINE_START;
-				myGate = targetGate;
-			}
-		}
-	}
-#pragma endregion
-#pragma region 휠 굴리기 (색 변경)
-	if (targetGate != nullptr
-		&& targetGate->GetID() == typeid(Battery))
-	{
-		if (RG2R_InputM->GetMouseWheel() != 0 && inputState == InputState::NONE)
-		{
-			int scale = RG2R_InputM->GetMouseWheel() / 120;
-
-			while (scale)
-			{
-				if (scale > 0)
+				if (directional == NO) // 인풋 혹은 아웃풋 방향이 아닐 때
 				{
-					scale--;
-
-					if (targetGate->GetColor() == Color8(1, 0, 0))
-						targetGate->SetColor(Color8(0, 1, 0));
-					else if (targetGate->GetColor() == Color8(0, 1, 0))
-						targetGate->SetColor(Color8(0, 0, 1));
-					else if (targetGate->GetColor() == Color8(0, 0, 1))
-						targetGate->SetColor(Color8(1, 0, 0));
+					CancelConnect();
 				}
 				else
 				{
-					scale++;
+					inputState = InputState::LINE_CONNECT;
+					lastLine = CreateLine(tilePos.x, tilePos.y);
 
-					if (targetGate->GetColor() == Color8(1, 0, 0))
-						targetGate->SetColor(Color8(0, 0, 1));
-					else if (targetGate->GetColor() == Color8(0, 1, 0))
-						targetGate->SetColor(Color8(1, 0, 0));
-					else if (targetGate->GetColor() == Color8(0, 0, 1))
-						targetGate->SetColor(Color8(0, 1, 0));
+					if (lastLine == nullptr) // 라인을 이을 수 없을 때
+					{
+						CancelConnect();
+					}
+				}
+			}
+			else if (tilePos != myGate->tilePos) // 여러 칸을 옮겼을 때 (연결 취소)
+			{
+				CancelConnect();
+			}
+		}
+		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT) // 라인 연결 취소
+		{
+			CancelConnect();
+		}
+	}
+	else if (inputState == InputState::LINE_CONNECT) // 라인 연결 중
+	{
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_STAY) // 클릭 유지
+		{
+			Vec2L dirVec = tilePos - lastLine->tilePos;
+			if (dirVec == Vec2L(1, 0)
+				|| dirVec == Vec2L(-1, 0)
+				|| dirVec == Vec2L(0, 1)
+				|| dirVec == Vec2L(0, -1)) // 한 칸만 옮겼을 때
+			{
+				auto lastlastLine = lastLine;
+				lastLine = CreateLine(tilePos.x, tilePos.y, lastLine);
+
+				if (existGate == true) // 게이트와 연결이 되었을 때
+				{
+					Directional dirGate = NO;
+
+					for (auto& iter : targetGate->input)
+					{
+						if (iter == -dirVec)
+							dirGate = INPUT;
+					}
+					for (auto& iter : targetGate->output)
+					{
+						if (iter == -dirVec)
+							dirGate = OUTPUT;
+					}
+
+					if (dirGate == INPUT && directional == OUTPUT
+						|| dirGate == OUTPUT && directional == INPUT) // 게이트와 연결 성공
+					{
+						scene->objectManager->connectingLine.clear();
+
+						if (directional == OUTPUT)
+						{
+							lastlastLine->output = lastlastLine->tilePos - tilePos;
+						}
+						else
+						{
+							lastlastLine->input = lastlastLine->tilePos - tilePos;
+						}
+						lastlastLine->SetSprite();
+
+						inputState = InputState::NONE;
+						myGate = nullptr;
+					}
+					else
+					{
+						CancelConnect();
+					}
+				}
+				else if (lastLine == nullptr) // 라인을 이을 수 없을 때
+				{
+					CancelConnect();
+				}
+			}
+			else if (tilePos != lastLine->tilePos) // 여러 칸을 옮겼을 때 (연결 취소)
+			{
+				CancelConnect();
+			}
+		}
+		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT) // 라인 연결 취소
+		{
+			CancelConnect();
+		}
+	}
+}
+
+Line* GameInputManager::CreateLine(int x, int y)
+{
+	Vec2L pos(x, y);
+	bool canCreate = true;
+	existGate = false;
+
+	// 그 위치에 이미 게이트가 있는가?
+	for (auto& iter : scene->objectManager->gates)
+	{
+		if (iter->tilePos == pos)
+		{
+			canCreate = false;
+			existGate = true;
+		}
+	}
+
+	// 그 위치에 이미 라인이 있는가?
+	for (auto& iter : scene->objectManager->lines)
+	{
+		if (iter->tilePos == pos)
+			canCreate = false;
+	}
+
+	// 맵 밖인가?
+	if (!(pos.x >= -scene->mapSize.x / 2 && pos.x <= scene->mapSize.x / 2
+		&& pos.y >= -scene->mapSize.y / 2 && pos.y <= scene->mapSize.y / 2))
+	{
+		canCreate = false;
+	}
+
+	if (canCreate)
+	{
+		Line* line = new Line(x, y);
+		scene->objectManager->connectingLine.push_back(line);
+		scene->objectManager->lines.push_back(line);
+		line->ChangeParent(scene->tiles);
+		
+		if (directional == OUTPUT)
+			line->input = pos - myGate->tilePos;
+		else
+			line->output = pos - myGate->tilePos;
+
+		line->SetSprite();
+
+		return line;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+Line* GameInputManager::CreateLine(int x, int y, Line* preLine)
+{
+	Vec2L pos(x, y);
+	bool canCreate = true;
+	existGate = false;
+
+	// 그 위치에 이미 게이트가 있는가?
+	for (auto& iter : scene->objectManager->gates)
+	{
+		if (iter->tilePos == pos)
+		{
+			canCreate = false;
+			existGate = true;
+		}
+	}
+
+	// 그 위치에 이미 라인이 있는가?
+	for (auto& iter : scene->objectManager->lines)
+	{
+		if (iter->tilePos == pos)
+			canCreate = false;
+	}
+
+	// 맵 밖인가?
+	if (!(pos.x >= -scene->mapSize.x / 2 && pos.x <= scene->mapSize.x / 2
+		&& pos.y >= -scene->mapSize.y / 2 && pos.y <= scene->mapSize.y / 2))
+	{
+		canCreate = false;
+	}
+
+	if (canCreate)
+	{
+		Line* line = new Line(x, y);
+		scene->objectManager->connectingLine.push_back(line);
+		scene->objectManager->lines.push_back(line);
+		line->ChangeParent(scene->tiles);
+
+		if (directional == OUTPUT)
+		{
+			line->input = pos - preLine->tilePos;
+			preLine->output = preLine->tilePos - pos;
+		}
+		else
+		{
+			line->output = pos - preLine->tilePos;
+			preLine->input = preLine->tilePos - pos;
+		}
+
+		line->SetSprite();
+		preLine->SetSprite();
+
+		return line;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+void GameInputManager::CancelConnect()
+{
+	for (auto& iter : scene->objectManager->connectingLine)
+	{
+		iter->Destroy();
+		scene->objectManager->lines.remove(iter);
+	}
+	scene->objectManager->connectingLine.clear();
+
+	inputState = InputState::NONE;
+	myGate = nullptr;
+}
+
+void GameInputManager::GateMove()
+{
+	if (inputState == InputState::GATE_LIFT) // 게이트를 들고 있을 때
+	{
+		Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
+		myGate->GetTransform()->SetPos(mousePos);
+
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_RBUTTON) == KeyState::KEYSTATE_EXIT) // 게이트를 놨을 때
+		{
+			if (myGate->tilePos == tilePos) // 위치 변화가 없을 경우
+			{
+				myGate->GetTransform()->SetPos(myGate->tilePos.x, myGate->tilePos.y);
+				inputState = InputState::NONE;
+				myGate = nullptr;
+			}
+			else
+			{
+				bool canMove = true;
+
+				// 그 위치에 이미 게이트가 있는가?
+				for (auto& iter : scene->objectManager->gates)
+				{
+					if (iter->tilePos == tilePos)
+						canMove = false;
+				}
+
+				// 그 위치에 이미 라인이 있는가?
+				for (auto& iter : scene->objectManager->lines)
+				{
+					if (iter->tilePos == tilePos)
+						canMove = false;
+				}
+
+				// 맵 밖인가?
+				if (!(tilePos.x >= -scene->mapSize.x / 2 && tilePos.x <= scene->mapSize.x / 2
+					&& tilePos.y >= -scene->mapSize.y / 2 && tilePos.y <= scene->mapSize.y / 2))
+				{
+					canMove = false;
+				}
+
+				if (canMove) // 움직일 수 있을 때
+				{
+					myGate->GetTransform()->SetPos(tilePos.x, tilePos.y);
+					myGate->tilePos = tilePos;
+					inputState = InputState::NONE;
+					myGate = nullptr;
+				}
+				else // 움직일 수 없을 때
+				{
+					myGate->GetTransform()->SetPos(myGate->tilePos.x, myGate->tilePos.y);
+					inputState = InputState::NONE;
+					myGate = nullptr;
 				}
 			}
 		}
-
 	}
-#pragma endregion
 }

@@ -6,9 +6,9 @@ SubGate::SubGate(long x, long y, Dir dir)
 {
 	spriteRenderer->SetTexture("Resources/Sprites/Gates/subGate.png");
 
-	input.push_back(Dir::LEFT);
-	input.push_back(Dir::DOWN);
-	output.push_back(Dir::RIGHT);
+	input.push_back(Vec2L(-1, 0));
+	input.push_back(Vec2L(0, -1));
+	output.push_back(Vec2L(1, 0));
 
 	SetRot(dir);
 }

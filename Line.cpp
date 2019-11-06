@@ -125,3 +125,112 @@ void Line::SetColor(Color newColor)
 	toColor = newColor;
 	changeColor->Start();
 }
+
+void Line::SetSprite()
+{
+	if (output == Vec2L(0, 0))
+	{
+		if (input == Vec2L(-1, 0))
+		{
+			transform->SetRot(180);
+		}
+		else if (input == Vec2L(0, 1))
+		{
+			transform->SetRot(-90);
+		}
+		else if (input == Vec2L(1, 0))
+		{
+			transform->SetRot(0);
+		}
+		else if (input == Vec2L(0, -1))
+		{
+			transform->SetRot(-270);
+		}
+	}
+	else if (output == Vec2L(1, 0))
+	{
+		if (input == Vec2L(0, 0))
+		{
+			transform->SetRot(0);
+		}
+		else if (input == Vec2L(-1, 0))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line2.png");
+		}
+		else if (input == Vec2L(0, 1))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(0);
+		}
+		else if (input == Vec2L(0, -1))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(90);
+		}
+	}
+	else if (output == Vec2L(-1, 0))
+	{
+		if (input == Vec2L(0, 0))
+		{
+			transform->SetRot(180);
+		}
+		else if (input == Vec2L(1, 0))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line2.png");
+		}
+		else if (input == Vec2L(0, 1))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(270);
+		}
+		else if (input == Vec2L(0, -1))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(180);
+		}
+	}
+	else if (output == Vec2L(0, 1))
+	{
+		if (input == Vec2L(0, 0))
+		{
+			transform->SetRot(270);
+		}
+		else if (input == Vec2L(1, 0))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(0);
+		}
+		else if (input == Vec2L(-1, 0))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(270);
+		}
+		else if (input == Vec2L(0, -1))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line2.png");
+			transform->SetRot(90);
+		}
+	}
+	else if (output == Vec2L(0, -1))
+	{
+		if (input == Vec2L(0, 0))
+		{
+			transform->SetRot(90);
+		}
+		else if (input == Vec2L(1, 0))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(90);
+		}
+		else if (input == Vec2L(-1, 0))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line3.png");
+			transform->SetRot(180);
+		}
+		else if (input == Vec2L(0, 1))
+		{
+			spriteRenderer->SetTexture("Resources/Sprites/Lines/line2.png");
+			transform->SetRot(90);
+		}
+	}
+}

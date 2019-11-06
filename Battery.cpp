@@ -17,7 +17,7 @@ Battery::Battery(long x, long y, Dir dir, Color8 color)
 	nowColor = Color(color.r, color.g, color.b, 1);
 	effect->ClearEffectInfo()->PushEffectInfo(new ColorMatrixEffectInfo(toColor));
 
-	output.push_back(Dir::RIGHT);
+	output.push_back(Vec2L(1, 0));
 
 	SetRot(dir);
 }

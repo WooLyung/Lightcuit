@@ -14,7 +14,7 @@ private:
 	InGameScene* scene;
 
 	std::vector<Gate*> gates;
-	std::vector<Line*> connectingLine;
+	std::list<Line*> connectingLine;
 	std::list<Line*> lines;
 
 public:
@@ -26,4 +26,6 @@ public:
 	void SetSpriteOnConnect(Line*, Line*, Vec2L);
 	void SetSpriteOnFinish(Line*, Vec2L);
 	void PushGate(Gate*);
+	Line* FindLine(Vec2L);
+	Gate* FindGate(Vec2L);
 };

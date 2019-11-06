@@ -6,8 +6,8 @@ ReverseGate::ReverseGate(long x, long y, Dir dir)
 {
 	spriteRenderer->SetTexture("Resources/Sprites/Gates/reverseGate.png");
 
-	input.push_back(Dir::LEFT);
-	output.push_back(Dir::RIGHT);
+	input.push_back(Vec2L(-1, 0));
+	output.push_back(Vec2L(1, 0));
 
 	SetRot(dir);
 }

@@ -29,15 +29,12 @@ public:
 	Transform* GetTransform();
 	SpriteRenderer* GetSpriteRenderer();
 
+	void SetSprite();
 	void SetColor(Color8);
 	void SetColor(Color);
 	Color8 GetColor() { return color; }
 
 	Vec2L tilePos;
-	Dir dir;
-
-	Line* nextLine = nullptr;
-	Line* preLine = nullptr;
-	Gate* nextGate = nullptr;
-	Gate* preGate = nullptr;
+	Vec2L input = Vec2L(0, 0);
+	Vec2L output = Vec2L(0, 0);
 };
