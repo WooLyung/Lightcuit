@@ -11,6 +11,7 @@
 #include "SubGate.h"
 #include "Light2.h"
 
+#include <queue>
 #include <stack>
 
 PlayManager::PlayManager(InGameScene* scene)
@@ -153,7 +154,7 @@ int PlayManager::CheckClear()
 {
 	std::map<Object*, Node*> map;
 	std::vector<Node*> nodes;
-	std::stack<Node*> nodeStack;
+	std::queue<Node*> nodeStack;
 
 	for (auto& iter : sortedNodes)
 	{
@@ -212,7 +213,7 @@ int PlayManager::CheckClear()
 
 	while (nodeStack.size() > 0)
 	{
-		Node* node = nodeStack.top();
+		Node* node = nodeStack.front();
 		nodeStack.pop();
 		sortedNodes.push_back(node);
 
@@ -249,11 +250,11 @@ void PlayManager::Try()
 	}
 	else if (result == 1)
 	{
-		std::cout << "미완성" << std::endl;
+		scene->PopMsg(0);
 	}
 	else if (result == 2)
 	{
-		std::cout << "사이클이 존재함" << std::endl;
+		scene->PopMsg(1);
 	}
 }
 

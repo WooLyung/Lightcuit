@@ -8,7 +8,7 @@
 
 class InGameScene;
 
-class PlayButton :
+class ResetButton :
 	public Object
 {
 private:
@@ -31,8 +31,8 @@ private:
 	CommandList* changeScale;
 
 public:
-	PlayButton(bool, InGameScene*);
-	~PlayButton();
+	ResetButton(bool, InGameScene*);
+	~ResetButton();
 
 	Transform* GetTransform();
 	SpriteRenderer* GetSpriteRenderer();

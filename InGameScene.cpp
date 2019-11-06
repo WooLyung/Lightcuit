@@ -15,7 +15,7 @@
 #include "ObjectManager.h"
 #include "GameInputManager.h"
 #include "StageData.h"
-#include "PlayButton.h"
+#include "SceneData.h"
 #include <fstream>
 
 #include "Pen1.h"
@@ -23,9 +23,6 @@
 #include "Pen3.h"
 #include "Ruler1.h"
 #include "Ruler2.h"
-
-#include "PostIt.h"
-#include "Popup.h"
 
 InGameScene::InGameScene()
 {
@@ -40,10 +37,12 @@ void InGameScene::OnStart()
 	objectManager = new ObjectManager(this);
 	gameInputManager = new GameInputManager(this);
 	playManager = new PlayManager(this);
+	sceneChangeManager = new SceneChangeManager(this);
 
 	AttachObject(objectManager);
 	AttachObject(gameInputManager);
 	AttachObject(playManager);
+	AttachObject(sceneChangeManager);
 
 	AttachObject(new Pen1(false));
 	AttachObject(new Pen2(false));
@@ -51,9 +50,26 @@ void InGameScene::OnStart()
 	AttachObject(new Ruler1(false));
 	AttachObject(new Ruler2(false));
 
-	AttachObject(new PostIt(true));
-	AttachObject(new PlayButton(true, this));
-	AttachObject(new Popup);
+	if (SceneData::GetInstance()->inGameCode == 0)
+	{
+		playButton = new PlayButton(true, this);
+		resetButton = new ResetButton(true, this);
+		menuButton = new MenuButton(true, this);
+	}
+	else
+	{
+		playButton = new PlayButton(false, this);
+		resetButton = new ResetButton(false, this);
+		menuButton = new MenuButton(false, this);
+	}
+	popup = new Popup;
+	postit = new PostIt(true);
+
+	AttachObject(popup);
+	AttachObject(postit);
+	AttachObject(playButton);
+	AttachObject(resetButton);
+	AttachObject(menuButton);
 
 	Init();
 }
@@ -105,6 +121,22 @@ void InGameScene::Init()
 			mapSize.x = std::stoi(gateData["x"]);
 			mapSize.y = std::stoi(gateData["y"]);
 			GetMainCamera()->SetZoom(std::stof(gateData["zoom"]), std::stof(gateData["zoom"]));
+
+			string text = gateData["text"];
+			size_t start_pos = 0;
+			while ((start_pos = text.find("_", start_pos)) != std::string::npos)
+			{
+				text.replace(start_pos, string("_").length(), " ");
+				start_pos += string(" ").length();
+			}
+			start_pos = 0;
+			while ((start_pos = text.find("\\", start_pos)) != std::string::npos)
+			{
+				text.replace(start_pos, string("\\").length(), "\n");
+				start_pos += string("\n").length();
+			}
+
+			postit->GetTextRenderer()->SetText(text);
 
 			tiles = new Tiles(mapSize.x, mapSize.y);
 			AttachObject(tiles);
@@ -201,5 +233,43 @@ void InGameScene::CreateGate(std::map<string, string> data)
 	if (gate != nullptr)
 	{
 		gate->ChangeParent(tiles);
+	}
+}
+
+void InGameScene::PopMsg(int code)
+{
+	popup->Pop(code);
+}
+
+void InGameScene::Disappear(int code)
+{
+	if (!isFinish)
+	{
+		isFinish = true;
+
+		if (code == 1) // 재시작
+		{
+			SceneData::GetInstance()->inGameCode = 1;
+			postit->Disappear();
+			tiles->Down();
+			sceneChangeManager->Reset();
+		}
+		else if (code == 2) // 다른 스테이지
+		{
+			SceneData::GetInstance()->inGameCode = 1;
+			postit->Disappear();
+			tiles->Down();
+			sceneChangeManager->Diff();
+		}
+		else if (code == 3) // 스테이지 선택으로
+		{
+			SceneData::GetInstance()->inGameCode = 0;
+			postit->Disappear();
+			playButton->Disappear();
+			resetButton->Disappear();
+			menuButton->Disappear();
+			tiles->Down();
+			sceneChangeManager->Back();
+		}
 	}
 }

@@ -5,8 +5,14 @@
 #include "GameInputManager.h"
 #include "ObjectManager.h"
 #include "PlayManager.h"
+#include "SceneChangeManager.h"
 #include "Tiles.h"
 #include "PlayButton.h"
+#include "Popup.h"
+#include "PostIt.h"
+#include "PlayButton.h"
+#include "ResetButton.h"
+#include "MenuButton.h"
 #include <map>
 
 class InGameScene :
@@ -15,14 +21,27 @@ class InGameScene :
 	friend class GameInputManager;
 	friend class ObjectManager;
 	friend class PlayManager;
+	friend class SceneChangeManager;
 	friend class PlayButton;
+	friend class ResetButton;
+	friend class MenuButton;
 
 private:
 	GameInputManager* gameInputManager;
 	ObjectManager* objectManager;
 	PlayManager* playManager;
+	SceneChangeManager* sceneChangeManager;
+
+	Popup* popup;
+	PostIt* postit;
+	PlayButton* playButton;
+	ResetButton* resetButton;
+	MenuButton* menuButton;
+
 	Vec2L mapSize;
 	Tiles* tiles;
+
+	bool isFinish = false;
 
 	void PushGate(Gate*);
 	void Init();
@@ -35,4 +54,6 @@ public:
 
 	void OnStart();
 	void OnUpdate();
+	void PopMsg(int);
+	void Disappear(int);
 };

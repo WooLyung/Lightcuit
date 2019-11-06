@@ -17,6 +17,7 @@ private:
 	bool isAnim = false;
 	float animTime = 0;
 	CommandList* appearAnim;
+	CommandList* disappearAnim;
 
 public:
 	PostIt(bool);
@@ -28,4 +29,5 @@ public:
 
 	void OnStart();
 	void OnUpdate();
+	void Disappear();
 };

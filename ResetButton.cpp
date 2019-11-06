@@ -1,24 +1,24 @@
 #include "stdafx.h"
-#include "PlayButton.h"
+#include "ResetButton.h"
 #include "Engine.h"
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
 
-PlayButton::PlayButton(bool isAnim, InGameScene* scene)
+ResetButton::ResetButton(bool isAnim, InGameScene* scene)
 {
 	this->isAnim = isAnim;
 	this->scene = scene;
 }
 
-PlayButton::~PlayButton()
+ResetButton::~ResetButton()
 {
 }
 
-void PlayButton::OnStart()
+void ResetButton::OnStart()
 {
 	spriteRenderer = AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/UIs/Menus/playButton.png")
+		->SetTexture("Resources/Sprites/UIs/Menus/resetButton.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
 	spriteRenderer->SetZ_index(-1);
 	transform = GetComponent<Transform>()
@@ -37,7 +37,7 @@ void PlayButton::OnStart()
 			appearAnim->Stop();
 		}
 
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
+		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.2f,
 			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime - 1, 2) * 5);
 		transform->SetRot(250 - (pow(animTime - 1, 2) + 1) * 250);
 		}, 0);
@@ -55,7 +55,7 @@ void PlayButton::OnStart()
 			disappearAnim->Stop();
 		}
 
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
+		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.2f,
 			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime, 2) * 5);
 		transform->SetRot(pow(animTime, 2) * 250);
 		}, 0);
@@ -100,19 +100,19 @@ void PlayButton::OnStart()
 	if (!isAnim)
 	{
 		animTime = 1;
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
+		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.2f,
 			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime - 1, 2) * 5);
 		transform->SetRot(50 - (pow(animTime - 1, 2) + 1) * 50);
 	}
 }
 
 
-void PlayButton::OnUpdate()
+void ResetButton::OnUpdate()
 {
 	Input();
 }
 
-void PlayButton::Input()
+void ResetButton::Input()
 {
 	Vec2F vec = RG2R_InputM->FromScreenToUI(RG2R_InputM->GetMousePos()) - transform->GetPos();
 
@@ -144,7 +144,7 @@ void PlayButton::Input()
 				sizeFlag = 1;
 				changeScale->Start();
 
-				scene->playManager->Try();
+				scene->Disappear(1);
 			}
 		}
 	}
@@ -159,17 +159,17 @@ void PlayButton::Input()
 	}
 }
 
-Transform* PlayButton::GetTransform()
+Transform* ResetButton::GetTransform()
 {
 	return transform;
 }
 
-SpriteRenderer* PlayButton::GetSpriteRenderer()
+SpriteRenderer* ResetButton::GetSpriteRenderer()
 {
 	return spriteRenderer;
 }
 
-void PlayButton::Disappear()
+void ResetButton::Disappear()
 {
 	disappearAnim->Start();
 	animTime = 0;

@@ -10,14 +10,15 @@ Object::Object()
 
 Object::~Object()
 {
-	DetachParent();
-
 	ApplyListener(onDestroyListener);
 	OnDestroy();
 
-	for (auto iter : childs)
+	if (childs.size() > 0)
 	{
-		delete iter;
+		for (auto iter : childs)
+		{
+			delete iter;
+		}
 	}
 	for (auto iter : commandLists)
 	{
@@ -212,6 +213,9 @@ void Object::Update()
 			iter->OnUpdate();
 		}
 	}
+
+	if (state == OBJ_DESTROY)
+		delete this;
 }
 
 void Object::SetIsFlipX(bool flag)
@@ -607,14 +611,11 @@ bool Object::IsParent(Object* object)
 void Object::Destroy()
 {
 	state = OBJ_DESTROY;
+	DetachParent();
 
 	if (scene != nullptr)
 	{
 		scene->DestroyObject(this);
-	}
-	else
-	{
-		delete this;
 	}
 }
 

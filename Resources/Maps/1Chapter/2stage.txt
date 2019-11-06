@@ -1,4 +1,4 @@
-x:11, y:7, zoom:0.45, text:안녕!_안녕!_안녕!
+x:11, y:7, zoom:0.45, text:2번째_스테이지!!\엔터까지!
 x:1, y:0, type:battery, dir:up, color:blue
 x:2, y:0, type:battery, dir:up, color:red
 x:3, y:0, type:battery, dir:up, color:green

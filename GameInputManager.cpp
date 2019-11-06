@@ -89,7 +89,7 @@ void GameInputManager::LineConnect()
 							Line* newLine = new Line(tilePos.x, tilePos.y);
 							newLine->preGate = myGate;
 							scene->objectManager->connectingLine.push_back(newLine);
-							AttachObject(newLine);
+							newLine->ChangeParent(scene->tiles);
 
 							if (tilePos.x > myGate->tilePos.x)
 							{
@@ -217,7 +217,7 @@ void GameInputManager::LineConnect()
 								newLine->preLine = lastLine;
 								lastLine->nextLine = newLine;
 								scene->objectManager->connectingLine.push_back(newLine);
-								AttachObject(newLine);
+								newLine->ChangeParent(scene->tiles);
 
 								scene->objectManager->SetSpriteOnConnect(lastLine, newLine, tilePos);
 							}
@@ -396,12 +396,13 @@ void GameInputManager::Input()
 		}
 	}
 
-#pragma region R키 (회전)
+#pragma region R키/우클릭 (회전)
 	if (targetGate != nullptr)
 	{
 		if (targetGate != nullptr)
 		{
-			if (RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER
+			if ((RG2R_InputM->GetKeyState(KeyCode::KEY_R) == KeyState::KEYSTATE_ENTER
+				|| RG2R_InputM->GetMouseState(MouseCode::MOUSE_RBUTTON) == KeyState::KEYSTATE_ENTER)
 				&& inputState == InputState::NONE)
 			{
 				targetGate->SetDir(RotatedDir(targetGate->GetDir()));

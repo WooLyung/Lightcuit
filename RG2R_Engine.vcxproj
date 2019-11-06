@@ -188,6 +188,7 @@
     <ClInclude Include="Light2.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="MenuButton.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Pen1.h" />
@@ -199,11 +200,13 @@
     <ClInclude Include="PostIt.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="ResetButton.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ReverseGate.h" />
     <ClInclude Include="Ruler1.h" />
     <ClInclude Include="Ruler2.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneChangeManager.h" />
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Settings.h" />
@@ -258,6 +261,7 @@
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Pen1.cpp" />
@@ -269,10 +273,12 @@
     <ClCompile Include="PostIt.cpp" />
     <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ResetButton.cpp" />
     <ClCompile Include="ReverseGate.cpp" />
     <ClCompile Include="Ruler1.cpp" />
     <ClCompile Include="Ruler2.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneChangeManager.cpp" />
     <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />

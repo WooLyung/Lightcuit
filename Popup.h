@@ -20,4 +20,5 @@ public:
 	~Popup();
 
 	void OnStart();
+	void Pop(int);
 };

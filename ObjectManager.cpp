@@ -192,6 +192,5 @@ void ObjectManager::SetSpriteOnFinish(Line* line, Vec2L tilePos)
 
 void ObjectManager::PushGate(Gate* gate)
 {
-	AttachObject(gate);
 	gates.push_back(gate);
 }

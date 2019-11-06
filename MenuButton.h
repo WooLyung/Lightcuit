@@ -8,7 +8,7 @@
 
 class InGameScene;
 
-class PlayButton :
+class MenuButton :
 	public Object
 {
 private:
@@ -31,8 +31,8 @@ private:
 	CommandList* changeScale;
 
 public:
-	PlayButton(bool, InGameScene*);
-	~PlayButton();
+	MenuButton(bool, InGameScene*);
+	~MenuButton();
 
 	Transform* GetTransform();
 	SpriteRenderer* GetSpriteRenderer();

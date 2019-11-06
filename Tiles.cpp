@@ -23,6 +23,20 @@ Tiles::Tiles(int x, int y)
 	commandLists.push_back(upAnim);
 	upAnim->Start();
 
+	downAnim = new CommandList;
+	downAnim->PushCommand([=]() {
+		animTime += RG2R_TimeM->GetDeltaTime();
+		if (animTime >= 1)
+		{
+			animTime = 1;
+			downAnim->Stop();
+		}
+		transform->SetPosY(-pow(animTime, 2) * 14);
+
+		}, 0);
+	downAnim->SetIsLoop(true);
+	commandLists.push_back(downAnim);
+
 	for (int i = 0; i < x + 2; i++)
 	{
 		for (int j = 0; j < y + 2; j++)
@@ -131,4 +145,10 @@ Tiles::Tiles(int x, int y)
 
 Tiles::~Tiles()
 {
+}
+
+void Tiles::Down()
+{
+	animTime = 0;
+	downAnim->Start();
 }

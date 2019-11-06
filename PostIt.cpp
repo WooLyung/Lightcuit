@@ -8,14 +8,7 @@
 PostIt::PostIt(bool isAnim)
 {
 	this->isAnim = isAnim;
-}
 
-PostIt::~PostIt()
-{
-}
-
-void PostIt::OnStart()
-{
 	auto textObj = new Object;
 	textRenderer = textObj->AttachComponent<TextRenderer>()
 		->SetAlignmentHeight(TextAlignment::ALIGN_CENTER)
@@ -24,7 +17,14 @@ void PostIt::OnStart()
 		->SetText("¾È³çÇÏ¼¼¿ä!");
 	textRenderer->SetZ_index(10);
 	AttachChild(textObj);
+}
 
+PostIt::~PostIt()
+{
+}
+
+void PostIt::OnStart()
+{
 	spriteRenderer = AttachComponent<SpriteRenderer>()
 		->SetTexture("Resources/Sprites/UIs/WritingSupplies/postit.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
@@ -53,6 +53,23 @@ void PostIt::OnStart()
 	appearAnim->SetIsLoop(true);
 	appearAnim->Start();
 
+	disappearAnim = new CommandList;
+	commandLists.push_back(disappearAnim);
+	disappearAnim->PushCommand([=]() {
+		animTime += RG2R_TimeM->GetDeltaTime();
+
+		if (animTime >= 1)
+		{
+			animTime = 1;
+			disappearAnim->Stop();
+		}
+
+		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * -0.5f + 0.9f - pow(animTime, 2) * 5,
+			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * -0.5f + 0.9f);
+		transform->SetRot(-30 + pow(animTime, 2) * 100);
+		}, 0);
+	disappearAnim->SetIsLoop(true);
+
 	if (!isAnim)
 	{
 		animTime = 1;
@@ -79,4 +96,10 @@ SpriteRenderer* PostIt::GetSpriteRenderer()
 TextRenderer* PostIt::GetTextRenderer()
 {
 	return textRenderer;
+}
+
+void PostIt::Disappear()
+{
+	disappearAnim->Start();
+	animTime = 0;
 }

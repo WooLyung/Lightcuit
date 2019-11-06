@@ -10,8 +10,8 @@
 Scene* SceneManager::FirstScene()
 {
 	//return new ChapterScene;
-	return new IntroScene;
-	//return new InGameScene;
+	//return new IntroScene;
+	return new InGameScene;
 	//return new StageScene;
 }
 
@@ -38,8 +38,6 @@ SceneManager::~SceneManager()
 
 void SceneManager::Update()
 {
-	std::cout << RG2R_TimeM->GetFrame() << "fps" << std::endl;
-
 	if (nextScene != nullptr)
 	{
 		Scene* preScene = registeredScene;

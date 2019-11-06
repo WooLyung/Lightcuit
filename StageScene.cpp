@@ -4,6 +4,7 @@
 #include "StageChoice.h"
 #include "Transform.h"
 #include "StageData.h"
+#include "SceneData.h"
 #include "Pen1.h"
 #include "Pen2.h"
 #include "Pen3.h"
@@ -53,6 +54,7 @@ void StageScene::OnStart()
 
 	goToInGame = new CommandList;
 	goToInGame->PushCommand([=]() {
+		SceneData::GetInstance()->inGameCode = 0;
 		RG2R_SceneM->ChangeScene(new InGameScene, true);
 		}, 1);
 	chapterObj->commandLists.push_back(goToInGame);
@@ -123,7 +125,7 @@ void StageScene::ChoiceStage()
 
 void StageScene::OnUpdate()
 {
-	if (RG2R_InputM->GetKeyState(KeyCode::KEY_F) == KeyState::KEYSTATE_ENTER)
+	if (RG2R_InputM->GetKeyState(KeyCode::KEY_ESCAPE) == KeyState::KEYSTATE_ENTER)
 	{
 		Back();
 	}
