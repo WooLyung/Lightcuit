@@ -180,6 +180,13 @@ void InGameScene::CreateGate(std::map<string, string> data)
 			dir = Dir::DOWN;
 	}
 
+	bool isStatic = false;
+	if (data.find("isStatic") != data.end())
+	{
+		if (data["isStatic"] == "true")
+			isStatic = true;
+	}
+
 	int x = std::stoi(data["x"]);
 	int y = std::stoi(data["y"]);
 
@@ -232,6 +239,7 @@ void InGameScene::CreateGate(std::map<string, string> data)
 
 	if (gate != nullptr)
 	{
+		gate->SetStatic(isStatic);
 		gate->ChangeParent(tiles);
 	}
 }

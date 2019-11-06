@@ -19,6 +19,7 @@ protected:
 	Effect* effect;
 	Transform* transform;
 
+	bool isStatic;
 	Color8 color;
 	Color nowColor = { 1, 1, 1, 1 };
 	Color toColor = { 1, 1, 1, 1 };
@@ -38,6 +39,8 @@ public:
 	void SetDir(Dir);
 	void SetPos(int, int);
 	void SetRot(Dir);
+	void SetStatic(bool);
+	bool GetStatic();
 
 	void SetColor(Color8);
 	void SetColor(Color);

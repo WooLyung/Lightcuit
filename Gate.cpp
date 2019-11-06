@@ -213,3 +213,21 @@ void Gate::SetRot(Dir dir)
 		}
 	}
 }
+
+void Gate::SetStatic(bool isStatic)
+{
+	this->isStatic = isStatic;
+
+	if (isStatic)
+	{
+		auto obj = new Object;
+		obj->AttachComponent<SpriteRenderer>()->SetTexture("Resources/Sprites/Gates/static.png");
+		obj->GetComponent<Transform>()->SetAnchor(64, 64);
+		obj->ChangeParent(this);
+	}
+}
+
+bool Gate::GetStatic()
+{
+	return isStatic;
+}

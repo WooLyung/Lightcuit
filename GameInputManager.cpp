@@ -39,10 +39,14 @@ void GameInputManager::Input()
 	
 	if (targetGate != nullptr)
 	{
-		Input_Rotate();
-		Input_Select();
 		Input_Connect();
-		Input_Wheel();
+
+		if (!targetGate->GetStatic())
+		{
+			Input_Rotate();
+			Input_Select();
+			Input_Wheel();
+		}
 	}
 
 	Input_Erase();
