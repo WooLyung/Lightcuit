@@ -15,8 +15,6 @@
 
 ChapterScene::ChapterScene()
 {
-	std::cout << PlayerData::GetInstance()->chapter << std::endl;
-	std::cout << PlayerData::GetInstance()->stage << std::endl;
 }
 
 ChapterScene::~ChapterScene()

@@ -28,6 +28,7 @@ void StageScene::OnStart()
 	auto spriteRenderer = chapterObj->AttachComponent<SpriteRenderer>()
 		->SetTexture("Resources/Sprites/UIs/Chapters/chapter1.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
+	spriteRenderer->SetZ_index(4);
 	auto transform = chapterObj->GetComponent<Transform>()
 		->SetScale(0.4f, 0.4f)
 		->SetAnchor(spriteRenderer->GetTexture()->GetSize().width * 0.5f, spriteRenderer->GetTexture()->GetSize().height * 0.5f);

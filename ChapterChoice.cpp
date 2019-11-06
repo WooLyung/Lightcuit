@@ -39,6 +39,20 @@ void ChapterChoice::OnStart()
 	transform_child->SetRot(0);
 	AttachChild(child);
 
+	if (PlayerData::GetInstance()->chapter < chapter)
+	{
+		Object* child = new Object;
+		auto spr = child->AttachComponent<SpriteRenderer>()
+			->SetTexture("Resources/Sprites/UIs/WritingSupplies/postit.png");
+		spr->SetZ_index(3);
+		child->GetComponent<Transform>()
+			->SetScale(1.15f, 1.15f)
+			->SetPos(0.8f, 0)
+			->SetAnchor(spr->GetTexture()->GetSize().width * 0.5f,
+				spr->GetTexture()->GetSize().height * 0.5f);
+		AttachChild(child);
+	}
+
 	appearAnim = new CommandList;
 	commandLists.push_back(appearAnim);
 	appearAnim->PushCommand([=]() {

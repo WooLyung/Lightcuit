@@ -28,6 +28,22 @@ void StageChoice::OnStart()
 		->SetScale(0.3f, 0.3f)
 		->SetAnchor(spriteRenderer->GetTexture()->GetSize().width * 0.5f, spriteRenderer->GetTexture()->GetSize().height * 0.5f);
 
+	if (!(PlayerData::GetInstance()->chapter > StageData::GetInstance()->chapter
+		|| PlayerData::GetInstance()->chapter == StageData::GetInstance()->chapter
+		&& PlayerData::GetInstance()->stage >= stage))
+	{
+		Object* child = new Object;
+		auto spr = child->AttachComponent<SpriteRenderer>()
+			->SetTexture("Resources/Sprites/UIs/WritingSupplies/postit.png");
+		spr->SetZ_index(3);
+		child->GetComponent<Transform>()
+			->SetScale(1.15f, 1.15f)
+			->SetPos(0.8f, 0)
+			->SetAnchor(spr->GetTexture()->GetSize().width * 0.5f,
+				spr->GetTexture()->GetSize().height * 0.5f);
+		AttachChild(child);
+	}
+
 	appearAnim = new CommandList;
 	commandLists.push_back(appearAnim);
 	appearAnim->PushCommand([=]() {
