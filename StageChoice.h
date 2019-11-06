@@ -12,7 +12,7 @@ class StageChoice :
 {
 private:
 	enum StageState {
-		appear, wait, disappear
+		appear, wait, disappear, wait2
 	};
 
 	enum InputState {

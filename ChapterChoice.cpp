@@ -65,7 +65,7 @@ void ChapterChoice::OnStart()
 			transform->SetPosY(0);
 			animTime = 0;
 			appearAnim->Stop();
-			state = ChapterState::wait;
+			state = ChapterState::wait2;
 		}
 		}, 0);
 	appearAnim->SetIsLoop(true);
@@ -142,13 +142,14 @@ void ChapterChoice::OnUpdate()
 		animTime += RG2R_TimeM->GetDeltaTime();
 		if (animTime >= 0.2f * chapter)
 		{
-			state = ChapterState::wait;
 			animTime = 0;
 			appearAnim->Start();
+			ChapterChoice::state = ChapterState::wait;
 		}
 	}
 
-	if (PlayerData::GetInstance()->chapter >= chapter)
+	if (PlayerData::GetInstance()->chapter >= chapter
+		&& ChapterChoice::state == ChapterState::wait2)
 		Input();
 }
 

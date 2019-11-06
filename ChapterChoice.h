@@ -12,7 +12,7 @@ class ChapterChoice :
 {
 private:
 	enum ChapterState {
-		appear, wait, disappear
+		appear, wait, disappeard, wait2
 	};
 
 	enum InputState {

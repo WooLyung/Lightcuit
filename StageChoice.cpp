@@ -55,7 +55,7 @@ void StageChoice::OnStart()
 			transform->SetPos(toPos);
 			animTime = 0;
 			appearAnim->Stop();
-			state = StageState::wait;
+			state = StageState::wait2;
 		}
 		}, 0);
 	appearAnim->SetIsLoop(true);
@@ -130,7 +130,12 @@ void StageChoice::OnUpdate()
 	if (PlayerData::GetInstance()->chapter > StageData::GetInstance()->chapter
 		|| PlayerData::GetInstance()->chapter == StageData::GetInstance()->chapter
 		&& PlayerData::GetInstance()->stage >= stage)
-		Input();
+	{
+		if (state == StageState::wait2)
+		{
+			Input();
+		}
+	}
 }
 
 void StageChoice::Input()
@@ -191,5 +196,6 @@ SpriteRenderer* StageChoice::GetSpriteRenderer()
 
 void StageChoice::Disappear()
 {
+	appearAnim->Stop();
 	disappearAnim->Start();
 }
