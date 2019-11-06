@@ -43,11 +43,11 @@ void ChapterChoice::OnStart()
 	{
 		Object* child = new Object;
 		auto spr = child->AttachComponent<SpriteRenderer>()
-			->SetTexture("Resources/Sprites/UIs/WritingSupplies/postit.png");
+			->SetTexture("Resources/Sprites/UIs/Chapters/chapterLock.png");
 		spr->SetZ_index(3);
 		child->GetComponent<Transform>()
-			->SetScale(1.15f, 1.15f)
-			->SetPos(0.8f, 0)
+			->SetScale(0.5f, 0.5f)
+			->SetPos(1.5f, -2.5f)
 			->SetAnchor(spr->GetTexture()->GetSize().width * 0.5f,
 				spr->GetTexture()->GetSize().height * 0.5f);
 		AttachChild(child);

@@ -24,6 +24,7 @@ private:
 	SpriteRenderer* spriteRenderer;
 	StageScene* scene;
 	Vec2F toPos;
+	Object* lock = nullptr;
 
 	StageState state = appear;
 	InputState inputState = InputState::none;

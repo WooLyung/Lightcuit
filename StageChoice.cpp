@@ -33,12 +33,13 @@ void StageChoice::OnStart()
 		&& PlayerData::GetInstance()->stage >= stage))
 	{
 		Object* child = new Object;
+		lock = child;
 		auto spr = child->AttachComponent<SpriteRenderer>()
-			->SetTexture("Resources/Sprites/UIs/WritingSupplies/postit.png");
+			->SetTexture("Resources/Sprites/UIs/Stages/stageLock.png");
 		spr->SetZ_index(3);
 		child->GetComponent<Transform>()
-			->SetScale(1.15f, 1.15f)
-			->SetPos(0.8f, 0)
+			->SetScale(0.8f, 0.8f)
+			->SetPos(0, 1.2f)
 			->SetAnchor(spr->GetTexture()->GetSize().width * 0.5f,
 				spr->GetTexture()->GetSize().height * 0.5f);
 		AttachChild(child);
@@ -109,6 +110,8 @@ void StageChoice::OnStart()
 			disappearAnim->Stop();
 			state = StageState::disappear;
 			spriteRenderer->SetIsEnable(false);
+			if (lock != nullptr)
+				lock->SetIsEnable(false);
 		}
 		}, 0);
 	disappearAnim->SetIsLoop(true);
