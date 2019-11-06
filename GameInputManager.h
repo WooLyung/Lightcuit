@@ -46,6 +46,7 @@ public:
 	void Input_Rotate();
 	void Input_Select();
 	void Input_Connect();
+	void Input_Wheel();
 
 	void GateMove();
 	void LineConnect();

@@ -42,6 +42,7 @@ void GameInputManager::Input()
 		Input_Rotate();
 		Input_Select();
 		Input_Connect();
+		Input_Wheel();
 	}
 
 	Input_Erase();
@@ -69,11 +70,17 @@ void GameInputManager::Erase(Gate* gate)
 {
 	for (auto& iter : gate->input)
 	{
-		Erase(iter + gate->tilePos);
+		Line* line = scene->objectManager->FindLine(iter + gate->tilePos);
+
+		if (line != nullptr && line->output == iter)
+			Erase(iter + gate->tilePos);
 	}
 	for (auto& iter : gate->output)
 	{
-		Erase(iter + gate->tilePos);
+		Line* line = scene->objectManager->FindLine(iter + gate->tilePos);
+
+		if (line != nullptr && line->input == iter)
+			Erase(iter + gate->tilePos);
 	}
 }
 
@@ -209,6 +216,45 @@ void GameInputManager::Input_Connect() // 라인 연결, 좌클릭
 	{
 		inputState = InputState::LINE_START;
 		myGate = targetGate;
+	}
+}
+
+void GameInputManager::Input_Wheel()
+{
+	if (targetGate != nullptr
+		&& targetGate->GetID() == typeid(Battery))
+	{
+		if (RG2R_InputM->GetMouseWheel() != 0 && inputState == InputState::NONE)
+		{
+			int scale = RG2R_InputM->GetMouseWheel() / 120;
+
+			while (scale)
+			{
+				if (scale > 0)
+				{
+					scale--;
+
+					if (targetGate->GetColor() == Color8(1, 0, 0))
+						targetGate->SetColor(Color8(0, 1, 0));
+					else if (targetGate->GetColor() == Color8(0, 1, 0))
+						targetGate->SetColor(Color8(0, 0, 1));
+					else if (targetGate->GetColor() == Color8(0, 0, 1))
+						targetGate->SetColor(Color8(1, 0, 0));
+				}
+				else
+				{
+					scale++;
+
+					if (targetGate->GetColor() == Color8(1, 0, 0))
+						targetGate->SetColor(Color8(0, 0, 1));
+					else if (targetGate->GetColor() == Color8(0, 1, 0))
+						targetGate->SetColor(Color8(1, 0, 0));
+					else if (targetGate->GetColor() == Color8(0, 0, 1))
+						targetGate->SetColor(Color8(0, 1, 0));
+				}
+			}
+		}
+
 	}
 }
 
