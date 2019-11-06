@@ -61,4 +61,10 @@ void Popup::Pop(int code)
 		pop->Start();
 		spriteRenderer->SetTexture("Resources/Sprites/UIs/PopUps/cycle.png");
 	}
+	else if (code == 2)
+	{
+		animTime = 0;
+		pop->Start();
+		spriteRenderer->SetTexture("Resources/Sprites/UIs/PopUps/stageFail.png");
+	}
 }

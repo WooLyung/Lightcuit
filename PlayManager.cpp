@@ -348,6 +348,7 @@ void PlayManager::Result()
 	}
 	else
 	{
+		scene->PopMsg(2);
 		gameNotClear->Start();
 	}
 }
