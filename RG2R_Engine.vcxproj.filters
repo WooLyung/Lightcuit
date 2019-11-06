@@ -277,6 +277,9 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\MenuButton">
       <UniqueIdentifier>{c13714a0-ef54-4018-9170-d0a5e1ee0323}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\PublicData\PlayerData">
+      <UniqueIdentifier>{bf3e4a14-b7e0-48f4-a9e6-db92bdc18119}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -498,6 +501,9 @@
     <ClInclude Include="MenuButton.h">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\MenuButton</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>소스 파일\Game\PublicData\PlayerData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -716,6 +722,9 @@
     </ClCompile>
     <ClCompile Include="MenuButton.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\MenuButton</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerData.cpp">
+      <Filter>소스 파일\Game\PublicData\PlayerData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

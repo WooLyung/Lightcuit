@@ -4,6 +4,7 @@
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
+#include "PlayerData.h"
 
 StageChoice::StageChoice(int Stage, std::string path, StageScene* scene, Vec2F pos)
 {
@@ -110,7 +111,10 @@ void StageChoice::OnUpdate()
 		}
 	}
 
-	Input();
+	if (PlayerData::GetInstance()->chapter > StageData::GetInstance()->chapter
+		|| PlayerData::GetInstance()->chapter == StageData::GetInstance()->chapter
+		&& PlayerData::GetInstance()->stage >= stage)
+		Input();
 }
 
 void StageChoice::Input()

@@ -11,9 +11,12 @@
 #include "Engine.h"
 #include "StageData.h"
 #include "SceneData.h"
+#include "PlayerData.h"
 
 ChapterScene::ChapterScene()
 {
+	std::cout << PlayerData::GetInstance()->chapter << std::endl;
+	std::cout << PlayerData::GetInstance()->stage << std::endl;
 }
 
 ChapterScene::~ChapterScene()

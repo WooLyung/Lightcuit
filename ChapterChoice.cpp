@@ -4,6 +4,7 @@
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
+#include "PlayerData.h"
 
 ChapterChoice::ChapterChoice(int chapter, std::string path, ChapterScene* scene)
 {
@@ -133,7 +134,8 @@ void ChapterChoice::OnUpdate()
 		}
 	}
 
-	Input();
+	if (PlayerData::GetInstance()->chapter >= chapter)
+		Input();
 }
 
 void ChapterChoice::Input()

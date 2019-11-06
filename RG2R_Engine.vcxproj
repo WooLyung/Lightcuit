@@ -195,6 +195,7 @@
     <ClInclude Include="Pen2.h" />
     <ClInclude Include="Pen3.h" />
     <ClInclude Include="PlayButton.h" />
+    <ClInclude Include="PlayerData.h" />
     <ClInclude Include="PlayManager.h" />
     <ClInclude Include="Popup.h" />
     <ClInclude Include="PostIt.h" />
@@ -268,6 +269,7 @@
     <ClCompile Include="Pen2.cpp" />
     <ClCompile Include="Pen3.cpp" />
     <ClCompile Include="PlayButton.cpp" />
+    <ClCompile Include="PlayerData.cpp" />
     <ClCompile Include="PlayManager.cpp" />
     <ClCompile Include="Popup.cpp" />
     <ClCompile Include="PostIt.cpp" />
