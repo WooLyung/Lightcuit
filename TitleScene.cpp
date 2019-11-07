@@ -28,6 +28,8 @@ void TitleScene::OnStart()
 
 	title = new Title;
 	AttachObject(title);
+	titleText = new TitleText;
+	AttachObject(titleText);
 }
 
 void TitleScene::OnUpdate()
@@ -37,5 +39,6 @@ void TitleScene::OnUpdate()
 	if (time >= 1 && RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
 	{
 		title->NextScene();
+		titleText->NextScene();
 	}
 }

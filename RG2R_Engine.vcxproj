@@ -232,6 +232,7 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TitleText.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="ViewRenderData.h" />
     <ClInclude Include="ViewRenderer.h" />
@@ -312,6 +313,7 @@
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="TitleText.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="ViewRenderData.cpp" />
     <ClCompile Include="ViewRenderer.cpp" />

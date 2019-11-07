@@ -4,7 +4,7 @@
 #include "SpriteRenderer.h"
 #include "Effect.h"
 
-class Title
+class TitleText
 	: public Object
 {
 private:
@@ -16,8 +16,8 @@ private:
 	float animTime = 0;
 
 public:
-	Title();
-	~Title();
+	TitleText();
+	~TitleText();
 
 	void NextScene();
 };

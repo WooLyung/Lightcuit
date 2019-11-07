@@ -1,22 +1,23 @@
 #include "stdafx.h"
-#include "Title.h"
+#include "TitleText.h"
 #include "Engine.h"
 #include "ChapterScene.h"
 
-Title::Title()
+TitleText::TitleText()
 {
-	transform = GetComponent<Transform>()
-		->SetScale(0.7f, 0.7f);
 	spriteRenderer = AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/UIs/titleImage.png");
-	spriteRenderer->SetZ_index(-10);
+		->SetTexture("Resources/Sprites/UIs/titleText.png");
+	transform = GetComponent<Transform>()
+		->SetAnchor(spriteRenderer->GetTexture()->GetSize().width * 0.5f,
+			spriteRenderer->GetTexture()->GetSize().height * 0.5f)
+		->SetScale(0.55f, 0.55f);
+
 
 	appearAnim = new CommandList;
 	commandLists.push_back(appearAnim);
 	appearAnim->PushCommand([=]() {
 		animTime += RG2R_TimeM->GetDeltaTime();
 		transform->SetPosY(-pow(animTime - 1, 2) * 5);
-		transform->SetRot(-(pow(animTime - 1, 2) + 1) * 20);
 
 		if (animTime >= 1)
 		{
@@ -33,21 +34,15 @@ Title::Title()
 	disappearAnim->PushCommand([=]() {
 		animTime -= RG2R_TimeM->GetDeltaTime();
 		transform->SetPosY(-pow(animTime - 1, 2) * 5);
-		transform->SetRot(-(pow(animTime - 1, 2) + 1) * 20);
-
-		if (animTime <= 0)
-		{
-			RG2R_SceneM->ChangeScene(new ChapterScene, true);
-		}
 		}, 0);
 	disappearAnim->SetIsLoop(true);
 }
 
-Title::~Title()
+TitleText::~TitleText()
 {
 }
 
-void Title::NextScene()
+void TitleText::NextScene()
 {
 	disappearAnim->Start();
 }

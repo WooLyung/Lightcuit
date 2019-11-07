@@ -295,6 +295,9 @@
     <Filter Include="소스 파일\Game\Objects\TitleScene\Title">
       <UniqueIdentifier>{dedc53d8-4eb0-423c-a126-da733e242355}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\TitleScene\TitleText">
+      <UniqueIdentifier>{b54c0c51-8333-4e90-b7b9-6b0aca426031}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -531,6 +534,9 @@
     <ClInclude Include="Title.h">
       <Filter>소스 파일\Game\Objects\TitleScene\Title</Filter>
     </ClInclude>
+    <ClInclude Include="TitleText.h">
+      <Filter>소스 파일\Game\Objects\TitleScene\TitleText</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -764,6 +770,9 @@
     </ClCompile>
     <ClCompile Include="Title.cpp">
       <Filter>소스 파일\Game\Objects\TitleScene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleText.cpp">
+      <Filter>소스 파일\Game\Objects\TitleScene\TitleText</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

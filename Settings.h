@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#define GAME_TITLE "Test Title"
+#define GAME_TITLE "Lightcuit"
 #define BACKGROUND_COLOR 0xff664E44
 
 #define WINDOW_DEFAULT_WIDTH 1280
