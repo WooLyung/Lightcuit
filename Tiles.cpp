@@ -71,7 +71,7 @@ Tiles::Tiles(int x, int y)
 		line2->GetComponent<Transform>()
 			->SetAnchor(64, 64)
 			->SetRot(90)
-			->SetPos(i - x / 2, (y + 2) / 2);
+			->SetPos(i - x / 2, (y + y % 2 + 1) / 2);
 
 		AttachChild(line1);
 		AttachChild(line2);
@@ -86,7 +86,7 @@ Tiles::Tiles(int x, int y)
 		line1->GetComponent<Transform>()
 			->SetAnchor(64, 64)
 			->SetRot(180)
-			->SetPos((x + 2) / 2, i - y / 2);
+			->SetPos((x + x % 2 + 1) / 2, i - y / 2);
 
 		auto line2 = new Object;
 		line2->AttachComponent<SpriteRenderer>()
@@ -108,7 +108,7 @@ Tiles::Tiles(int x, int y)
 	edge1->GetComponent<Transform>()
 		->SetAnchor(64, 64)
 		->SetRot(90)
-		->SetPos((x + 2) / 2, (y + 2) / 2);
+		->SetPos((x + x % 2 + 1) / 2, (y + y % 2 + 1) / 2);
 
 	auto edge2 = new Object;
 	edge2->AttachComponent<SpriteRenderer>()
@@ -117,7 +117,7 @@ Tiles::Tiles(int x, int y)
 	edge2->GetComponent<Transform>()
 		->SetAnchor(64, 64)
 		->SetRot(0)
-		->SetPos(-(x + 2) / 2, (y + 2) / 2);
+		->SetPos(-(x + 2) / 2, (y + y % 2 + 1) / 2);
 
 	auto edge3 = new Object;
 	edge3->AttachComponent<SpriteRenderer>()
@@ -126,7 +126,7 @@ Tiles::Tiles(int x, int y)
 	edge3->GetComponent<Transform>()
 		->SetAnchor(64, 64)
 		->SetRot(180)
-		->SetPos((x + 2) / 2, -(y + 2) / 2);
+		->SetPos((x + x % 2 + 1) / 2, -(y + 2) / 2);
 
 	auto edge4 = new Object;
 	edge4->AttachComponent<SpriteRenderer>()

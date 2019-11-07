@@ -308,14 +308,8 @@ int PlayManager::CheckClear()
 
 		for (auto iter : node->next)
 		{
-			std::cout << node->type << std::endl;
 			iter->inDegree++;
 		}
-	}
-
-	for (auto& node : nodes) {
-		std::cout << "진입차수 : " << node->inDegree << std::endl;
-
 	}
 
 	while (nodeStack.size() > 0)

@@ -149,6 +149,11 @@ void InGameScene::Init()
 		}
 	}
 	in.close();
+
+	if (mapSize.x % 2 == 0)
+		GetMainCamera()->Translate(-0.5f, 0);
+	if (mapSize.y % 2 == 0)
+		GetMainCamera()->Translate(0, -0.5f);
 }
 
 Vec2L InGameScene::GetTilePos()
@@ -208,7 +213,7 @@ void InGameScene::CreateGate(std::map<string, string> data)
 			else if (data["color"] == "magenta")
 				color = Color8(1, 0, 1);
 			else if (data["color"] == "yellow")
-				color = Color8(1, 0, 1);
+				color = Color8(1, 1, 0);
 			else if (data["color"] == "black")
 				color = Color8(0, 0, 0);
 			else if (data["color"] == "white")
