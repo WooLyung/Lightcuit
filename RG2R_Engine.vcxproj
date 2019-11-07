@@ -230,6 +230,8 @@
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Tiles.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="ViewRenderData.h" />
     <ClInclude Include="ViewRenderer.h" />
@@ -308,6 +310,8 @@
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Tiles.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="ViewRenderData.cpp" />
     <ClCompile Include="ViewRenderer.cpp" />

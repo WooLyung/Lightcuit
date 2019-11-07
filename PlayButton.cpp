@@ -140,11 +140,18 @@ void PlayButton::Input()
 		{
 			if (inputState == InputState::click)
 			{
-				inputState = InputState::none;
-				sizeFlag = 1;
-				changeScale->Start();
+				if (scene->playManager->gameState == GameState::CircuitDesign)
+				{
+					inputState = InputState::none;
+					sizeFlag = 1;
+					changeScale->Start();
 
-				scene->playManager->Try();
+					scene->playManager->Try();
+				}
+				else if (scene->playManager->gameState == GameState::Try)
+				{
+					std::cout << "일시정지 해야함" << std::endl;
+				}
 			}
 		}
 	}

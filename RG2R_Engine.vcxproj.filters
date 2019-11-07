@@ -286,6 +286,15 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\DiffGate">
       <UniqueIdentifier>{2aaa40a1-3007-4dd9-ab80-662a493af877}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Scenes\TitleScene">
+      <UniqueIdentifier>{add6c394-2f1f-4026-a3ef-1bb0d8d57bfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\TitleScene">
+      <UniqueIdentifier>{cc2ccdfa-27c6-4da7-bc02-9b8ed2be5120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\TitleScene\Title">
+      <UniqueIdentifier>{dedc53d8-4eb0-423c-a126-da733e242355}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -516,6 +525,12 @@
     <ClInclude Include="DiffGate.h">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DiffGate</Filter>
     </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>소스 파일\Game\Scenes\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>소스 파일\Game\Objects\TitleScene\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -743,6 +758,12 @@
     </ClCompile>
     <ClCompile Include="DiffGate.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DiffGate</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>소스 파일\Game\Scenes\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>소스 파일\Game\Objects\TitleScene\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

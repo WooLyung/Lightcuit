@@ -2,7 +2,7 @@
 #include "IntroManager.h"
 #include "CommandList.h"
 #include "Engine.h"
-#include "ChapterScene.h"
+#include "TitleScene.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
 
@@ -26,7 +26,7 @@ void IntroManager::OnStart()
 	effect = black->AttachComponent<Effect>();
 
 	textRenderer = AttachComponent<TextRenderer>()
-		->SetText("적당한 인트로 글자입니다.")->SetTextColor(Color(1, 1, 1, 0))->SetAlignmentHeight(TextAlignment::ALIGN_CENTER)
+		->SetText("절대우승해 제작")->SetTextColor(Color(1, 1, 1, 0))->SetAlignmentHeight(TextAlignment::ALIGN_CENTER)
 		->SetAlignmentWidth(TextAlignment::ALIGN_CENTER);
 }
 
@@ -79,7 +79,7 @@ void IntroManager::OnUpdate()
 		if (time >= 1.5f)
 		{
 			state = IntroState::appear2;
-			textRenderer->SetText("적당한 두 번째 텍스트");
+			textRenderer->SetText("선린인터넷고등학교 제공");
 			time = 0;
 		}
 	}
@@ -121,7 +121,7 @@ void IntroManager::OnUpdate()
 
 		if (time >= 0.5f)
 		{
-			RG2R_SceneM->ChangeScene(new ChapterScene, true);
+			RG2R_SceneM->ChangeScene(new TitleScene, true);
 		}
 	}
 }

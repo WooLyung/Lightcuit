@@ -23,7 +23,6 @@ class PlayManager :
 private:
 	InGameScene* scene;
 	std::vector<Node*> sortedNodes;
-	GameState gameState = CircuitDesign;
 
 	CommandList* tryPlay;
 	CommandList* clearEffect;
@@ -44,4 +43,6 @@ public:
 	void Try();
 	void Play();
 	void Result();
+
+	GameState gameState = CircuitDesign;
 };
