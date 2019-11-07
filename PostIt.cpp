@@ -14,7 +14,8 @@ PostIt::PostIt(bool isAnim)
 		->SetAlignmentHeight(TextAlignment::ALIGN_CENTER)
 		->SetAlignmentWidth(TextAlignment::ALIGN_CENTER)
 		->SetTextColor(Color(1, 1, 1))
-		->SetText("¾È³çÇÏ¼¼¿ä!");
+		->SetText("¾È³çÇÏ¼¼¿ä!")
+		->SetSize(25);
 	textRenderer->SetZ_index(10);
 	AttachChild(textObj);
 }

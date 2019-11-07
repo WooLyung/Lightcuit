@@ -21,8 +21,8 @@ protected:
 
 	bool isStatic;
 	Color8 color;
-	Color nowColor = { 1, 1, 1, 1 };
-	Color toColor = { 1, 1, 1, 1 };
+	Color nowColor = { 0.8f, 0.8f, 0.8f, 1 };
+	Color toColor = { 0.8f, 0.8f, 0.8f, 1 };
 
 	Dir dir = Dir::RIGHT;
 

@@ -327,6 +327,10 @@ struct Color8 {
 	Color8 operator-(Color8 color) {
 		return Color8(!r ? 0 : (r - color.r), !g ? 0 : (g - color.g), !b ? 0 : (b - color.b));
 	}
+
+	Color8 operator&(Color8 color) {
+		return Color8(r * color.r, g * color.g, b * color.b);
+	}
 };
 
 #include"Math.inl"

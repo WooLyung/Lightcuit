@@ -17,8 +17,8 @@ private:
 
 private:
 	CommandList* changeColor;
-	Color nowColor = { 1, 1, 1, 1 };
-	Color toColor = { 1, 1, 1, 1 };
+	Color nowColor = { 0.8f, 0.8f, 0.8f, 1 };
+	Color toColor = { 0.8f, 0.8f, 0.8f, 1 };
 	Color8 color;
 
 public:

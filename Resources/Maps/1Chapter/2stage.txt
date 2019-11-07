@@ -1,10 +1,5 @@
-x:11, y:7, zoom:0.45, text:2번째_스테이지!!\엔터까지!
-x:1, y:0, type:battery, dir:up, color:blue
-x:2, y:0, type:battery, dir:up, color:red
-x:3, y:0, type:battery, dir:up, color:green
-x:0, y:2, type:add_gate, dir:up
-x:3, y:3, type:add_gate, dir:up
-x:-1, y:0, type:light1
-x:-2, y:1, type:sub_gate, dir:down
-x:-3, y:2, type:division_gate
-x:2, y:-2, type:reverse_gate
+x:7, y:5, zoom:0.5, text:색을_합쳐_조명을\흰색으로_밝히세요
+x:-3, y:2, type:battery, dir:right, color:green, isStatic:true
+x:-3, y:-2, type:battery, dir:right, color:magenta, isStatic:true
+x:0, y:0, type:add_gate, dir:right
+x:3, y:0, type:light1, dir:right

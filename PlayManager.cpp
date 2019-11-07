@@ -8,6 +8,8 @@
 #include "AddGate.h"
 #include "DivisionGate.h"
 #include "ReverseGate.h"
+#include "AndGate.h"
+#include "DiffGate.h"
 #include "SubGate.h"
 #include "Light2.h"
 
@@ -31,12 +33,12 @@ void PlayManager::OnStart()
 		{
 			if (iter->GetID() != typeid(Battery))
 			{
-				iter->SetColor(Color(1, 1, 1, 1));
+				iter->SetColor(Color(0.8f, 0.8f, 0.8f, 1));
 			}
 		}
 		for (auto& iter : scene->objectManager->lines)
 		{
-			iter->SetColor(Color(1, 1, 1, 1));
+			iter->SetColor(Color(0.8f, 0.8f, 0.8f, 1));
 		}
 		}, 1.5f)
 		->PushCommand([=]() {
@@ -85,7 +87,7 @@ void PlayManager::OnStart()
 			}
 			else // °ÔÀÌÆ®
 			{
-				Color8 color;
+				Color8 color = Color8(0, 0, 0);
 
 				if (sortedNodes[playIndex]->gate->GetID() == typeid(AddGate)
 					|| sortedNodes[playIndex]->gate->GetID() == typeid(Light))
@@ -153,6 +155,44 @@ void PlayManager::OnStart()
 						color2 = line2->GetColor();
 
 					color = color1 - color2;
+					sortedNodes[playIndex]->gate->SetColor(color);
+				}
+				if (sortedNodes[playIndex]->gate->GetID() == typeid(AndGate))
+				{
+					color = Color8(1, 1, 1);
+
+					for (auto inputs : sortedNodes[playIndex]->gate->input)
+					{
+						Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
+						Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+
+						Color8 getColor = Color8(0, 0, 0);
+						if (gate != nullptr)
+							getColor = gate->GetColor();
+						else
+							getColor = line->GetColor();
+
+						color = color & getColor;
+					}
+					sortedNodes[playIndex]->gate->SetColor(color);
+				}
+				if (sortedNodes[playIndex]->gate->GetID() == typeid(DiffGate))
+				{
+					color = Color8(1, 1, 1);
+
+					for (auto inputs : sortedNodes[playIndex]->gate->input)
+					{
+						Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
+						Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+
+						Color8 getColor = Color8(0, 0, 0);
+						if (gate != nullptr)
+							getColor = gate->GetColor();
+						else
+							getColor = line->GetColor();
+
+						color = color - getColor;
+					}
 					sortedNodes[playIndex]->gate->SetColor(color);
 				}
 			}

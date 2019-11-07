@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AddGate.h" />
+    <ClInclude Include="AndGate.h" />
     <ClInclude Include="AnimationRenderData.h" />
     <ClInclude Include="AnimationRenderer.h" />
     <ClInclude Include="Battery.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="DiffGate.h" />
     <ClInclude Include="DivisionGate.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectInfo.h" />
@@ -235,6 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddGate.cpp" />
+    <ClCompile Include="AndGate.cpp" />
     <ClCompile Include="AnimationRenderData.cpp" />
     <ClCompile Include="AnimationRenderer.cpp" />
     <ClCompile Include="Battery.cpp" />
@@ -245,6 +248,7 @@
     <ClCompile Include="ChapterScene.cpp" />
     <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="DiffGate.cpp" />
     <ClCompile Include="DivisionGate.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectInfo.cpp" />

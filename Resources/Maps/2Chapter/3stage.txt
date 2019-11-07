@@ -1,0 +1,7 @@
+x:7, y:7, zoom:0.5, text:_
+x:-3, y:2, type:battery, dir:right, color:blue
+x:-3, y:0, type:battery, dir:right, color:red
+x:-3, y:-2, type:battery, dir:right, color:green
+x:0, y:0, type:and_gate, dir:right
+x:0, y:2, type:diff_gate, dir:right
+x:0, y:3, type:light1, dir:right

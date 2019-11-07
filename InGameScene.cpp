@@ -12,6 +12,8 @@
 #include "DivisionGate.h"
 #include "SubGate.h"
 #include "ReverseGate.h"
+#include "AndGate.h"
+#include "DiffGate.h"
 #include "ObjectManager.h"
 #include "GameInputManager.h"
 #include "StageData.h"
@@ -201,6 +203,16 @@ void InGameScene::CreateGate(std::map<string, string> data)
 				color = Color8(0, 1, 0);
 			else if (data["color"] == "blue")
 				color = Color8(0, 0, 1);
+			else if (data["color"] == "cyan")
+				color = Color8(0, 1, 1);
+			else if (data["color"] == "magenta")
+				color = Color8(1, 0, 1);
+			else if (data["color"] == "yellow")
+				color = Color8(1, 0, 1);
+			else if (data["color"] == "black")
+				color = Color8(0, 0, 0);
+			else if (data["color"] == "white")
+				color = Color8(1, 1, 1);
 		}
 
 		gate = new Battery(x, y, dir, color);
@@ -234,6 +246,16 @@ void InGameScene::CreateGate(std::map<string, string> data)
 	else if (data["type"] == "reverse_gate")
 	{
 		gate = new ReverseGate(x, y, dir);
+		PushGate(gate);
+	}
+	else if (data["type"] == "and_gate")
+	{
+		gate = new AndGate(x, y, dir);
+		PushGate(gate);
+	}
+	else if (data["type"] == "diff_gate")
+	{
+		gate = new DiffGate(x, y, dir);
 		PushGate(gate);
 	}
 
