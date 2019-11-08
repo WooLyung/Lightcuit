@@ -407,7 +407,7 @@ void PlayManager::Result()
 
 			std::string out_line;
 			std::ofstream out("Datas/stageData.txt");
-			out << PlayerData::GetInstance()->chapter << PlayerData::GetInstance()->stage << std::endl;
+			out << PlayerData::GetInstance()->chapter << std::endl << PlayerData::GetInstance()->stage;
 			out.close();
 		}
 	}
