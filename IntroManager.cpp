@@ -79,7 +79,7 @@ void IntroManager::OnUpdate()
 		if (time >= 1.5f)
 		{
 			state = IntroState::appear2;
-			textRenderer->SetText("선린인터넷고등학교 제공");
+			textRenderer->SetText("Republic of Game");
 			time = 0;
 		}
 	}
