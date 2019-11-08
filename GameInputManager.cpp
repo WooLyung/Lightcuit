@@ -404,8 +404,8 @@ Line* GameInputManager::CreateLine(int x, int y)
 	}
 
 	// ¸Ê ¹ÛÀÎ°¡?
-	if (!(pos.x >= -scene->mapSize.x / 2 && pos.x <= scene->mapSize.x / 2
-		&& pos.y >= -scene->mapSize.y / 2 && pos.y <= scene->mapSize.y / 2))
+	if (!(pos.x >= -scene->mapSize.x / 2 && pos.x <= scene->mapSize.x / 2 - !(scene->mapSize.x % 2)
+		&& pos.y >= -scene->mapSize.y / 2 && pos.y <= scene->mapSize.y / 2 - !(scene->mapSize.y % 2)))
 	{
 		canCreate = false;
 	}
@@ -456,8 +456,8 @@ Line* GameInputManager::CreateLine(int x, int y, Line* preLine)
 	}
 
 	// ¸Ê ¹ÛÀÎ°¡?
-	if (!(pos.x >= -scene->mapSize.x / 2 && pos.x <= scene->mapSize.x / 2
-		&& pos.y >= -scene->mapSize.y / 2 && pos.y <= scene->mapSize.y / 2))
+	if (!(pos.x >= -scene->mapSize.x / 2 && pos.x <= scene->mapSize.x / 2 - !(scene->mapSize.x % 2)
+		&& pos.y >= -scene->mapSize.y / 2 && pos.y <= scene->mapSize.y / 2 - !(scene->mapSize.y % 2)))
 	{
 		canCreate = false;
 	}
@@ -538,8 +538,8 @@ void GameInputManager::GateMove()
 				}
 
 				// ¸Ê ¹ÛÀÎ°¡?
-				if (!(tilePos.x >= -scene->mapSize.x / 2 && tilePos.x <= scene->mapSize.x / 2
-					&& tilePos.y >= -scene->mapSize.y / 2 && tilePos.y <= scene->mapSize.y / 2))
+				if (!(tilePos.x >= -scene->mapSize.x / 2 && tilePos.x <= scene->mapSize.x / 2 - !(scene->mapSize.x % 2)
+					&& tilePos.y >= -scene->mapSize.y / 2 && tilePos.y <= scene->mapSize.y / 2 - !(scene->mapSize.y % 2)))
 				{
 					canMove = false;
 				}
