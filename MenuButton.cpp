@@ -108,7 +108,8 @@ void MenuButton::OnStart()
 
 void MenuButton::OnUpdate()
 {
-	Input();
+	if (scene->playManager->gameState != GameState::Clear)
+		Input();
 }
 
 void MenuButton::Input()

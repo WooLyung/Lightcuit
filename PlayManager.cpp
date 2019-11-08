@@ -3,6 +3,10 @@
 #include "Engine.h"
 #include "CommandList.h"
 #include "StageClearObj.h"
+#include "ToNextButton.h"
+#include "ToMenuButton.h"
+#include "PlayerData.h"
+#include "StageData.h"
 
 #include "Battery.h"
 #include "AddGate.h"
@@ -14,6 +18,7 @@
 #include "Light2.h"
 
 #include <queue>
+#include <fstream>
 #include <stack>
 
 PlayManager::PlayManager(InGameScene* scene)
@@ -376,9 +381,35 @@ void PlayManager::Result()
 
 	if (isClear)
 	{
-		//clearEffect->Start();
-		//AttachObject(new StageClearObj);
+		auto obj = new StageClearObj(scene);
+		auto child1 = new ToNextButton(scene, obj);
+		auto child2 = new ToMenuButton(scene, obj);
+		AttachObject(child1);
+		AttachObject(child2);
+		AttachObject(obj);
+		child1->parentTransform = obj->GetComponent<Transform>();
+		child2->parentTransform = obj->GetComponent<Transform>();
+		
 		gameState = GameState::Clear;
+
+		if (PlayerData::GetInstance()->stage == StageData::GetInstance()->stage
+			&& PlayerData::GetInstance()->chapter == StageData::GetInstance()->chapter)
+		{
+			if (PlayerData::GetInstance()->stage == 8)
+			{
+				PlayerData::GetInstance()->chapter++;
+				PlayerData::GetInstance()->stage = 1;
+			}
+			else
+			{
+				PlayerData::GetInstance()->stage++;
+			}
+
+			std::string out_line;
+			std::ofstream out("Datas/stageData.txt");
+			out << PlayerData::GetInstance()->chapter << PlayerData::GetInstance()->stage << std::endl;
+			out.close();
+		}
 	}
 	else
 	{

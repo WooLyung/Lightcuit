@@ -109,7 +109,8 @@ void ResetButton::OnStart()
 
 void ResetButton::OnUpdate()
 {
-	Input();
+	if (scene->playManager->gameState != GameState::Clear)
+		Input();
 }
 
 void ResetButton::Input()

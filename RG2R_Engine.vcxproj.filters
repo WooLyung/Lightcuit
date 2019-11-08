@@ -298,6 +298,12 @@
     <Filter Include="소스 파일\Game\Objects\TitleScene\TitleText">
       <UniqueIdentifier>{b54c0c51-8333-4e90-b7b9-6b0aca426031}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToNextButton">
+      <UniqueIdentifier>{0fa9ab50-807b-4d5d-8cdd-afb0d50ffd5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton">
+      <UniqueIdentifier>{36502df6-654e-4615-a68c-3e606cfd1d1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -537,6 +543,12 @@
     <ClInclude Include="TitleText.h">
       <Filter>소스 파일\Game\Objects\TitleScene\TitleText</Filter>
     </ClInclude>
+    <ClInclude Include="ToNextButton.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToNextButton</Filter>
+    </ClInclude>
+    <ClInclude Include="ToMenuButton.h">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -773,6 +785,12 @@
     </ClCompile>
     <ClCompile Include="TitleText.cpp">
       <Filter>소스 파일\Game\Objects\TitleScene\TitleText</Filter>
+    </ClCompile>
+    <ClCompile Include="ToNextButton.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToNextButton</Filter>
+    </ClCompile>
+    <ClCompile Include="ToMenuButton.cpp">
+      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,9 @@
 #include "PlayButton.h"
 #include "ResetButton.h"
 #include "MenuButton.h"
+#include "ToNextButton.h"
+#include "ToMenuButton.h"
+#include "StageClearObj.h"
 #include <map>
 
 class InGameScene :
@@ -25,6 +28,9 @@ class InGameScene :
 	friend class PlayButton;
 	friend class ResetButton;
 	friend class MenuButton;
+	friend class ToNextButton;
+	friend class ToMenuButton;
+	friend class StageClearObj;
 
 private:
 	GameInputManager* gameInputManager;

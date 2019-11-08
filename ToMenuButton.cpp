@@ -1,65 +1,35 @@
 #include "stdafx.h"
-#include "PlayButton.h"
+#include "ToMenuButton.h"
 #include "Engine.h"
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
+#include "PlayerData.h"
+#include "SceneData.h"
+#include "ChapterScene.h"
 
-PlayButton::PlayButton(bool isAnim, InGameScene* scene)
+ToMenuButton::ToMenuButton(InGameScene* scene, StageClearObj* clearObj)
 {
-	this->isAnim = isAnim;
 	this->scene = scene;
+	this->clearObj = clearObj;
+
+	GetComponent<Transform>()->SetPos(50, 50);
 }
 
-PlayButton::~PlayButton()
+ToMenuButton::~ToMenuButton()
 {
 }
 
-void PlayButton::OnStart()
+void ToMenuButton::OnStart()
 {
 	spriteRenderer = AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/UIs/Menus/playButton.png")
+		->SetTexture("Resources/Sprites/UIs/Clear/toMenu.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
 	spriteRenderer->SetZ_index(-1);
 	transform = GetComponent<Transform>()
-		->SetScale(0.2f, 0.2f)
+		->SetScale(0.5f, 0.5f)
 		->SetAnchor(spriteRenderer->GetTexture()->GetSize().width * 0.5f, spriteRenderer->GetTexture()->GetSize().height * 0.5f)
 		->SetIsRelative(false);
-
-	appearAnim = new CommandList;
-	commandLists.push_back(appearAnim);
-	appearAnim->PushCommand([=]() {
-		animTime += RG2R_TimeM->GetDeltaTime();
-
-		if (animTime >= 1)
-		{
-			animTime = 1;
-			appearAnim->Stop();
-		}
-
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
-			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime - 1, 2) * 5);
-		transform->SetRot(250 - (pow(animTime - 1, 2) + 1) * 250);
-		}, 0);
-	appearAnim->SetIsLoop(true);
-	appearAnim->Start();
-
-	disappearAnim = new CommandList;
-	commandLists.push_back(disappearAnim);
-	disappearAnim->PushCommand([=]() {
-		animTime += RG2R_TimeM->GetDeltaTime();
-
-		if (animTime >= 1)
-		{
-			animTime = 1;
-			disappearAnim->Stop();
-		}
-
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
-			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime, 2) * 5);
-		transform->SetRot(pow(animTime, 2) * 250);
-		}, 0);
-	disappearAnim->SetIsLoop(true);
 
 	hoverAnim = new CommandList;
 	commandLists.push_back(hoverAnim);
@@ -96,28 +66,26 @@ void PlayButton::OnStart()
 		}
 		}, 0);
 	changeScale->SetIsLoop(true);
+}
 
-	if (!isAnim)
+void ToMenuButton::OnUpdate()
+{
+	transform->SetPos(parentTransform->GetPos() + Vec2F(0.4f, -1.4f));
+	Input();
+
+	if (changeTime >= 0)
 	{
-		animTime = 1;
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
-			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime - 1, 2) * 5);
-		transform->SetRot(50 - (pow(animTime - 1, 2) + 1) * 50);
+		changeTime += RG2R_TimeM->GetDeltaTime();
+		if (changeTime >= 1.2f)
+			RG2R_SceneM->ChangeScene(new ChapterScene, true);
 	}
 }
 
-
-void PlayButton::OnUpdate()
-{
-	if (scene->playManager->gameState != GameState::Clear)
-		Input();
-}
-
-void PlayButton::Input()
+void ToMenuButton::Input()
 {
 	Vec2F vec = RG2R_InputM->FromScreenToUI(RG2R_InputM->GetMousePos()) - transform->GetPos();
 
-	if (vec.Dot(vec) <= 0.1f)
+	if (vec.Dot(vec) <= 0.06f)
 	{
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_NONE)
 		{
@@ -141,18 +109,11 @@ void PlayButton::Input()
 		{
 			if (inputState == InputState::click)
 			{
-				if (scene->playManager->gameState == GameState::CircuitDesign)
-				{
-					inputState = InputState::none;
-					sizeFlag = 1;
-					changeScale->Start();
-
-					scene->playManager->Try();
-				}
-				else if (scene->playManager->gameState == GameState::Try)
-				{
-					std::cout << "일시정지 해야함" << std::endl;
-				}
+				sizeFlag = 1;
+				changeScale->Start();
+				clearObj->Disappear();
+				
+				changeTime = 0;
 			}
 		}
 	}
@@ -167,18 +128,12 @@ void PlayButton::Input()
 	}
 }
 
-Transform* PlayButton::GetTransform()
+Transform* ToMenuButton::GetTransform()
 {
 	return transform;
 }
 
-SpriteRenderer* PlayButton::GetSpriteRenderer()
+SpriteRenderer* ToMenuButton::GetSpriteRenderer()
 {
 	return spriteRenderer;
-}
-
-void PlayButton::Disappear()
-{
-	disappearAnim->Start();
-	animTime = 0;
 }
