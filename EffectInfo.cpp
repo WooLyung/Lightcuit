@@ -266,4 +266,26 @@ ID2D1Image * MorphologyEffectInfo::GetOutputImage(ID2D1Image * input)
 	e->GetOutput(&output);
 	return output;
 }
+
+TDRotationEffectInfo::TDRotationEffectInfo(D2D1_VECTOR_3F vec)
+{
+	this->vec = vec;
+}
+
+TDRotationEffectInfo::~TDRotationEffectInfo()
+{
+
+}
+
+ID2D1Image* TDRotationEffectInfo::GetOutputImage(ID2D1Image* input)
+{
+	auto e = RG2R_GraphicM->GetEffect(ET_3DPerspectiveTransform);
+	e->SetInput(0, input);
+	e->SetValue(D2D1_3DPERSPECTIVETRANSFORM_PROP_ROTATION, vec);
+
+	ID2D1Image* output;
+	e->GetOutput(&output);
+	return output;
+}
+
 #pragma endregion

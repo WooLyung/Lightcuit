@@ -304,6 +304,9 @@
     <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton">
       <UniqueIdentifier>{36502df6-654e-4615-a68c-3e606cfd1d1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\Generic\Cursor">
+      <UniqueIdentifier>{068b92e5-2ece-406a-9d3c-4a08109bb000}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -549,6 +552,9 @@
     <ClInclude Include="ToMenuButton.h">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
     </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>소스 파일\Game\Objects\Generic\Cursor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -791,6 +797,9 @@
     </ClCompile>
     <ClCompile Include="ToMenuButton.cpp">
       <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>소스 파일\Game\Objects\Generic\Cursor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

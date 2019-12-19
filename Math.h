@@ -297,7 +297,7 @@ public:
 using Matrix = D2D1_MATRIX_3X2_F;
 
 struct Color8 {
-	int r = 0, g = 0, b = 0;
+	bool r = 0, g = 0, b = 0;
 	
 	Color8() {}
 	Color8(int r, int g, int b) { 

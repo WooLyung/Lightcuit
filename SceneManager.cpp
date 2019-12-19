@@ -9,9 +9,11 @@
 
 Scene* SceneManager::FirstScene()
 {
+	ShowCursor(false);
+
 	//return new ChapterScene;
-	return new IntroScene;
-	//return new InGameScene;
+	//return new IntroScene;
+	return new InGameScene;
 	//return new StageScene;
 }
 

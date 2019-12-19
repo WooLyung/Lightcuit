@@ -4,6 +4,7 @@
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
+#include "Effect.h"
 
 PostIt::PostIt(bool isAnim)
 {

@@ -36,6 +36,9 @@ InGameScene::~InGameScene()
 
 void InGameScene::OnStart()
 {
+	cursor = new Cursor;
+	AttachObject(cursor);
+
 	objectManager = new ObjectManager(this);
 	gameInputManager = new GameInputManager(this);
 	playManager = new PlayManager(this);

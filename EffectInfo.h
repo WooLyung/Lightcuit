@@ -1,5 +1,6 @@
 #pragma once
 #include "Effect.h"
+#include "stdafx.h"
 
 class EffectInfo
 {
@@ -150,6 +151,19 @@ public:
 public:
 	MorphologyEffectInfo(UINT width = 1, UINT height = 1, D2D1_MORPHOLOGY_MODE mode = D2D1_MORPHOLOGY_MODE_ERODE);
 	~MorphologyEffectInfo();
+
+	ID2D1Image* GetOutputImage(ID2D1Image* input) override;
+};
+
+class TDRotationEffectInfo
+	:public EffectInfo
+{
+public:
+	D2D1_VECTOR_3F vec;
+
+public:
+	TDRotationEffectInfo(D2D1_VECTOR_3F);
+	~TDRotationEffectInfo();
 
 	ID2D1Image* GetOutputImage(ID2D1Image* input) override;
 };

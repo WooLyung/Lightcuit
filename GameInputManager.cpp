@@ -19,6 +19,20 @@ void GameInputManager::OnUpdate()
 	{
 		Input();
 	}
+
+	if (inputState == InputState::GATE_LIFT)
+	{
+		scene->cursor->SetSpr(1);
+	}
+	else if (inputState == InputState::LINE_CONNECT
+		|| inputState == InputState::LINE_START)
+	{
+		scene->cursor->SetSpr(2);
+	}
+	else
+	{
+		scene->cursor->SetSpr(0);
+	}
 }
 
 void GameInputManager::OnStart()

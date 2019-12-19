@@ -9,6 +9,7 @@
 #include "Engine.h"
 #include "ChapterScene.h"
 #include "TextRenderer.h"
+#include "Cursor.h"
 
 TitleScene::TitleScene()
 {
@@ -20,6 +21,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::OnStart()
 {
+	AttachObject(new Cursor);
 	AttachObject(new Pen1(true));
 	AttachObject(new Pen2(true));
 	AttachObject(new Pen3(true));

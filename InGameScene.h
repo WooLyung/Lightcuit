@@ -16,6 +16,7 @@
 #include "ToNextButton.h"
 #include "ToMenuButton.h"
 #include "StageClearObj.h"
+#include "Cursor.h"
 #include <map>
 
 class InGameScene :
@@ -55,6 +56,8 @@ private:
 	Vec2L GetTilePos();
 
 public:
+	Cursor* cursor;
+
 	InGameScene();
 	~InGameScene();
 

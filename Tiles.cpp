@@ -3,6 +3,7 @@
 #include "SpriteRenderer.h"
 #include "Transform.h"
 #include "Engine.h"
+#include "Effect.h"
 
 Tiles::Tiles(int x, int y)
 {

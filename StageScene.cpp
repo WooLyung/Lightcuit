@@ -13,6 +13,7 @@
 #include "Engine.h"
 #include "InGameScene.h"
 #include "ChapterScene.h"
+#include "Cursor.h"
 
 StageScene::StageScene()
 {
@@ -24,6 +25,8 @@ StageScene::~StageScene()
 
 void StageScene::OnStart()
 {
+	AttachObject(new Cursor);
+
 	auto chapterObj = CreateObject();
 	auto spriteRenderer = chapterObj->AttachComponent<SpriteRenderer>()
 		->SetTexture("Resources/Sprites/UIs/Chapters/chapter1.png")

@@ -12,6 +12,7 @@
 #include "StageData.h"
 #include "SceneData.h"
 #include "PlayerData.h"
+#include "Cursor.h"
 
 ChapterScene::ChapterScene()
 {
@@ -23,6 +24,7 @@ ChapterScene::~ChapterScene()
 
 void ChapterScene::OnStart()
 {
+	AttachObject(new Cursor);
 	chapters.push_back(new ChapterChoice(1, std::string("Resources/Sprites/UIs/Chapters/chapter1.png"), this));
 	chapters.push_back(new ChapterChoice(2, std::string("Resources/Sprites/UIs/Chapters/chapter2.png"), this));
 	chapters.push_back(new ChapterChoice(3, std::string("Resources/Sprites/UIs/Chapters/chapter3.png"), this));
