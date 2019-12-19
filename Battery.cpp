@@ -6,7 +6,7 @@ Battery::Battery(long x, long y, Dir dir, Color8 color)
 {
 	auto uncolored = new Object;
 	uncoloredSpriteRenderer = uncolored->AttachComponent<SpriteRenderer>();
-	uncoloredSpriteRenderer->SetZ_index(1);
+	uncoloredSpriteRenderer->SetZ_index(6);
 	uncolored->GetComponent<Transform>()->SetAnchor(64, 64);
 	uncolored->ChangeParent(this);
 

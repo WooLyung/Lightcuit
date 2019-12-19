@@ -30,6 +30,7 @@ public:
 	};
 
 	BoardState boardState = BoardState::top;
+	CommandList* changeScene;
 
 	SettingBoard(ChapterScene*);
 	~SettingBoard();

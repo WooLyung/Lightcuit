@@ -93,6 +93,7 @@ void ChapterScene::ChoiceChapter()
 	if (!isFinish)
 	{
 		isFinish = true;
+		settingBoard->changeScene->Start();
 
 		for (auto iter : chapters)
 		{

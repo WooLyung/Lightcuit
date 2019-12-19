@@ -67,6 +67,13 @@ void SettingBoard::OnStart()
 		}, 0);
 	disappearAnim->SetIsLoop(true);
 
+	changeScene = new CommandList;
+	commandLists.push_back(changeScene);
+	changeScene->PushCommand([=]() {
+		transform->Translate(0, RG2R_TimeM->GetDeltaTime());
+		}, 0);
+	changeScene->SetIsLoop(true);
+
 	blur = CreateObject();
 	blurEffect = blur->AttachComponent<Effect>();
 

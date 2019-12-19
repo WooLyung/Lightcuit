@@ -242,6 +242,7 @@ void GameInputManager::Input_Select() // 게이트 들기, 우클릭
 
 		shadow->SetIsEnable(true);
 		shadow_renderer->SetTexture(myGate->GetSpriteRenderer()->GetTexture());
+		shadow_transform->SetRot(myGate->GetTransform()->GetRot());
 	}
 }
 
