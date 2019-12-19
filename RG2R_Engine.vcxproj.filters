@@ -316,6 +316,12 @@
     <Filter Include="소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard">
       <UniqueIdentifier>{cb0eb5af-0fdc-43dd-93f7-2bf38348de3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\Effects">
+      <UniqueIdentifier>{f6400f2a-bace-4a5d-974c-615b3876cb0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\Effects\Dust">
+      <UniqueIdentifier>{4ec2ba19-2d7d-4176-b964-6a608cc2377e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -570,6 +576,9 @@
     <ClInclude Include="SettingBoard.h">
       <Filter>소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard</Filter>
     </ClInclude>
+    <ClInclude Include="Dust.h">
+      <Filter>소스 파일\Game\Objects\Effects\Dust</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -821,6 +830,9 @@
     </ClCompile>
     <ClCompile Include="SettingBoard.cpp">
       <Filter>소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Dust.cpp">
+      <Filter>소스 파일\Game\Objects\Effects\Dust</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

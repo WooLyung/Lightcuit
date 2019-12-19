@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Transform.h"
 #include "Settings.h"
+#include "Engine.h"
 
 Object::Object()
 {
@@ -612,11 +613,10 @@ void Object::Destroy()
 {
 	state = OBJ_DESTROY;
 	DetachParent();
+	RG2R_SceneM->GetScene()->DestroyObject(this);
 
-	if (scene != nullptr)
-	{
-		scene->DestroyObject(this);
-	}
+	for (auto& child : childs)
+		child->Destroy();
 }
 
 bool Object::GetIsEnable()

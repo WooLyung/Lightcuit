@@ -68,18 +68,19 @@ void Scene::Update()
 		iter->Update();
 	}
 
-	for (auto iter : destroyed)
+	for (auto& iter : destroyed)
 	{
 		for (auto iter2 = objects.begin(); iter2 != objects.end(); iter2++)
 		{
 			if (*iter2 == iter)
 			{
 				objects.erase(iter2);
-				delete iter;
-
 				break;
 			}
 		}
+
+		iter->OnDestroy();
+		delete iter;
 	}
 	destroyed.clear();
 }

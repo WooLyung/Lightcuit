@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Line.h"
 #include "SpriteRenderer.h"
+#include "Dust.h"
+#include "Engine.h"
 
 Line::Line(long x, long y)
 {
@@ -99,7 +101,6 @@ void Line::OnStart()
 		}
 		}, 0.01f);
 	changeColor->SetIsLoop(true);
-
 	commandLists.push_back(changeColor);
 }
 
@@ -232,5 +233,15 @@ void Line::SetSprite()
 			spriteRenderer->SetTexture("Resources/Sprites/Lines/line2.png");
 			transform->SetRot(90);
 		}
+	}
+}
+
+void Line::OnDestroy()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		Dust* dust = new Dust;
+		dust->GetComponent<Transform>()->SetPos(transform->GetPos());
+		RG2R_SceneM->GetScene()->AttachObject(dust);
 	}
 }

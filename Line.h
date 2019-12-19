@@ -26,6 +26,7 @@ public:
 	~Line();
 
 	void OnStart();
+	void OnDestroy();
 	Transform* GetTransform();
 	SpriteRenderer* GetSpriteRenderer();
 
