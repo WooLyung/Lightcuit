@@ -34,6 +34,15 @@ SpriteRenderData* SpriteRenderData::SetTexture(const std::string& path)
 	return this;
 }
 
+SpriteRenderData* SpriteRenderData::SetTexture(Texture* texture)
+{
+	this->texture = texture;
+	visibleArea = Rect(0.f, 0.f, texture->GetSize().width, texture->GetSize().height);
+	realArea = Rect(0.f, 0.f, texture->GetSize().width, texture->GetSize().height);
+
+	return this;
+}
+
 SpriteRenderData* SpriteRenderData::SetVisibleArea(Rect rect)
 {
 	visibleArea = rect;

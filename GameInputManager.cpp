@@ -3,6 +3,7 @@
 #include "InGameScene.h"
 #include "Engine.h"
 #include "Battery.h"
+#include "Effect.h"
 
 GameInputManager::GameInputManager(InGameScene* scene)
 {
@@ -37,6 +38,19 @@ void GameInputManager::OnUpdate()
 
 void GameInputManager::OnStart()
 {
+	shadow = CreateObject();
+	shadow->SetIsEnable(false);
+
+	shadow_renderer = shadow->AttachComponent<SpriteRenderer>();
+	shadow_renderer->SetZ_index(4);
+
+	shadow->AttachComponent<Effect>()
+		->PushEffectInfo(new ColorMatrixEffectInfo(Color(0, 0, 0, 0.7f)))
+		->PushEffectInfo(new BrightnessEffectInfo(0, 0.5f, 0.f, 0.1f))
+		->PushEffectInfo(new GaussianBlurEffectInfo(1.5f));
+
+	shadow_transform = shadow->GetComponent<Transform>()
+		->SetAnchor(64, 64);
 }
 
 void GameInputManager::Input()
@@ -224,6 +238,10 @@ void GameInputManager::Input_Select() // 게이트 들기, 우클릭
 		Erase(targetGate);
 		inputState = InputState::GATE_LIFT;
 		myGate = targetGate;
+		myGate->GetSpriteRenderer()->SetZ_index(5);
+
+		shadow->SetIsEnable(true);
+		shadow_renderer->SetTexture(myGate->GetSpriteRenderer()->GetTexture());
 	}
 }
 
@@ -370,6 +388,8 @@ void GameInputManager::LineConnect()
 						lastlastLine->SetSprite();
 
 						inputState = InputState::NONE;
+						myGate->GetSpriteRenderer()->SetZ_index(0);
+						shadow->SetIsEnable(false);
 						myGate = nullptr;
 					}
 					else
@@ -515,6 +535,8 @@ void GameInputManager::CancelConnect()
 	scene->objectManager->connectingLine.clear();
 
 	inputState = InputState::NONE;
+	myGate->GetSpriteRenderer()->SetZ_index(0);
+	shadow->SetIsEnable(false);
 	myGate = nullptr;
 }
 
@@ -523,7 +545,8 @@ void GameInputManager::GateMove()
 	if (inputState == InputState::GATE_LIFT) // 게이트를 들고 있을 때
 	{
 		Vec2F mousePos = RG2R_InputM->GetMouseWorldPos();
-		myGate->GetTransform()->SetPos(mousePos);
+		myGate->GetTransform()->SetPos(mousePos + Vec2F(0, 0.2f));
+		shadow_transform->SetPos(mousePos);
 
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_RBUTTON) == KeyState::KEYSTATE_EXIT) // 게이트를 놨을 때
 		{
@@ -531,6 +554,8 @@ void GameInputManager::GateMove()
 			{
 				myGate->GetTransform()->SetPos(myGate->tilePos.x, myGate->tilePos.y);
 				inputState = InputState::NONE;
+				myGate->GetSpriteRenderer()->SetZ_index(0);
+				shadow->SetIsEnable(false);
 				myGate = nullptr;
 			}
 			else
@@ -563,12 +588,16 @@ void GameInputManager::GateMove()
 					myGate->GetTransform()->SetPos(tilePos.x, tilePos.y);
 					myGate->tilePos = tilePos;
 					inputState = InputState::NONE;
+					myGate->GetSpriteRenderer()->SetZ_index(0);
+					shadow->SetIsEnable(false);
 					myGate = nullptr;
 				}
 				else // 움직일 수 없을 때
 				{
 					myGate->GetTransform()->SetPos(myGate->tilePos.x, myGate->tilePos.y);
 					inputState = InputState::NONE;
+					myGate->GetSpriteRenderer()->SetZ_index(0);
+					shadow->SetIsEnable(false);
 					myGate = nullptr;
 				}
 			}

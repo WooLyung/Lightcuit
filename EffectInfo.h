@@ -167,3 +167,29 @@ public:
 
 	ID2D1Image* GetOutputImage(ID2D1Image* input) override;
 };
+
+class BrightnessEffectInfo
+	:public EffectInfo
+{
+public:
+	float whiteStart, whiteEnd, blackStart, blackEnd;
+
+public:
+	BrightnessEffectInfo(float whiteStart, float whiteEnd, float blackStart, float blackEnd);
+	~BrightnessEffectInfo();
+
+	ID2D1Image* GetOutputImage(ID2D1Image* input) override;
+};
+
+class GaussianBlurEffectInfo
+	:public EffectInfo
+{
+public:
+	float level;
+
+public:
+	GaussianBlurEffectInfo(float level);
+	~GaussianBlurEffectInfo();
+
+	ID2D1Image* GetOutputImage(ID2D1Image* input) override;
+};

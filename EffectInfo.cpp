@@ -288,4 +288,46 @@ ID2D1Image* TDRotationEffectInfo::GetOutputImage(ID2D1Image* input)
 	return output;
 }
 
+BrightnessEffectInfo::BrightnessEffectInfo(float whiteStart, float whiteEnd, float blackStart, float blackEnd)
+	: whiteStart(whiteStart), blackStart(blackStart), whiteEnd(whiteEnd), blackEnd(blackEnd)
+{
+	
+}
+
+BrightnessEffectInfo::~BrightnessEffectInfo()
+{
+
+}
+
+ID2D1Image* BrightnessEffectInfo::GetOutputImage(ID2D1Image* input)
+{
+	auto e = RG2R_GraphicM->GetEffect(ET_Brightness);
+	e->SetInput(0, input);
+	e->SetValue(D2D1_BRIGHTNESS_PROP_BLACK_POINT, D2D1::Vector2F(blackStart, blackEnd));
+	e->SetValue(D2D1_BRIGHTNESS_PROP_WHITE_POINT, D2D1::Vector2F(whiteStart, whiteEnd));
+
+	ID2D1Image* output;
+	e->GetOutput(&output);
+	return output;
+}
+
+GaussianBlurEffectInfo::GaussianBlurEffectInfo(float level)
+	: level(level) {}
+
+GaussianBlurEffectInfo::~GaussianBlurEffectInfo()
+{
+
+}
+
+ID2D1Image* GaussianBlurEffectInfo::GetOutputImage(ID2D1Image* input)
+{
+	auto e = RG2R_GraphicM->GetEffect(ET_GaussianBlur);
+	e->SetInput(0, input);
+	e->SetValue(D2D1_GAUSSIANBLUR_PROP_STANDARD_DEVIATION, level);
+
+	ID2D1Image* output;
+	e->GetOutput(&output);
+	return output;
+}
+
 #pragma endregion

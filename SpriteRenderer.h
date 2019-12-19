@@ -38,6 +38,7 @@ public:
 	EnlargementType GetEnlargementType();
 
 	SpriteRenderer* SetTexture(const std::string&);
+	SpriteRenderer* SetTexture(Texture*);
 	SpriteRenderer* SetVisibleArea(Rect);
 	SpriteRenderer* SetVisibleArea(float, float, float, float);
 	SpriteRenderer* SetEnlargementType(EnlargementType);

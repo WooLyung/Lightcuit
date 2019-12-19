@@ -145,6 +145,13 @@ SpriteRenderer* SpriteRenderer::SetTexture(const std::string& str)
 	return this;
 }
 
+SpriteRenderer* SpriteRenderer::SetTexture(Texture* texture)
+{
+	defaultData.SetTexture(texture);
+
+	return this;
+}
+
 SpriteRenderer* SpriteRenderer::SetVisibleArea(Rect rect)
 {
 	defaultData.SetVisibleArea(rect);

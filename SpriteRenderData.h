@@ -21,6 +21,7 @@ public:
 	D2D1_INTERPOLATION_MODE GetInterpolationMode();
 
 	SpriteRenderData* SetTexture(const std::string&);
+	SpriteRenderData* SetTexture(Texture*);
 	SpriteRenderData* SetVisibleArea(Rect);
 	SpriteRenderData* SetVisibleArea(float, float, float, float);
 	SpriteRenderData* SetEnlargementType(EnlargementType);

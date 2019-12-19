@@ -31,6 +31,10 @@ private:
 	Vec2L tilePos;
 	bool existGate = false;
 
+	Object* shadow;
+	Transform* shadow_transform;
+	SpriteRenderer* shadow_renderer;
+
 public:
 	GameInputManager(InGameScene*);
 	~GameInputManager();
