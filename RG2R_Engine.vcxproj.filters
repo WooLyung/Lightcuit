@@ -310,6 +310,12 @@
     <Filter Include="소스 파일\Game\Objects\ChapterScene\GoMapEditor">
       <UniqueIdentifier>{bfe24cac-2a00-4840-bbec-69a3426d7db2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\Settings">
+      <UniqueIdentifier>{ca259f1e-762a-4746-b53f-1b9a5f6f3662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard">
+      <UniqueIdentifier>{cb0eb5af-0fdc-43dd-93f7-2bf38348de3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -561,6 +567,9 @@
     <ClInclude Include="GoMapEditor.h">
       <Filter>소스 파일\Game\Objects\ChapterScene\GoMapEditor</Filter>
     </ClInclude>
+    <ClInclude Include="SettingBoard.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -809,6 +818,9 @@
     </ClCompile>
     <ClCompile Include="GoMapEditor.cpp">
       <Filter>소스 파일\Game\Objects\ChapterScene\GoMapEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingBoard.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

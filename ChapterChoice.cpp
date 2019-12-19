@@ -149,7 +149,8 @@ void ChapterChoice::OnUpdate()
 	}
 
 	if (PlayerData::GetInstance()->chapter >= chapter
-		&& ChapterChoice::state == ChapterState::wait2)
+		&& ChapterChoice::state == ChapterState::wait2
+		&& scene->settingBoard->boardState == SettingBoard::BoardState::top)
 		Input();
 }
 

@@ -31,6 +31,8 @@ void ChapterScene::OnStart()
 		AttachObject(goMapEditor);
 		GetMainCamera()->SetPosX(-3.5f);
 	}
+	settingBoard = new SettingBoard(this);
+	AttachObject(settingBoard);
 	AttachObject(new Cursor);
 	chapters.push_back(new ChapterChoice(1, std::string("Resources/Sprites/UIs/Chapters/chapter1.png"), this));
 	chapters.push_back(new ChapterChoice(2, std::string("Resources/Sprites/UIs/Chapters/chapter2.png"), this));
@@ -55,7 +57,7 @@ void ChapterScene::OnUpdate()
 {
 	time += RG2R_TimeM->GetDeltaTime();
 
-	if (!isFinish && time >= 1.7f)
+	if (!isFinish && time >= 1.7f && settingBoard->boardState == SettingBoard::BoardState::top)
 	{
 		float max = RG2R_WindowM->GetSize().width;
 		float now = RG2R_InputM->GetMousePos().x;

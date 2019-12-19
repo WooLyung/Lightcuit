@@ -128,7 +128,8 @@ void GoMapEditor::OnUpdate()
 		GoMapEditor::state = ChapterState::wait;
 	}
 
-	if (GoMapEditor::state == ChapterState::wait2)
+	if (GoMapEditor::state == ChapterState::wait2
+		&& scene->settingBoard->boardState == SettingBoard::BoardState::top)
 		Input();
 }
 
