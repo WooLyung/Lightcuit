@@ -1,4 +1,4 @@
-x:7, y:7, zoom:0.5, text:_
+x:7, y:7, zoom:0.5, text:스테이지_화면에서_맵\에디터로_갈_수_있습니다
 x:-2, y:1, type:battery, dir:right, color:blue
 x:-2, y:0, type:battery, dir:right, color:red
 x:-2, y:-1, type:battery, dir:right, color:green

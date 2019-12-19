@@ -307,6 +307,9 @@
     <Filter Include="소스 파일\Game\Objects\Generic\Cursor">
       <UniqueIdentifier>{068b92e5-2ece-406a-9d3c-4a08109bb000}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\ChapterScene\GoMapEditor">
+      <UniqueIdentifier>{bfe24cac-2a00-4840-bbec-69a3426d7db2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -555,6 +558,9 @@
     <ClInclude Include="Cursor.h">
       <Filter>소스 파일\Game\Objects\Generic\Cursor</Filter>
     </ClInclude>
+    <ClInclude Include="GoMapEditor.h">
+      <Filter>소스 파일\Game\Objects\ChapterScene\GoMapEditor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -800,6 +806,9 @@
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>소스 파일\Game\Objects\Generic\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="GoMapEditor.cpp">
+      <Filter>소스 파일\Game\Objects\ChapterScene\GoMapEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

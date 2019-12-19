@@ -13,6 +13,7 @@
 #include "SceneData.h"
 #include "PlayerData.h"
 #include "Cursor.h"
+#include "GoMapEditor.h"
 
 ChapterScene::ChapterScene()
 {
@@ -24,6 +25,12 @@ ChapterScene::~ChapterScene()
 
 void ChapterScene::OnStart()
 {
+	if (PlayerData::GetInstance()->chapter >= 2)
+	{
+		goMapEditor = new GoMapEditor(this);
+		AttachObject(goMapEditor);
+		GetMainCamera()->SetPosX(-3.5f);
+	}
 	AttachObject(new Cursor);
 	chapters.push_back(new ChapterChoice(1, std::string("Resources/Sprites/UIs/Chapters/chapter1.png"), this));
 	chapters.push_back(new ChapterChoice(2, std::string("Resources/Sprites/UIs/Chapters/chapter2.png"), this));
@@ -66,9 +73,15 @@ void ChapterScene::OnUpdate()
 			GetMainCamera()->Translate(movePow * RG2R_TimeM->GetDeltaTime() * 30, 0);
 		}
 
-		if (GetMainCamera()->GetPos().x <= 0)
+		if (PlayerData::GetInstance()->chapter >= 2
+			&& GetMainCamera()->GetPos().x <= -3.5f)
+			GetMainCamera()->SetPosX(-3.5f);
+		else if (
+			PlayerData::GetInstance()->chapter == 1
+			&& GetMainCamera()->GetPos().x <= 0)
 			GetMainCamera()->SetPosX(0);
-		else if (GetMainCamera()->GetPos().x >= 3.5f * (6 - 3))
+
+		if (GetMainCamera()->GetPos().x >= 3.5f * (6 - 3))
 			GetMainCamera()->SetPosX(3.5f * (6 - 3));
 	}
 }
@@ -85,6 +98,11 @@ void ChapterScene::ChoiceChapter()
 				iter->MoveDown();
 			else
 				iter->GoStageScene();
+		}
+		
+		if (goMapEditor != nullptr)
+		{
+			goMapEditor->MoveDown();
 		}
 	}
 }

@@ -24,13 +24,13 @@ void Popup::OnStart()
 	pop->PushCommand([=]() {
 		animTime += RG2R_TimeM->GetDeltaTime();
 
-		if (animTime >= 2)
+		if (animTime >= 2.5f)
 		{
 			pop->Stop();
 		}
-		else if (animTime >= 1)
+		else if (animTime >= 1.5f)
 		{
-			float time = animTime - 1;
+			float time = animTime - 1.5f;
 			transform->SetPosY(GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f + pow(time, 2) * 3);
 		}
 		else if (animTime >= 0.5f)
