@@ -171,6 +171,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Confetti.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="DiffGate.h" />
     <ClInclude Include="DivisionGate.h" />
@@ -257,6 +258,7 @@
     <ClCompile Include="ChapterScene.cpp" />
     <ClCompile Include="CommandList.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Confetti.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DiffGate.cpp" />
     <ClCompile Include="DivisionGate.cpp" />

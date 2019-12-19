@@ -16,6 +16,7 @@
 #include "DiffGate.h"
 #include "SubGate.h"
 #include "Light2.h"
+#include "Confetti.h"
 
 #include <queue>
 #include <fstream>
@@ -390,6 +391,16 @@ void PlayManager::Result()
 		child1->parentTransform = obj->GetComponent<Transform>();
 		child2->parentTransform = obj->GetComponent<Transform>();
 		
+		for (int i = 0; i < 50; i++)
+		{
+			Confetti* confetti = new Confetti(0);
+			AttachObject(confetti);
+		}
+		for (int i = 0; i < 50; i++)
+		{
+			Confetti* confetti = new Confetti(1);
+			AttachObject(confetti);
+		}
 		gameState = GameState::Clear;
 
 		if (PlayerData::GetInstance()->stage == StageData::GetInstance()->stage

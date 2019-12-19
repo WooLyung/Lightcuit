@@ -322,6 +322,9 @@
     <Filter Include="소스 파일\Game\Objects\Effects\Dust">
       <UniqueIdentifier>{4ec2ba19-2d7d-4176-b964-6a608cc2377e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\Effects\Confetti">
+      <UniqueIdentifier>{bd8136fc-8a91-4d3c-ba02-6b26c7a7a220}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -579,6 +582,9 @@
     <ClInclude Include="Dust.h">
       <Filter>소스 파일\Game\Objects\Effects\Dust</Filter>
     </ClInclude>
+    <ClInclude Include="Confetti.h">
+      <Filter>소스 파일\Game\Objects\Effects\Confetti</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -833,6 +839,9 @@
     </ClCompile>
     <ClCompile Include="Dust.cpp">
       <Filter>소스 파일\Game\Objects\Effects\Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="Confetti.cpp">
+      <Filter>소스 파일\Game\Objects\Effects\Confetti</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
