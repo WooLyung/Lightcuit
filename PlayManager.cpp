@@ -78,140 +78,144 @@ void PlayManager::OnStart()
 	tryPlay->PushCommand([=]() {
 		if (!term)
 		{
-			if (sortedNodes[playIndex]->type == 1) // 라인
+			if (!isStop)
 			{
-				Line* line = scene->objectManager->FindLine(-sortedNodes[playIndex]->line->input + sortedNodes[playIndex]->line->tilePos);
-				Gate* gate = scene->objectManager->FindGate(-sortedNodes[playIndex]->line->input + sortedNodes[playIndex]->line->tilePos);
 
-				Color8 color;
-				if (gate != nullptr)
-					color = gate->GetColor();
-				else
-					color = line->GetColor();
-
-				sortedNodes[playIndex]->line->SetColor(color);
-			}
-			else // 게이트
-			{
-				Color8 color = Color8(0, 0, 0);
-
-				if (sortedNodes[playIndex]->gate->GetID() == typeid(AddGate)
-					|| sortedNodes[playIndex]->gate->GetID() == typeid(Light))
+				if (sortedNodes[playIndex]->type == 1) // 라인
 				{
-					for (auto inputs : sortedNodes[playIndex]->gate->input)
-					{
-						Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
-						Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+					Line* line = scene->objectManager->FindLine(-sortedNodes[playIndex]->line->input + sortedNodes[playIndex]->line->tilePos);
+					Gate* gate = scene->objectManager->FindGate(-sortedNodes[playIndex]->line->input + sortedNodes[playIndex]->line->tilePos);
 
-						Color8 getColor = Color8(0, 0, 0);
-						if (gate != nullptr)
-							getColor = gate->GetColor();
-						else
-							getColor = line->GetColor();
-
-						color = (Color8)(color + getColor);
-					}
-					sortedNodes[playIndex]->gate->SetColor(color);
-				}
-				else if (sortedNodes[playIndex]->gate->GetID() == typeid(DivisionGate))
-				{
-					for (auto inputs : sortedNodes[playIndex]->gate->input)
-					{
-						Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
-						Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
-
-						if (gate != nullptr)
-							color = gate->GetColor();
-						else
-							color = line->GetColor();
-					}
-					sortedNodes[playIndex]->gate->SetColor(color);
-				}
-				else if (sortedNodes[playIndex]->gate->GetID() == typeid(ReverseGate))
-				{
-					for (auto inputs : sortedNodes[playIndex]->gate->input)
-					{
-						Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
-						Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
-
-						if (gate != nullptr)
-							color = gate->GetColor();
-						else
-							color = line->GetColor();
-					}
-					sortedNodes[playIndex]->gate->SetColor(!color);
-				}
-				else if (sortedNodes[playIndex]->gate->GetID() == typeid(SubGate))
-				{
-					Color8 color1, color2;
-
-					Line* line1 = scene->objectManager->FindLine(sortedNodes[playIndex]->gate->input[0] + sortedNodes[playIndex]->gate->tilePos);
-					Gate* gate1 = scene->objectManager->FindGate(sortedNodes[playIndex]->gate->input[0] + sortedNodes[playIndex]->gate->tilePos);
-					Line* line2 = scene->objectManager->FindLine(sortedNodes[playIndex]->gate->input[1] + sortedNodes[playIndex]->gate->tilePos);
-					Gate* gate2 = scene->objectManager->FindGate(sortedNodes[playIndex]->gate->input[1] + sortedNodes[playIndex]->gate->tilePos);
-
-					if (gate1 != nullptr)
-						color1 = gate1->GetColor();
+					Color8 color;
+					if (gate != nullptr)
+						color = gate->GetColor();
 					else
-						color1 = line1->GetColor();
+						color = line->GetColor();
 
-					if (gate2 != nullptr)
-						color2 = gate2->GetColor();
-					else
-						color2 = line2->GetColor();
-
-					color = color1 - color2;
-					sortedNodes[playIndex]->gate->SetColor(color);
+					sortedNodes[playIndex]->line->SetColor(color);
 				}
-				if (sortedNodes[playIndex]->gate->GetID() == typeid(AndGate))
+				else // 게이트
 				{
-					color = Color8(1, 1, 1);
+					Color8 color = Color8(0, 0, 0);
 
-					for (auto inputs : sortedNodes[playIndex]->gate->input)
+					if (sortedNodes[playIndex]->gate->GetID() == typeid(AddGate)
+						|| sortedNodes[playIndex]->gate->GetID() == typeid(Light))
 					{
-						Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
-						Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+						for (auto inputs : sortedNodes[playIndex]->gate->input)
+						{
+							Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
+							Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
 
-						Color8 getColor = Color8(0, 0, 0);
-						if (gate != nullptr)
-							getColor = gate->GetColor();
-						else
-							getColor = line->GetColor();
+							Color8 getColor = Color8(0, 0, 0);
+							if (gate != nullptr)
+								getColor = gate->GetColor();
+							else
+								getColor = line->GetColor();
 
-						color = color & getColor;
+							color = (Color8)(color + getColor);
+						}
+						sortedNodes[playIndex]->gate->SetColor(color);
 					}
-					sortedNodes[playIndex]->gate->SetColor(color);
+					else if (sortedNodes[playIndex]->gate->GetID() == typeid(DivisionGate))
+					{
+						for (auto inputs : sortedNodes[playIndex]->gate->input)
+						{
+							Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
+							Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+
+							if (gate != nullptr)
+								color = gate->GetColor();
+							else
+								color = line->GetColor();
+						}
+						sortedNodes[playIndex]->gate->SetColor(color);
+					}
+					else if (sortedNodes[playIndex]->gate->GetID() == typeid(ReverseGate))
+					{
+						for (auto inputs : sortedNodes[playIndex]->gate->input)
+						{
+							Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
+							Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+
+							if (gate != nullptr)
+								color = gate->GetColor();
+							else
+								color = line->GetColor();
+						}
+						sortedNodes[playIndex]->gate->SetColor(!color);
+					}
+					else if (sortedNodes[playIndex]->gate->GetID() == typeid(SubGate))
+					{
+						Color8 color1, color2;
+
+						Line* line1 = scene->objectManager->FindLine(sortedNodes[playIndex]->gate->input[0] + sortedNodes[playIndex]->gate->tilePos);
+						Gate* gate1 = scene->objectManager->FindGate(sortedNodes[playIndex]->gate->input[0] + sortedNodes[playIndex]->gate->tilePos);
+						Line* line2 = scene->objectManager->FindLine(sortedNodes[playIndex]->gate->input[1] + sortedNodes[playIndex]->gate->tilePos);
+						Gate* gate2 = scene->objectManager->FindGate(sortedNodes[playIndex]->gate->input[1] + sortedNodes[playIndex]->gate->tilePos);
+
+						if (gate1 != nullptr)
+							color1 = gate1->GetColor();
+						else
+							color1 = line1->GetColor();
+
+						if (gate2 != nullptr)
+							color2 = gate2->GetColor();
+						else
+							color2 = line2->GetColor();
+
+						color = color1 - color2;
+						sortedNodes[playIndex]->gate->SetColor(color);
+					}
+					if (sortedNodes[playIndex]->gate->GetID() == typeid(AndGate))
+					{
+						color = Color8(1, 1, 1);
+
+						for (auto inputs : sortedNodes[playIndex]->gate->input)
+						{
+							Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
+							Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+
+							Color8 getColor = Color8(0, 0, 0);
+							if (gate != nullptr)
+								getColor = gate->GetColor();
+							else
+								getColor = line->GetColor();
+
+							color = color & getColor;
+						}
+						sortedNodes[playIndex]->gate->SetColor(color);
+					}
+					if (sortedNodes[playIndex]->gate->GetID() == typeid(DiffGate))
+					{
+						color = Color8(1, 1, 1);
+
+						for (auto inputs : sortedNodes[playIndex]->gate->input)
+						{
+							Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
+							Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
+
+							Color8 getColor = Color8(0, 0, 0);
+							if (gate != nullptr)
+								getColor = gate->GetColor();
+							else
+								getColor = line->GetColor();
+
+							color = color - getColor;
+						}
+						sortedNodes[playIndex]->gate->SetColor(color);
+					}
 				}
-				if (sortedNodes[playIndex]->gate->GetID() == typeid(DiffGate))
+				this->playIndex++;
+
+				if (playIndex >= sortedNodes.size())
 				{
-					color = Color8(1, 1, 1);
-
-					for (auto inputs : sortedNodes[playIndex]->gate->input)
-					{
-						Line* line = scene->objectManager->FindLine(inputs + sortedNodes[playIndex]->gate->tilePos);
-						Gate* gate = scene->objectManager->FindGate(inputs + sortedNodes[playIndex]->gate->tilePos);
-
-						Color8 getColor = Color8(0, 0, 0);
-						if (gate != nullptr)
-							getColor = gate->GetColor();
-						else
-							getColor = line->GetColor();
-
-						color = color - getColor;
-					}
-					sortedNodes[playIndex]->gate->SetColor(color);
+					tryPlay->Stop();
+					Result();
 				}
-			}
-			this->playIndex++;
-
-			if (playIndex >= sortedNodes.size())
-			{
-				tryPlay->Stop();
-				Result();
-			}
-			else if (sortedNodes[playIndex]->type == 0)
-			{
-				term = 5;
+				else if (sortedNodes[playIndex]->type == 0)
+				{
+					term = 5;
+				}
 			}
 		}
 		else
@@ -371,6 +375,9 @@ void PlayManager::OnUpdate()
 
 void PlayManager::Result()
 {
+	scene->playButton->GetSpriteRenderer()
+		->SetTexture("Resources/Sprites/UIs/Menus/playButton.png");
+
 	bool isClear = true;
 	for (auto& iter : scene->objectManager->gates)
 	{

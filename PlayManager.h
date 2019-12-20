@@ -31,10 +31,14 @@ private:
 
 	int playIndex = 0;
 	int term = 0;
+	bool isStop = false;
 
 public:
 	PlayManager(InGameScene*);
 	~PlayManager();
+
+	bool GetIsStop() { return isStop; }
+	void SetIsStop(bool isStop_) { isStop = isStop_; }
 
 	void OnUpdate();
 	void OnStart();

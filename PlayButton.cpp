@@ -148,10 +148,19 @@ void PlayButton::Input()
 					changeScale->Start();
 
 					scene->playManager->Try();
+					spriteRenderer->SetTexture("Resources/Sprites/UIs/Menus/stopButton.png");
 				}
 				else if (scene->playManager->gameState == GameState::Try)
 				{
-					std::cout << "일시정지 해야함" << std::endl;
+					scene->playManager->SetIsStop(!scene->playManager->GetIsStop());
+					if (scene->playManager->GetIsStop())
+					{
+						spriteRenderer->SetTexture("Resources/Sprites/UIs/Menus/playButton.png");
+					}
+					else
+					{
+						spriteRenderer->SetTexture("Resources/Sprites/UIs/Menus/stopButton.png");
+					}
 				}
 			}
 		}
