@@ -139,66 +139,6 @@
     <Filter Include="소스 파일\Game\Scenes\InGameScene">
       <UniqueIdentifier>{8a088439-012c-425d-ac74-c78195873405}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene">
-      <UniqueIdentifier>{5eb98b6b-3c21-4a45-8962-e6b359c779ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Line">
-      <UniqueIdentifier>{78c87fe4-7113-4014-a1f5-558db17b1a50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers">
-      <UniqueIdentifier>{931562b0-28dd-4f72-9d5c-924fddb21fcc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\GameInputManager">
-      <UniqueIdentifier>{d782122f-2937-4e69-9ff1-9f6b4c6bcb7d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\ObjectManager">
-      <UniqueIdentifier>{99429a2d-3235-4510-ae45-9917ae4a63dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs">
-      <UniqueIdentifier>{a2522f41-ea42-448a-b014-48d6802e2c87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\PlayManager">
-      <UniqueIdentifier>{b3afabcc-24e8-4734-8359-b46ba0cfd141}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate">
-      <UniqueIdentifier>{cd94198c-7b1a-43be-b6c2-0ff602fc74ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates">
-      <UniqueIdentifier>{ae9eca74-7932-4ea3-a331-f8ad0a4026d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\AddGate">
-      <UniqueIdentifier>{5d5be603-b98a-473b-aaaf-39dd7f83f770}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\SubGate">
-      <UniqueIdentifier>{9616f7e2-07c8-4b41-a030-910ffbecc347}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate">
-      <UniqueIdentifier>{92c0e636-3401-4d1e-9c32-5f4f6c014ccd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate">
-      <UniqueIdentifier>{0fd36470-ad9f-4236-9e54-d1bf29db95bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Battery">
-      <UniqueIdentifier>{18513c2e-b820-43e2-a30e-91a4faf30313}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light">
-      <UniqueIdentifier>{3097bd43-34fc-4e4c-b716-22d2b95cdf5d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1">
-      <UniqueIdentifier>{1808b79b-ea34-4bc3-8621-f88702b26047}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light2">
-      <UniqueIdentifier>{864a6881-1313-49e5-9b52-1ccc3255ce61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light3">
-      <UniqueIdentifier>{93f75b36-1787-4a41-a5aa-ef8d4d3046ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light4">
-      <UniqueIdentifier>{6b298878-9bd0-4dd3-9ff1-f4e20d7ecb2f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light5">
-      <UniqueIdentifier>{7af4775a-1990-4de0-beec-ef194733c276}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Game\PublicData">
       <UniqueIdentifier>{25b97548-50b6-4c56-a5d0-18777194bb69}</UniqueIdentifier>
     </Filter>
@@ -208,38 +148,14 @@
     <Filter Include="소스 파일\Game\Scenes\IntroScene">
       <UniqueIdentifier>{0b8b9917-95ff-4a16-9225-1244b5c4dbe2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\IntroScene">
-      <UniqueIdentifier>{94b71516-e65e-4bad-b7a1-116d0865fb12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\IntroScene\IntroManager">
-      <UniqueIdentifier>{940e6a13-3949-4ed0-8432-fe71f1fe4fbf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Game\Scenes\ChapterScene">
       <UniqueIdentifier>{3a8e1afb-2a7e-4571-bfa3-88b374645f15}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Game\Scenes\StageScene">
       <UniqueIdentifier>{013a3cf9-d324-492f-ad0d-119f0d85459e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene">
-      <UniqueIdentifier>{902377d2-c3f4-484e-853b-d823c0635cae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\StageScene">
-      <UniqueIdentifier>{776c6fa1-3f1d-462d-9107-2fe82f63d4a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Game\Objects\Generic">
       <UniqueIdentifier>{92ccb667-6782-4989-976a-2d3b0de11f6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\ChapterChoice">
-      <UniqueIdentifier>{87819a1b-303e-4f96-ad87-f6113c7d38b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\StageScene\StageChoice">
-      <UniqueIdentifier>{a83ff67e-5045-41d6-8951-074fb2ba38b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj">
-      <UniqueIdentifier>{df966265-ca14-4a9a-83e7-f772a2e39ad3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Tiles">
-      <UniqueIdentifier>{19e45f0c-35d1-45c8-9ad2-f6e1ed5cda5d}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Game\Objects\Generic\Pen1">
       <UniqueIdentifier>{a85d1dcf-8a34-4de5-a933-caa5a83b86f3}</UniqueIdentifier>
@@ -256,65 +172,17 @@
     <Filter Include="소스 파일\Game\Objects\Generic\Ruler2">
       <UniqueIdentifier>{a6aba857-4843-473f-98a7-61502ecfde0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\PostIt">
-      <UniqueIdentifier>{0e6a9911-48a4-4b0c-8b5b-f307763eb640}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\PlayButton">
-      <UniqueIdentifier>{3cdc66ae-fe34-4c84-a887-855b72cb5dac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Popup">
-      <UniqueIdentifier>{5d2377f5-a1f3-4c71-9d8e-8212acfedca1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Game\PublicData\SceneData">
       <UniqueIdentifier>{5dcae9d7-558b-4f7f-bc13-9315bd34937f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\ResetButton">
-      <UniqueIdentifier>{0c01cb2a-aeb5-4b02-a56a-fea4e84659ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Managers\SceneChangeManager">
-      <UniqueIdentifier>{adbb3386-2eb8-47cd-9d48-2ca1ae9c87d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\MenuButton">
-      <UniqueIdentifier>{c13714a0-ef54-4018-9170-d0a5e1ee0323}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Game\PublicData\PlayerData">
       <UniqueIdentifier>{bf3e4a14-b7e0-48f4-a9e6-db92bdc18119}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\AndGate">
-      <UniqueIdentifier>{3aa22ca8-09b5-4c2f-835f-5771306227ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\Gate\Gates\DiffGate">
-      <UniqueIdentifier>{2aaa40a1-3007-4dd9-ab80-662a493af877}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Game\Scenes\TitleScene">
       <UniqueIdentifier>{add6c394-2f1f-4026-a3ef-1bb0d8d57bfa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Game\Objects\TitleScene">
-      <UniqueIdentifier>{cc2ccdfa-27c6-4da7-bc02-9b8ed2be5120}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\TitleScene\Title">
-      <UniqueIdentifier>{dedc53d8-4eb0-423c-a126-da733e242355}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\TitleScene\TitleText">
-      <UniqueIdentifier>{b54c0c51-8333-4e90-b7b9-6b0aca426031}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToNextButton">
-      <UniqueIdentifier>{0fa9ab50-807b-4d5d-8cdd-afb0d50ffd5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton">
-      <UniqueIdentifier>{36502df6-654e-4615-a68c-3e606cfd1d1c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Game\Objects\Generic\Cursor">
       <UniqueIdentifier>{068b92e5-2ece-406a-9d3c-4a08109bb000}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\GoMapEditor">
-      <UniqueIdentifier>{bfe24cac-2a00-4840-bbec-69a3426d7db2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\Settings">
-      <UniqueIdentifier>{ca259f1e-762a-4746-b53f-1b9a5f6f3662}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard">
-      <UniqueIdentifier>{cb0eb5af-0fdc-43dd-93f7-2bf38348de3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Game\Objects\Effects">
       <UniqueIdentifier>{f6400f2a-bace-4a5d-974c-615b3876cb0e}</UniqueIdentifier>
@@ -324,6 +192,156 @@
     </Filter>
     <Filter Include="소스 파일\Game\Objects\Effects\Confetti">
       <UniqueIdentifier>{bd8136fc-8a91-4d3c-ba02-6b26c7a7a220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Scenes\MapEditorScene">
+      <UniqueIdentifier>{7e891b1e-d2ae-42bb-969a-c3f73cb1c294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene">
+      <UniqueIdentifier>{c358d279-536c-424f-b1e5-48bd99083757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\TitleScene">
+      <UniqueIdentifier>{cc2ccdfa-27c6-4da7-bc02-9b8ed2be5120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\TitleScene\Title">
+      <UniqueIdentifier>{dedc53d8-4eb0-423c-a126-da733e242355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\TitleScene\TitleText">
+      <UniqueIdentifier>{b54c0c51-8333-4e90-b7b9-6b0aca426031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\StageScene">
+      <UniqueIdentifier>{776c6fa1-3f1d-462d-9107-2fe82f63d4a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\StageScene\StageChoice">
+      <UniqueIdentifier>{a83ff67e-5045-41d6-8951-074fb2ba38b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\IntroScene">
+      <UniqueIdentifier>{94b71516-e65e-4bad-b7a1-116d0865fb12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\IntroScene\IntroManager">
+      <UniqueIdentifier>{940e6a13-3949-4ed0-8432-fe71f1fe4fbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene">
+      <UniqueIdentifier>{5eb98b6b-3c21-4a45-8962-e6b359c779ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Line">
+      <UniqueIdentifier>{78c87fe4-7113-4014-a1f5-558db17b1a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers">
+      <UniqueIdentifier>{931562b0-28dd-4f72-9d5c-924fddb21fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\GameInputManager">
+      <UniqueIdentifier>{d782122f-2937-4e69-9ff1-9f6b4c6bcb7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\ObjectManager">
+      <UniqueIdentifier>{99429a2d-3235-4510-ae45-9917ae4a63dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\PlayManager">
+      <UniqueIdentifier>{b3afabcc-24e8-4734-8359-b46ba0cfd141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\SceneChangeManager">
+      <UniqueIdentifier>{adbb3386-2eb8-47cd-9d48-2ca1ae9c87d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs">
+      <UniqueIdentifier>{a2522f41-ea42-448a-b014-48d6802e2c87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj">
+      <UniqueIdentifier>{df966265-ca14-4a9a-83e7-f772a2e39ad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj\ToNextButton">
+      <UniqueIdentifier>{0fa9ab50-807b-4d5d-8cdd-afb0d50ffd5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj\ToMenuButton">
+      <UniqueIdentifier>{36502df6-654e-4615-a68c-3e606cfd1d1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\PostIt">
+      <UniqueIdentifier>{0e6a9911-48a4-4b0c-8b5b-f307763eb640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\PlayButton">
+      <UniqueIdentifier>{3cdc66ae-fe34-4c84-a887-855b72cb5dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\ResetButton">
+      <UniqueIdentifier>{0c01cb2a-aeb5-4b02-a56a-fea4e84659ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\MenuButton">
+      <UniqueIdentifier>{c13714a0-ef54-4018-9170-d0a5e1ee0323}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate">
+      <UniqueIdentifier>{cd94198c-7b1a-43be-b6c2-0ff602fc74ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates">
+      <UniqueIdentifier>{ae9eca74-7932-4ea3-a331-f8ad0a4026d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\AddGate">
+      <UniqueIdentifier>{5d5be603-b98a-473b-aaaf-39dd7f83f770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\SubGate">
+      <UniqueIdentifier>{9616f7e2-07c8-4b41-a030-910ffbecc347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\DivisionGate">
+      <UniqueIdentifier>{92c0e636-3401-4d1e-9c32-5f4f6c014ccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\ReverseGate">
+      <UniqueIdentifier>{0fd36470-ad9f-4236-9e54-d1bf29db95bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Battery">
+      <UniqueIdentifier>{18513c2e-b820-43e2-a30e-91a4faf30313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light">
+      <UniqueIdentifier>{3097bd43-34fc-4e4c-b716-22d2b95cdf5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light1">
+      <UniqueIdentifier>{1808b79b-ea34-4bc3-8621-f88702b26047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light2">
+      <UniqueIdentifier>{864a6881-1313-49e5-9b52-1ccc3255ce61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light3">
+      <UniqueIdentifier>{93f75b36-1787-4a41-a5aa-ef8d4d3046ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light4">
+      <UniqueIdentifier>{6b298878-9bd0-4dd3-9ff1-f4e20d7ecb2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light5">
+      <UniqueIdentifier>{7af4775a-1990-4de0-beec-ef194733c276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\AndGate">
+      <UniqueIdentifier>{3aa22ca8-09b5-4c2f-835f-5771306227ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\DiffGate">
+      <UniqueIdentifier>{2aaa40a1-3007-4dd9-ab80-662a493af877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\NotDivisionGate">
+      <UniqueIdentifier>{b92d47f0-1f7c-42f3-8dca-0d24c51ac08c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Tiles">
+      <UniqueIdentifier>{19e45f0c-35d1-45c8-9ad2-f6e1ed5cda5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\Popup">
+      <UniqueIdentifier>{5d2377f5-a1f3-4c71-9d8e-8212acfedca1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\ChapterScene">
+      <UniqueIdentifier>{902377d2-c3f4-484e-853b-d823c0635cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\ChapterScene\ChapterChoice">
+      <UniqueIdentifier>{87819a1b-303e-4f96-ad87-f6113c7d38b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\ChapterScene\GoMapEditor">
+      <UniqueIdentifier>{bfe24cac-2a00-4840-bbec-69a3426d7db2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\ChapterScene\Settings">
+      <UniqueIdentifier>{ca259f1e-762a-4746-b53f-1b9a5f6f3662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\ChapterScene\Settings\SettingBoard">
+      <UniqueIdentifier>{cb0eb5af-0fdc-43dd-93f7-2bf38348de3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapEditorScene">
+      <UniqueIdentifier>{8b85313f-74b9-4042-a0a5-1557f1f09669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditCreate">
+      <UniqueIdentifier>{9f2ef039-96bb-4d20-9cf6-b238a787254b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditPlay">
+      <UniqueIdentifier>{3ac34a19-f467-457d-8cc2-d967e7534a0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -445,43 +463,43 @@
       <Filter>소스 파일\Game\Scenes\InGameScene</Filter>
     </ClInclude>
     <ClInclude Include="Gate.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate</Filter>
     </ClInclude>
     <ClInclude Include="AddGate.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\AddGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\AddGate</Filter>
     </ClInclude>
     <ClInclude Include="Battery.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Battery</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Battery</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Line</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Line</Filter>
     </ClInclude>
     <ClInclude Include="DivisionGate.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\DivisionGate</Filter>
     </ClInclude>
     <ClInclude Include="ReverseGate.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\ReverseGate</Filter>
     </ClInclude>
     <ClInclude Include="SubGate.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\SubGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\SubGate</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light</Filter>
     </ClInclude>
     <ClInclude Include="Light2.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light2</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light2</Filter>
     </ClInclude>
     <ClInclude Include="GameInputManager.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\GameInputManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\GameInputManager</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\ObjectManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\ObjectManager</Filter>
     </ClInclude>
     <ClInclude Include="PlayManager.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\PlayManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\PlayManager</Filter>
     </ClInclude>
     <ClInclude Include="Light1.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light1</Filter>
     </ClInclude>
     <ClInclude Include="StageData.h">
       <Filter>소스 파일\Game\PublicData\StageData</Filter>
@@ -496,16 +514,16 @@
       <Filter>소스 파일\Game\Scenes\StageScene</Filter>
     </ClInclude>
     <ClInclude Include="ChapterChoice.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\ChapterChoice</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\ChapterScene\ChapterChoice</Filter>
     </ClInclude>
     <ClInclude Include="IntroManager.h">
-      <Filter>소스 파일\Game\Objects\IntroScene\IntroManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\IntroScene\IntroManager</Filter>
     </ClInclude>
     <ClInclude Include="StageChoice.h">
-      <Filter>소스 파일\Game\Objects\StageScene\StageChoice</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\StageScene\StageChoice</Filter>
     </ClInclude>
     <ClInclude Include="StageClearObj.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj</Filter>
     </ClInclude>
     <ClInclude Include="Pen1.h">
       <Filter>소스 파일\Game\Objects\Generic\Pen1</Filter>
@@ -523,67 +541,79 @@
       <Filter>소스 파일\Game\Objects\Generic\Ruler2</Filter>
     </ClInclude>
     <ClInclude Include="Tiles.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Tiles</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Tiles</Filter>
     </ClInclude>
     <ClInclude Include="PostIt.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PostIt</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\PostIt</Filter>
     </ClInclude>
     <ClInclude Include="PlayButton.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PlayButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\PlayButton</Filter>
     </ClInclude>
     <ClInclude Include="Popup.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Popup</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Popup</Filter>
     </ClInclude>
     <ClInclude Include="SceneData.h">
       <Filter>소스 파일\Game\PublicData\SceneData</Filter>
     </ClInclude>
     <ClInclude Include="ResetButton.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\ResetButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\ResetButton</Filter>
     </ClInclude>
     <ClInclude Include="SceneChangeManager.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\SceneChangeManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\SceneChangeManager</Filter>
     </ClInclude>
     <ClInclude Include="MenuButton.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\MenuButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\MenuButton</Filter>
     </ClInclude>
     <ClInclude Include="PlayerData.h">
       <Filter>소스 파일\Game\PublicData\PlayerData</Filter>
     </ClInclude>
     <ClInclude Include="AndGate.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\AndGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\AndGate</Filter>
     </ClInclude>
     <ClInclude Include="DiffGate.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DiffGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\DiffGate</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">
       <Filter>소스 파일\Game\Scenes\TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
-      <Filter>소스 파일\Game\Objects\TitleScene\Title</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\TitleScene\Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleText.h">
-      <Filter>소스 파일\Game\Objects\TitleScene\TitleText</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\TitleScene\TitleText</Filter>
     </ClInclude>
     <ClInclude Include="ToNextButton.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToNextButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj\ToNextButton</Filter>
     </ClInclude>
     <ClInclude Include="ToMenuButton.h">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
     </ClInclude>
     <ClInclude Include="Cursor.h">
       <Filter>소스 파일\Game\Objects\Generic\Cursor</Filter>
     </ClInclude>
     <ClInclude Include="GoMapEditor.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\GoMapEditor</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\ChapterScene\GoMapEditor</Filter>
     </ClInclude>
     <ClInclude Include="SettingBoard.h">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\ChapterScene\Settings\SettingBoard</Filter>
     </ClInclude>
     <ClInclude Include="Dust.h">
       <Filter>소스 파일\Game\Objects\Effects\Dust</Filter>
     </ClInclude>
     <ClInclude Include="Confetti.h">
       <Filter>소스 파일\Game\Objects\Effects\Confetti</Filter>
+    </ClInclude>
+    <ClInclude Include="NotDivisionGate.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\NotDivisionGate</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEditorScene.h">
+      <Filter>소스 파일\Game\Scenes\MapEditorScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEditCreate.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditCreate</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEditPlay.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditPlay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -703,43 +733,43 @@
       <Filter>소스 파일\Game\Scenes\InGameScene</Filter>
     </ClCompile>
     <ClCompile Include="Gate.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate</Filter>
     </ClCompile>
     <ClCompile Include="AddGate.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\AddGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\AddGate</Filter>
     </ClCompile>
     <ClCompile Include="Battery.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Battery</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Battery</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Line</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Line</Filter>
     </ClCompile>
     <ClCompile Include="DivisionGate.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DivisionGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\DivisionGate</Filter>
     </ClCompile>
     <ClCompile Include="ReverseGate.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\ReverseGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\ReverseGate</Filter>
     </ClCompile>
     <ClCompile Include="SubGate.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\SubGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\SubGate</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light</Filter>
     </ClCompile>
     <ClCompile Include="Light2.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light2</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light2</Filter>
     </ClCompile>
     <ClCompile Include="GameInputManager.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\GameInputManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\GameInputManager</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\ObjectManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\ObjectManager</Filter>
     </ClCompile>
     <ClCompile Include="PlayManager.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\PlayManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\PlayManager</Filter>
     </ClCompile>
     <ClCompile Include="Light1.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\Light\Light1</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light1</Filter>
     </ClCompile>
     <ClCompile Include="StageData.cpp">
       <Filter>소스 파일\Game\PublicData\StageData</Filter>
@@ -754,16 +784,16 @@
       <Filter>소스 파일\Game\Scenes\StageScene</Filter>
     </ClCompile>
     <ClCompile Include="ChapterChoice.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\ChapterChoice</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\ChapterScene\ChapterChoice</Filter>
     </ClCompile>
     <ClCompile Include="IntroManager.cpp">
-      <Filter>소스 파일\Game\Objects\IntroScene\IntroManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\IntroScene\IntroManager</Filter>
     </ClCompile>
     <ClCompile Include="StageChoice.cpp">
-      <Filter>소스 파일\Game\Objects\StageScene\StageChoice</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\StageScene\StageChoice</Filter>
     </ClCompile>
     <ClCompile Include="StageClearObj.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj</Filter>
     </ClCompile>
     <ClCompile Include="Pen1.cpp">
       <Filter>소스 파일\Game\Objects\Generic\Pen1</Filter>
@@ -781,67 +811,79 @@
       <Filter>소스 파일\Game\Objects\Generic\Ruler2</Filter>
     </ClCompile>
     <ClCompile Include="Tiles.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Tiles</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Tiles</Filter>
     </ClCompile>
     <ClCompile Include="PostIt.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PostIt</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\PostIt</Filter>
     </ClCompile>
     <ClCompile Include="PlayButton.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\PlayButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\PlayButton</Filter>
     </ClCompile>
     <ClCompile Include="Popup.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Popup</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Popup</Filter>
     </ClCompile>
     <ClCompile Include="SceneData.cpp">
       <Filter>소스 파일\Game\PublicData\SceneData</Filter>
     </ClCompile>
     <ClCompile Include="ResetButton.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\ResetButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\ResetButton</Filter>
     </ClCompile>
     <ClCompile Include="SceneChangeManager.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Managers\SceneChangeManager</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Managers\SceneChangeManager</Filter>
     </ClCompile>
     <ClCompile Include="MenuButton.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\MenuButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\MenuButton</Filter>
     </ClCompile>
     <ClCompile Include="PlayerData.cpp">
       <Filter>소스 파일\Game\PublicData\PlayerData</Filter>
     </ClCompile>
     <ClCompile Include="AndGate.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\AndGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\AndGate</Filter>
     </ClCompile>
     <ClCompile Include="DiffGate.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\Gate\Gates\DiffGate</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\DiffGate</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>소스 파일\Game\Scenes\TitleScene</Filter>
     </ClCompile>
     <ClCompile Include="Title.cpp">
-      <Filter>소스 파일\Game\Objects\TitleScene\Title</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\TitleScene\Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleText.cpp">
-      <Filter>소스 파일\Game\Objects\TitleScene\TitleText</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\TitleScene\TitleText</Filter>
     </ClCompile>
     <ClCompile Include="ToNextButton.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToNextButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj\ToNextButton</Filter>
     </ClCompile>
     <ClCompile Include="ToMenuButton.cpp">
-      <Filter>소스 파일\Game\Objects\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\StageClearObj\ToMenuButton</Filter>
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>소스 파일\Game\Objects\Generic\Cursor</Filter>
     </ClCompile>
     <ClCompile Include="GoMapEditor.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\GoMapEditor</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\ChapterScene\GoMapEditor</Filter>
     </ClCompile>
     <ClCompile Include="SettingBoard.cpp">
-      <Filter>소스 파일\Game\Objects\ChapterScene\Settings\SettingBoard</Filter>
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\ChapterScene\Settings\SettingBoard</Filter>
     </ClCompile>
     <ClCompile Include="Dust.cpp">
       <Filter>소스 파일\Game\Objects\Effects\Dust</Filter>
     </ClCompile>
     <ClCompile Include="Confetti.cpp">
       <Filter>소스 파일\Game\Objects\Effects\Confetti</Filter>
+    </ClCompile>
+    <ClCompile Include="NotDivisionGate.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\NotDivisionGate</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditorScene.cpp">
+      <Filter>소스 파일\Game\Scenes\MapEditorScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditCreate.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditCreate</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditPlay.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditPlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

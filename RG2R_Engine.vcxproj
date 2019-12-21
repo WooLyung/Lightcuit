@@ -193,8 +193,12 @@
     <ClInclude Include="Light1.h" />
     <ClInclude Include="Light2.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="MapEditCreate.h" />
+    <ClInclude Include="MapEditorScene.h" />
+    <ClInclude Include="MapEditPlay.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="MenuButton.h" />
+    <ClInclude Include="NotDivisionGate.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Pen1.h" />
@@ -279,8 +283,12 @@
     <ClCompile Include="Light2.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapEditCreate.cpp" />
+    <ClCompile Include="MapEditorScene.cpp" />
+    <ClCompile Include="MapEditPlay.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="MenuButton.cpp" />
+    <ClCompile Include="NotDivisionGate.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Pen1.cpp" />

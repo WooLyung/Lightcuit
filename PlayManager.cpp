@@ -7,6 +7,7 @@
 #include "ToMenuButton.h"
 #include "PlayerData.h"
 #include "StageData.h"
+#include "Confetti.h"
 
 #include "Battery.h"
 #include "AddGate.h"
@@ -16,7 +17,7 @@
 #include "DiffGate.h"
 #include "SubGate.h"
 #include "Light2.h"
-#include "Confetti.h"
+#include "NotDivisionGate.h"
 
 #include <queue>
 #include <fstream>
@@ -130,7 +131,8 @@ void PlayManager::OnStart()
 						}
 						sortedNodes[playIndex]->gate->SetColor(color);
 					}
-					else if (sortedNodes[playIndex]->gate->GetID() == typeid(ReverseGate))
+					else if (sortedNodes[playIndex]->gate->GetID() == typeid(ReverseGate)
+						|| sortedNodes[playIndex]->gate->GetID() == typeid(NotDivisionGate))
 					{
 						for (auto inputs : sortedNodes[playIndex]->gate->input)
 						{
@@ -200,9 +202,9 @@ void PlayManager::OnStart()
 							else
 								getColor = line->GetColor();
 
-							color = color - getColor;
+							color = color & getColor;
 						}
-						sortedNodes[playIndex]->gate->SetColor(color);
+						sortedNodes[playIndex]->gate->SetColor(!color);
 					}
 				}
 				this->playIndex++;
@@ -358,14 +360,20 @@ void PlayManager::Try()
 	if (result == 0)
 	{
 		Play();
+		scene->playButton->GetSpriteRenderer()
+			->SetTexture("Resources/Sprites/UIs/Menus/stopButton.png");
 	}
 	else if (result == 1)
 	{
 		scene->PopMsg(0);
+		scene->playButton->GetSpriteRenderer()
+			->SetTexture("Resources/Sprites/UIs/Menus/playButton.png");
 	}
 	else if (result == 2)
 	{
 		scene->PopMsg(1);
+		scene->playButton->GetSpriteRenderer()
+			->SetTexture("Resources/Sprites/UIs/Menus/playButton.png");
 	}
 }
 

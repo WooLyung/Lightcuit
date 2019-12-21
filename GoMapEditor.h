@@ -52,5 +52,5 @@ public:
 	void OnStart();
 	void OnUpdate();
 	void MoveDown();
-	void GoStageScene();
+	void ChangeScene();
 };

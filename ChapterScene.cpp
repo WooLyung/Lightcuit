@@ -109,3 +109,19 @@ void ChapterScene::ChoiceChapter()
 		}
 	}
 }
+
+void ChapterScene::MapEditor()
+{
+	if (!isFinish)
+	{
+		isFinish = true;
+		settingBoard->changeScene->Start();
+
+		for (auto iter : chapters)
+		{
+			iter->MoveDown();
+		}
+
+		goMapEditor->ChangeScene();
+	}
+}

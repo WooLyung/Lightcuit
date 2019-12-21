@@ -14,6 +14,7 @@
 #include "ReverseGate.h"
 #include "AndGate.h"
 #include "DiffGate.h"
+#include "NotDivisionGate.h"
 #include "ObjectManager.h"
 #include "GameInputManager.h"
 #include "StageData.h"
@@ -264,6 +265,11 @@ void InGameScene::CreateGate(std::map<string, string> data)
 	else if (data["type"] == "diff_gate")
 	{
 		gate = new DiffGate(x, y, dir);
+		PushGate(gate);
+	}
+	else if (data["type"] == "not_division_gate")
+	{
+		gate = new NotDivisionGate(x, y, dir);
 		PushGate(gate);
 	}
 

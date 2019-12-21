@@ -25,5 +25,6 @@ public:
 
 	void OnStart();
 	void OnUpdate();
+	void MapEditor();
 	void ChoiceChapter();
 };

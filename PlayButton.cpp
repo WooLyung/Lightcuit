@@ -148,7 +148,6 @@ void PlayButton::Input()
 					changeScale->Start();
 
 					scene->playManager->Try();
-					spriteRenderer->SetTexture("Resources/Sprites/UIs/Menus/stopButton.png");
 				}
 				else if (scene->playManager->gameState == GameState::Try)
 				{

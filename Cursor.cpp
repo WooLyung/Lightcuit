@@ -20,7 +20,7 @@ void Cursor::OnStart()
 
 	spriteRenderer = AttachComponent<SpriteRenderer>();
 	spriteRenderer->SetTexture("Resources/Sprites/UIs/Cursors/default_cursor.png");
-	spriteRenderer->SetZ_index(100);
+	spriteRenderer->SetZ_index(4000);
 	spriteRenderer->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
 }
 

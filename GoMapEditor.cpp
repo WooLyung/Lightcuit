@@ -2,7 +2,7 @@
 #include "GoMapEditor.h"
 #include "Engine.h"
 #include "TextRenderer.h"
-#include "StageScene.h"
+#include "MapEditorScene.h"
 #include "StageData.h"
 #include "PlayerData.h"
 
@@ -113,7 +113,7 @@ void GoMapEditor::OnStart()
 
 		if (animTime >= 1)
 		{
-			RG2R_SceneM->ChangeScene(new StageScene);
+			RG2R_SceneM->ChangeScene(new MapEditorScene);
 		}
 		}, 0);
 	goStageScene->SetIsLoop(true);
@@ -161,10 +161,9 @@ void GoMapEditor::Input()
 		{
 			if (inputState == InputState::click)
 			{
-				// ¾À ÀüÈ¯
 				changeScale->Start();
 				sizeFlag = 1;
-
+				scene->MapEditor();
 			}
 		}
 	}
@@ -194,7 +193,7 @@ void GoMapEditor::MoveDown()
 	moveDown->Start();
 }
 
-void GoMapEditor::GoStageScene()
+void GoMapEditor::ChangeScene()
 {
 	goStageScene->Start();
 	animTime = 0;
