@@ -5,6 +5,7 @@
 #include "StageScene.h"
 #include "StageData.h"
 #include "PlayerData.h"
+#include "MapEditData.h"
 #include "Settings.h"
 
 SizeChoice::SizeChoice(Vec2L size, std::string path, MapEditorScene* scene, Vec2F pos)
@@ -50,16 +51,16 @@ void SizeChoice::OnStart()
 	changeScale = new CommandList;
 	commandLists.push_back(changeScale);
 	changeScale->PushCommand([=]() {
-		transform->SetScale(Vec2F(transform->GetScale()) + Vec2F(1, 1) * RG2R_TimeM->GetDeltaTime() * 0.7f * sizeFlag);
+		transform->SetScale(Vec2F(transform->GetScale()) + Vec2F(1, 1) * RG2R_TimeM->GetDeltaTime() * 0.75f * sizeFlag);
 
 		if (transform->GetScale().x > 0.3f)
 		{
-			transform->SetScale(0.7f, 0.7f);
+			transform->SetScale(0.85f, 0.85f);
 			changeScale->Stop();
 		}
-		else if (transform->GetScale().x < 0.6f)
+		else if (transform->GetScale().x < 0.75f)
 		{
-			transform->SetScale(0.6f, 0.6f);
+			transform->SetScale(0.75f, 0.75f);
 			changeScale->Stop();
 		}
 		}, 0);
@@ -75,7 +76,7 @@ void SizeChoice::Input()
 {
 	Vec2F vec = RG2R_InputM->GetMousePos() - (transform->GetScreenPos() + Vec2F(-6.5f * 0.8f, 0));
 
-	if (vec.Dot(vec) <= sqrtf((float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)) * 0.2f)
+	if (vec.Dot(vec) <= sqrtf((float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)) * 0.25f)
 	{
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_NONE)
 		{
@@ -99,7 +100,10 @@ void SizeChoice::Input()
 		{
 			if (inputState == InputState::click)
 			{
-				cout << "Å¬¸¯" << endl;
+				MapEditData::GetInstance()->width = size.x;
+				MapEditData::GetInstance()->height = size.y;
+				
+				scene->MapEdit();
 			}
 		}
 	}

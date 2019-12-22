@@ -349,6 +349,33 @@
     <Filter Include="소스 파일\Game\PublicData\SettingData">
       <UniqueIdentifier>{91750338-fbbe-4ed5-a514-b7eac13b8c86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\PublicData\MapEditData">
+      <UniqueIdentifier>{9ece2903-d183-4fd1-9598-c812c9f22fe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Scenes\MapCreateScene">
+      <UniqueIdentifier>{bbcf9c09-6a82-4999-a3f9-f295931b94e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene">
+      <UniqueIdentifier>{db33543a-400b-419d-ad41-a29097fba916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Palette">
+      <UniqueIdentifier>{97f3ed70-5784-4d6e-a2ea-20e70114f124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\MenuButtonM">
+      <UniqueIdentifier>{903b770b-5b83-4856-a35c-4cc9fcbace0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\TryButtonM">
+      <UniqueIdentifier>{44bc2115-e6a4-4078-836f-1317591f7037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\ResetButtonM">
+      <UniqueIdentifier>{4cc15a5a-b96e-4992-b366-905bc1b0a4b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Managers">
+      <UniqueIdentifier>{ec1dff8f-1e70-4db9-8e81-a5d5a67c60a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Managers\SceneChangeManager2">
+      <UniqueIdentifier>{8b0dc3b9-2d48-4903-8e80-3bde3fdc41ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -627,6 +654,27 @@
     <ClInclude Include="SettingData.h">
       <Filter>소스 파일\Game\PublicData\SettingData</Filter>
     </ClInclude>
+    <ClInclude Include="MapEditData.h">
+      <Filter>소스 파일\Game\PublicData\MapEditData</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCreateScene.h">
+      <Filter>소스 파일\Game\Scenes\MapCreateScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Palette.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Palette</Filter>
+    </ClInclude>
+    <ClInclude Include="TryButtonM.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\TryButtonM</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetButtonM.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\ResetButtonM</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButtonM.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\MenuButtonM</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneChangeManager2.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Managers\SceneChangeManager2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -902,6 +950,27 @@
     </ClCompile>
     <ClCompile Include="SettingData.cpp">
       <Filter>소스 파일\Game\PublicData\SettingData</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditData.cpp">
+      <Filter>소스 파일\Game\PublicData\MapEditData</Filter>
+    </ClCompile>
+    <ClCompile Include="MapCreateScene.cpp">
+      <Filter>소스 파일\Game\Scenes\MapCreateScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Palette.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Palette</Filter>
+    </ClCompile>
+    <ClCompile Include="TryButtonM.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\TryButtonM</Filter>
+    </ClCompile>
+    <ClCompile Include="ResetButtonM.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\ResetButtonM</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButtonM.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\MenuButtonM</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneChangeManager2.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Managers\SceneChangeManager2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

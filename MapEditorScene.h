@@ -19,6 +19,7 @@ private:
 	CommandList* appearWait;
 	CommandList* appear;
 	CommandList* goToChapter;
+	CommandList* goToMapEdit;
 	float animTime = 0;
 	int moveFlag = 1;
 
@@ -30,4 +31,5 @@ public:
 	void OnUpdate();
 	void ChoiceStage();
 	void Back();
+	void MapEdit();
 };

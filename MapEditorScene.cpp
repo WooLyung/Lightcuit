@@ -13,6 +13,7 @@
 #include "Engine.h"
 #include "InGameScene.h"
 #include "ChapterScene.h"
+#include "MapCreateScene.h"
 #include "Cursor.h"
 #include "MapEditCreate.h"
 
@@ -63,6 +64,12 @@ void MapEditorScene::OnStart()
 		}, 1);
 	chapterObj->commandLists.push_back(goToChapter);
 
+	goToMapEdit = new CommandList;
+	goToMapEdit->PushCommand([=]() {
+		RG2R_SceneM->ChangeScene(new MapCreateScene, true);
+		}, 1);
+	chapterObj->commandLists.push_back(goToMapEdit);
+
 	create = new MapEditCreate(this);
 	play = new MapEditPlay(this);
 	chapterObj->AttachChild(create);
@@ -105,6 +112,20 @@ void MapEditorScene::Back()
 		play->Disappear();
 		appearWait->Start();
 		goToChapter->Start();
+		moveFlag = -1;
+	}
+}
+
+void MapEditorScene::MapEdit()
+{
+	if (!isFinish)
+	{
+		isFinish = true;
+
+		create->Disappear();
+		play->Disappear();
+		appearWait->Start();
+		goToMapEdit->Start();
 		moveFlag = -1;
 	}
 }

@@ -63,10 +63,10 @@ void MapEditCreate::OnStart()
 	SizeChoice* s55 = new SizeChoice(Vec2L(5, 5), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_55.png", scene, Vec2F(-1.2f, 0));
 	SizeChoice* s66 = new SizeChoice(Vec2L(6, 6), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_66.png", scene, Vec2F(-1.2f, -1.5f));
 	SizeChoice* s77 = new SizeChoice(Vec2L(7, 7), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_77.png", scene, Vec2F(-1.2f, -3.0f));
-	SizeChoice* s35 = new SizeChoice(Vec2L(3, 5), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_35.png", scene, Vec2F(1.2f, 1.5f));
-	SizeChoice* s46 = new SizeChoice(Vec2L(4, 6), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_46.png", scene, Vec2F(1.2f, 0));
-	SizeChoice* s57 = new SizeChoice(Vec2L(5, 7), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_57.png", scene, Vec2F(1.2f, -1.5f));
-	SizeChoice* s68 = new SizeChoice(Vec2L(6, 8), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_68.png", scene, Vec2F(1.2f, -3.0f));
+	SizeChoice* s35 = new SizeChoice(Vec2L(5, 3), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_35.png", scene, Vec2F(1.2f, 1.5f));
+	SizeChoice* s46 = new SizeChoice(Vec2L(6, 4), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_46.png", scene, Vec2F(1.2f, 0));
+	SizeChoice* s57 = new SizeChoice(Vec2L(7, 5), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_57.png", scene, Vec2F(1.2f, -1.5f));
+	SizeChoice* s68 = new SizeChoice(Vec2L(8, 6), "Resources/Sprites/UIs/MapEditor/StageSizes/mapsize_68.png", scene, Vec2F(1.2f, -3.0f));
 	AttachChild(s44);
 	AttachChild(s55);
 	AttachChild(s66);
