@@ -61,6 +61,12 @@ void Palette::OnUpdate()
 
 }
 
+void Palette::Disappear()
+{
+	animTime = 0;
+	disappearAnim->Start();
+}
+
 Transform* Palette::GetTransform()
 {
 	return transform;

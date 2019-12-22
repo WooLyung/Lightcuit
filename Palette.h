@@ -24,4 +24,5 @@ public:
 
 	void OnStart();
 	void OnUpdate();
+	void Disappear();
 };

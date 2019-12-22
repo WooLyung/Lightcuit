@@ -37,6 +37,9 @@ void MapCreateScene::OnStart()
 	palette = new Palette;
 	AttachObject(palette);
 
+	sceneChangeManager = new SceneChangeManager2(this);
+	AttachObject(sceneChangeManager);
+
 	AttachObject(new Pen1(false));
 	AttachObject(new Pen2(false));
 	AttachObject(new Pen3(false));
@@ -70,13 +73,13 @@ void MapCreateScene::OnStart()
 		MapEditData::GetInstance()->zoom = 0.5f;
 	else if (w == 7 && h == 7)
 		MapEditData::GetInstance()->zoom = 0.45f;
-	else if (w == 3 && h == 5)
+	else if (w == 5 && h == 3)
 		MapEditData::GetInstance()->zoom = 0.75f;
-	else if (w == 4 && h == 6)
+	else if (w == 6 && h == 4)
 		MapEditData::GetInstance()->zoom = 0.6f;
-	else if (w == 5 && h == 7)
+	else if (w == 7 && h == 5)
 		MapEditData::GetInstance()->zoom = 0.5f;
-	else if (w == 6 && h == 8)
+	else if (w == 8 && h == 6)
 		MapEditData::GetInstance()->zoom = 0.45f;
 
 	tiles = new Tiles(w, h);
@@ -104,12 +107,14 @@ void MapCreateScene::Disappear(int code)
 		{
 			SceneData::GetInstance()->inGameCode = 1;
 			tiles->Down();
+			palette->Disappear();
 			sceneChangeManager->Reset();
 		}
 		else if (code == 2) // 시도하기
 		{
 			SceneData::GetInstance()->inGameCode = 1;
 			tiles->Down();
+			palette->Disappear();
 			//sceneChangeManager->Try();
 		}
 		else if (code == 3) // 스테이지 선택으로
@@ -118,6 +123,7 @@ void MapCreateScene::Disappear(int code)
 			tryb->Disappear();
 			reset->Disappear();
 			menu->Disappear();
+			palette->Disappear();
 			tiles->Down();
 			sceneChangeManager->Back();
 		}
