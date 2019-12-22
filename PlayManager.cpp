@@ -7,6 +7,7 @@
 #include "ToMenuButton.h"
 #include "PlayerData.h"
 #include "StageData.h"
+#include "SettingData.h"
 #include "Confetti.h"
 
 #include "Battery.h"
@@ -406,15 +407,18 @@ void PlayManager::Result()
 		child1->parentTransform = obj->GetComponent<Transform>();
 		child2->parentTransform = obj->GetComponent<Transform>();
 		
-		for (int i = 0; i < 50; i++)
+		if (SettingData::GetInstance()->effect)
 		{
-			Confetti* confetti = new Confetti(0);
-			AttachObject(confetti);
-		}
-		for (int i = 0; i < 50; i++)
-		{
-			Confetti* confetti = new Confetti(1);
-			AttachObject(confetti);
+			for (int i = 0; i < 50; i++)
+			{
+				Confetti* confetti = new Confetti(0);
+				AttachObject(confetti);
+			}
+			for (int i = 0; i < 50; i++)
+			{
+				Confetti* confetti = new Confetti(1);
+				AttachObject(confetti);
+			}
 		}
 		gameState = GameState::Clear;
 

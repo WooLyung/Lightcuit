@@ -5,6 +5,7 @@
 #include "Battery.h"
 #include "Effect.h"
 #include "Dust.h"
+#include "SettingData.h"
 
 GameInputManager::GameInputManager(InGameScene* scene)
 {
@@ -240,11 +241,14 @@ void GameInputManager::Input_Select() // 게이트 들기, 우클릭
 		inputState = InputState::GATE_LIFT;
 		myGate = targetGate;
 		myGate->GetSpriteRenderer()->SetZ_index(5);
-		for (int i = 0; i < 3; i++)
+		if (SettingData::GetInstance()->effect)
 		{
-			Dust* dust = new Dust;
-			dust->GetComponent<Transform>()->SetPos(tilePos.x, tilePos.y);
-			AttachObject(dust);
+			for (int i = 0; i < 3; i++)
+			{
+				Dust* dust = new Dust;
+				dust->GetComponent<Transform>()->SetPos(tilePos.x, tilePos.y);
+				AttachObject(dust);
+			}
 		}
 
 		shadow->SetIsEnable(true);
@@ -454,11 +458,14 @@ Line* GameInputManager::CreateLine(int x, int y)
 
 	if (canCreate)
 	{
-		for (int i = 0; i < 4; i++)
+		if (SettingData::GetInstance()->effect)
 		{
-			Dust* dust = new Dust;
-			dust->GetComponent<Transform>()->SetPos(x, y);
-			AttachObject(dust);
+			for (int i = 0; i < 4; i++)
+			{
+				Dust* dust = new Dust;
+				dust->GetComponent<Transform>()->SetPos(x, y);
+				AttachObject(dust);
+			}
 		}
 
 		Line* line = new Line(x, y);
@@ -513,11 +520,14 @@ Line* GameInputManager::CreateLine(int x, int y, Line* preLine)
 
 	if (canCreate)
 	{
-		for (int i = 0; i < 4; i++)
+		if (SettingData::GetInstance()->effect)
 		{
-			Dust* dust = new Dust;
-			dust->GetComponent<Transform>()->SetPos(x, y);
-			AttachObject(dust);
+			for (int i = 0; i < 4; i++)
+			{
+				Dust* dust = new Dust;
+				dust->GetComponent<Transform>()->SetPos(x, y);
+				AttachObject(dust);
+			}
 		}
 
 		Line* line = new Line(x, y);

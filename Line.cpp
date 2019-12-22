@@ -3,6 +3,7 @@
 #include "SpriteRenderer.h"
 #include "Dust.h"
 #include "Engine.h"
+#include "SettingData.h"
 
 Line::Line(long x, long y)
 {
@@ -238,10 +239,13 @@ void Line::SetSprite()
 
 void Line::OnDestroy()
 {
-	for (int i = 0; i < 4; i++)
+	if (SettingData::GetInstance()->effect)
 	{
-		Dust* dust = new Dust;
-		dust->GetComponent<Transform>()->SetPos(transform->GetPos());
-		RG2R_SceneM->GetScene()->AttachObject(dust);
+		for (int i = 0; i < 4; i++)
+		{
+			Dust* dust = new Dust;
+			dust->GetComponent<Transform>()->SetPos(transform->GetPos());
+			RG2R_SceneM->GetScene()->AttachObject(dust);
+		}
 	}
 }
