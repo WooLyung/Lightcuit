@@ -91,8 +91,8 @@ void WindowManager::SetSize(const Size2U& size) // 윈도우 크기 설정
 {
 	//client 기준으로 설정하도록 수정함
 	RECT tmp = { 0, 0, (LONG)size.width, (LONG)size.height };
-	AdjustWindowRectEx(&tmp, GetWindowLongA(hwnd_, GWL_STYLE), false, GetWindowLongA(hwnd_, GWL_EXSTYLE));
-	SetWindowPos(hwnd_, NULL, 0, 0, tmp.right - tmp.left, tmp.bottom - tmp.top, SWP_NOZORDER | SWP_NOSIZE);
+	savedRect_ = tmp;
+	SetWindowPos(hwnd_, HWND_NOTOPMOST, savedRect_.left, savedRect_.top, savedRect_.right - savedRect_.left, savedRect_.bottom - savedRect_.top, SWP_FRAMECHANGED | SWP_SHOWWINDOW);
 }
 
 void WindowManager::SetFullscreen(bool flag) // 풀스크린 설정

@@ -343,6 +343,12 @@
     <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditPlay">
       <UniqueIdentifier>{3ac34a19-f467-457d-8cc2-d967e7534a0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\SizeChoice">
+      <UniqueIdentifier>{be5d7156-0bd0-419a-89ba-96b9c5c18d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\PublicData\SettingData">
+      <UniqueIdentifier>{91750338-fbbe-4ed5-a514-b7eac13b8c86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -615,6 +621,12 @@
     <ClInclude Include="MapEditPlay.h">
       <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditPlay</Filter>
     </ClInclude>
+    <ClInclude Include="SizeChoice.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\SizeChoice</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingData.h">
+      <Filter>소스 파일\Game\PublicData\SettingData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -884,6 +896,12 @@
     </ClCompile>
     <ClCompile Include="MapEditPlay.cpp">
       <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\MapEditPlay</Filter>
+    </ClCompile>
+    <ClCompile Include="SizeChoice.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapEditorScene\SizeChoice</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingData.cpp">
+      <Filter>소스 파일\Game\PublicData\SettingData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

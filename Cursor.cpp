@@ -27,6 +27,12 @@ void Cursor::OnStart()
 void Cursor::OnUpdate()
 {
 	transform->SetPos(RG2R_InputM->FromScreenToUI(RG2R_InputM->GetMousePos()));
+
+	if (RG2R_InputM->GetKeyState(KeyCode::KEY_LALT) == KeyState::KEYSTATE_STAY
+		&& RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER)
+	{
+		RG2R_WindowM->Close();
+	}
 }
 
 void Cursor::SetSpr(int code)

@@ -19,17 +19,19 @@ private:
 	ChapterScene* scene;
 
 	float time = 0;
-	CommandList* appearAnim, *disappearAnim;
+	CommandList* appearAnim, *disappearAnim, *startAnim;
 
 	Object* blur;
 	Effect* blurEffect;
 
+	void CreateElements();
+
 public:
 	enum BoardState {
-		appear, wait, disappear, top
+		appear, wait, disappear, top, start
 	};
 
-	BoardState boardState = BoardState::top;
+	BoardState boardState = BoardState::start;
 	CommandList* changeScene;
 
 	SettingBoard(ChapterScene*);

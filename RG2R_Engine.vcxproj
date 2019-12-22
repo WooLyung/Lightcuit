@@ -221,7 +221,9 @@
     <ClInclude Include="SceneData.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SettingBoard.h" />
+    <ClInclude Include="SettingData.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="SizeChoice.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteRenderData.h" />
     <ClInclude Include="SpriteRenderer.h" />
@@ -310,6 +312,8 @@
     <ClCompile Include="SceneData.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SettingBoard.cpp" />
+    <ClCompile Include="SettingData.cpp" />
+    <ClCompile Include="SizeChoice.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteRenderData.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
