@@ -20,6 +20,7 @@ private:
 	CommandList* appear;
 	CommandList* goToChapter;
 	CommandList* goToMapEdit;
+	CommandList* goToPlay;
 	float animTime = 0;
 	int moveFlag = 1;
 
@@ -32,4 +33,5 @@ public:
 	void ChoiceStage();
 	void Back();
 	void MapEdit();
+	void MapPlay();
 };

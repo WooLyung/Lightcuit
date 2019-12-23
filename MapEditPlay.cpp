@@ -68,6 +68,8 @@ void MapEditPlay::OnUpdate()
 		animTime = 0;
 		appearAnim->Start();
 	}
+
+	Input();
 }
 
 Transform* MapEditPlay::GetTransform()
@@ -84,4 +86,38 @@ void MapEditPlay::Disappear()
 {
 	appearAnim->Stop();
 	disappearAnim->Start();
+}
+
+void MapEditPlay::Input()
+{
+	Vec2F vec = RG2R_InputM->GetMousePos() - transform->GetScreenPos();
+
+	if (vec.Dot(vec) <= sqrtf((float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)) * 3.f)
+	{
+		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_NONE)
+		{
+			if (inputState == InputState::none)
+			{
+				inputState = InputState::hover;
+			}
+		}
+		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+		{
+			if (inputState == InputState::hover)
+			{
+				inputState = InputState::click;
+			}
+		}
+		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT)
+		{
+			if (inputState == InputState::click)
+			{
+				scene->MapPlay();
+			}
+		}
+	}
+	else
+	{
+		inputState = InputState::none;
+	}
 }

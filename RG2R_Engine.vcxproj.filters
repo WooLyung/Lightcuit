@@ -385,6 +385,9 @@
     <Filter Include="소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\EditButton">
       <UniqueIdentifier>{c5808e1b-2550-480c-8acf-7aac82504283}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Scenes\GetMapScene">
+      <UniqueIdentifier>{862e055a-8185-4273-8c16-3b5492305839}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -696,6 +699,9 @@
     <ClInclude Include="EditButton.h">
       <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\EditButton</Filter>
     </ClInclude>
+    <ClInclude Include="GetMapScene.h">
+      <Filter>소스 파일\Game\Scenes\GetMapScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -1004,6 +1010,9 @@
     </ClCompile>
     <ClCompile Include="EditButton.cpp">
       <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\UIs\EditButton</Filter>
+    </ClCompile>
+    <ClCompile Include="GetMapScene.cpp">
+      <Filter>소스 파일\Game\Scenes\GetMapScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

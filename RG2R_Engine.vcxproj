@@ -185,6 +185,7 @@
     <ClInclude Include="Gate.h" />
     <ClInclude Include="GateF.h" />
     <ClInclude Include="GateInPalette.h" />
+    <ClInclude Include="GetMapScene.h" />
     <ClInclude Include="GoMapEditor.h" />
     <ClInclude Include="GraphicManager.h" />
     <ClInclude Include="InGameScene.h" />
@@ -288,6 +289,7 @@
     <ClCompile Include="Gate.cpp" />
     <ClCompile Include="GateF.cpp" />
     <ClCompile Include="GateInPalette.cpp" />
+    <ClCompile Include="GetMapScene.cpp" />
     <ClCompile Include="GoMapEditor.cpp" />
     <ClCompile Include="GraphicManager.cpp" />
     <ClCompile Include="InGameScene.cpp" />

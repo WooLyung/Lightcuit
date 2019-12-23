@@ -15,6 +15,12 @@ private:
 		appear, wait, disappear, wait2
 	};
 
+	enum InputState {
+		hover, click, none
+	};
+
+	InputState inputState = InputState::none;
+
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;
 	MapEditorScene* scene;
@@ -25,6 +31,8 @@ private:
 	float animTime = 0;
 	CommandList* appearAnim;
 	CommandList* disappearAnim;
+
+	void Input();
 
 public:
 	MapEditPlay(MapEditorScene*);
