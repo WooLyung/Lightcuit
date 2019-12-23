@@ -121,16 +121,20 @@ void ToMenuButton::Input()
 					auto data = MapEditData::GetInstance();
 
 					std::string arguments = "x:" + to_string(data->width)
-						+ ",`y:" + to_string(data->height) + ",`zoom:" + to_string(data->zoom)
-						+ ",`text:À¯Àú_Á¦ÀÛ_¸Ê";
+						+ ",y:" + to_string(data->height) + ",zoom:" + to_string(data->zoom)
+						+ ",text:_";
 					for (auto& iter : data->gates)
 					{
 						std::string gate_argument = ";x:" + to_string(iter.x)
-							+ ",`y:" + to_string(iter.y)
-							+ ",`type:" + iter.type
-							+ ",`dir:" + iter.dir
-							+ ",`color:" + iter.color
-							+ ",`isStatic:" + (iter.isStatic ? "true" : "false");
+							+ ",y:" + to_string(iter.y)
+							+ ",type:" + iter.type;
+
+						if (iter.type == "battery")
+							gate_argument += ",color:" + iter.color;
+						if (iter.isStatic)
+							gate_argument += (",isStatic:true");
+						if (iter.dir != "right")
+							gate_argument += ",dir:" + iter.dir;
 
 						arguments += gate_argument;
 					}

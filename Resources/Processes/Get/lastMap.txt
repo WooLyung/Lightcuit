@@ -1,3 +1,0 @@
-x:4, y:4, zoom:0.750000, text:_
-x:-2, y:0, type:battery, dir:right, color:white, isStatic:false
-x:-1, y:0, type:light1, dir:right, color:white, isStatic:false
