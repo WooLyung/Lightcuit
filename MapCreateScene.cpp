@@ -111,10 +111,29 @@ void MapCreateScene::Disappear(int code)
 		}
 		else if (code == 2) // 시도하기
 		{
-			SceneData::GetInstance()->inGameCode = 1;
-			tiles->Down();
+			SceneData::GetInstance()->inGameCode = 0;
+			MapEditData::GetInstance()->playType = 1;
+
+			MapEditData::GetInstance()->gates.clear();
+			for (auto& iter : gates)
+			{
+				GateData gateData;
+				gateData.color = iter->color;
+				gateData.dir = iter->dir;
+				gateData.x = iter->pos.x;
+				gateData.y = iter->pos.y;
+				gateData.isStatic = iter->GetIsStatic();
+				gateData.type = iter->type;
+			
+				MapEditData::GetInstance()->gates.push_back(gateData);
+			}
+
+			tryb->Disappear();
+			reset->Disappear();
+			menu->Disappear();
 			palette->Disappear();
-			//sceneChangeManager->Try();
+			tiles->Down();
+			sceneChangeManager->Try();
 		}
 		else if (code == 3) // 스테이지 선택으로
 		{

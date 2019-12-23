@@ -3,16 +3,17 @@
 #include "Engine.h"
 #include "ChapterScene.h"
 #include "SceneData.h"
+#include "InGameScene.h"
 
 SceneChangeManager2::SceneChangeManager2(MapCreateScene* scene)
 {
 	this->scene = scene;
 
-	//toInGameScene = new CommandList;
-	//toInGameScene->PushCommand([=]() {
-	//	RG2R_SceneM->ChangeScene(new InGameScene, true);
-	//	}, 1.2f);
-	//commandLists.push_back(toInGameScene);
+	toInGameScene = new CommandList;
+	toInGameScene->PushCommand([=]() {
+		RG2R_SceneM->ChangeScene(new InGameScene, true);
+		}, 1.2f);
+	commandLists.push_back(toInGameScene);
 
 	toStageScene = new CommandList;
 	toStageScene->PushCommand([=]() {
@@ -45,5 +46,5 @@ void SceneChangeManager2::Back()
 
 void SceneChangeManager2::Try()
 {
-	//toInGameScene->Start();
+	toInGameScene->Start();
 }

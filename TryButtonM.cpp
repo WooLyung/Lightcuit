@@ -140,8 +140,11 @@ void TryButtonM::Input()
 		{
 			if (inputState == InputState::click)
 			{
-				// 시도
-				cout << "시도!" << endl;
+				inputState = InputState::none;
+				sizeFlag = 1;
+				changeScale->Start();
+
+				scene->Disappear(2);
 			}
 		}
 	}

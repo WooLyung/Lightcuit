@@ -4,6 +4,7 @@
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
+#include "MapEditData.h"
 #include "PlayerData.h"
 
 StageChoice::StageChoice(int Stage, std::string path, StageScene* scene, Vec2F pos)
@@ -170,6 +171,7 @@ void StageChoice::Input()
 			if (inputState == InputState::click)
 			{
 				StageData::GetInstance()->stage = stage;
+				MapEditData::GetInstance()->playType = 0;
 				sizeFlag = 1;
 				changeScale->Start();
 				scene->ChoiceStage();

@@ -19,4 +19,5 @@ public:
 	std::list<GateData> gates;
 	float zoom;
 	int width, height;
+	int playType = 0; // 0일반 1테스트 2플레이
 };
