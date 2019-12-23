@@ -26,7 +26,7 @@ void ToMenuButton::OnStart()
 {
 	spriteRenderer = AttachComponent<SpriteRenderer>()
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
-	if (MapEditData::GetInstance()->playType == 0)
+	if (MapEditData::GetInstance()->playType == 0 || MapEditData::GetInstance()->playType == 2)
 		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toMenu.png");
 	else if (MapEditData::GetInstance()->playType == 1)
 		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toUpload.png");
@@ -122,7 +122,7 @@ void ToMenuButton::Input()
 
 					std::string arguments = "x:" + to_string(data->width)
 						+ ",`y:" + to_string(data->height) + ",`zoom:" + to_string(data->zoom)
-						+ ",`text:_";
+						+ ",`text:À¯Àú_Á¦ÀÛ_¸Ê";
 					for (auto& iter : data->gates)
 					{
 						std::string gate_argument = ";x:" + to_string(iter.x)

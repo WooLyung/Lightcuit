@@ -3,6 +3,7 @@
 #include "Engine.h"
 #include "Cursor.h"
 #include "InGameScene.h"
+#include "MapEditData.h"
 
 #include "Pen1.h"
 #include "Pen2.h"
@@ -58,7 +59,9 @@ void GetMapScene::OnStart()
 			animTime = 1;
 			text->SetTextColor(Color(1, 1, 1, 1 - animTime));
 			disappear->Stop();
-			//RG2R_SceneM->ChangeScene(new InGameScene);
+
+			MapEditData::GetInstance()->playType = 2;
+			RG2R_SceneM->ChangeScene(new InGameScene);
 		}
 		}, 0);
 	disappear->SetIsLoop(true);

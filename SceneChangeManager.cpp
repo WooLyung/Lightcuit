@@ -4,6 +4,7 @@
 #include "ChapterScene.h"
 #include "MapCreateScene.h"
 #include "SceneData.h"
+#include "GetMapScene.h"
 
 SceneChangeManager::SceneChangeManager(InGameScene* scene)
 {
@@ -28,6 +29,13 @@ SceneChangeManager::SceneChangeManager(InGameScene* scene)
 		RG2R_SceneM->ChangeScene(new MapCreateScene, true);
 		}, 1.2f);
 	commandLists.push_back(toEditScene);
+
+	toGetMapScene = new CommandList;
+	toGetMapScene->PushCommand([=]() {
+		SceneData::GetInstance()->isFirst = false;
+		RG2R_SceneM->ChangeScene(new GetMapScene, true);
+		}, 1.2f);
+	commandLists.push_back(toGetMapScene);
 }
 
 SceneChangeManager::~SceneChangeManager()
@@ -52,4 +60,9 @@ void SceneChangeManager::Edit()
 void SceneChangeManager::Diff()
 {
 	toInGameScene->Start();
+}
+
+void SceneChangeManager::GetMap()
+{
+	toGetMapScene->Start();
 }

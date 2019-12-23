@@ -24,7 +24,7 @@ void ToNextButton::OnStart()
 {
 	spriteRenderer = AttachComponent<SpriteRenderer>()
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
-	if (MapEditData::GetInstance()->playType == 0)
+	if (MapEditData::GetInstance()->playType == 0 || MapEditData::GetInstance()->playType == 2)
 		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toNext.png");
 	else if(MapEditData::GetInstance()->playType == 1)
 		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toEdit.png");
@@ -71,7 +71,6 @@ void ToNextButton::OnStart()
 		}, 0);
 	changeScale->SetIsLoop(true);
 }
-
 
 void ToNextButton::OnUpdate()
 {
@@ -138,6 +137,18 @@ void ToNextButton::Input()
 				scene->tiles->Down();
 				clearObj->disappearAnim->Start();
 				scene->sceneChangeManager->Edit();
+			}
+			else if (MapEditData::GetInstance()->playType == 2)
+			{
+				SceneData::GetInstance()->inGameCode = 0;
+				scene->postit->Disappear();
+				scene->playButton->Disappear();
+				scene->resetButton->Disappear();
+				scene->menuButton->Disappear();
+				scene->editButton->Disappear();
+				scene->tiles->Down();
+				clearObj->disappearAnim->Start();
+				scene->sceneChangeManager->GetMap();
 			}
 		}
 	}

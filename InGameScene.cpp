@@ -161,6 +161,72 @@ void InGameScene::Init()
 		}
 		in.close();
 	}
+	else if (MapEditData::GetInstance()->playType == 2)
+	{
+		std::string data;
+		std::ifstream in("Datas/lastMap.txt");
+		while (getline(in, data)) {
+			size_t start_pos = 0;
+			while ((start_pos = data.find(" ", start_pos)) != std::string::npos)
+			{
+				data.replace(start_pos, string(" ").length(), "");
+				start_pos += string("").length();
+			}
+
+			string splitedString, key, value;
+			std::map<string, string> gateData;
+			size_t begin = 0, end = 1;
+
+			while (true)
+			{
+				end++;
+				if (data[end] == ',' || end == data.size())
+				{
+					splitedString = data.substr(begin, end - begin);
+
+					key = splitedString.substr(0, splitedString.find(":"));
+					value = splitedString.substr(splitedString.find(":") + 1, splitedString.size());
+
+					gateData.insert(std::pair<string, string>(key, value));
+
+					begin = ++end;
+				}
+				if (end >= data.size())
+					break;
+			}
+
+			if (gateData.find("type") == gateData.end())
+			{
+				mapSize.x = std::stoi(gateData["x"]);
+				mapSize.y = std::stoi(gateData["y"]);
+				GetMainCamera()->SetZoom(std::stof(gateData["zoom"]), std::stof(gateData["zoom"]));
+
+				string text = gateData["text"];
+				size_t start_pos = 0;
+				while ((start_pos = text.find("_", start_pos)) != std::string::npos)
+				{
+					text.replace(start_pos, string("_").length(), " ");
+					start_pos += string(" ").length();
+				}
+				start_pos = 0;
+				while ((start_pos = text.find("\\", start_pos)) != std::string::npos)
+				{
+					text.replace(start_pos, string("\\").length(), "\n");
+					start_pos += string("\n").length();
+				}
+
+				postit->GetTextRenderer()->SetText(text);
+
+				tiles = new Tiles(mapSize.x, mapSize.y);
+				AttachObject(tiles);
+			}
+			else
+			{
+				CreateGate(gateData);
+			}
+		}
+		in.close();
+	}
 	else if (MapEditData::GetInstance()->playType == 1)
 	{
 		mapSize.x = MapEditData::GetInstance()->width;

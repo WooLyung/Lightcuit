@@ -11,6 +11,7 @@ private:
 	CommandList* toInGameScene;
 	CommandList* toStageScene;
 	CommandList* toEditScene;
+	CommandList* toGetMapScene;
 
 public:
 	SceneChangeManager(InGameScene*);
@@ -20,4 +21,5 @@ public:
 	void Back();
 	void Diff();
 	void Edit();
+	void GetMap();
 };
