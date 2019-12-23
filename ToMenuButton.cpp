@@ -152,7 +152,8 @@ void ToMenuButton::Input()
 	}
 	else
 	{
-		inputState = InputState::none;
+		if (inputState != InputState::end)
+			inputState = InputState::none;
 		hoverFlag = -1;
 		hoverAnim->Start();
 

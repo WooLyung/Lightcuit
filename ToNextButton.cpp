@@ -82,7 +82,7 @@ void ToNextButton::Input()
 {
 	Vec2F vec = RG2R_InputM->FromScreenToUI(RG2R_InputM->GetMousePos()) - transform->GetPos();
 
-	if (vec.Dot(vec) <= 0.06f)
+	if (vec.Dot(vec) <= 0.06f && inputState != InputState::end)
 	{
 		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_NONE)
 		{
@@ -128,6 +128,8 @@ void ToNextButton::Input()
 			}
 			else if (MapEditData::GetInstance()->playType == 1)
 			{
+				inputState = InputState::end;
+
 				SceneData::GetInstance()->inGameCode = 0;
 				scene->postit->Disappear();
 				scene->playButton->Disappear();
@@ -140,6 +142,8 @@ void ToNextButton::Input()
 			}
 			else if (MapEditData::GetInstance()->playType == 2)
 			{
+				inputState = InputState::end;
+
 				SceneData::GetInstance()->inGameCode = 0;
 				scene->postit->Disappear();
 				scene->playButton->Disappear();
@@ -154,7 +158,8 @@ void ToNextButton::Input()
 	}
 	else
 	{
-		inputState = InputState::none;
+		if (inputState != InputState::end)
+			inputState = InputState::none;
 		hoverFlag = -1;
 		hoverAnim->Start();
 
