@@ -6,6 +6,7 @@
 #include "AddGate.h"
 #include "Light1.h"
 #include "Light2.h"
+#include "Light3.h"
 #include "Battery.h"
 #include "Gate.h"
 #include "Line.h"
@@ -250,6 +251,11 @@ void InGameScene::CreateGate(std::map<string, string> data)
 	else if (data["type"] == "light2")
 	{
 		gate = new Light2(x, y, dir);
+		PushGate(gate);
+	}
+	else if (data["type"] == "light3")
+	{
+		gate = new Light3(x, y, dir);
 		PushGate(gate);
 	}
 	else if (data["type"] == "reverse_gate")

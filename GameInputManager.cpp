@@ -302,7 +302,6 @@ void GameInputManager::Input_Wheel()
 				}
 			}
 		}
-
 	}
 }
 
@@ -477,7 +476,7 @@ Line* GameInputManager::CreateLine(int x, int y)
 			line->input = pos - myGate->tilePos;
 		else
 			line->output = pos - myGate->tilePos;
-
+		
 		line->SetSprite();
 
 		return line;

@@ -376,6 +376,12 @@
     <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Managers\SceneChangeManager2">
       <UniqueIdentifier>{8b0dc3b9-2d48-4903-8e80-3bde3fdc41ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Palette\GateInPalette">
+      <UniqueIdentifier>{d8454dd7-202e-4a29-a6d8-e6f444a55a13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\GateF">
+      <UniqueIdentifier>{2a29ad54-2faf-4065-987d-5b3d9323972f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -675,6 +681,15 @@
     <ClInclude Include="SceneChangeManager2.h">
       <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Managers\SceneChangeManager2</Filter>
     </ClInclude>
+    <ClInclude Include="GateInPalette.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Palette\GateInPalette</Filter>
+    </ClInclude>
+    <ClInclude Include="Light3.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light3</Filter>
+    </ClInclude>
+    <ClInclude Include="GateF.h">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\GateF</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -971,6 +986,15 @@
     </ClCompile>
     <ClCompile Include="SceneChangeManager2.cpp">
       <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Managers\SceneChangeManager2</Filter>
+    </ClCompile>
+    <ClCompile Include="GateInPalette.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\Palette\GateInPalette</Filter>
+    </ClCompile>
+    <ClCompile Include="Light3.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\InGameScene\Gate\Gates\Light\Light3</Filter>
+    </ClCompile>
+    <ClCompile Include="GateF.cpp">
+      <Filter>소스 파일\Game\Objects\ObjectsInScene\MapCreateScene\GateF</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

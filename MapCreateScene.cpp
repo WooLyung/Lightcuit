@@ -34,7 +34,7 @@ void MapCreateScene::OnStart()
 	cursor = new Cursor;
 	AttachObject(cursor);
 
-	palette = new Palette;
+	palette = new Palette(this);
 	AttachObject(palette);
 
 	sceneChangeManager = new SceneChangeManager2(this);
@@ -94,7 +94,6 @@ void MapCreateScene::OnStart()
 
 void MapCreateScene::OnUpdate()
 {
-
 }
 
 void MapCreateScene::Disappear(int code)
@@ -128,4 +127,21 @@ void MapCreateScene::Disappear(int code)
 			sceneChangeManager->Back();
 		}
 	}
+}
+
+void MapCreateScene::CreateGate(std::string type, std::string texture, Vec2L pos)
+{
+	GateF* gate = new GateF;
+	gate->GetSpriteRenderer()
+		->SetTexture(texture);
+	gate->SetPos(pos);
+	gate->type = type;
+
+	if (type == "battery")
+	{
+		gate->outline->SetIsEnable(true);
+	}
+
+	tiles->AttachChild(gate);
+	gates.push_back(gate);
 }

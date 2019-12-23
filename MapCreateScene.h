@@ -1,9 +1,8 @@
 #pragma once
 #include "Scene.h"
-//#include "MapInputManager.h"
 #include "SceneChangeManager2.h"
 #include "Palette.h"
-//#include "GateF.h"
+#include "GateF.h"
 #include "Tiles.h"
 #include "Cursor.h"
 #include <list>
@@ -22,7 +21,6 @@ class MapCreateScene :
 	public Scene
 {
 private:
-	//MapInputManager* mapInputManager;
 	SceneChangeManager2* sceneChangeManager;
 
 	Palette* palette;
@@ -31,15 +29,11 @@ private:
 	ResetButtonM* reset;
 	TryButtonM* tryb;
 
-	//list<GateF*> gates;
-
 	bool isFinish = false;
-
-	//void PushGateF(GateF*);
-	Vec2L GetTilePos();
 
 public:
 	Cursor* cursor;
+	std::list<GateF*> gates;
 
 	MapCreateScene();
 	~MapCreateScene();
@@ -47,4 +41,6 @@ public:
 	void OnStart();
 	void OnUpdate();
 	void Disappear(int);
+	void CreateGate(std::string, std::string, Vec2L);
+	Vec2L GetTilePos();
 };
