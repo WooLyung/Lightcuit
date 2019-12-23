@@ -236,6 +236,8 @@ int PlayManager::CheckClear()
 	std::vector<Node*> nodes;
 	std::queue<Node*> nodeStack;
 
+	int input = 0, output = 0;
+
 	for (auto& iter : sortedNodes)
 	{
 		delete iter;
@@ -249,6 +251,9 @@ int PlayManager::CheckClear()
 		node->type = 0;
 		map.insert(std::pair<Object*, Node*>(iter, node));
 		nodes.push_back(node);
+
+		input += iter->input.size();
+		output += iter->output.size();
 	}
 	for (auto& iter : scene->objectManager->lines)
 	{
@@ -258,6 +263,9 @@ int PlayManager::CheckClear()
 		map.insert(std::pair<Object*, Node*>(iter, node));
 		nodes.push_back(node);
 	}
+
+	if (input != output)
+		return 1;
 
 	for (auto& node : nodes)
 	{
