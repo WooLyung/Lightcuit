@@ -6,13 +6,15 @@
 #include "InGameScene.h"
 #include "ChapterScene.h"
 #include "StageScene.h"
+#include "SettingData.h"
 
 Scene* SceneManager::FirstScene()
 {
 	ShowCursor(false);
+	SettingData::GetInstance();
 
-	return new ChapterScene;
-	//return new IntroScene;
+	//return new ChapterScene;
+	return new IntroScene;
 	//return new InGameScene;
 	//return new StageScene;
 }
