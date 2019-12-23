@@ -131,59 +131,59 @@ void Palette::OnStart()
 		gate->Done();
 	}
 
-Object* pre = new Object;
-auto pre_trs = pre->GetComponent<Transform>()
-->SetScale(0.32f, 0.32f)
-->SetPos(spriteRenderer->GetTexture()->GetSize().width * 0.25f / INCH_PER_DISTANCE,
-	spriteRenderer->GetTexture()->GetSize().height * 0.5f / INCH_PER_DISTANCE + 1.7f - 4);
-pre->onUpdateListener = [=]() {
-	Vec2F vec = RG2R_InputM->GetMousePos() - (pre_trs->GetScreenPos() + Vec2F(-6.5f * 0.8f, 0));
-	if (vec.Dot(vec) <= sqrtf((float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)) * 0.35f)
-	{
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+	Object* pre = new Object;
+	auto pre_trs = pre->GetComponent<Transform>()
+	->SetScale(0.32f, 0.32f)
+	->SetPos(spriteRenderer->GetTexture()->GetSize().width * 0.25f / INCH_PER_DISTANCE,
+		spriteRenderer->GetTexture()->GetSize().height * 0.5f / INCH_PER_DISTANCE + 1.7f - 4);
+	pre->onUpdateListener = [=]() {
+		Vec2F vec = RG2R_InputM->GetMousePos() - (pre_trs->GetScreenPos() + Vec2F(-6.5f * 0.8f, 0));
+		if (vec.Dot(vec) <= sqrtf((float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)) * 0.35f)
 		{
-			nowPage--;
-			ChangePage();
+			if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+			{
+				nowPage--;
+				ChangePage();
+			}
 		}
-	}
-};
-AttachChild(pre);
+	};
+	AttachChild(pre);
 
-Object* next = new Object;
-auto next_trs = next->GetComponent<Transform>()
-->SetScale(0.32f, 0.32f)
-->SetPos(spriteRenderer->GetTexture()->GetSize().width * 0.75f / INCH_PER_DISTANCE,
-	spriteRenderer->GetTexture()->GetSize().height * 0.5f / INCH_PER_DISTANCE + 1.7f - 4);
-next->onUpdateListener = [=]() {
-	Vec2F vec = RG2R_InputM->GetMousePos() - (next_trs->GetScreenPos() + Vec2F(-6.5f * 0.8f, 0));
-	if (vec.Dot(vec) <= sqrtf((float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)) * 0.35f)
-	{
-		if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+	Object* next = new Object;
+	auto next_trs = next->GetComponent<Transform>()
+	->SetScale(0.32f, 0.32f)
+	->SetPos(spriteRenderer->GetTexture()->GetSize().width * 0.75f / INCH_PER_DISTANCE,
+		spriteRenderer->GetTexture()->GetSize().height * 0.5f / INCH_PER_DISTANCE + 1.7f - 4);
+	next->onUpdateListener = [=]() {
+		Vec2F vec = RG2R_InputM->GetMousePos() - (next_trs->GetScreenPos() + Vec2F(-6.5f * 0.8f, 0));
+		if (vec.Dot(vec) <= sqrtf((float)(RG2R_WindowM->GetSize().width * RG2R_WindowM->GetSize().width + RG2R_WindowM->GetSize().height * RG2R_WindowM->GetSize().height)) * 0.35f)
 		{
-			nowPage++;
-			ChangePage();
+			if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+			{
+				nowPage++;
+				ChangePage();
+			}
 		}
-	}
-};
-AttachChild(next);
+	};
+	AttachChild(next);
 
-liftGate = CreateObject();
-liftGate->AttachComponent<SpriteRenderer>()
-->SetTexture("Resources/Sprites/Gates/notDivisionGate.png")
-->SetIsEnable(false);
-auto trs = liftGate->GetComponent<Transform>()
-->SetAnchor(64, 64);
-liftGate->onUpdateListener = [=]() {
-	trs->SetPos(RG2R_InputM->GetMouseWorldPos());
-};
+	liftGate = CreateObject();
+	liftGate->AttachComponent<SpriteRenderer>()
+	->SetTexture("Resources/Sprites/Gates/notDivisionGate.png")
+	->SetIsEnable(false);
+	auto trs = liftGate->GetComponent<Transform>()
+	->SetAnchor(64, 64);
+	liftGate->onUpdateListener = [=]() {
+		trs->SetPos(RG2R_InputM->GetMouseWorldPos());
+	};
 
-liftGateOutline = new Object();
-liftGateOutline->AttachComponent<SpriteRenderer>()
-->SetTexture("Resources/Sprites/Gates/battery_uncolored.png")
-->SetIsEnable(false);
-liftGateOutline->GetComponent<Transform>()
-->SetAnchor(64, 64);
-liftGate->AttachChild(liftGateOutline);
+	liftGateOutline = new Object();
+	liftGateOutline->AttachComponent<SpriteRenderer>()
+	->SetTexture("Resources/Sprites/Gates/battery_uncolored.png")
+	->SetIsEnable(false);
+	liftGateOutline->GetComponent<Transform>()
+	->SetAnchor(64, 64);
+	liftGate->AttachChild(liftGateOutline);
 }
 
 void Palette::OnUpdate()
@@ -428,7 +428,10 @@ void Palette::Input()
 			if (!(pos.x >= -mapSize.x / 2 && pos.x <= mapSize.x / 2 - !(mapSize.x % 2)
 				&& pos.y >= -mapSize.y / 2 && pos.y <= mapSize.y / 2 - !(mapSize.y % 2)))
 			{
-				canMove = false;
+				scene->gates.remove(moveGate);
+				moveGate->Destroy();
+
+				return;
 			}
 
 			for (auto& iter : scene->gates)

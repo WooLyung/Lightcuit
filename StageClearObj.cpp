@@ -71,6 +71,7 @@ void StageClearObj::Disappear()
 	scene->playButton->Disappear();
 	scene->resetButton->Disappear();
 	scene->menuButton->Disappear();
+	scene->editButton->Disappear();
 	scene->tiles->Down();
 	scene->sceneChangeManager->Diff();
 	disappearAnim->Start();

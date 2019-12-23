@@ -7,6 +7,8 @@
 class StageClearObj :
 	public Object
 {
+	friend class ToNextButton;
+
 private:
 	Transform* transform;
 	SpriteRenderer* spriteRenderer;

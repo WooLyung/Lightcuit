@@ -6,6 +6,7 @@
 #include "StageData.h"
 #include "PlayerData.h"
 #include "SceneData.h"
+#include "MapEditData.h"
 
 ToNextButton::ToNextButton(InGameScene* scene, StageClearObj* clearObj)
 {
@@ -22,8 +23,12 @@ ToNextButton::~ToNextButton()
 void ToNextButton::OnStart()
 {
 	spriteRenderer = AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/UIs/Clear/toNext.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
+	if (MapEditData::GetInstance()->playType == 0)
+		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toNext.png");
+	else if(MapEditData::GetInstance()->playType == 1)
+		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toEdit.png");
+
 	spriteRenderer->SetZ_index(-1);
 	transform = GetComponent<Transform>()
 		->SetScale(0.5f, 0.5f)
@@ -100,22 +105,37 @@ void ToNextButton::Input()
 		}
 		else if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_EXIT)
 		{
-			if (inputState == InputState::click)
+			if (MapEditData::GetInstance()->playType == 0)
 			{
-				if (StageData::GetInstance()->stage == 8)
+				if (inputState == InputState::click)
 				{
-					StageData::GetInstance()->chapter++;
-					StageData::GetInstance()->stage = 1;
-				}
-				else
-				{
-					StageData::GetInstance()->stage++;
-				}
+					if (StageData::GetInstance()->stage == 8)
+					{
+						StageData::GetInstance()->chapter++;
+						StageData::GetInstance()->stage = 1;
+					}
+					else
+					{
+						StageData::GetInstance()->stage++;
+					}
 
-				sizeFlag = 1;
-				changeScale->Start();
-				clearObj->Disappear();
-				scene->sceneChangeManager->Diff();
+					sizeFlag = 1;
+					changeScale->Start();
+					clearObj->Disappear();
+					scene->sceneChangeManager->Diff();
+				}
+			}
+			else if (MapEditData::GetInstance()->playType == 1)
+			{
+				SceneData::GetInstance()->inGameCode = 0;
+				scene->postit->Disappear();
+				scene->playButton->Disappear();
+				scene->resetButton->Disappear();
+				scene->menuButton->Disappear();
+				scene->editButton->Disappear();
+				scene->tiles->Down();
+				clearObj->disappearAnim->Start();
+				scene->sceneChangeManager->Edit();
 			}
 		}
 	}
