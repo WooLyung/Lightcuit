@@ -118,7 +118,24 @@ void ToMenuButton::Input()
 
 				if (MapEditData::GetInstance()->playType == 1)
 				{
-					WinExec("Resources\\Processes\\Push.exe 이것은_테스트용_메세지입니당~~~~", SW_HIDE);
+					auto data = MapEditData::GetInstance();
+
+					std::string arguments = "x:" + to_string(data->width)
+						+ ",`y:" + to_string(data->height) + ",`zoom:" + to_string(data->zoom)
+						+ ",`text:_";
+					for (auto& iter : data->gates)
+					{
+						std::string gate_argument = ";x:" + to_string(iter.x)
+							+ ",`y:" + to_string(iter.y)
+							+ ",`type:" + iter.type
+							+ ",`dir:" + iter.dir
+							+ ",`color:" + iter.color
+							+ ",`isStatic:" + (iter.isStatic ? "true" : "false");
+
+						arguments += gate_argument;
+					}
+
+					WinExec((std::string("Resources\\Processes\\Push\\Push.exe ") + arguments).c_str(), SW_HIDE);
 				}
 
 				sizeFlag = 1;
