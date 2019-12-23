@@ -7,6 +7,7 @@
 #include "PlayerData.h"
 #include "SceneData.h"
 #include "ChapterScene.h"
+#include "MapEditData.h"
 
 ToMenuButton::ToMenuButton(InGameScene* scene, StageClearObj* clearObj)
 {
@@ -23,8 +24,11 @@ ToMenuButton::~ToMenuButton()
 void ToMenuButton::OnStart()
 {
 	spriteRenderer = AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/UIs/Clear/toMenu.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
+	if (MapEditData::GetInstance()->playType == 0)
+		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toMenu.png");
+	else if (MapEditData::GetInstance()->playType == 1)
+		spriteRenderer->SetTexture("Resources/Sprites/UIs/Clear/toUpload.png");
 	spriteRenderer->SetZ_index(-1);
 	transform = GetComponent<Transform>()
 		->SetScale(0.5f, 0.5f)
