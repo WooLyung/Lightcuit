@@ -109,6 +109,8 @@ void ToNextButton::Input()
 			{
 				if (inputState == InputState::click)
 				{
+					inputState = InputState::end;
+
 					if (StageData::GetInstance()->stage == 8)
 					{
 						StageData::GetInstance()->chapter++;

@@ -8,6 +8,7 @@
 #include "SceneData.h"
 #include "ChapterScene.h"
 #include "MapEditData.h"
+#include <Windows.h>
 
 ToMenuButton::ToMenuButton(InGameScene* scene, StageClearObj* clearObj)
 {
@@ -113,6 +114,13 @@ void ToMenuButton::Input()
 		{
 			if (inputState == InputState::click)
 			{
+				inputState = InputState::end;
+
+				if (MapEditData::GetInstance()->playType == 1)
+				{
+					WinExec("Resources\\Processes\\Push.exe 이것은_테스트용_메세지입니당~~~~", SW_HIDE);
+				}
+
 				sizeFlag = 1;
 				changeScale->Start();
 				clearObj->Disappear();

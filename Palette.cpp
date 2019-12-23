@@ -25,7 +25,7 @@ Palette::Palette(MapCreateScene* scene)
 	gateData[0][3][1] = "Resources/Sprites/Gates/Light/light3.png";
 
 	// add_gate
-	gateData[0][4][0] = "sub_gate";
+	gateData[0][4][0] = "add_gate";
 	gateData[0][4][1] = "Resources/Sprites/Gates/addGate.png";
 
 	// sub_gate

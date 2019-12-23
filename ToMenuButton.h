@@ -15,7 +15,7 @@ class ToMenuButton :
 {
 private:
 	enum InputState {
-		hover, click, none
+		hover, click, none, end
 	};
 
 	Transform* transform;
