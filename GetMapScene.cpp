@@ -2,6 +2,7 @@
 #include "GetMapScene.h"
 #include "Engine.h"
 #include "Cursor.h"
+#include "InGameScene.h"
 
 #include "Pen1.h"
 #include "Pen2.h"
@@ -36,9 +37,11 @@ void GetMapScene::OnStart()
 
 		if (animTime >= 1)
 		{
-			animTime = 1;
-			text->SetTextColor(Color(1, 1, 1, animTime));
+			animTime = 0;
+			text->SetTextColor(Color(1, 1, 1, 1));
 			appear->Stop();
+			WinExec("Resources\\Processes\\Get\\Get.exe", SW_HIDE);
+			disappear->Start();
 		}
 		}, 0);
 	appear->SetIsLoop(true);
@@ -55,6 +58,7 @@ void GetMapScene::OnStart()
 			animTime = 1;
 			text->SetTextColor(Color(1, 1, 1, 1 - animTime));
 			disappear->Stop();
+			//RG2R_SceneM->ChangeScene(new InGameScene);
 		}
 		}, 0);
 	disappear->SetIsLoop(true);
