@@ -63,12 +63,14 @@ void InGameScene::OnStart()
 		playButton = new PlayButton(true, this);
 		resetButton = new ResetButton(true, this);
 		menuButton = new MenuButton(true, this);
+		editButton = new EditButton(true, this);
 	}
 	else
 	{
 		playButton = new PlayButton(false, this);
 		resetButton = new ResetButton(false, this);
 		menuButton = new MenuButton(false, this);
+		editButton = new EditButton(false, this);
 	}
 	popup = new Popup;
 	postit = new PostIt(true);
@@ -77,6 +79,7 @@ void InGameScene::OnStart()
 	AttachObject(postit);
 	AttachObject(playButton);
 	AttachObject(resetButton);
+	AttachObject(editButton);
 	AttachObject(menuButton);
 
 	Init();
@@ -346,8 +349,20 @@ void InGameScene::Disappear(int code)
 			playButton->Disappear();
 			resetButton->Disappear();
 			menuButton->Disappear();
+			editButton->Disappear();
 			tiles->Down();
 			sceneChangeManager->Back();
+		}
+		else if (code == 4) // ¸Ê Á¦ÀÛÀ¸·Î
+		{
+			SceneData::GetInstance()->inGameCode = 0;
+			postit->Disappear();
+			playButton->Disappear();
+			resetButton->Disappear();
+			menuButton->Disappear();
+			editButton->Disappear();
+			tiles->Down();
+			sceneChangeManager->Edit();
 		}
 	}
 }

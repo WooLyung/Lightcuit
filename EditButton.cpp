@@ -1,26 +1,30 @@
 #include "stdafx.h"
-#include "TryButtonM.h"
+#include "EditButton.h"
 #include "Engine.h"
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
+#include "MapEditData.h"
 
-TryButtonM::TryButtonM(bool isAnim, MapCreateScene* scene)
+EditButton::EditButton(bool isAnim, InGameScene* scene)
 {
 	this->isAnim = isAnim;
 	this->scene = scene;
 }
 
-TryButtonM::~TryButtonM()
+EditButton::~EditButton()
 {
 }
 
-void TryButtonM::OnStart()
+void EditButton::OnStart()
 {
 	spriteRenderer = AttachComponent<SpriteRenderer>()
-		->SetTexture("Resources/Sprites/UIs/Menus/playButton.png")
+		->SetTexture("Resources/Sprites/UIs/Menus/editButton.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);
 	spriteRenderer->SetZ_index(-1);
+	if (MapEditData::GetInstance()->playType != 1)
+		spriteRenderer->SetIsEnable(false);
+
 	transform = GetComponent<Transform>()
 		->SetScale(0.2f, 0.2f)
 		->SetAnchor(spriteRenderer->GetTexture()->GetSize().width * 0.5f, spriteRenderer->GetTexture()->GetSize().height * 0.5f)
@@ -37,7 +41,7 @@ void TryButtonM::OnStart()
 			appearAnim->Stop();
 		}
 
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
+		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 2.4f,
 			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime - 1, 2) * 5);
 		transform->SetRot(250 - (pow(animTime - 1, 2) + 1) * 250);
 		}, 0);
@@ -55,7 +59,7 @@ void TryButtonM::OnStart()
 			disappearAnim->Stop();
 		}
 
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
+		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 2.4f,
 			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime, 2) * 5);
 		transform->SetRot(pow(animTime, 2) * 250);
 		}, 0);
@@ -100,19 +104,20 @@ void TryButtonM::OnStart()
 	if (!isAnim)
 	{
 		animTime = 1;
-		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 1.8f,
+		transform->SetPos(GetScene()->GetMainCamera()->GetCameraDefaultSize().width * 0.5f - 2.4f,
 			GetScene()->GetMainCamera()->GetCameraDefaultSize().height * 0.5f - 0.5f + pow(animTime - 1, 2) * 5);
 		transform->SetRot(50 - (pow(animTime - 1, 2) + 1) * 50);
 	}
 }
 
-
-void TryButtonM::OnUpdate()
+void EditButton::OnUpdate()
 {
-	Input();
+	if (scene->playManager->gameState != GameState::Clear
+		&& MapEditData::GetInstance()->playType == 1)
+		Input();
 }
 
-void TryButtonM::Input()
+void EditButton::Input()
 {
 	Vec2F vec = RG2R_InputM->FromScreenToUI(RG2R_InputM->GetMousePos()) - transform->GetPos();
 
@@ -144,15 +149,7 @@ void TryButtonM::Input()
 				sizeFlag = 1;
 				changeScale->Start();
 
-				bool go = false;
-				for (auto& iter : scene->gates)
-				{
-					if (iter->type == "battery")
-						go = true;
-				}
-
-				if (go)
-					scene->Disappear(2);
+				scene->Disappear(4);
 			}
 		}
 	}
@@ -167,17 +164,17 @@ void TryButtonM::Input()
 	}
 }
 
-Transform* TryButtonM::GetTransform()
+Transform* EditButton::GetTransform()
 {
 	return transform;
 }
 
-SpriteRenderer* TryButtonM::GetSpriteRenderer()
+SpriteRenderer* EditButton::GetSpriteRenderer()
 {
 	return spriteRenderer;
 }
 
-void TryButtonM::Disappear()
+void EditButton::Disappear()
 {
 	disappearAnim->Start();
 	animTime = 0;

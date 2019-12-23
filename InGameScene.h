@@ -13,6 +13,7 @@
 #include "PlayButton.h"
 #include "ResetButton.h"
 #include "MenuButton.h"
+#include "EditButton.h"
 #include "ToNextButton.h"
 #include "ToMenuButton.h"
 #include "StageClearObj.h"
@@ -29,6 +30,7 @@ class InGameScene :
 	friend class PlayButton;
 	friend class ResetButton;
 	friend class MenuButton;
+	friend class EditButton;
 	friend class ToNextButton;
 	friend class ToMenuButton;
 	friend class StageClearObj;
@@ -44,6 +46,7 @@ private:
 	PlayButton* playButton;
 	ResetButton* resetButton;
 	MenuButton* menuButton;
+	EditButton* editButton;
 
 	Vec2L mapSize;
 	Tiles* tiles;

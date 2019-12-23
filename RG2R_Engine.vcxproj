@@ -176,6 +176,7 @@
     <ClInclude Include="DiffGate.h" />
     <ClInclude Include="DivisionGate.h" />
     <ClInclude Include="Dust.h" />
+    <ClInclude Include="EditButton.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectInfo.h" />
     <ClInclude Include="EffectType.h" />
@@ -279,6 +280,7 @@
     <ClCompile Include="DiffGate.cpp" />
     <ClCompile Include="DivisionGate.cpp" />
     <ClCompile Include="Dust.cpp" />
+    <ClCompile Include="EditButton.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectInfo.cpp" />
     <ClCompile Include="Engine.cpp" />

@@ -31,6 +31,8 @@ private:
 
 	bool isFinish = false;
 
+	void Load();
+
 public:
 	Cursor* cursor;
 	std::list<GateF*> gates;
@@ -41,6 +43,6 @@ public:
 	void OnStart();
 	void OnUpdate();
 	void Disappear(int);
-	void CreateGate(std::string, std::string, Vec2L);
+	GateF* CreateGate(std::string, std::string, Vec2L);
 	Vec2L GetTilePos();
 };

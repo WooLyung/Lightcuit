@@ -5,6 +5,7 @@
 struct GateData
 {
 	int x, y;
+	std::string texture;
 	std::string color;
 	std::string dir;
 	std::string type;

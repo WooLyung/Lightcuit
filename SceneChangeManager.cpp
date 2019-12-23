@@ -2,6 +2,7 @@
 #include "SceneChangeManager.h"
 #include "Engine.h"
 #include "ChapterScene.h"
+#include "MapCreateScene.h"
 #include "SceneData.h"
 
 SceneChangeManager::SceneChangeManager(InGameScene* scene)
@@ -20,6 +21,13 @@ SceneChangeManager::SceneChangeManager(InGameScene* scene)
 		RG2R_SceneM->ChangeScene(new ChapterScene, true);
 		}, 1.2f);
 	commandLists.push_back(toStageScene);
+
+	toEditScene = new CommandList;
+	toEditScene->PushCommand([=]() {
+		SceneData::GetInstance()->isFirst = false;
+		RG2R_SceneM->ChangeScene(new MapCreateScene, true);
+		}, 1.2f);
+	commandLists.push_back(toEditScene);
 }
 
 SceneChangeManager::~SceneChangeManager()
@@ -34,6 +42,11 @@ void SceneChangeManager::Reset()
 void SceneChangeManager::Back()
 {
 	toStageScene->Start();
+}
+
+void SceneChangeManager::Edit()
+{
+	toEditScene->Start();
 }
 
 void SceneChangeManager::Diff()

@@ -90,6 +90,8 @@ void MapCreateScene::OnStart()
 		GetMainCamera()->Translate(-0.5f, 0);
 	if (MapEditData::GetInstance()->height % 2 == 0)
 		GetMainCamera()->Translate(0, -0.5f);
+
+	Load();
 }
 
 void MapCreateScene::OnUpdate()
@@ -124,6 +126,7 @@ void MapCreateScene::Disappear(int code)
 				gateData.y = iter->pos.y;
 				gateData.isStatic = iter->GetIsStatic();
 				gateData.type = iter->type;
+				gateData.texture = iter->texture;
 			
 				MapEditData::GetInstance()->gates.push_back(gateData);
 			}
@@ -148,13 +151,14 @@ void MapCreateScene::Disappear(int code)
 	}
 }
 
-void MapCreateScene::CreateGate(std::string type, std::string texture, Vec2L pos)
+GateF* MapCreateScene::CreateGate(std::string type, std::string texture, Vec2L pos)
 {
 	GateF* gate = new GateF;
 	gate->GetSpriteRenderer()
 		->SetTexture(texture);
 	gate->SetPos(pos);
 	gate->type = type;
+	gate->texture = texture;
 
 	if (type == "battery")
 	{
@@ -163,4 +167,40 @@ void MapCreateScene::CreateGate(std::string type, std::string texture, Vec2L pos
 
 	tiles->AttachChild(gate);
 	gates.push_back(gate);
+
+	return gate;
+}
+
+void MapCreateScene::Load()
+{
+	for (auto& iter : MapEditData::GetInstance()->gates)
+	{
+		GateF* gate = CreateGate(iter.type, iter.texture, Vec2L(iter.x, iter.y));
+		while (gate->dir != iter.dir)
+		{
+			if (gate->dir == "right")
+			{
+				gate->dir = "down";
+				gate->GetTransform()->SetRot(90);
+			}
+			else if (gate->dir == "down")
+			{
+				gate->dir = "left";
+				gate->GetTransform()->SetRot(180);
+			}
+			else if (gate->dir == "left")
+			{
+				gate->dir = "up";
+				gate->GetTransform()->SetRot(270);
+			}
+			else if (gate->dir == "up")
+			{
+				gate->dir = "right";
+				gate->GetTransform()->SetRot(0);
+			}
+		}
+
+		gate->SetColor(iter.color);
+		gate->SetIsStatic(iter.isStatic);
+	}
 }

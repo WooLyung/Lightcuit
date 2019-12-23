@@ -10,6 +10,7 @@ private:
 
 	CommandList* toInGameScene;
 	CommandList* toStageScene;
+	CommandList* toEditScene;
 
 public:
 	SceneChangeManager(InGameScene*);
@@ -18,4 +19,5 @@ public:
 	void Reset();
 	void Back();
 	void Diff();
+	void Edit();
 };

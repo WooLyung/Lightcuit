@@ -14,6 +14,7 @@
 #include "InGameScene.h"
 #include "ChapterScene.h"
 #include "MapCreateScene.h"
+#include "MapEditData.h"
 #include "Cursor.h"
 #include "MapEditCreate.h"
 
@@ -66,6 +67,7 @@ void MapEditorScene::OnStart()
 
 	goToMapEdit = new CommandList;
 	goToMapEdit->PushCommand([=]() {
+		MapEditData::GetInstance()->gates.clear();
 		RG2R_SceneM->ChangeScene(new MapCreateScene, true);
 		}, 1);
 	chapterObj->commandLists.push_back(goToMapEdit);

@@ -22,6 +22,7 @@ public:
 	std::string dir = "right";
 	std::string color = "white";
 	std::string type = "";
+	std::string texture = "";
 	Color nowColor = { 1, 1, 1, 1 };
 	Color toColor = { 1, 1, 1, 1 };
 

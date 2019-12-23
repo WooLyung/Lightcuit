@@ -4,6 +4,7 @@
 #include "ChapterScene.h"
 #include "SceneData.h"
 #include "InGameScene.h"
+#include "MapEditData.h"
 
 SceneChangeManager2::SceneChangeManager2(MapCreateScene* scene)
 {
@@ -25,6 +26,7 @@ SceneChangeManager2::SceneChangeManager2(MapCreateScene* scene)
 	toMapCreateScene = new CommandList;
 	toMapCreateScene->PushCommand([=]() {
 		SceneData::GetInstance()->isFirst = false;
+		MapEditData::GetInstance()->gates.clear();
 		RG2R_SceneM->ChangeScene(new MapCreateScene, true);
 		}, 1.2f);
 	commandLists.push_back(toMapCreateScene);
