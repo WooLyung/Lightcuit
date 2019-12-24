@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SettingData.h"
 #include "Engine.h"
+#include "SoundMaster.h"
 #include <fstream>
 
 SettingData* SettingData::GetInstance()
@@ -51,7 +52,10 @@ SettingData::SettingData()
 void SettingData::SetData(int code, int data)
 {
 	if (code == 1)
+	{
 		sound_bgm = data;
+		SoundMaster::GetInstance()->PlayBGM();
+	}
 	else if (code == 2)
 		sound_effect = data;
 	else if (code == 3)

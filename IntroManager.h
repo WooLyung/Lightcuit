@@ -12,6 +12,7 @@ private:
 	Effect* effect;
 
 	enum IntroState {
+		sans,
 		firstWait,
 		appear1, wait1, disappear1,
 		textWait,
@@ -19,7 +20,7 @@ private:
 		nextWait
 	};
 
-	IntroState state = firstWait;
+	IntroState state = sans;
 	float time = 0;
 
 public:

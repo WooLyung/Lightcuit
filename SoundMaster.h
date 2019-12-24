@@ -1,4 +1,6 @@
 #pragma once
+#include "SoundManager.h"
+
 enum SoundID {
 	LIFT,
 	DROP,
@@ -10,7 +12,7 @@ enum SoundID {
 class SoundMaster
 {
 private:
-	int bgmid = -1;
+	SoundCode bgmid = -1;
 
 public:
 	static SoundMaster* GetInstance();

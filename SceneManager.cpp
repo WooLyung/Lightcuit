@@ -13,10 +13,7 @@ Scene* SceneManager::FirstScene()
 	ShowCursor(false);
 	SettingData::GetInstance();
 
-	//return new ChapterScene;
-	//return new IntroScene;
-	return new InGameScene;
-	//return new StageScene;
+	return new IntroScene;
 }
 
 SceneManager::SceneManager()

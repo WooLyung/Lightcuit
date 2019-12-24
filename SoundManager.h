@@ -23,7 +23,7 @@ struct SoundOptions {
 
 struct SoundResource {
 	SoundType type;
-	LPDIRECTSOUNDBUFFER	buffer;
+	LPDIRECTSOUNDBUFFER	buffer = NULL;
 };
 
 struct WaveSoundResource : public SoundResource {

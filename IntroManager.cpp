@@ -5,6 +5,17 @@
 #include "TitleScene.h"
 #include "SpriteRenderer.h"
 #include "Transform.h"
+#include "SoundMaster.h"
+#include <thread>
+
+void LoadSound() {
+	RG2R_SoundM->Load("Resources/Sounds/lift.wav");
+	RG2R_SoundM->Load("Resources/Sounds/line_connect.wav");
+	RG2R_SoundM->Load("Resources/Sounds/drop.wav");
+	RG2R_SoundM->Load("Resources/Sounds/click.wav");
+	RG2R_SoundM->Load("Resources/Sounds/slide.wav");
+	RG2R_SoundM->Load("Resources/Sounds/bgm.ogg");
+}
 
 IntroManager::IntroManager()
 {
@@ -34,9 +45,19 @@ void IntroManager::OnUpdate()
 {
 	time += RG2R_TimeM->GetDeltaTime();
 
+	if (state == IntroState::sans)
+	{
+		if (time >= 0.5f)
+		{
+			std::thread t(&LoadSound);
+			t.join();
+			state = IntroState::firstWait;
+			time = 0;
+		}
+	}
 	if (state == IntroState::firstWait)
 	{
-		if (time >= 1)
+		if (time >= 3)
 		{
 			state = IntroState::appear1;
 			time = 0;
@@ -122,6 +143,7 @@ void IntroManager::OnUpdate()
 		if (time >= 0.5f)
 		{
 			RG2R_SceneM->ChangeScene(new TitleScene, true);
+			SoundMaster::GetInstance()->PlayBGM();
 		}
 	}
 }

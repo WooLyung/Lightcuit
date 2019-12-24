@@ -50,4 +50,28 @@ void SoundMaster::PlayEffectSound(SoundID id)
 
 void SoundMaster::PlayBGM()
 {
+	std::cout << bgmid << std::endl;
+
+	if (bgmid == -1)
+	{
+		SoundOptions options;
+		options.volume = 0.8f;
+		options.isLoop = true;
+		if (SettingData::GetInstance()->sound_bgm == 0)
+			options.isMute = true;
+
+		bgmid = RG2R_SoundM->Play("Resources/Sounds/bgm.ogg", options);
+	}
+	else
+	{
+		SoundOptions options;
+		options.volume = 0.8f;
+		options.isLoop = true;
+		if (SettingData::GetInstance()->sound_bgm == 0)
+			options.isMute = true;
+
+		std::cout << options.isMute << std::endl;
+
+		RG2R_SoundM->SetOptions(bgmid, options);
+	}
 }
