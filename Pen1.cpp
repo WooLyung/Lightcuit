@@ -4,6 +4,7 @@
 #include "TextRenderer.h"
 #include "StageScene.h"
 #include "StageData.h"
+#include "SoundMaster.h"
 
 Pen1::Pen1(bool isAnim)
 {
@@ -16,6 +17,8 @@ Pen1::~Pen1()
 
 void Pen1::OnStart()
 {
+	SoundMaster::GetInstance()->PlayEffectSound(SoundID::SLIDE);
+
 	spriteRenderer = AttachComponent<SpriteRenderer>()
 		->SetTexture("Resources/Sprites/UIs/WritingSupplies/pen1.png")
 		->SetEnlargementType(EnlargementType::HIGH_QUALITY_CUBIC);

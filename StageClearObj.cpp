@@ -3,6 +3,7 @@
 #include "Engine.h"
 #include "ToNextButton.h"
 #include "SceneData.h"
+#include "SoundMaster.h"
 
 StageClearObj::StageClearObj(InGameScene* scene)
 {
@@ -41,6 +42,7 @@ void StageClearObj::OnStart()
 		}, 0);
 	appearAnim->SetIsLoop(true);
 	appearAnim->Start();
+	SoundMaster::GetInstance()->PlayEffectSound(SoundID::SLIDE);
 
 	disappearAnim = new CommandList;
 	commandLists.push_back(disappearAnim);

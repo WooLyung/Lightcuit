@@ -4,6 +4,7 @@
 #include "Dust.h"
 #include "Engine.h"
 #include "SettingData.h"
+#include "SoundMaster.h"
 
 Line::Line(long x, long y)
 {
@@ -235,6 +236,8 @@ void Line::SetSprite()
 			transform->SetRot(90);
 		}
 	}
+
+	SoundMaster::GetInstance()->PlayEffectSound(SoundID::LINE_CONNECT);
 }
 
 void Line::OnDestroy()

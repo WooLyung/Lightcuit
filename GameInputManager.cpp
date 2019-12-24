@@ -6,6 +6,7 @@
 #include "Effect.h"
 #include "Dust.h"
 #include "SettingData.h"
+#include "SoundMaster.h"
 
 GameInputManager::GameInputManager(InGameScene* scene)
 {
@@ -241,6 +242,7 @@ void GameInputManager::Input_Select() // 게이트 들기, 우클릭
 		inputState = InputState::GATE_LIFT;
 		myGate = targetGate;
 		myGate->GetSpriteRenderer()->SetZ_index(5);
+		SoundMaster::GetInstance()->PlayEffectSound(SoundID::LIFT);
 		if (SettingData::GetInstance()->effect)
 		{
 			for (int i = 0; i < 3; i++)
@@ -622,6 +624,7 @@ void GameInputManager::GateMove()
 					myGate->GetSpriteRenderer()->SetZ_index(0);
 					shadow->SetIsEnable(false);
 					myGate = nullptr;
+					SoundMaster::GetInstance()->PlayEffectSound(SoundID::DROP);
 				}
 				else // 움직일 수 없을 때
 				{

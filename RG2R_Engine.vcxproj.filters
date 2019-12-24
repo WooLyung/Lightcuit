@@ -388,6 +388,9 @@
     <Filter Include="소스 파일\Game\Scenes\GetMapScene">
       <UniqueIdentifier>{862e055a-8185-4273-8c16-3b5492305839}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game\SoundMaster">
+      <UniqueIdentifier>{0f58f524-27d2-4f1f-98df-d1d82e4f491b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -702,6 +705,9 @@
     <ClInclude Include="GetMapScene.h">
       <Filter>소스 파일\Game\Scenes\GetMapScene</Filter>
     </ClInclude>
+    <ClInclude Include="SoundMaster.h">
+      <Filter>소스 파일\Game\SoundMaster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RG2R_Engine.rc">
@@ -1013,6 +1019,9 @@
     </ClCompile>
     <ClCompile Include="GetMapScene.cpp">
       <Filter>소스 파일\Game\Scenes\GetMapScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMaster.cpp">
+      <Filter>소스 파일\Game\SoundMaster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

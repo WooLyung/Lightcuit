@@ -236,6 +236,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="SizeChoice.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SoundMaster.h" />
     <ClInclude Include="SpriteRenderData.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="StageChoice.h" />
@@ -338,6 +339,7 @@
     <ClCompile Include="SettingData.cpp" />
     <ClCompile Include="SizeChoice.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SoundMaster.cpp" />
     <ClCompile Include="SpriteRenderData.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="StageChoice.cpp" />

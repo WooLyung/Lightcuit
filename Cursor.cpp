@@ -2,6 +2,7 @@
 #include "Cursor.h"
 #include "SpriteRenderer.h"
 #include "Engine.h"
+#include "SoundMaster.h"
 
 Cursor::Cursor()
 {
@@ -32,6 +33,11 @@ void Cursor::OnUpdate()
 		&& RG2R_InputM->GetKeyState(KeyCode::KEY_F4) == KeyState::KEYSTATE_ENTER)
 	{
 		RG2R_WindowM->Close();
+	}
+
+	if (RG2R_InputM->GetMouseState(MouseCode::MOUSE_LBUTTON) == KeyState::KEYSTATE_ENTER)
+	{
+		SoundMaster::GetInstance()->PlayEffectSound(SoundID::CLICK);
 	}
 }
 
